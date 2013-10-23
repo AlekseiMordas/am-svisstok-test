@@ -21,18 +21,7 @@
 			<source>testng.xml</source>
 			<destName>testng.xml</destName>
 		</file>
-		<file>
-			<source>testng-IPHONE.xml</source>
-			<destName>testng-IPHONE.xml</destName>
-		</file>
-		<file>
-			<source>testng-IPAD.xml</source>
-			<destName>testng-IPAD.xml</destName>
-		</file>
-		<file>
-			<source>non-mraid.xml</source>
-			<destName>non-mraid.xml</destName>
-		</file>
+		
 	</files>
 	<fileSets>
 		<fileSet>
@@ -43,9 +32,6 @@
 			<directory>scripts</directory>
 			<outputDirectory>scripts</outputDirectory>
 		</fileSet>
-		<fileSet>
-			<directory>Preferences.app</directory>
-			<outputDirectory>Preferences.app</outputDirectory>
-		</fileSet>
+
 	</fileSets>
 </assembly>

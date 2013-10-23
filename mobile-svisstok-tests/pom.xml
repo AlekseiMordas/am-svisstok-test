@@ -8,8 +8,8 @@
 
 	<repositories>
 		<repository>
-			<id>am-mobile-drivers</id>
-			<url>https://github.com/AlekseiMordas/am-mobile-driver/raw/mvn-repo</url>
+			<id>am-mobile-driver</id>
+			<url>https://github.com/AlekseiMordas/am-mobile-driver/raw/appium-driver-repo</url>
 		</repository>
 		<repository>
 			<id>am-test-runner</id>
@@ -82,7 +82,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>am.mobile.driver</groupId>
+			<groupId>am.appium.driver</groupId>
 			<artifactId>appium-driver</artifactId>
 			<version>1.0.0</version>
 		</dependency>
