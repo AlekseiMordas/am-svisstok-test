@@ -40,6 +40,6 @@
 			<directory>scripts</directory>
 			<outputDirectory>scripts</outputDirectory>
 		</fileSet>
-
+		
 	</fileSets>
 </assembly>
