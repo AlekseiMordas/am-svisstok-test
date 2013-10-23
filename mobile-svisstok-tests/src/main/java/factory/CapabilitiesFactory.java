@@ -35,7 +35,7 @@ public class CapabilitiesFactory {
 		capabilities.setCapability(CapabilityType.BROWSER_NAME, BROWSER_NAME);
 		capabilities.setCapability(CapabilityType.VERSION, VERSION);
 		capabilities.setCapability(CapabilityType.PLATFORM, PLATFORM);
-		capabilities.setCapability("app", app.getAbsolutePath());
+	//	capabilities.setCapability("app", app.getAbsolutePath());
 		capabilities.setCapability("device", device.toString());
 		LOGGER.info("CAPABILITY PATH: " + app.getAbsolutePath());
 		return capabilities;
@@ -53,10 +53,4 @@ public class CapabilitiesFactory {
 		return createDefaultCapabilities(Devices.IPHONE, pathToApp);
 	}
 
-	public static DesiredCapabilities createIphoneCapabilitiesPreferencesApp() {
-
-		return createDefaultCapabilities(Devices.IPHONE, new File(
-				PREFERENCES_APP).getAbsolutePath());
-
-	}
 }

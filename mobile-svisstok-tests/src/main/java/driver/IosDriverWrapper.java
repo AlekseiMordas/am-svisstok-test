@@ -31,11 +31,6 @@ public class IosDriverWrapper {
 						.getFlags()));
 		return instance;
 	}
-	
-	public static NativeDriver getSettingsApp(String host, String port) {
-		instance = new AppiumDriver(String.format(URL, host, port),
-				CapabilitiesFactory.createIphoneCapabilitiesPreferencesApp());
-		return instance;
-	}
+
 
 }

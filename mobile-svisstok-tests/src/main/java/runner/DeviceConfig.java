@@ -6,8 +6,6 @@ public class DeviceConfig {
 
 	private static String port;
 
-	private static int proxyPort;
-
 	private static String device;
 
 	private static String flags;
@@ -31,14 +29,6 @@ public class DeviceConfig {
 
 	public static void setDevice(String device) {
 		DeviceConfig.device = device;
-	}
-
-	public static int getProxyPort() {
-		return proxyPort;
-	}
-
-	public static void setProxyPort(int proxyPort) {
-		DeviceConfig.proxyPort = proxyPort;
 	}
 
 	public static String getHost() {

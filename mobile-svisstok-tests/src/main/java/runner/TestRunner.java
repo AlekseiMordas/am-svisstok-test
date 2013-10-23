@@ -16,8 +16,6 @@ import runner.clioption.ServerFlags;
 import runner.clioption.VersionOption;
 import server.AppiumServer;
 
-
-
 import com.clioption.CliParser;
 
 import com.runner.Runner;
@@ -27,14 +25,14 @@ public class TestRunner extends Runner {
 
 	private static final Logger LOGGER = Logger.getLogger(TestRunner.class);
 
-
 	public TestRunner(String[] args) {
 		super(args);
 	}
 
 	public static void main(String[] args) {
 		try {
-		//	Runtime.getRuntime().addShutdownHook(new QuitDeviceShutdownHook());
+			// Runtime.getRuntime().addShutdownHook(new
+			// QuitDeviceShutdownHook());
 			Runner tr = new TestRunner(args);
 			@SuppressWarnings("rawtypes")
 			List<Class> listeners = new ArrayList<Class>();
@@ -46,16 +44,12 @@ public class TestRunner extends Runner {
 		} catch (Exception e) {
 			LOGGER.fatal(e.getMessage(), e);
 			throw new RuntimeException(e);
-		} 
-			int exitCode = BuildResult.getExitResult();
-			LOGGER.info("Exit with code : " + exitCode);
-			System.exit(exitCode);
-
 		}
-	
+		int exitCode = BuildResult.getExitResult();
+		LOGGER.info("Exit with code : " + exitCode);
+		System.exit(exitCode);
 
-	
-
+	}
 
 	public void addCommandLineOptions() {
 		super.addCommandLineOptions();
