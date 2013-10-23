@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Mobile_test_suite">
+	<test verbose="1" name="Mraid test IPAD: expand - collapse" annotations="JDK">
+		<parameter name="size" value="300x250" />
+		<parameter name="device" value="IPAD" />
+		<classes>
+			<class name="tests.adSDK.appiumTests.ExpandCollapseTest" />
+		</classes>
+	</test> 
+
+</suite>

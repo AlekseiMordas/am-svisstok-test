@@ -1,0 +1,25 @@
+package runner.clioption;
+
+import org.apache.commons.cli.Option;
+
+import com.clioption.ICliOption;
+
+import runner.DeviceConfig;
+
+public class ServerFlags implements ICliOption {
+	private static final String DEFAULT_FLAG =
+			 "app/BTGTestHarness.app";
+	
+	public String[] getDefaultValue() {
+		return new String[] { DEFAULT_FLAG };
+	}
+
+	public Option getOption() {
+		return new Option("sf", "serverFlags", true,
+				"Start Appium server with flags");
+	}
+
+	public void parse(String[] values) {
+		DeviceConfig.setFlags(values[0]);
+	}
+}
