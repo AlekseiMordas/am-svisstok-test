@@ -36,7 +36,9 @@ public class LoginPage extends BasePage{
 	}
 	
 	public CallScreen simpleLogin(String login, String password) {
+		loginTextfield.touch();
 		loginTextfield.type(login);
+		passwordTextfield.touch();
 		passwordTextfield.type(password);
 		savePasswordSlider.touch();
 		loginButton.touch();
