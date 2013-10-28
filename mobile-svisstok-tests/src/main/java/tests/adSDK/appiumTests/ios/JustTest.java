@@ -40,7 +40,6 @@ public class JustTest {
 	
 	private CallScreen call;
 
-
 	@Parameters("device")
 	@BeforeClass(description = "Init and check page")
 	public void initPages(String device) throws Exception {
