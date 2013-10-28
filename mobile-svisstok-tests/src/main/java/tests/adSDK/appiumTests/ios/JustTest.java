@@ -39,6 +39,8 @@ public class JustTest {
 	private LoginPage main;
 	
 	private CallScreen call;
+	
+	
 
 	@Parameters("device")
 	@BeforeClass(description = "Init and check page")
