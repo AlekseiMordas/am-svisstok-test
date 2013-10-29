@@ -1,4 +1,4 @@
-package tests.adSDK.page;
+package tests.page.ios;
 
 import com.annotation.FindBy;
 import com.element.UIView;

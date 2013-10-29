@@ -1,4 +1,4 @@
-package tests.adSDK.page.exceptions;
+package tests.page.exceptions;
 
 public class AdSDKXmlParametersException extends RuntimeException {
 

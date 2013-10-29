@@ -1,4 +1,4 @@
-package tests.adSDK.appiumTests.ios;
+package tests.appiumTests.ios;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -14,34 +14,37 @@ import driver.IosDriverWrapper;
 
 import runner.DeviceConfig;
 import runner.Devices;
-import tests.adSDK.page.CallScreen;
-import tests.adSDK.page.LoginPage;
-import tests.adSDK.page.exceptions.AdSDKXmlParametersException;
+import tests.page.exceptions.AdSDKXmlParametersException;
+import tests.page.ios.CallScreen;
+import tests.page.ios.LoginPage;
 
 /**
  * @author aleksei_mordas
  * 
  */
-public class JustTest {
+public class BaseTest {
 
-	private static final String DELIMETER = ":";
+	protected static final String DELIMETER = ":";
 
 	private static final String HOST = DeviceConfig.getHost();
 
 	private static final String PORT = DeviceConfig.getPort();
 	
-	private static final String USER_NAME = "9986";
+	protected static final String USER_NAME = "7812009986@217.195.69.250";
 	
-	private static final String USER_PASSWORD = "70mNZcEy05G3";
+	protected static final String USER_PASSWORD = "70mNZcEy05G3";
+	
+	protected static final String INCORRECT_USER_NAME = "7812001245@211.195.68.250";
+	
+	protected static final String INCORRECT_PASSWORD = "70mNZcEy05G123";
+	
+	protected NativeDriver driver;
 
-	private NativeDriver driver;
-
-	private LoginPage main;
+	protected LoginPage main;
 	
-	private CallScreen call;
+	protected CallScreen call;
 	
 	
-
 	@Parameters("device")
 	@BeforeClass(description = "Init and check page")
 	public void initPages(String device) throws Exception {
@@ -59,12 +62,7 @@ public class JustTest {
 
 	}
 
-	@Test
-	public void  simpleLogin() {
-		main.checkPage();
-		call = main.simpleLogin(USER_NAME, USER_PASSWORD);
-		call.checkPage();
-	}
+
 	
 	@AfterClass
 	public void tearDown() throws Exception {
