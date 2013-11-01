@@ -1,10 +1,10 @@
 package tests.page.exceptions;
 
-public class AdSDKToolbarException extends RuntimeException {
+public class XmlParametersException extends RuntimeException {
 
 	private static final long serialVersionUID = -5157033604794595167L;
 
-	public AdSDKToolbarException(String message) {
+	public XmlParametersException(String message) {
 		super(message);
 	}
 }

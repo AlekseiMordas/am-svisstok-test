@@ -23,8 +23,12 @@ public abstract class BasePage extends Page {
 	protected void makeScreenshot() {
 		AppiumDriver.class.cast(driver).takeScreenshot("");
 	}
-	
+
 	public String getFieldText(UIView element) {
-		return element.getText();
+		try {
+			return element.getText();
+		} catch (Exception e) {
+			return element.getAttribute("value");
+		}
 	}
 }

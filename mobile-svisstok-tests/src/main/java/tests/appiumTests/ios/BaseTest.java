@@ -14,9 +14,12 @@ import driver.IosDriverWrapper;
 
 import runner.DeviceConfig;
 import runner.Devices;
-import tests.page.exceptions.AdSDKXmlParametersException;
-import tests.page.ios.CallScreen;
-import tests.page.ios.LoginPage;
+import tests.page.CallPage;
+import tests.page.LoginPage;
+import tests.page.android.LoginPageAndroid;
+import tests.page.exceptions.XmlParametersException;
+import tests.page.ios.CallPageIos;
+import tests.page.ios.LoginPageIos;
 
 /**
  * @author aleksei_mordas
@@ -42,7 +45,7 @@ public class BaseTest {
 
 	protected LoginPage main;
 	
-	protected CallScreen call;
+	protected CallPage call;
 	
 	
 	@Parameters("device")
@@ -51,14 +54,15 @@ public class BaseTest {
 		switch (Devices.valueOf(device)) {
 		case IPHONE:
 			driver = IosDriverWrapper.getIphone(HOST, PORT);
+			main = PageFactory.initElements(driver, LoginPageIos.class);
 			break;
-		case IPAD:
-			driver = IosDriverWrapper.getIpad(HOST, PORT);
+		case ANDROID:
+			driver = IosDriverWrapper.getAndroid(HOST, PORT);
+			main = PageFactory.initElements(driver, LoginPageAndroid.class);
 			break;
 		default:
-			throw new AdSDKXmlParametersException("Invalid device");
+			throw new XmlParametersException("Invalid device");
 		}
-		main = PageFactory.initElements(driver, LoginPage.class);
 
 	}
 

@@ -1,22 +1,16 @@
 package tests.page.ios;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-
-import tests.page.exceptions.AdSDKLoadException;
-import tests.page.exceptions.AdSDKToolbarException;
-
+import tests.page.LoginPage;
 import com.annotation.FindBy;
 import com.element.UIView;
-import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
 import com.mobile.driver.page.PageFactory;
-import com.mobile.driver.wait.Sleeper;
 
-public class LoginPage extends BasePage {
 
-	private static final Logger LOGGER = Logger.getLogger(LoginPage.class);
+public class LoginPageIos extends LoginPage {
+
+	private static final Logger LOGGER = Logger.getLogger(LoginPageIos.class);
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/textfield[1]")
 	public UIView loginTextfield;
@@ -42,8 +36,8 @@ public class LoginPage extends BasePage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[5]")
 	private UIView errorMessage;
 
-	public LoginPage(NativeDriver driver) {
-		this.driver = driver;
+	public LoginPageIos(NativeDriver driver) {
+		super(driver);
 	}
 
 	public void savePasswordFalse() {
@@ -56,14 +50,14 @@ public class LoginPage extends BasePage {
 		loginButton.touch();
 	}
 	
-	public CallScreen simpleLogin(String login, String password) {
+	public CallPageIos simpleLogin(String login, String password) {
 		loginTextfield.touch();
 		loginTextfield.type(login);
 		passwordTextfield.touch();
 		passwordTextfield.type(password);
 		savePasswordFalse();
 		loginButton.touch();
-		return PageFactory.initElements(driver, CallScreen.class);
+		return PageFactory.initElements(driver, CallPageIos.class);
 	}
 
 	public void inputLoginTextfield(String text) {
@@ -83,6 +77,14 @@ public class LoginPage extends BasePage {
 			selectAll.touchByName();
 			deleteButton.touchByName();
 		}
+	}
+	
+	public String getLoginFieldText() {
+		return loginTextfield.getText();
+	}
+	
+	public String getPasswordFieldText() {
+		return passwordTextfield.getText();
 	}
 	
 	public void inputPasswordTextfield(String text) {

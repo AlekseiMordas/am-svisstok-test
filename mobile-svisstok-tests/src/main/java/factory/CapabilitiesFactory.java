@@ -45,8 +45,14 @@ public class CapabilitiesFactory {
 		return capabilities.getCapability("device").toString();
 	}
 
-	public static DesiredCapabilities createIpadCapabilities(String pathToApp) {
-		return createDefaultCapabilities(Devices.IPAD, pathToApp);
+	public static DesiredCapabilities createAndroidCapabilities(String pathToApp) {
+		File app = new File(pathToApp);
+		//capabilities.setCapability("app", pathToApp );
+		capabilities.setCapability("device", "selendroid");
+		capabilities.setCapability("app-package", "ru.sbc.swisstoklp");
+        capabilities.setCapability("app-activity", ".swisstokandroidip");
+		LOGGER.info("CAPABILITY PATH: " + app.getAbsolutePath());
+		return capabilities;
 	}
 
 	public static DesiredCapabilities createIphoneCapabilities(String pathToApp) {

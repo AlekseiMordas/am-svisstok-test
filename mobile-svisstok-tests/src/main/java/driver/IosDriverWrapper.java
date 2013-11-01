@@ -25,9 +25,9 @@ public class IosDriverWrapper {
 		return instance;
 	}
 
-	public static NativeDriver getIpad(String host, String port) {
+	public static NativeDriver getAndroid(String host, String port) {
 		instance = new AppiumDriver(String.format(URL, host, port),
-				CapabilitiesFactory.createIpadCapabilities(DeviceConfig
+				CapabilitiesFactory.createAndroidCapabilities(DeviceConfig
 						.getFlags()));
 		return instance;
 	}
