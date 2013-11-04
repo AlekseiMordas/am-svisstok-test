@@ -23,7 +23,7 @@ public class CallPageAndroid extends CallPage{
 	
 	@Override
 	public void checkPage() {
-		status.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
+		status.waitForElement(WAIT_WHILE_LOGIN);
 	}
 
 }

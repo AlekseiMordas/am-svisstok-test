@@ -54,11 +54,7 @@ public class LoginPageAndroid extends LoginPage{
 	@Override
 	public void clickLogin() {
 		loginButton.touch();
-		//System.out.println(AppiumDriver.class.cast(driver).getDriver().getPageSource());
-//		WebDriver driver2 = AppiumDriver.class.cast(driver).getDriver();
-//		WebElement element = driver2.findElement(By.xpath(loginButton.getFoundBy()));
-//		Actions action = new Actions(driver2);
-//		action.click(element).build().perform();
+
 	}
 
 	@Override
@@ -92,8 +88,9 @@ public class LoginPageAndroid extends LoginPage{
 
 	@Override
 	public boolean isErrorMessageAppears() {
-		// TODO Auto-generated method stub
-		return true;
+		//TODO Ask dev guys locator error messages
+		Sleeper.SYSTEM_SLEEPER.sleep(10000);
+		return loginTextfield.isExists();
 	}
 
 	@Override

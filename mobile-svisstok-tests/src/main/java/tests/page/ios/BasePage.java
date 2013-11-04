@@ -16,7 +16,7 @@ public abstract class BasePage extends Page {
 
 	protected static final int WAIT_FOR_ELEMENT_TIMEOUT = 10;
 
-	protected static final int WAIT_FOR_AD = 90;
+	protected static final int WAIT_WHILE_LOGIN = 90;
 
 	protected static final long WAIT_SLEPPER_TIMEOUT = 7000;
 

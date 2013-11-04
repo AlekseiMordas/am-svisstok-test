@@ -67,7 +67,7 @@ public class LoginPageIos extends LoginPage {
 	}
 
 	public boolean isErrorMessageAppears() {
-		errorMessage.waitForElement(WAIT_FOR_AD);
+		errorMessage.waitForElement(WAIT_WHILE_LOGIN);
 		return errorMessage.isExists();
 	}
 	
