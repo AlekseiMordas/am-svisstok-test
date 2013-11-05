@@ -9,6 +9,8 @@ Be sure that appium server started, and you select path to app.
 
 Clone project with git clone https://github.com/AlekseiMordas/am-svisstok-test.git
 
+in terminal type "cd mobile-svisstok-tests"
+
 In folder run "mvn clean install"
 
 Go to tests/target/am.svisstok.tests-1.0.0 and run your tests with command:
