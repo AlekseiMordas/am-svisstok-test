@@ -35,9 +35,9 @@ public class BaseTest {
 	
 	private static final String DEVICE = DeviceConfig.getDevice();
 	
-	protected static final String USER_NAME = "7812009986@217.195.69.250";
+	protected static final String USER_NAME = "7812009957@217.195.69.250";
 	
-	protected static final String USER_PASSWORD = "70mNZcEy05G3";
+	protected static final String USER_PASSWORD = "JNcW5qTBaRvy";
 	
 	protected static final String INCORRECT_USER_NAME = "7812001245@211.195.68.250";
 	
