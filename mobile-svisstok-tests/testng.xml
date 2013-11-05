@@ -1,6 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Mobile_test_suite">
-<parameter name="device" value="ANDROID" />
 	<test verbose="1" name="Svisstok test" annotations="JDK">
 		<classes>
 			<class name="tests.appiumTests.ios.AuthorizationTest" />

@@ -8,7 +8,7 @@ import runner.DeviceConfig;
 
 public class ServerFlags implements ICliOption {
 	private static final String DEFAULT_FLAG =
-			 "app/BTGTestHarness.app";
+			 "/Users/aleksei_mordas/Downloads/swisstokandroidlp.apk";
 	
 	public String[] getDefaultValue() {
 		return new String[] { DEFAULT_FLAG };

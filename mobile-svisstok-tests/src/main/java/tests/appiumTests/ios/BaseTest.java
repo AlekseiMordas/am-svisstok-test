@@ -33,6 +33,8 @@ public class BaseTest {
 
 	private static final String PORT = DeviceConfig.getPort();
 	
+	private static final String DEVICE = DeviceConfig.getDevice();
+	
 	protected static final String USER_NAME = "7812009986@217.195.69.250";
 	
 	protected static final String USER_PASSWORD = "70mNZcEy05G3";
@@ -48,10 +50,10 @@ public class BaseTest {
 	protected CallPage call;
 	
 	
-	@Parameters("device")
 	@BeforeClass(description = "Init and check page")
-	public void initPages(String device) throws Exception {
-		switch (Devices.valueOf(device)) {
+	public void initPages() throws Exception {
+		
+		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:
 			driver = IosDriverWrapper.getIphone(HOST, PORT);
 			main = PageFactory.initElements(driver, LoginPageIos.class);

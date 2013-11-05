@@ -35,7 +35,7 @@ public class CapabilitiesFactory {
 		capabilities.setCapability(CapabilityType.BROWSER_NAME, BROWSER_NAME);
 		capabilities.setCapability(CapabilityType.VERSION, VERSION);
 		capabilities.setCapability(CapabilityType.PLATFORM, PLATFORM);
-	//	capabilities.setCapability("app", app.getAbsolutePath());
+		//capabilities.setCapability("app", app.getAbsolutePath());
 		capabilities.setCapability("device", device.toString());
 		LOGGER.info("CAPABILITY PATH: " + app.getAbsolutePath());
 		return capabilities;
@@ -47,7 +47,7 @@ public class CapabilitiesFactory {
 
 	public static DesiredCapabilities createAndroidCapabilities(String pathToApp) {
 		File app = new File(pathToApp);
-		//capabilities.setCapability("app", pathToApp );
+		capabilities.setCapability("app", pathToApp );
 		capabilities.setCapability("device", "selendroid");
 		capabilities.setCapability("app-package", "ru.sbc.swisstoklp");
         capabilities.setCapability("app-activity", ".swisstokandroidip");

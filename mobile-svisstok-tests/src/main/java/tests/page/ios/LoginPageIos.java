@@ -30,7 +30,10 @@ public class LoginPageIos extends LoginPage {
 	@FindBy(locator = "Select All")
 	private UIView selectAll;
 
-	@FindBy(locator = "Delete")
+	@FindBy(locator = "Cut")
+	private UIView cutButton;
+	
+	@FindBy(locator = "//window[2]/UIAKeyboard[1]/UIAKey[28]")
 	private UIView deleteButton;
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[5]")
@@ -51,11 +54,10 @@ public class LoginPageIos extends LoginPage {
 	}
 	
 	public CallPageIos simpleLogin(String login, String password) {
-		loginTextfield.touch();
-		loginTextfield.type(login);
-		passwordTextfield.touch();
-		passwordTextfield.type(password);
+		inputLoginTextfield(login);
+		inputPasswordTextfield(password);
 		savePasswordFalse();
+		doneButton.touch();
 		loginButton.touch();
 		return PageFactory.initElements(driver, CallPageIos.class);
 	}
@@ -75,7 +77,15 @@ public class LoginPageIos extends LoginPage {
 		if (!(element.getText().isEmpty())) {
 			element.touchLong();
 			selectAll.touchByName();
-			deleteButton.touchByName();
+			cutButton.touchByName();
+		}
+	}
+	
+	public void clearPasswordField(UIView element) {
+		if (!(element.getText().isEmpty())) {
+			element.touchLong();
+			selectAll.touchByName();
+			deleteButton.touch();
 		}
 	}
 	
@@ -89,7 +99,7 @@ public class LoginPageIos extends LoginPage {
 	
 	public void inputPasswordTextfield(String text) {
 		passwordTextfield.touch();
-		clearField(passwordTextfield);
+		clearPasswordField(passwordTextfield);
 		passwordTextfield.type(text);
 	}
 

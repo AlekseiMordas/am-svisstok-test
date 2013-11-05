@@ -8,7 +8,7 @@ import com.mobile.driver.nativedriver.NativeDriver;
 
 public class CallPageIos extends CallPage{
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[1]")
+	@FindBy(locator = "LinphoneRegistrationOk")
 	public UIView status;
 	
 	public CallPageIos(NativeDriver driver) {
@@ -17,14 +17,13 @@ public class CallPageIos extends CallPage{
 	
 	@Override
 	public void checkPage() {
-		status.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
-		status.getText().equals("LinphoneRegistrationOk");
+		status.waitForElementByName(WAIT_WHILE_LOGIN);
 	}
 
 	@Override
 	public boolean isStatusAvailable() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 }

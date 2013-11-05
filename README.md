@@ -15,7 +15,7 @@ Go to tests/target/am.svisstok.tests-1.0.0 and run your tests with command:
 
 java -jar am.svisstok.tests.jar --testng testng.xml --device IPHONE
 
-(or IPAD)
+(or ANDROID)
 
 Jenkins Integration
 ===

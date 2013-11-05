@@ -46,7 +46,7 @@ public class AuthorizationTest extends BaseTest{
 	@Test(priority=4)
 	public void  simpleLogin() {
 		main.checkPage();
-		call = main.simpleLogin(USER_NAME, USER_PASSWORD);
+		call = main.simpleLogin("1234", "152447");
 		call.checkPage();
 		Assert.assertTrue(call.isStatusAvailable());
 	}
