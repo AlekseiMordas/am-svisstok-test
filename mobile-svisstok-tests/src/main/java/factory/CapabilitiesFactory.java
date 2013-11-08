@@ -47,7 +47,7 @@ public class CapabilitiesFactory {
 
 	public static DesiredCapabilities createAndroidCapabilities(String pathToApp) {
 		File app = new File(pathToApp);
-		capabilities.setCapability("app", pathToApp );
+		//capabilities.setCapability("app", pathToApp );
 		capabilities.setCapability("device", "selendroid");
 		capabilities.setCapability("app-package", "ru.sbc.swisstoklp");
         capabilities.setCapability("app-activity", ".swisstokandroidip");
