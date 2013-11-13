@@ -1,9 +1,5 @@
 package driver;
 
-import runner.DeviceConfig;
-import runner.Devices;
-import server.AppiumServer;
-
 import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
 import factory.CapabilitiesFactory;
@@ -20,15 +16,13 @@ public class IosDriverWrapper {
 
 	public static NativeDriver getIphone(String host, String port) {
 		instance = new AppiumDriver(String.format(URL, host, port),
-				CapabilitiesFactory.createIphoneCapabilities(DeviceConfig
-						.getFlags()));
+				CapabilitiesFactory.createIphoneCapabilities());
 		return instance;
 	}
 
 	public static NativeDriver getAndroid(String host, String port) {
 		instance = new AppiumDriver(String.format(URL, host, port),
-				CapabilitiesFactory.createAndroidCapabilities(DeviceConfig
-						.getFlags()));
+				CapabilitiesFactory.createAndroidCapabilities());
 		return instance;
 	}
 

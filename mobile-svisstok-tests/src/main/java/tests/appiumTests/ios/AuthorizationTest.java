@@ -41,7 +41,6 @@ public class AuthorizationTest extends BaseTest{
 		main.clickLogin();
 		Assert.assertTrue(main.isErrorMessageAppears());
 	}
-	
 
 	@Test(priority=4)
 	public void  simpleLogin() {

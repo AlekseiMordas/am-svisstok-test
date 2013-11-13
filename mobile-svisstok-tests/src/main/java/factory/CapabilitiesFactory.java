@@ -9,6 +9,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import runner.Devices;
+import utils.ApplicationStorage;
 
 /**
  * @author aleksei_mordas
@@ -29,15 +30,13 @@ public class CapabilitiesFactory {
 	private static final Logger LOGGER = Logger
 			.getLogger(CapabilitiesFactory.class);
 
-	public static DesiredCapabilities createDefaultCapabilities(Devices device,
-			String pathToApp) {
-		File app = new File(pathToApp);
+	public static DesiredCapabilities createDefaultCapabilities(Devices device) {
 		capabilities.setCapability(CapabilityType.BROWSER_NAME, BROWSER_NAME);
 		capabilities.setCapability(CapabilityType.VERSION, VERSION);
 		capabilities.setCapability(CapabilityType.PLATFORM, PLATFORM);
-		//capabilities.setCapability("app", app.getAbsolutePath());
+		capabilities.setCapability("app", ApplicationStorage.getDefaultPathToApp() );
 		capabilities.setCapability("device", device.toString());
-		LOGGER.info("CAPABILITY PATH: " + app.getAbsolutePath());
+		LOGGER.info("CAPABILITY PATH: " + ApplicationStorage.getDefaultPathToApp() );
 		return capabilities;
 	}
 
@@ -45,18 +44,17 @@ public class CapabilitiesFactory {
 		return capabilities.getCapability("device").toString();
 	}
 
-	public static DesiredCapabilities createAndroidCapabilities(String pathToApp) {
-		File app = new File(pathToApp);
-		//capabilities.setCapability("app", pathToApp );
+	public static DesiredCapabilities createAndroidCapabilities() {
+		capabilities.setCapability("app", ApplicationStorage.getDefaultPathToApk() );
 		capabilities.setCapability("device", "selendroid");
-		capabilities.setCapability("app-package", "ru.sbc.swisstoklp");
-        capabilities.setCapability("app-activity", ".swisstokandroidip");
-		LOGGER.info("CAPABILITY PATH: " + app.getAbsolutePath());
+		capabilities.setCapability("app-package", ApplicationStorage.getDefaultPackage());
+        capabilities.setCapability("app-activity",ApplicationStorage.getDefaultActivity());
+		LOGGER.info("CAPABILITY PATH: " + ApplicationStorage.getDefaultPathToApk());
 		return capabilities;
 	}
 
-	public static DesiredCapabilities createIphoneCapabilities(String pathToApp) {
-		return createDefaultCapabilities(Devices.IPHONE, pathToApp);
+	public static DesiredCapabilities createIphoneCapabilities() {
+		return createDefaultCapabilities(Devices.IPHONE);
 	}
 
 }
