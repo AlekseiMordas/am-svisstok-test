@@ -56,9 +56,6 @@ public class TestRunner extends Runner {
 		CliParser.getCmdLineOptions().add(new DeviceNameOption());
 		CliParser.getCmdLineOptions().add(new DevicePortOtion());
 		CliParser.getCmdLineOptions().add(new DeviceHostOption());
-		CliParser.getCmdLineOptions().add(new ServerFlags());
-		CliParser.getCmdLineOptions().add(new AppiumDirectory());
-		CliParser.getCmdLineOptions().add(new VersionOption());
 	}
 
 }
