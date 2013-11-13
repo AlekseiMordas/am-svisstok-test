@@ -21,6 +21,10 @@
 			<source>testng.xml</source>
 			<destName>testng.xml</destName>
 		</file>
+		<file>
+			<source>local.properties</source>
+			<destName>local.properties</destName>
+		</file>
 		
 	</files>
 	<fileSets>
