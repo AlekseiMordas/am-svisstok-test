@@ -11,4 +11,24 @@ public abstract class CallPage extends BasePage{
 	}
 
 	public abstract boolean isStatusAvailable();
+	
+	public abstract void inputAllDigites();
+	
+	public abstract void inputFromNativeKeyboard(String text, String digits);
+	
+	public abstract void deleteLastSymbol();
+	
+	public abstract String getTextFieldDigitDisplay();
+	
+	public abstract void clearField();
+	
+	public abstract void clickContact();
+	
+	public abstract void clickCallButton();
+	
+	public abstract String getNameConnection();
+	
+	public abstract void cancelCall();
+	
+	public abstract String getNameAbonent();
 }

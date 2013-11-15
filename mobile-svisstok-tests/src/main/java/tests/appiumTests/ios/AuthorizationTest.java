@@ -9,7 +9,7 @@ import com.mobile.driver.wait.Sleeper;
 
 import tests.constants.ErrorMessages;
 
-public class AuthorizationTest extends BaseTest{
+public class AuthorizationTest  extends NonAutorizationBaseTest{
 	
 	private String VALUE_INPUT = "1234567890";
 	
