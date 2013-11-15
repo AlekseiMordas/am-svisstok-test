@@ -27,7 +27,7 @@ import tests.page.ios.LoginPageIos;
  * @author aleksei_mordas
  * 
  */
-public class BaseTest {
+public class BaseTest { 
 
 	protected static final String DELIMETER = ":";
 
@@ -69,7 +69,7 @@ public class BaseTest {
 		default:
 			throw new XmlParametersException("Invalid device");
 		}
-
+  
 	}
 	
 	@AfterClass

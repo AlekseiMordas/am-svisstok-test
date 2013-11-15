@@ -11,7 +11,7 @@ import tests.constants.ErrorMessages;
 
 public class AuthorizationTest  extends NonAutorizationBaseTest{
 	
-	private String VALUE_INPUT = "1234567890";
+	private String VALUE_INPUT = "1234567890"; 
 	
 	private String CHARACTERS_INPUT = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 

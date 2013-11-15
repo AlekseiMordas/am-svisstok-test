@@ -11,7 +11,7 @@ import com.element.UIView;
 import com.mobile.driver.nativedriver.NativeDriver;
 import com.mobile.driver.wait.Sleeper;
 
-public class CallPageIos extends CallPage{
+public class CallPageIos extends CallPage{ 
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")//"LinphoneRegistrationOk")
 	public UIView status;

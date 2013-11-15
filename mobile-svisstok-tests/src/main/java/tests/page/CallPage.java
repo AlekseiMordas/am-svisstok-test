@@ -6,7 +6,7 @@ import com.mobile.driver.nativedriver.NativeDriver;
 
 public abstract class CallPage extends BasePage{
 
-	public CallPage(NativeDriver driver) {
+	public CallPage(NativeDriver driver) { 
 		this.driver = driver;
 	}
 
