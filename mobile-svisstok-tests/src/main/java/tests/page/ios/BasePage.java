@@ -24,6 +24,11 @@ public abstract class BasePage extends Page {
 		AppiumDriver.class.cast(driver).takeScreenshot("");
 	}
 
+	/**
+	 * For Android Implementation
+	 * @param element
+	 * @return
+	 */
 	public String getFieldText(UIView element) {
 		try {
 			return element.getText();

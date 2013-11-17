@@ -5,15 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tests.page.CallPage;
+import tests.page.android.CallPageAndroid;
 
 import com.annotation.FindBy;
 import com.element.UIView;
 import com.mobile.driver.nativedriver.NativeDriver;
+import com.mobile.driver.page.PageFactory;
 import com.mobile.driver.wait.Sleeper;
 
 public class CallPageIos extends CallPage{ 
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")//"LinphoneRegistrationOk")
+	@FindBy(locator = "В сети")//"LinphoneRegistrationOk")
 	public UIView status;
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
@@ -175,11 +177,14 @@ public class CallPageIos extends CallPage{
 		return nameConnection.getFoundBy().toString();
 	}
 	
-	public void cancelCall(){
+	@SuppressWarnings("unchecked")
+	@Override
+	public CallPageIos cancelCall(){
 		Rectangle point = webview.getLocation();
 		double x = 24;
 		double y = 412;
 		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		return PageFactory.initElements(driver, CallPageIos.class);
 	}
 	
 	public String getNameAbonent(){

@@ -1,7 +1,6 @@
 package tests.page;
 
 import tests.page.ios.BasePage;
-
 import com.mobile.driver.nativedriver.NativeDriver;
 
 public abstract class CallPage extends BasePage{
@@ -28,7 +27,7 @@ public abstract class CallPage extends BasePage{
 	
 	public abstract String getNameConnection();
 	
-	public abstract void cancelCall();
+	public abstract <T> T cancelCall();
 	
 	public abstract String getNameAbonent();
 }

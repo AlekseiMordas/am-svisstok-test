@@ -7,7 +7,6 @@ import com.element.UIView;
 import com.mobile.driver.nativedriver.NativeDriver;
 import com.mobile.driver.page.PageFactory;
 
-
 public class LoginPageIos extends LoginPage {
 
 	private static final Logger LOGGER = Logger.getLogger(LoginPageIos.class);
@@ -21,6 +20,9 @@ public class LoginPageIos extends LoginPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/slider[1]")
 	private UIView savePasswordSlider;
 
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/slider[2]")
+	private UIView autoLoginSlider;
+
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
 	private UIView loginButton;
 
@@ -32,10 +34,10 @@ public class LoginPageIos extends LoginPage {
 
 	@FindBy(locator = "Cut")
 	private UIView cutButton;
-	
+
 	@FindBy(locator = "//window[2]/UIAKeyboard[1]/UIAKey[28]")
 	private UIView deleteButton;
-	
+
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[5]")
 	private UIView errorMessage;
 
@@ -43,20 +45,40 @@ public class LoginPageIos extends LoginPage {
 		super(driver);
 	}
 
-	public void savePasswordFalse() {
-		if (savePasswordSlider.getAttribute("value") == "Нет") {
-			savePasswordSlider.touch();
+	public void setSavePassword(boolean flag) {
+		if (flag) {
+			if (savePasswordSlider.getAttribute("value") == "Нет") {
+				savePasswordSlider.touch();
+			}
+		}
+		else {
+			if (savePasswordSlider.getAttribute("value") == "Да") {
+				savePasswordSlider.touch();
+			}
+		}
+	}
+
+	public void setAutoLogin(boolean flag) {
+		if (flag) {
+			if (autoLoginSlider.getAttribute("value") == "Нет") {
+				autoLoginSlider.touch();
+			}
+		} else {
+			if (autoLoginSlider.getAttribute("value") == "Да") {
+				autoLoginSlider.touch();
+			}
 		}
 	}
 
 	public void clickLogin() {
 		loginButton.touch();
 	}
-	
-	public CallPageIos simpleLogin(String login, String password) {
+
+	public CallPageIos simpleLogin(String login, String password, boolean isSavePassword, boolean isAutoLogin) {
 		inputLoginTextfield(login);
 		inputPasswordTextfield(password);
-		savePasswordFalse();
+		setSavePassword(isSavePassword);
+		setAutoLogin(isAutoLogin);
 		doneButton.touch();
 		loginButton.touch();
 		return PageFactory.initElements(driver, CallPageIos.class);
@@ -72,7 +94,7 @@ public class LoginPageIos extends LoginPage {
 		errorMessage.waitForElement(WAIT_WHILE_LOGIN);
 		return errorMessage.isExists();
 	}
-	
+
 	public void clearField(UIView element) {
 		if (!(element.getText().isEmpty())) {
 			element.touchLong();
@@ -80,7 +102,7 @@ public class LoginPageIos extends LoginPage {
 			cutButton.touchByName();
 		}
 	}
-	
+
 	public void clearPasswordField(UIView element) {
 		if (!(element.getText().isEmpty())) {
 			element.touchLong();
@@ -88,15 +110,15 @@ public class LoginPageIos extends LoginPage {
 			deleteButton.touch();
 		}
 	}
-	
+
 	public String getLoginFieldText() {
 		return loginTextfield.getText();
 	}
-	
+
 	public String getPasswordFieldText() {
 		return passwordTextfield.getText();
 	}
-	
+
 	public void inputPasswordTextfield(String text) {
 		passwordTextfield.touch();
 		clearPasswordField(passwordTextfield);
@@ -106,7 +128,12 @@ public class LoginPageIos extends LoginPage {
 	@Override
 	public void checkPage() {
 		loginTextfield.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
+	}
 
+	@Override
+	public boolean isSavePasswordCorrect() {
+		return passwordTextfield.getText().length() > 0
+				&& loginTextfield.getText().length() > 0;
 	}
 
 }

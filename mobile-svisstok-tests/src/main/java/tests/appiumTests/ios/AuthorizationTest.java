@@ -5,6 +5,7 @@ import junit.framework.Assert;
 
 import org.testng.annotations.Test;
 
+import com.ios.AppiumDriver;
 import com.mobile.driver.wait.Sleeper;
 
 import tests.constants.ErrorMessages;
@@ -32,20 +33,48 @@ public class AuthorizationTest  extends NonAutorizationBaseTest{
 		Assert.assertEquals(main.getLoginFieldText(), CHARACTERS_INPUT.toLowerCase());
 	}
 		
-	@Test(priority=3)
-	public void checkLoginWithIncorrectCredentionals() {
-		main.checkPage();
-		String password = GenerateRandomString.generateString();
-		main.inputLoginTextfield(INCORRECT_USER_NAME);
-		main.inputPasswordTextfield(password);
-		main.clickLogin();
-		Assert.assertTrue(main.isErrorMessageAppears());
-	}
-
+//	@Test(priority=3)
+//	public void checkLoginWithIncorrectCredentionals() {
+//		main.checkPage();
+//		String password = GenerateRandomString.generateString();
+//		main.inputLoginTextfield(INCORRECT_USER_NAME);
+//		main.inputPasswordTextfield(password);
+//		main.clickLogin();
+//		Assert.assertTrue(main.isErrorMessageAppears());
+//	}
+//
 	@Test(priority=4)
 	public void  simpleLogin() {
 		main.checkPage();
-		call = main.simpleLogin(USER_NAME, USER_PASSWORD);
+		call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+		call.checkPage();
+		Assert.assertTrue(call.isStatusAvailable());
+	}
+	
+	@Test(priority=5, description="Check save password functionality")
+	public void  loginWithSavePasswordFlag() throws Exception {
+		AppiumDriver.class.cast(driver).quit();
+		initPages();
+		main.checkPage();
+		call = main.simpleLogin(USER_NAME, USER_PASSWORD, true, false);
+		call.checkPage();
+		AppiumDriver.class.cast(driver).quit();
+		initPages();
+		Sleeper.SYSTEM_SLEEPER.sleep(10000);
+		main.checkPage();
+		Assert.assertTrue(main.isSavePasswordCorrect());
+	}
+	
+	@Test(priority=6, description="Check auto login functionality")
+	public void  autoLogin() throws Exception {
+		AppiumDriver.class.cast(driver).quit();
+		initPages();
+		main.checkPage();
+		call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, true);
+		call.checkPage();
+		AppiumDriver.class.cast(driver).quit();
+		initPages();
+		Sleeper.SYSTEM_SLEEPER.sleep(10000);
 		call.checkPage();
 		Assert.assertTrue(call.isStatusAvailable());
 	}

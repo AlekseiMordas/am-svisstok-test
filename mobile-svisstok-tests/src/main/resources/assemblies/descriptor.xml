@@ -22,6 +22,10 @@
 			<destName>testng.xml</destName>
 		</file>
 		<file>
+			<source>call-tests.xml</source>
+			<destName>call-tests.xml</destName>
+		</file>
+		<file>
 			<source>local.properties</source>
 			<destName>local.properties</destName>
 		</file>

@@ -7,8 +7,10 @@ import runner.DeviceConfig;
 import runner.Devices;
 import tests.page.CallPage;
 import tests.page.LoginPage;
+import tests.page.android.CallPageAndroid;
 import tests.page.android.LoginPageAndroid;
 import tests.page.exceptions.XmlParametersException;
+import tests.page.ios.CallPageIos;
 import tests.page.ios.LoginPageIos;
 
 import com.ios.AppiumDriver;
@@ -49,10 +51,12 @@ public class NonAutorizationBaseTest {
 		case IPHONE:
 			driver = IosDriverWrapper.getIphone(HOST, PORT);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
+			call = PageFactory.initElements(driver, CallPageIos.class);
 			break;
 		case ANDROID:
 			driver = IosDriverWrapper.getAndroid(HOST, PORT);
 			main = PageFactory.initElements(driver, LoginPageAndroid.class);
+			call = PageFactory.initElements(driver, CallPageAndroid.class);
 			break;
 		default:
 			throw new XmlParametersException("Invalid device");

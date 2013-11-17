@@ -13,11 +13,21 @@ public abstract class LoginPage extends BasePage {
 		this.driver = driver;
 	}
 
-	public abstract void savePasswordFalse();
+	/**
+	 * @param flag
+	 */
+	public abstract void setSavePassword(boolean flag);
+	
+	/**
+	 * @param flag
+	 */
+	public abstract void setAutoLogin(boolean flag);
 
 	public abstract void clickLogin();
 
-	public abstract <T> T simpleLogin(String login, String password);
+	public abstract <T> T simpleLogin(String login, String password, boolean isSavePassword, boolean isAutoLogin);
+	
+	public abstract boolean isSavePasswordCorrect();
 
 	public abstract void inputLoginTextfield(String text);
 

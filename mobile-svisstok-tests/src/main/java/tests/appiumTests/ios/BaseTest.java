@@ -37,9 +37,9 @@ public class BaseTest {
 	
 	private static final String DEVICE = DeviceConfig.getDevice();
 	
-	protected static final String USER_NAME = "7789";//"sip:skustov2@sipnet.ru";//"7812009957@217.195.69.250"; 7789 pas 1246
+	protected static final String USER_NAME = "sip:skustov2@sipnet.ru";//"sip:skustov2@sipnet.ru";//"7812009957@217.195.69.250"; 7789 pas 1246
 	
-	protected static final String USER_PASSWORD = "1246";//"zzzzzz";//"JNcW5qTBaRvy";
+	protected static final String USER_PASSWORD = "zzzzzz";//"zzzzzz";//"JNcW5qTBaRvy";
 	
 	protected static final String INCORRECT_USER_NAME = "7812001245@211.195.68.250";
 	
@@ -59,12 +59,15 @@ public class BaseTest {
 		case IPHONE:
 			driver = IosDriverWrapper.getIphone(HOST, PORT);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
-			call = main.simpleLogin(USER_NAME, USER_PASSWORD);
+			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 			Sleeper.SYSTEM_SLEEPER.sleep(5000);
 			break;
 		case ANDROID:
 			driver = IosDriverWrapper.getAndroid(HOST, PORT);
+			Sleeper.SYSTEM_SLEEPER.sleep(10000);
 			main = PageFactory.initElements(driver, LoginPageAndroid.class);
+			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+			call.checkPage();
 			break;
 		default:
 			throw new XmlParametersException("Invalid device");
