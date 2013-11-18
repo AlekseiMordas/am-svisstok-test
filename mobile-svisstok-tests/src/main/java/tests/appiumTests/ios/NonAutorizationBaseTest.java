@@ -7,6 +7,7 @@ import runner.DeviceConfig;
 import runner.Devices;
 import tests.page.CallPage;
 import tests.page.LoginPage;
+import tests.page.SettingsPage;
 import tests.page.android.CallPageAndroid;
 import tests.page.android.LoginPageAndroid;
 import tests.page.exceptions.XmlParametersException;
@@ -42,6 +43,8 @@ public class NonAutorizationBaseTest {
 	protected LoginPage main;
 	
 	protected CallPage call;
+	
+	protected SettingsPage settings;
 	
 	
 	@BeforeClass(description = "Init and check page")

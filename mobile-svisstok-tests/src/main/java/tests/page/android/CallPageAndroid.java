@@ -180,4 +180,11 @@ public class CallPageAndroid extends CallPage {
 		return nameAbonent.getText();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public <T> T navigateToSettingsTab() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

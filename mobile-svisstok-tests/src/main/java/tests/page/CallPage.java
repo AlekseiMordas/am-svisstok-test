@@ -29,5 +29,7 @@ public abstract class CallPage extends BasePage{
 	
 	public abstract <T> T cancelCall();
 	
+	public abstract <T> T navigateToSettingsTab();
+	
 	public abstract String getNameAbonent();
 }
