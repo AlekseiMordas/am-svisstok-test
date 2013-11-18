@@ -91,6 +91,9 @@ public class CallPageIos extends CallPage {
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[19]")
 	private UIView settingsTab;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]")
+	private UIView timerCall;
 
 	public CallPageIos(NativeDriver driver) {
 		super(driver);
@@ -134,15 +137,8 @@ public class CallPageIos extends CallPage {
 
 	public void inputFromNativeKeyboard(String text, String digits) {
 		fieldNumber.touchLong();
-		if (digits.equals("digits")) {
-			moreNumber.touch();
-			fieldNumber.type(text);
-			doneButton.touch();
-		} else {
-			fieldNumber.type(text);
-			doneButton.touch();
-		}
-
+		fieldNumber.type(text);
+		doneButton.touch();
 	}
 
 	public String getTextFieldDigitDisplay() {
@@ -200,6 +196,11 @@ public class CallPageIos extends CallPage {
 
 	public String getNameAbonent() {
 		return nameAbonent.getAttribute("label");
+	}
+	
+	@Override
+	public String getTimer() {
+		return timerCall.getAttribute("label");
 	}
 
 }

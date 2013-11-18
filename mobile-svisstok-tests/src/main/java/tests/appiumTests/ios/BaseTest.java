@@ -75,6 +75,12 @@ public class BaseTest {
   
 	}
 	
+	public static boolean checkTimer(String element){ 
+        Pattern p = Pattern.compile("^[0-9][0-9]\\s.\\s[0-9][0-9]$");
+        Matcher m = p.matcher(element); 
+        return m.matches(); 
+    }
+	
 	@AfterClass
 	public void tearDown() throws Exception {
 		AppiumDriver.class.cast(driver).quit();
