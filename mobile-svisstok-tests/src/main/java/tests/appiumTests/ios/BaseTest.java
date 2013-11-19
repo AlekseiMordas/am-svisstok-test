@@ -1,5 +1,8 @@
 package tests.appiumTests.ios;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;

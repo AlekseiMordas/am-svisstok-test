@@ -60,16 +60,26 @@ public class CallTest extends BaseTest {
 		Assert.assertEquals(USER_NAME, call.getTextFieldDigitDisplay());
 	}
 
-
-	/*
-	 * TODO Dublicate methods
-	 * 
-	 * @Test(priority=4) public void checkCancelCallButton() {
-	 * call.inputFromNativeKeyboard(PHONE_NUMBER, DIGITS);
-	 * call.clickCallButton(); call.getNameConnection(); call.cancelCall();
-	 * Assert.assertEquals(PHONE_NUMBER, call.getTextFieldDigitDisplay()); }
-	 * 
-	 * 
+	  @Test(priority=6) 
+	  public void checkCancelCallButton() {
+		  call.inputFromNativeKeyboard(PHONE_NUMBER);
+		  call.clickCallButton(); 
+		  call.getNameConnection(); 
+		  call.cancelCall();
+		  Assert.assertEquals(PHONE_NUMBER, call.getTextFieldDigitDisplay()); 
+	  }
+	 
+	 @Test(priority = 7, description = "Check display name abonent in time call")
+		public void checkDisplayNameAbonentInCall() {
+			call.inputFromNativeKeyboard(USER_NAME);
+			call.clickCallButton();
+			String actualAbonentName = call.getNameAbonent();
+			((CallPage) call.cancelCall()).checkPage();
+			Assert.assertEquals(USER_NAME, actualAbonentName);
+		}
+	  
+	 
+	/* * TODO Dublicate methods
 	 * @Test(priority=5) public void checkDisplayNameAbonent() {
 	 * 
 	 * call.inputFromNativeKeyboard(PHONE_NUMBER, DIGITS);
