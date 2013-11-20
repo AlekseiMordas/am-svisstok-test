@@ -13,7 +13,7 @@ public abstract class CallPage extends BasePage{
 	
 	public abstract void inputAllDigites();
 	
-	public abstract void inputFromNativeKeyboard(String text, String digits);
+	public abstract void inputFromNativeKeyboard(String text);
 	
 	public abstract void deleteLastSymbol();
 	

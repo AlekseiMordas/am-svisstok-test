@@ -135,7 +135,7 @@ public class CallPageIos extends CallPage {
 
 	}
 
-	public void inputFromNativeKeyboard(String text, String digits) {
+	public void inputFromNativeKeyboard(String text ){
 		fieldNumber.touchLong();
 		fieldNumber.type(text);
 		doneButton.touch();

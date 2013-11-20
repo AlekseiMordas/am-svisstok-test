@@ -36,16 +36,16 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 				CHARACTERS_INPUT.toLowerCase());
 	}
 
-	// @Test(priority=3)
-	// public void checkLoginWithIncorrectCredentionals() {
-	// main.checkPage();
-	// String password = GenerateRandomString.generateString();
-	// main.inputLoginTextfield(INCORRECT_USER_NAME);
-	// main.inputPasswordTextfield(password);
-	// main.clickLogin();
-	// Assert.assertTrue(main.isErrorMessageAppears());
-	// }
-	//
+	 @Test(priority=3, enabled = false)
+	 public void checkLoginWithIncorrectCredentionals() {
+	 main.checkPage();
+	 String password = GenerateRandomString.generateString();
+	 main.inputLoginTextfield(INCORRECT_USER_NAME);
+	 main.inputPasswordTextfield(password);
+	 main.clickLogin();
+	 Assert.assertTrue(main.isErrorMessageAppears());
+	 }
+	
 	@Test(priority = 4)
 	public void simpleLogin() {
 		main.checkPage();
@@ -78,7 +78,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 		AppiumDriver.class.cast(driver).quit();
 		initPages();
 		Sleeper.SYSTEM_SLEEPER.sleep(10000);
-		call.checkPage();
+		main.checkPage();
 		Assert.assertTrue(call.isStatusAvailable());
 		((SettingsPage) call.navigateToSettingsTab()).setAutoLogin(false);
 	}

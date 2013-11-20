@@ -115,7 +115,7 @@ public class CallPageAndroid extends CallPage {
 	}
 
 	@Override
-	public void inputFromNativeKeyboard(String text, String digits) {
+	public void inputFromNativeKeyboard(String text) {
 		// inputAllDigites(); TODO: BUG!
 		fieldNumber.clear();
 		fieldNumber.type(text);
@@ -183,6 +183,13 @@ public class CallPageAndroid extends CallPage {
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T navigateToSettingsTab() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public String getTimer() {
 		// TODO Auto-generated method stub
 		return null;
 	}

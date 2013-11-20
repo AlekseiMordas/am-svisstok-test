@@ -30,7 +30,7 @@ public class NonAutorizationBaseTest {
 	
 	private static final String DEVICE = DeviceConfig.getDevice();
 	
-	protected static final String USER_NAME = "sip:skustov2@sipnet.ru";
+	protected static final String USER_NAME = "sip:skustov@sipnet.ru";
 	
 	protected static final String USER_PASSWORD = "zzzzzz";
 	

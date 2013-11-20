@@ -6,6 +6,7 @@ import com.annotation.FindBy;
 import com.element.UIView;
 import com.mobile.driver.nativedriver.NativeDriver;
 import com.mobile.driver.page.PageFactory;
+import com.mobile.driver.wait.Sleeper;
 
 public class LoginPageIos extends LoginPage {
 
@@ -37,6 +38,9 @@ public class LoginPageIos extends LoginPage {
 
 	@FindBy(locator = "//window[2]/UIAKeyboard[1]/UIAKey[28]")
 	private UIView deleteButton;
+	
+	@FindBy(locator = "//window[2]/UIAKeyboard[1]")
+	private UIView keyBoard;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[5]")
 	private UIView errorMessage;
@@ -47,12 +51,12 @@ public class LoginPageIos extends LoginPage {
 
 	public void setSavePassword(boolean flag) {
 		if (flag) {
-			if (savePasswordSlider.getAttribute("value") == "Нет") {
+			if (savePasswordSlider.getAttribute("value").equals("0.00")) {
 				savePasswordSlider.touch();
 			}
 		}
 		else {
-			if (savePasswordSlider.getAttribute("value") == "Да") {
+			if (savePasswordSlider.getAttribute("value").equals("1")) {
 				savePasswordSlider.touch();
 			}
 		}
@@ -60,11 +64,11 @@ public class LoginPageIos extends LoginPage {
 
 	public void setAutoLogin(boolean flag) {
 		if (flag) {
-			if (autoLoginSlider.getAttribute("value") == "Нет") {
+			if (autoLoginSlider.getAttribute("value").equals("0.00")) {
 				autoLoginSlider.touch();
 			}
 		} else {
-			if (autoLoginSlider.getAttribute("value") == "Да") {
+			if (autoLoginSlider.getAttribute("value").equals("1")) {
 				autoLoginSlider.touch();
 			}
 		}
@@ -79,7 +83,10 @@ public class LoginPageIos extends LoginPage {
 		inputPasswordTextfield(password);
 		setSavePassword(isSavePassword);
 		setAutoLogin(isAutoLogin);
-		doneButton.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		if(keyBoard.isExists()) {
+			doneButton.touch();
+		}
 		loginButton.touch();
 		return PageFactory.initElements(driver, CallPageIos.class);
 	}

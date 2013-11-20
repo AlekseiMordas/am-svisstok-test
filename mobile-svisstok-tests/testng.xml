@@ -3,7 +3,6 @@
 	<test verbose="1" name="Svisstok test" annotations="JDK">
 		<classes>
 			<class name="tests.appiumTests.ios.AuthorizationTest" />
-			<class name="tests.appiumTests.ios.CallTest" />
 		</classes>
 	</test> 
 
