@@ -3,6 +3,9 @@ package tests.page.android;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+import org.openqa.selenium.TimeoutException;
+
 import com.annotation.FindBy;
 import com.element.UIView;
 import com.ios.AppiumDriver;
@@ -14,6 +17,8 @@ import tests.page.CallPage;
 
 public class CallPageAndroid extends CallPage {
 
+	private static final Logger LOGGER = Logger.getLogger(CallPageAndroid.class);
+	
 	@FindBy(locator = "//div[text()='LinphoneRegistrationOk']")
 	private UIView status;
 
@@ -68,7 +73,7 @@ public class CallPageAndroid extends CallPage {
 	@FindBy(locator = "//div[contains(@class,'status')]")
 	private UIView nameConnection;
 
-	@FindBy(locator = "//a[@id='outgoingCallView-btn-hangup']")
+	@FindBy(locator = "//a[contains(@class,'ui-btn-color-red')]")
 	private UIView cancelCallButton;
 
 	@FindBy(locator = "//div[contains(@class, 'title')]")
@@ -96,13 +101,25 @@ public class CallPageAndroid extends CallPage {
 
 	@Override
 	public boolean isStatusAvailable() {
-		status.waitForElement(WAIT_WHILE_LOGIN);
+		try {
+			status.waitForElement(WAIT_WHILE_LOGIN);
+		}
+		catch(TimeoutException e) {
+			LOGGER.error("Login was unsuccessfull. Can't find " + status);
+			throw new com.mobile.driver.wait.exception.TimeoutException("Call page didn't download");
+		}
 		return status.isExists();
 	}
 
 	@Override
 	public void checkPage() {
-		status.waitForElement(WAIT_WHILE_LOGIN);
+		try {
+			status.waitForElement(WAIT_WHILE_LOGIN);
+		}
+		catch(TimeoutException e) {
+			LOGGER.error("Login was unsuccessfull. Can't find " + status);
+			throw new com.mobile.driver.wait.exception.TimeoutException("Call page didn't download");
+		}
 	}
 
 	@Override
@@ -151,27 +168,20 @@ public class CallPageAndroid extends CallPage {
 	@Override
 	public void clickCallButton() {
 		callButton.touch();
-		Sleeper.SYSTEM_SLEEPER.sleep(8000);
-		if (status.isExists()) {
-			callButton.touch();
-		}
-
 	}
 
 	@Override
 	public String getNameConnection() {
-		nameConnection.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		return nameConnection.getText();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public CallPageAndroid cancelCall() {
 		cancelCallButton.touch();
-		Sleeper.SYSTEM_SLEEPER.sleep(5000);
-		if (!status.isExists()) {
-			cancelCallButton.touch();
-		}
+//		Sleeper.SYSTEM_SLEEPER.sleep(5000);
+//		if (!status.isExists()) {
+//			cancelCallButton.touch();
+//		}
 		return PageFactory.initElements(driver, CallPageAndroid.class);
 	}
 
@@ -191,7 +201,7 @@ public class CallPageAndroid extends CallPage {
 	@Override
 	public String getTimer() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new RuntimeException("Method not yet implemented for Android");
 	}
 
 }

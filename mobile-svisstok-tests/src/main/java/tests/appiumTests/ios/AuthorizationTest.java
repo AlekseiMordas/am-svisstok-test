@@ -1,8 +1,8 @@
 package tests.appiumTests.ios;
 
 import helpers.GenerateRandomString;
-import junit.framework.Assert;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.ios.AppiumDriver;
@@ -65,7 +65,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 		initPages();
 		Sleeper.SYSTEM_SLEEPER.sleep(10000);
 		main.checkPage();
-		Assert.assertTrue(main.isSavePasswordCorrect());
+		Assert.assertTrue(main.isSavePasswordCorrect(), "Sava password flad doesn't work correctly.Login or Password filed are empty");
 	}
 
 	@Test(priority = 6, description = "Check auto login functionality")
@@ -78,8 +78,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 		AppiumDriver.class.cast(driver).quit();
 		initPages();
 		Sleeper.SYSTEM_SLEEPER.sleep(10000);
-		main.checkPage();
-		Assert.assertTrue(call.isStatusAvailable());
+		Assert.assertTrue(call.isStatusAvailable(), "");
 		((SettingsPage) call.navigateToSettingsTab()).setAutoLogin(false);
 	}
 

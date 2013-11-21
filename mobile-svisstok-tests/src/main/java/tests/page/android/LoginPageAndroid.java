@@ -78,7 +78,10 @@ public class LoginPageAndroid extends LoginPage {
 	@Override
 	public void clickLogin() {
 		loginButton.touch();
-		loginButton.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		if(loginButton.isExists()) {
+			loginButton.touch();
+		}
 	}
 
 	@Override

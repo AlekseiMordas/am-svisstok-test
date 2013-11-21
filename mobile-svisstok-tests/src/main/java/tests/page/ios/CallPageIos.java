@@ -4,6 +4,9 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+import org.openqa.selenium.TimeoutException;
+
 import tests.page.CallPage;
 import tests.page.android.CallPageAndroid;
 
@@ -18,6 +21,9 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "В сети")
 	// "LinphoneRegistrationOk")
 	public UIView status;
+	
+	@FindBy(locator = "/window[1]/scrollview[1]/webview[1]/text[1]")
+	public UIView online;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
 	private UIView one;
@@ -95,19 +101,27 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]")
 	private UIView timerCall;
 
+	private static final Logger LOGGER = Logger.getLogger(CallPageIos.class);
+	
 	public CallPageIos(NativeDriver driver) {
 		super(driver);
 	}
 
 	@Override
 	public void checkPage() {
-		status.waitForElementByName(WAIT_WHILE_LOGIN);
+		try {
+			status.waitForElementByName(WAIT_WHILE_LOGIN);
+		}
+		catch(TimeoutException e) {
+			LOGGER.error("Login was unsuccessfull. Can't find " + status);
+			throw new com.mobile.driver.wait.exception.TimeoutException("Call page didn't download");
+		}
 	}
 
 	@Override
 	public boolean isStatusAvailable() {
 		// TODO Auto-generated method stub
-		return true;
+		return online.getText().equals("В сети");
 	}
 
 	private List<UIView> dial() {

@@ -13,6 +13,7 @@ import tests.page.android.LoginPageAndroid;
 import tests.page.exceptions.XmlParametersException;
 import tests.page.ios.CallPageIos;
 import tests.page.ios.LoginPageIos;
+import utils.ApplicationStorage;
 
 import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
@@ -30,9 +31,9 @@ public class NonAutorizationBaseTest {
 	
 	private static final String DEVICE = DeviceConfig.getDevice();
 	
-	protected static final String USER_NAME = "sip:skustov@sipnet.ru";
+	protected static final String USER_NAME = ApplicationStorage.getDefaultUsername();//"sip:skustov2@sipnet.ru";
 	
-	protected static final String USER_PASSWORD = "zzzzzz";
+	protected static final String USER_PASSWORD = ApplicationStorage.getDefaultPassword();//"zzzzzz";
 	
 	protected static final String INCORRECT_USER_NAME = "7812001245@211.195.68.250";
 	
