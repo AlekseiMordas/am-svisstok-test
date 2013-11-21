@@ -19,6 +19,11 @@ java -jar am.svisstok.tests.jar --testng testng.xml --device IPHONE
 
 (or ANDROID)
 
+Note!
+
+Authorization tests runs with xml: testng.xml
+Call tests runs with xml: call-tests.xml
+
 Jenkins Integration
 ===
 
