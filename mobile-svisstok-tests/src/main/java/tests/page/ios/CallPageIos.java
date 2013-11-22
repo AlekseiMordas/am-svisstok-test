@@ -121,7 +121,7 @@ public class CallPageIos extends CallPage {
 	@Override
 	public boolean isStatusAvailable() {
 		// TODO Auto-generated method stub
-		return online.getText().equals("В сети");
+		return star.isExists();
 	}
 
 	private List<UIView> dial() {

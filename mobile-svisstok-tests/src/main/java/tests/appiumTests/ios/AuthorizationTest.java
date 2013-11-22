@@ -51,7 +51,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 		main.checkPage();
 		call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		call.checkPage();
-		Assert.assertTrue(call.isStatusAvailable());
+		Assert.assertTrue(call.isStatusAvailable(), "CallPage doesn't open");
 	}
 
 	@Test(priority = 5, description = "Check save password functionality")
