@@ -73,7 +73,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 		AppiumDriver.class.cast(driver).quit();
 		initPages();
 		main.checkPage();
-		call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, true);
+		call = main.simpleLogin(USER_NAME, USER_PASSWORD, true, true);
 		call.checkPage();
 		AppiumDriver.class.cast(driver).quit();
 		initPages();
