@@ -13,6 +13,7 @@ import tests.page.android.LoginPageAndroid;
 import tests.page.exceptions.XmlParametersException;
 import tests.page.ios.CallPageIos;
 import tests.page.ios.LoginPageIos;
+import tests.page.ios.SettingsPageIos;
 import utils.ApplicationStorage;
 
 import com.ios.AppiumDriver;
@@ -56,6 +57,7 @@ public class NonAutorizationBaseTest {
 			driver = IosDriverWrapper.getIphone(HOST, PORT);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
 			call = PageFactory.initElements(driver, CallPageIos.class);
+			settings = PageFactory.initElements(driver, SettingsPageIos.class);
 			break;
 		case ANDROID:
 			driver = IosDriverWrapper.getAndroid(HOST, PORT);
