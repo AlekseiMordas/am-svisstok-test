@@ -39,7 +39,7 @@ public class SettingsPageIos extends SettingsPage {
 	@Override
 	public boolean isAutoLoginFlagEnable() {
 		// TODO Auto-generated method stub
-		return autoLoginSlider.getAttribute("value").equals("1") ? true:false;
+		return autoLoginSlider.getAttribute("value").equals("0.00") ? true:false;
 	}
 
 }
