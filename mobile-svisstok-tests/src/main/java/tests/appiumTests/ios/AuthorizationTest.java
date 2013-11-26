@@ -17,7 +17,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 	private String VALUE_INPUT = "1234567890";
 
 	private String CHARACTERS_INPUT = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-/*
+
 	@Test(priority = 1)
 	public void checkLoginFieldDigits() {
 		Sleeper.SYSTEM_SLEEPER.sleep(10000);
@@ -67,7 +67,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 		main.checkPage();
 		Assert.assertTrue(main.isSavePasswordCorrect(), "Sava password flad doesn't work correctly.Login or Password filed are empty");
 	}
-*/
+
 	@Test(priority = 6, description = "Check auto login functionality")
 	public void autoLogin() throws Exception {
 		AppiumDriver.class.cast(driver).quit();
