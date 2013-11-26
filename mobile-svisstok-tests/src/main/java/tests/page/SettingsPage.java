@@ -11,4 +11,6 @@ public abstract class SettingsPage extends BasePage {
 	}
 	
 	public abstract void setAutoLogin(boolean flag);
+	
+	public abstract boolean isAutoLoginFlagEnable();
 }

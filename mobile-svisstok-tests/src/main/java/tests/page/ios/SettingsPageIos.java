@@ -25,14 +25,21 @@ public class SettingsPageIos extends SettingsPage {
 	@Override
 	public void setAutoLogin(boolean flag) {
 		if (flag) {
-			if (autoLoginSlider.getAttribute("value") == "Нет") {
-				autoLoginSlider.touch();
-			}
-		} else {
-			if (autoLoginSlider.getAttribute("value") == "Да") {
+			if (autoLoginSlider.getAttribute("value").equals("0.00")) {
 				autoLoginSlider.touch();
 			}
 		}
+		else {
+			if (autoLoginSlider.getAttribute("value").equals("1")) {
+				autoLoginSlider.touch();
+			}
+		}
+	}
+
+	@Override
+	public boolean isAutoLoginFlagEnable() {
+		// TODO Auto-generated method stub
+		return autoLoginSlider.getAttribute("value").equals("1") ? true:false;
 	}
 
 }

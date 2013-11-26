@@ -95,8 +95,11 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
 	private UIView webview;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[19]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[19]/link[1]")
 	private UIView settingsTab;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[18]/link[1]")
+	private UIView callTab;
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]")
 	private UIView timerCall;
@@ -182,8 +185,11 @@ public class CallPageIos extends CallPage {
 	@SuppressWarnings("unchecked")
 	@Override
 	public SettingsPageIos navigateToSettingsTab() {
-		settingsTab.touch();
-		return new SettingsPageIos(driver);
+		Rectangle point = callTab.getLocation();
+		double x = 80;
+		double y = 0;
+		nine.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		return PageFactory.initElements(driver, SettingsPageIos.class);
 	}
 
 	public void clickCallButton() {
