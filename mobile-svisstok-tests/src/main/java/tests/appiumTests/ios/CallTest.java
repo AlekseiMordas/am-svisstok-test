@@ -68,7 +68,7 @@ public class CallTest extends BaseTest {
 
 	  @Test(priority=6) 
 	  public void checkCancelCallButton() {
-		  call.inputFromNativeKeyboard(PHONE_NUMBER);
+		  call.inputFromNativeKeyboard("skustov3");
 		  call.clickCallButton(); 
 		  call.cancelCall();
 		  Sleeper.SYSTEM_SLEEPER.sleep(3000);
@@ -77,7 +77,7 @@ public class CallTest extends BaseTest {
 	 
 	 @Test(priority = 7, description = "Check display name abonent in time call")
 		public void checkDisplayNameAbonentInCall() {
-			call.inputFromNativeKeyboard(USER_NAME);
+			call.inputFromNativeKeyboard("skustov3");
 			call.clickCallButton();
 			String actualAbonentName = call.getNameAbonent();
 			((CallPage) call.cancelCall()).checkPage();

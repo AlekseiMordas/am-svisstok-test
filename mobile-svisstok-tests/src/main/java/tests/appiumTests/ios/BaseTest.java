@@ -41,9 +41,9 @@ public class BaseTest {
 	
 	private static final String DEVICE = DeviceConfig.getDevice();
 	
-	protected static final String USER_NAME = ApplicationStorage.getDefaultUsername();//"sip:skustov2@sipnet.ru";//"7812009957@217.195.69.250"; 7789 pas 1246
+	protected static final String USER_NAME ="skustov3";// ApplicationStorage.getDefaultUsername();//"sip:skustov2@sipnet.ru";//"7812009957@217.195.69.250"; 7789 pas 1246
 	
-	protected static final String USER_PASSWORD = ApplicationStorage.getDefaultPassword();//"zzzzzz";//"JNcW5qTBaRvy";
+	protected static final String USER_PASSWORD ="zzzzzz";// ApplicationStorage.getDefaultPassword();//"zzzzzz";//"JNcW5qTBaRvy";
 	
 	protected static final String INCORRECT_USER_NAME = "7812001245@211.195.68.250";
 	
