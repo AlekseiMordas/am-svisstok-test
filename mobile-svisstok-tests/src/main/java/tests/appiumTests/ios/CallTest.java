@@ -49,7 +49,7 @@ public class CallTest extends BaseTest {
 	//	Assert.assertEquals(PHONE_NUMBER, actualAbonentName);
 	}
 	
-	@Test(priority = 8, description = "Check timer call", enabled=false)
+	@Test(priority = 8, description = "Check timer call")
 	public void checkTimerCall() {
 		call.inputFromNativeKeyboard(USER_NAME);
 		call.clickCallButton();
@@ -58,7 +58,7 @@ public class CallTest extends BaseTest {
 		Assert.assertTrue(actualTimer);
 	}
 	
-	@Test(priority = 5, description = "Check button cancel in currently call", enabled=false)
+	@Test(priority = 5, description = "Check button cancel in currently call")
 	public void checkCancelCallButtonInCall() {
 		call.inputFromNativeKeyboard(USER_NAME);
 		call.clickCallButton();
@@ -66,7 +66,7 @@ public class CallTest extends BaseTest {
 		Assert.assertTrue(call.isStatusAvailable());
 	}
 
-	  @Test(priority=6, enabled=false) 
+	  @Test(priority=6) 
 	  public void checkCancelCallButton() {
 		  call.inputFromNativeKeyboard(USER_NAME);
 		  call.clickCallButton(); 
