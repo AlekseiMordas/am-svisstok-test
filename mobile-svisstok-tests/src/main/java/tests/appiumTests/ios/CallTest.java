@@ -49,7 +49,7 @@ public class CallTest extends BaseTest {
 	//	Assert.assertEquals(PHONE_NUMBER, actualAbonentName);
 	}
 	
-	@Test(priority = 8, description = "Check timer call")
+	@Test(priority = 8, description = "Check timer call", enabled=false)
 	public void checkTimerCall() {
 		call.inputFromNativeKeyboard(USER_NAME);
 		call.clickCallButton();
@@ -66,9 +66,9 @@ public class CallTest extends BaseTest {
 		Assert.assertTrue(call.isStatusAvailable());
 	}
 
-	  @Test(priority=6) 
+	  @Test(priority=6, enabled=false) 
 	  public void checkCancelCallButton() {
-		  call.inputFromNativeKeyboard("skustov3");
+		  call.inputFromNativeKeyboard(USER_NAME);
 		  call.clickCallButton(); 
 		  call.cancelCall();
 		  Sleeper.SYSTEM_SLEEPER.sleep(3000);
@@ -77,7 +77,7 @@ public class CallTest extends BaseTest {
 	 
 	 @Test(priority = 7, description = "Check display name abonent in time call")
 		public void checkDisplayNameAbonentInCall() {
-			call.inputFromNativeKeyboard("skustov3");
+			call.inputFromNativeKeyboard(USER_NAME);
 			call.clickCallButton();
 			String actualAbonentName = call.getNameAbonent();
 			((CallPage) call.cancelCall()).checkPage();
