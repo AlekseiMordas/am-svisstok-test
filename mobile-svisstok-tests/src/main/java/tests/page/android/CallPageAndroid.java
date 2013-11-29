@@ -78,6 +78,9 @@ public class CallPageAndroid extends CallPage {
 
 	@FindBy(locator = "//div[contains(@class, 'title')]")
 	private UIView nameAbonent;
+	
+	@FindBy(locator = "//a[contains(@id,'tab-btn-microphone')]")
+	private UIView microphoneButton;
 
 	public CallPageAndroid(NativeDriver driver) {
 		super(driver);
@@ -202,6 +205,13 @@ public class CallPageAndroid extends CallPage {
 	public String getTimer() {
 		// TODO Auto-generated method stub
 		throw new RuntimeException("Method not yet implemented for Android");
+	}
+
+	@Override
+	public boolean isMicrophoneWork() {
+		microphoneButton.touch();
+		//TODO: real check
+		return true;
 	}
 
 }

@@ -84,6 +84,14 @@ public class CallTest extends BaseTest {
 			Assert.assertTrue(!actualAbonentName.isEmpty(), "Incorrect abonent name");
 		}
 	  
+	 @Test(priority = 9, description = "Check microfone")
+		public void checkMicrofone() {
+			call.inputFromNativeKeyboard(USER_NAME);
+			call.clickCallButton();
+			boolean microfone = call.isMicrophoneWork();
+			call.cancelCall();
+			Assert.assertTrue(microfone);
+		}
 	 
 	/* * TODO Dublicate methods
 	 * @Test(priority=5) public void checkDisplayNameAbonent() {

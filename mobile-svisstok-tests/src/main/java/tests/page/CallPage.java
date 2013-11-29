@@ -34,4 +34,6 @@ public abstract class CallPage extends BasePage{
 	public abstract String getNameAbonent();
 	
 	public abstract String getTimer();
+	
+	public abstract boolean isMicrophoneWork();
 }

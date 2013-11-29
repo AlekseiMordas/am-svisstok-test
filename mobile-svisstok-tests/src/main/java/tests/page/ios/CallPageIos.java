@@ -21,7 +21,7 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "В сети")
 	// "LinphoneRegistrationOk")
 	public UIView status;
-	
+
 	@FindBy(locator = "/window[1]/scrollview[1]/webview[1]/text[1]")
 	public UIView online;
 
@@ -97,15 +97,15 @@ public class CallPageIos extends CallPage {
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[19]/link[1]")
 	private UIView settingsTab;
-	
+
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[18]/link[1]")
 	private UIView callTab;
-	
+
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]")
 	private UIView timerCall;
 
 	private static final Logger LOGGER = Logger.getLogger(CallPageIos.class);
-	
+
 	public CallPageIos(NativeDriver driver) {
 		super(driver);
 	}
@@ -114,10 +114,10 @@ public class CallPageIos extends CallPage {
 	public void checkPage() {
 		try {
 			status.waitForElementByName(WAIT_WHILE_LOGIN);
-		}
-		catch(TimeoutException e) {
+		} catch (TimeoutException e) {
 			LOGGER.error("Login was unsuccessfull. Can't find " + status);
-			throw new com.mobile.driver.wait.exception.TimeoutException("Call page didn't download");
+			throw new com.mobile.driver.wait.exception.TimeoutException(
+					"Call page didn't download");
 		}
 	}
 
@@ -152,7 +152,7 @@ public class CallPageIos extends CallPage {
 
 	}
 
-	public void inputFromNativeKeyboard(String text ){
+	public void inputFromNativeKeyboard(String text) {
 		fieldNumber.touchLong();
 		fieldNumber.type(text);
 		doneButton.touch();
@@ -217,7 +217,19 @@ public class CallPageIos extends CallPage {
 	public String getNameAbonent() {
 		return nameAbonent.getAttribute("label");
 	}
-	
+
+	@Override
+	public boolean isMicrophoneWork() {
+		Rectangle point = webview.getLocation();
+		double x = 100;
+		double y = 355;
+		if ((point.getX() + x) == 100) {
+			webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+			return true;
+		} else
+			return false;
+	}
+
 	@Override
 	public String getTimer() {
 		return timerCall.getAttribute("label");
