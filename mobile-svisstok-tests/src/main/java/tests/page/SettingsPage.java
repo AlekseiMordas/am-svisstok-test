@@ -13,4 +13,8 @@ public abstract class SettingsPage extends BasePage {
 	public abstract void setAutoLogin(boolean flag);
 	
 	public abstract boolean isAutoLoginFlagEnable();
+	
+	public abstract <T> T clickAllContacts();
+	
+	public abstract <T> T clickSwisstokContacts();
 }

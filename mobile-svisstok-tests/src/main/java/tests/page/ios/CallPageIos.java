@@ -73,9 +73,9 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[2]/UIAKeyboard[1]/UIAKey[28]")
 	private UIView deleteButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[14]/link[1]/text[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[16]/link[1]/text[1]")
 	// "//window[1]/scrollview[1]/webview[1]/link[14]/link[1]")//"//window[1]/scrollview[1]/webview[1]/link[16]/link[1]/text[1]")
-	private UIView contact;
+	private UIView contacts;
 
 	@FindBy(locator = "Select All")
 	private UIView selectAll;
@@ -178,8 +178,9 @@ public class CallPageIos extends CallPage {
 		nine.touchWithCoordinates(point.getX() + x, point.getY() + y);
 	}
 
-	public void clickContact() {
-		// contact.touch();
+	public CardContactsPageIos clickContact() {
+		 contacts.touch();
+		 return PageFactory.initElements(driver, CardContactsPageIos.class);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -193,10 +194,10 @@ public class CallPageIos extends CallPage {
 	}
 
 	public void clickCallButton() {
-		Rectangle point = nine.getLocation();
-		double x = 154;
-		double y = 135;
-		nine.touchWithCoordinates(point.getX() - x, point.getY() + y);
+		Rectangle point = webview.getLocation();
+		double x = 165;
+		double y = 407;
+		nine.touchWithCoordinates(point.getX() + x, point.getY() + y);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
 
@@ -233,6 +234,20 @@ public class CallPageIos extends CallPage {
 	@Override
 	public String getTimer() {
 		return timerCall.getAttribute("label");
+	}
+	
+	public void clickBack(){
+		Rectangle point = webview.getLocation();
+		double x = 10;
+		double y = 5;
+		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+	}
+	
+	public void clickCall(){
+		Rectangle point = webview.getLocation();
+		double x = 160;
+		double y = 406;
+		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
 	}
 
 }

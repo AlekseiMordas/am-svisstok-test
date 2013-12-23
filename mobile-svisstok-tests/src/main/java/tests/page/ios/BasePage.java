@@ -4,6 +4,11 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.openqa.selenium.JavascriptExecutor;
 
 import com.element.UIView;
 import com.ios.AppiumDriver;
@@ -23,6 +28,12 @@ public abstract class BasePage extends Page {
 	protected void makeScreenshot() {
 		AppiumDriver.class.cast(driver).takeScreenshot("");
 	}
+	
+	public static boolean checkVisibleText(String element){
+        Pattern p = Pattern.compile("^.+$");
+        Matcher m = p.matcher(element); 
+        return m.matches(); 
+    }
 
 	/**
 	 * For Android Implementation
@@ -36,4 +47,16 @@ public abstract class BasePage extends Page {
 			return element.getAttribute("value");
 		}
 	}
+	
+	public void swipe(double startX, double startY, double endX, double endY,
+			   double duration) {
+			  JavascriptExecutor js = (JavascriptExecutor) ((AppiumDriver)driver).getDriver();
+			  HashMap swipeObject = new HashMap();
+			  swipeObject.put("startX", Double.valueOf(startX));
+			  swipeObject.put("startY", Double.valueOf(startY));
+			  swipeObject.put("endX", Double.valueOf(endX));
+			  swipeObject.put("endY", Double.valueOf(endY));
+			  swipeObject.put("duration", Double.valueOf(duration));
+			  js.executeScript("mobile: swipe", new Object[] { swipeObject });
+			 }
 }

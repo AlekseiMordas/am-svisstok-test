@@ -21,7 +21,7 @@ public abstract class CallPage extends BasePage{
 	
 	public abstract void clearField();
 	
-	public abstract void clickContact();
+	public abstract <T> T clickContact();
 	
 	public abstract void clickCallButton();
 	
@@ -36,4 +36,8 @@ public abstract class CallPage extends BasePage{
 	public abstract String getTimer();
 	
 	public abstract boolean isMicrophoneWork();
+	
+	public abstract void clickBack();
+	
+	public abstract void clickCall();
 }
