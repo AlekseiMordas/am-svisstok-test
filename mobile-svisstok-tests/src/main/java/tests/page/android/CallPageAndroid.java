@@ -14,12 +14,14 @@ import com.mobile.driver.page.PageFactory;
 import com.mobile.driver.wait.Sleeper;
 
 import tests.page.CallPage;
+import tests.page.ios.CardContactsPageIos;
 
 public class CallPageAndroid extends CallPage {
 
-	private static final Logger LOGGER = Logger.getLogger(CallPageAndroid.class);
-	
-	@FindBy(locator = "//div[text()='LinphoneRegistrationOk']")
+	private static final Logger LOGGER = Logger
+			.getLogger(CallPageAndroid.class);
+
+	@FindBy(locator = "//div[text()='В сети']")
 	private UIView status;
 
 	@FindBy(locator = "//div[text()='1']")
@@ -64,6 +66,9 @@ public class CallPageAndroid extends CallPage {
 	@FindBy(locator = "//td[@class='left addContact']/a")
 	private UIView contactButton;
 
+	@FindBy(locator = "//a[contains(@id, 'contacts')]")
+	private UIView contactTabButton;
+
 	@FindBy(locator = "//td[@class='center call']/a/span")
 	private UIView callButton;
 
@@ -78,13 +83,12 @@ public class CallPageAndroid extends CallPage {
 
 	@FindBy(locator = "//div[contains(@class, 'title')]")
 	private UIView nameAbonent;
-	
+
 	@FindBy(locator = "//a[contains(@id,'tab-btn-microphone')]")
 	private UIView microphoneButton;
 
 	public CallPageAndroid(NativeDriver driver) {
 		super(driver);
-		// TODO Auto-generated constructor stub
 	}
 
 	private List<UIView> dial() {
@@ -106,10 +110,10 @@ public class CallPageAndroid extends CallPage {
 	public boolean isStatusAvailable() {
 		try {
 			status.waitForElement(WAIT_WHILE_LOGIN);
-		}
-		catch(TimeoutException e) {
+		} catch (TimeoutException e) {
 			LOGGER.error("Login was unsuccessfull. Can't find " + status);
-			throw new com.mobile.driver.wait.exception.TimeoutException("Call page didn't download");
+			throw new com.mobile.driver.wait.exception.TimeoutException(
+					"Call page didn't download");
 		}
 		return status.isExists();
 	}
@@ -117,11 +121,13 @@ public class CallPageAndroid extends CallPage {
 	@Override
 	public void checkPage() {
 		try {
+			System.out.println(AppiumDriver.class.cast(driver).getDriver()
+					.getPageSource());
 			status.waitForElement(WAIT_WHILE_LOGIN);
-		}
-		catch(TimeoutException e) {
+		} catch (TimeoutException e) {
 			LOGGER.error("Login was unsuccessfull. Can't find " + status);
-			throw new com.mobile.driver.wait.exception.TimeoutException("Call page didn't download");
+			throw new com.mobile.driver.wait.exception.TimeoutException(
+					"Call page didn't download");
 		}
 	}
 
@@ -146,7 +152,7 @@ public class CallPageAndroid extends CallPage {
 		int length = getTextFieldDigitDisplay().length();
 		deleteButton.touch();
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		if(getTextFieldDigitDisplay().length() ==length ) {
+		if (getTextFieldDigitDisplay().length() == length) {
 			deleteButton.touch();
 		}
 
@@ -163,12 +169,6 @@ public class CallPageAndroid extends CallPage {
 	}
 
 	@Override
-	public void clickContact() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void clickCallButton() {
 		callButton.touch();
 	}
@@ -181,10 +181,6 @@ public class CallPageAndroid extends CallPage {
 	@Override
 	public CallPageAndroid cancelCall() {
 		cancelCallButton.touch();
-//		Sleeper.SYSTEM_SLEEPER.sleep(5000);
-//		if (!status.isExists()) {
-//			cancelCallButton.touch();
-//		}
 		return PageFactory.initElements(driver, CallPageAndroid.class);
 	}
 
@@ -193,13 +189,11 @@ public class CallPageAndroid extends CallPage {
 		return nameAbonent.getText();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T navigateToSettingsTab() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 	@Override
 	public String getTimer() {
@@ -210,8 +204,27 @@ public class CallPageAndroid extends CallPage {
 	@Override
 	public boolean isMicrophoneWork() {
 		microphoneButton.touch();
-		//TODO: real check
+		// TODO: real check
 		return true;
+	}
+
+	@Override
+	public void clickBack() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void clickCall() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public CardContactsPageAndroid clickContact() {
+		contactTabButton.touch();
+		return PageFactory.initElements(driver, CardContactsPageAndroid.class);
 	}
 
 }

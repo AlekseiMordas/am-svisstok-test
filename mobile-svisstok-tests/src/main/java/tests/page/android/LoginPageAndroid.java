@@ -87,7 +87,7 @@ public class LoginPageAndroid extends LoginPage {
 	@Override
 	public CallPageAndroid simpleLogin(String login, String password,
 			boolean isSavePassword, boolean isAutoLogin) {
-		Sleeper.SYSTEM_SLEEPER.sleep(15000);
+//	Sleeper.SYSTEM_SLEEPER.sleep(15000);
 		inputLoginTextfield(login);
 		inputPasswordTextfield(password);
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);

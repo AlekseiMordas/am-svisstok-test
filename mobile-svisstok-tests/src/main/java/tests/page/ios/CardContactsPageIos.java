@@ -12,10 +12,6 @@ import com.mobile.driver.page.PageFactory;
 import com.mobile.driver.wait.Sleeper;
 
 public class CardContactsPageIos extends CardContactsPage{
-	
-	public CardContactsPageIos(NativeDriver driver) {
-		super(driver);
-	}
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
 	private UIView webview;
@@ -64,22 +60,30 @@ public class CardContactsPageIos extends CardContactsPage{
 	
 	@FindBy(locator = "/window[1]/scrollview[1]/webview[1]/text[14]")//"//window[1]/scrollview[1]/webview[1]/text[28]")
 	private UIView messageDelete;
-	
+
+	public CardContactsPageIos(NativeDriver driver) {
+		super(driver);
+	}
+
+	@Override
 	public void clickAddContacts(){
 		Rectangle point = webview.getLocation();
 		double x = 270;
 		webview.touchWithCoordinates(point.getX() + x, point.getY());
 	}
-	
+
+	@Override
 	public void clickAddContactsFromList(){
 		addContactsFromList.touch();
 	}
-	
+
+	@Override
 	public void inputName(String text){
 		nameField.touch();
 		nameField.type(text);
 	}
 	
+	@Override	
 	public void inputContact(String contact){
 		contactField.touch();
 		contactField.type(contact);
@@ -93,6 +97,7 @@ public class CardContactsPageIos extends CardContactsPage{
 		doneButton.touch();
 	}
 	
+	@Override	
 	public void clickBack(){
 		Rectangle point = webview.getLocation();
 		double x = 10;
@@ -100,14 +105,17 @@ public class CardContactsPageIos extends CardContactsPage{
 		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
 	}
 	
+	@Override	
 	public String getContactNumber(){
 		return contactNumber.getAttribute("label");
 	}
 	
+	@Override	
 	public String getContactName(){
 		return contactName.getAttribute("label");
 	}
 	
+	@Override	
 	public void clickEditContacts(){
 		Rectangle point = webview.getLocation();
 		double x = 270;
@@ -115,6 +123,7 @@ public class CardContactsPageIos extends CardContactsPage{
 		
 	}
 	
+	@Override	
 	public void clickDeletefromList(){
 		Rectangle point = webview.getLocation();
 		double x = 116;
@@ -122,6 +131,7 @@ public class CardContactsPageIos extends CardContactsPage{
 		Sleeper.SYSTEM_SLEEPER.sleep(5000);
 	}
 	
+	@Override	
 	public void clickDelete(){
 		//delete.touch();
 		Rectangle point = webview.getLocation();
@@ -131,6 +141,7 @@ public class CardContactsPageIos extends CardContactsPage{
 		//Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
 	
+	@Override	
 	public void clickCall(){
 		Rectangle point = webview.getLocation();
 		double x = 160;
@@ -138,6 +149,7 @@ public class CardContactsPageIos extends CardContactsPage{
 		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
 	}
 	
+	@Override	
 	public void clickFirstContact(){
 		//firstContact.touch(); dynamic xPath
 		Rectangle point = webview.getLocation();
@@ -146,26 +158,31 @@ public class CardContactsPageIos extends CardContactsPage{
 		
 	}
 	
+	@Override	
 	public boolean checkVisibleContactNumber(){
 		
 		return checkVisibleText(getContactNumber());
 	}
 	
+	@Override	
     public boolean checkVisibleContactName(){
 		
 		return checkVisibleText(getContactName());
 	}
     
+    @Override	
     public boolean checkVisibleListContacts(){
     	boolean first = checkVisibleText((firstContact.getAttribute("name").split(" ")[0]));
     	boolean second = checkVisibleText((secondContact.getAttribute("name").split(" ")[0]));
     	System.out.println("qq"+ second);
-    	if(first && second)
-    	 return true;
-    	else
-    		return false;
+    	return (first && second);
+//    	if
+//    	 return true;
+//    	else
+//    		return false;
     }
     
+    @Override	
    public SettingsPageIos clickSettings(){
 	   Rectangle point = webview.getLocation();
 		double x = 10;
@@ -174,12 +191,14 @@ public class CardContactsPageIos extends CardContactsPage{
 	return PageFactory.initElements(driver, SettingsPageIos.class);
     }
    
+   @Override
    public void searchContacts(String text){
 	   searchFiled.touch();
 	   searchFiled.type(text);
 	   doneButton.touch();
    }
    
+   @Override	
    public CallPageIos clickSearchResult(){
 	   Rectangle point = webview.getLocation();
 		double y = 88;
@@ -187,6 +206,7 @@ public class CardContactsPageIos extends CardContactsPage{
 	 return PageFactory.initElements(driver, CallPageIos.class);
    }
    
+   @Override	
    public void clickEditFromList(){
 	   Rectangle point = webview.getLocation();
 		double x = 116;
@@ -194,15 +214,18 @@ public class CardContactsPageIos extends CardContactsPage{
 		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
    }
 
+   @Override	
    public void clickProfile(){
 	   profileFromList.touchByName();
    }
    
+   @Override	
    public String getSecondNumber(){
 	   //secondNumber.touchByName();
 	   return secondNumber.getAttribute("label");
    }
    
+   @Override	
    public void secondDelete(){
 	   Rectangle point = webview.getLocation();
 		double x = 25;
@@ -210,10 +233,12 @@ public class CardContactsPageIos extends CardContactsPage{
 		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
    }
    
+   @Override	
    public void deleteNumber(){
 	   deleteNumber.touchByName();
    }
    
+   @Override	
    public String getMessageDelete(){
 	   return messageDelete.getAttribute("label");
    }

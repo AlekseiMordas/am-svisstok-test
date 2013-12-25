@@ -3,6 +3,7 @@ package tests.appiumTests.ios;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.ios.AppiumDriver;
 import com.mobile.driver.wait.Sleeper;
 
 public class CardContactsTest extends BaseTest {
@@ -19,7 +20,7 @@ public class CardContactsTest extends BaseTest {
 		cardContacts.clickCall();
 		Assert.assertTrue(visibleListContacts);
 	}
-	
+/*	
 	@Test(priority = 2, description = "Check add contact")
 	public void checkAddContact() {
 		cardContacts = call.clickContact();
@@ -114,5 +115,5 @@ public class CardContactsTest extends BaseTest {
 		cardContacts.clickCall();
 		Assert.assertEquals(messageDelete, MSG_DELETE);
 	}
-
+*/
 }

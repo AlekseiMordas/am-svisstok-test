@@ -20,7 +20,9 @@ import driver.IosDriverWrapper;
 import runner.DeviceConfig;
 import runner.Devices;
 import tests.page.CallPage;
+import tests.page.CardContactsPage;
 import tests.page.LoginPage;
+import tests.page.SettingsPage;
 import tests.page.android.LoginPageAndroid;
 import tests.page.exceptions.XmlParametersException;
 import tests.page.ios.CallPageIos;
@@ -31,34 +33,38 @@ import utils.ApplicationStorage;
  * @author aleksei_mordas
  * 
  */
-public class BaseTest { 
+public class BaseTest {
 
 	protected static final String DELIMETER = ":";
 
 	private static final String HOST = DeviceConfig.getHost();
 
 	private static final String PORT = DeviceConfig.getPort();
-	
+
 	private static final String DEVICE = DeviceConfig.getDevice();
-	
-	protected static final String USER_NAME ="skustov3";// ApplicationStorage.getDefaultUsername();//"sip:skustov2@sipnet.ru";//"7812009957@217.195.69.250"; 7789 pas 1246
-	
-	protected static final String USER_PASSWORD ="zzzzzz";// ApplicationStorage.getDefaultPassword();//"zzzzzz";//"JNcW5qTBaRvy";
-	
+
+	protected static final String USER_NAME = "skustov3";// ApplicationStorage.getDefaultUsername();//"sip:skustov2@sipnet.ru";//"7812009957@217.195.69.250";
+															// 7789 pas 1246
+
+	protected static final String USER_PASSWORD = "zzzzzz";// ApplicationStorage.getDefaultPassword();//"zzzzzz";//"JNcW5qTBaRvy";
+
 	protected static final String INCORRECT_USER_NAME = "7812001245@211.195.68.250";
-	
+
 	protected static final String INCORRECT_PASSWORD = "70mNZcEy05G123";
 
 	protected NativeDriver driver;
 
 	protected LoginPage main;
-	
+
 	protected CallPage call;
-	
-	
+
+	protected CardContactsPage cardContacts;
+
+	protected SettingsPage setting;
+
 	@BeforeClass(description = "Init and check page")
 	public void initPages() throws Exception {
-		
+
 		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:
 			driver = IosDriverWrapper.getIphone(HOST, PORT);
@@ -76,15 +82,15 @@ public class BaseTest {
 		default:
 			throw new XmlParametersException("Invalid device");
 		}
-  
+
 	}
-	
-	public static boolean checkTimer(String element){ 
-        Pattern p = Pattern.compile("^[0-9][0-9]\\s.\\s[0-9][0-9]$");
-        Matcher m = p.matcher(element); 
-        return m.matches(); 
-    }
-	
+
+	public static boolean checkTimer(String element) {
+		Pattern p = Pattern.compile("^[0-9][0-9]\\s.\\s[0-9][0-9]$");
+		Matcher m = p.matcher(element);
+		return m.matches();
+	}
+
 	@AfterClass
 	public void tearDown() throws Exception {
 		AppiumDriver.class.cast(driver).quit();

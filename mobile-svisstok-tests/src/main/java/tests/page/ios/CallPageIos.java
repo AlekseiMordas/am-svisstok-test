@@ -178,6 +178,8 @@ public class CallPageIos extends CallPage {
 		nine.touchWithCoordinates(point.getX() + x, point.getY() + y);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
 	public CardContactsPageIos clickContact() {
 		 contacts.touch();
 		 return PageFactory.initElements(driver, CardContactsPageIos.class);
