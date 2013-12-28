@@ -10,6 +10,7 @@ import com.mobile.driver.nativedriver.NativeDriver;
 import com.mobile.driver.page.PageFactory;
 import com.mobile.driver.wait.Sleeper;
 
+import tests.page.BlockPage;
 import tests.page.SettingsPage;
 import tests.page.ios.BasePage;
 
@@ -23,6 +24,9 @@ public class SettingsPageIos extends SettingsPage {
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[14]")
 	private UIView swisstokContacts;
+	
+	@FindBy(locator = "Заблокированные")
+	private UIView block;
 	
 
 	public SettingsPageIos(NativeDriver driver) {
@@ -68,5 +72,27 @@ public class SettingsPageIos extends SettingsPage {
 		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
 		return PageFactory.initElements(driver, CardContactsPageIos.class);
 	}
+	@Override
+	public BlockPageIos clickBlock() {
+		block.touchByName();
+		return PageFactory.initElements(driver, BlockPageIos.class);
+	}
+	
+	public FavoritePageIos clickFavorite(){
+		Rectangle point = webview.getLocation();
+		double x = 11;
+		double y = 299;
+		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		return PageFactory.initElements(driver, FavoritePageIos.class);
+	}
+	
+	public SavedContactsPageIos clickSavedContacts(){
+		Rectangle point = webview.getLocation();
+		double x = 11;
+		double y = 213;
+		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		return PageFactory.initElements(driver, SavedContactsPageIos.class);
+	}
+
 
 }

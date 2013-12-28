@@ -17,4 +17,10 @@ public abstract class SettingsPage extends BasePage {
 	public abstract <T> T clickAllContacts();
 	
 	public abstract <T> T clickSwisstokContacts();
+	
+	public abstract <T> T clickBlock();
+	
+	public abstract <T> T clickFavorite();
+	
+	public abstract <T> T clickSavedContacts();
 }

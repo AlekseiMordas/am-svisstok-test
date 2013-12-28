@@ -59,4 +59,12 @@ public abstract class CardContactsPage extends  BasePage{
 	public abstract void inputSecondContact(String text); 
 	
 	public abstract String getMessageDelete();
+	
+	public abstract void clickBlockFromList();
+	
+	public abstract void clickBlock();
+	
+	public abstract String getMessageBlock();
+	
+	public abstract void clickStar();
 }

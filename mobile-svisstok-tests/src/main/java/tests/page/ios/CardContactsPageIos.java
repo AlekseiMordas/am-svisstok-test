@@ -58,8 +58,26 @@ public class CardContactsPageIos extends CardContactsPage{
 	@FindBy(locator = "Удалить")
 	private UIView deleteNumber;
 	
-	@FindBy(locator = "/window[1]/scrollview[1]/webview[1]/text[14]")//"//window[1]/scrollview[1]/webview[1]/text[28]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[14]")//"//window[1]/scrollview[1]/webview[1]/text[28]")
 	private UIView messageDelete;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[13]")
+	private UIView blockFromList;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[24]")
+	private UIView block;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[4]")
+	private UIView messageBlock;
+	
+	@FindBy(locator = "Select All")
+	private UIView selectAll;
+
+	@FindBy(locator = "Cut")
+	private UIView cutButton;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[16]")
+	private UIView star;
 
 	public CardContactsPageIos(NativeDriver driver) {
 		super(driver);
@@ -80,12 +98,30 @@ public class CardContactsPageIos extends CardContactsPage{
 	@Override
 	public void inputName(String text){
 		nameField.touch();
+		clearField(nameField);
 		nameField.type(text);
+		doneButton.touch();
+	}
+	
+/*	public void inputOtherName(String text){
+		nameField.touch();
+		clearField(nameField);
+		nameField.type(text);
+		doneButton.touch();
+	}*/
+	
+	public void clearField(UIView element) {
+		if (!(element.getText().isEmpty())) {
+			element.touchLong();
+			selectAll.touchByName();
+			cutButton.touchByName();
+		}
 	}
 	
 	@Override	
 	public void inputContact(String contact){
 		contactField.touch();
+		clearField(contactField);
 		contactField.type(contact);
 		doneButton.touch();
 	}
@@ -112,7 +148,7 @@ public class CardContactsPageIos extends CardContactsPage{
 	
 	@Override	
 	public String getContactName(){
-		return contactName.getAttribute("label");
+		return contactName.getAttribute("name");
 	}
 	
 	@Override	
@@ -174,7 +210,6 @@ public class CardContactsPageIos extends CardContactsPage{
     public boolean checkVisibleListContacts(){
     	boolean first = checkVisibleText((firstContact.getAttribute("name").split(" ")[0]));
     	boolean second = checkVisibleText((secondContact.getAttribute("name").split(" ")[0]));
-    	System.out.println("qq"+ second);
     	return (first && second);
 //    	if
 //    	 return true;
@@ -210,7 +245,7 @@ public class CardContactsPageIos extends CardContactsPage{
    public void clickEditFromList(){
 	   Rectangle point = webview.getLocation();
 		double x = 116;
-		double y = 129;
+		double y = 86;//129;
 		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
    }
 
@@ -221,7 +256,6 @@ public class CardContactsPageIos extends CardContactsPage{
    
    @Override	
    public String getSecondNumber(){
-	   //secondNumber.touchByName();
 	   return secondNumber.getAttribute("label");
    }
    
@@ -241,6 +275,29 @@ public class CardContactsPageIos extends CardContactsPage{
    @Override	
    public String getMessageDelete(){
 	   return messageDelete.getAttribute("label");
+   }
+   
+   //dynamic xPath
+   public void clickBlockFromList(){
+	   Rectangle point = webview.getLocation();
+		double x = 116;
+		double y = 43;
+		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+   }
+   //dynamic xPath
+   public void clickBlock(){
+	   Rectangle point = webview.getLocation();
+		double x = 20;
+		double y = 245;
+		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+   }
+   
+   public String getMessageBlock(){
+	   return messageBlock.getAttribute("name");
+   }
+   
+   public void clickStar(){
+	   star.touch();
    }
    
 	@Override
