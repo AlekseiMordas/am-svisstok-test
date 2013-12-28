@@ -19,9 +19,13 @@ import driver.IosDriverWrapper;
 
 import runner.DeviceConfig;
 import runner.Devices;
+import tests.page.BlockPage;
 import tests.page.CallPage;
 import tests.page.CardContactsPage;
+import tests.page.FavoritePage;
+import tests.page.HistoryPage;
 import tests.page.LoginPage;
+import tests.page.SavedContactsPage;
 import tests.page.SettingsPage;
 import tests.page.android.LoginPageAndroid;
 import tests.page.exceptions.XmlParametersException;
@@ -43,10 +47,10 @@ public class BaseTest {
 
 	private static final String DEVICE = DeviceConfig.getDevice();
 
-	protected static final String USER_NAME = "skustov3";// ApplicationStorage.getDefaultUsername();//"sip:skustov2@sipnet.ru";//"7812009957@217.195.69.250";
+	protected static final String USER_NAME = "skustov3";//"skustov4";// ApplicationStorage.getDefaultUsername();//"sip:skustov2@sipnet.ru";//"7812009957@217.195.69.250";
 															// 7789 pas 1246
 
-	protected static final String USER_PASSWORD = "zzzzzz";// ApplicationStorage.getDefaultPassword();//"zzzzzz";//"JNcW5qTBaRvy";
+	protected static final String USER_PASSWORD = "zzzzzz";//vstarshinin psw: 6Terminator6// ApplicationStorage.getDefaultPassword();//"zzzzzz";//"JNcW5qTBaRvy";
 
 	protected static final String INCORRECT_USER_NAME = "7812001245@211.195.68.250";
 
@@ -61,6 +65,14 @@ public class BaseTest {
 	protected CardContactsPage cardContacts;
 
 	protected SettingsPage setting;
+	
+	protected BlockPage block;
+	
+	protected FavoritePage favorite;
+	
+	protected SavedContactsPage savedContacts;
+	
+	protected HistoryPage history;
 
 	@BeforeClass(description = "Init and check page")
 	public void initPages() throws Exception {

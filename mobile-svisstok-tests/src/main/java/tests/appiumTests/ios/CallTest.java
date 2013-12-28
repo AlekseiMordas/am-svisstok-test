@@ -18,7 +18,9 @@ public class CallTest extends BaseTest {
 
 	protected static final String PHONE_NUMBER = ApplicationStorage.getCallerNumber();
 	
-	protected static final String USER_NAME = ApplicationStorage.getCallerName();
+	//protected static final String USER_NAME = ApplicationStorage.getCallerName();
+	protected static final String NAME = "Qwerty";
+	protected static final String NUMBER = "1234";
 
 	@Test(priority = 1)
 	public void checkNumberFieldDigits() {
@@ -101,6 +103,53 @@ public class CallTest extends BaseTest {
 	 * actualAbonentName = call.getNameAbonent(); call.cancelCall();
 	 * Assert.assertEquals(PHONE_NUMBER, actualAbonentName); }
 	 */
+	
+	@Test(priority = 10, description = "Check call from favorite")
+	public void checkCallFromFavotite() {
+		cardContacts = call.clickContact();
+		setting = cardContacts.clickSettings();
+		cardContacts = setting.clickSwisstokContacts();
+		cardContacts.clickAddContacts();
+		cardContacts.clickAddContactsFromList();
+		cardContacts.inputName(USER_NAME);
+		cardContacts.inputContact(USER_NAME);
+		cardContacts.clickBack();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		
+		cardContacts.swipe(0.5, 0.8, 0.5, 0.1, 0.5);
+
+		cardContacts.clickStar();
+		cardContacts.clickBack();
+		setting = cardContacts.clickSettings();
+		favorite = setting.clickFavorite();
+		favorite.searchContacts(USER_NAME);
+		favorite.clickSearchResult();
+		favorite.clickCallingButton();
+		boolean actualTimer = checkTimer(favorite.getTimer());
+		favorite.cancelCall();
+		favorite.clickEditContacts();
+		favorite.clickDeletefromList();
+		favorite.clickDelete();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		cardContacts.clickCall();
+		Assert.assertTrue(actualTimer);
+	}
+	
+	 @Test(priority=11) 
+	  public void checkCallFromHistory() {
+		  call.inputFromNativeKeyboard(USER_NAME);
+		  call.clickCallButton(); 
+		  call.cancelCall();
+		  history = call.clickHistory();
+		  history.clickFirstContact();
+		  Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		  boolean actualTimer = checkTimer(history.getTimer());
+		  history.cancelCall();
+		  history.clickCall();
+		  Assert.assertTrue(actualTimer); 
+	  }
+	 
+	
 	@AfterMethod
 	public void clearField() {
 		call.clearField();

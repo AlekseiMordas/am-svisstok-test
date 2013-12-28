@@ -103,6 +103,9 @@ public class CallPageIos extends CallPage {
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]")
 	private UIView timerCall;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[5]")
+	private UIView contactNumber;
 
 	private static final Logger LOGGER = Logger.getLogger(CallPageIos.class);
 
@@ -197,8 +200,8 @@ public class CallPageIos extends CallPage {
 
 	public void clickCallButton() {
 		Rectangle point = webview.getLocation();
-		double x = 165;
-		double y = 407;
+		double x = 55;//165;
+		double y = 351;//407;
 		nine.touchWithCoordinates(point.getX() + x, point.getY() + y);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
@@ -251,5 +254,40 @@ public class CallPageIos extends CallPage {
 		double y = 406;
 		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
 	}
+	
+	public void clickEditContacts(){
+		Rectangle point = webview.getLocation();
+		double x = 270;
+		webview.touchWithCoordinates(point.getX() + x, point.getY());
+		
+	}	
+	
+	public void clickDeletefromList(){
+		Rectangle point = webview.getLocation();
+		double x = 116;
+		webview.touchWithCoordinates(point.getX() + x, point.getY());
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+	}
+	
+	public void clickDelete(){
+		//delete.touch();
+		Rectangle point = webview.getLocation();
+		double x = 20;
+		double y = 245;
+		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+	}
+	
+	public String getContactNumber(){
+		return contactNumber.getAttribute("label");
+	}
+	
+	public HistoryPageIos clickHistory(){
+		Rectangle point = webview.getLocation();
+		double x = 80;
+		double y = 406;
+		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+    return PageFactory.initElements(driver, HistoryPageIos.class);
+	}
+	
 
 }

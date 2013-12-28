@@ -40,4 +40,14 @@ public abstract class CallPage extends BasePage{
 	public abstract void clickBack();
 	
 	public abstract void clickCall();
+	
+	public abstract void clickEditContacts();
+	
+	public abstract void clickDeletefromList();
+	
+	public abstract void clickDelete();
+	
+	public abstract String getContactNumber();
+	
+	public abstract <T> T clickHistory();
 }
