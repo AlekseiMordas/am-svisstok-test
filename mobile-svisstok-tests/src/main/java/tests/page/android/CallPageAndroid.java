@@ -121,8 +121,6 @@ public class CallPageAndroid extends CallPage {
 	@Override
 	public void checkPage() {
 		try {
-			System.out.println(AppiumDriver.class.cast(driver).getDriver()
-					.getPageSource());
 			status.waitForElement(WAIT_WHILE_LOGIN);
 		} catch (TimeoutException e) {
 			LOGGER.error("Login was unsuccessfull. Can't find " + status);

@@ -12,8 +12,8 @@ public class SettingsPageAndroid extends SettingsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/slider[3]")
 	private UIView autoLoginSlider;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
-	private UIView webview;
+	@FindBy(locator = "//a[@id='contactsFilterView-btn-ALL']")
+	private UIView allContactsButton;
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[14]")
 	private UIView swisstokContacts;
@@ -47,20 +47,13 @@ public class SettingsPageAndroid extends SettingsPage {
 	
 	@SuppressWarnings("unchecked")
 	public CardContactsPageAndroid clickAllContacts(){
-		Rectangle point = webview.getLocation();
-		double x = 11;
-		double y = 63;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		allContactsButton.touch();
 		return PageFactory.initElements(driver, CardContactsPageAndroid.class);
 	}
 	
-	//use coordinats, because dynamic xPath
 	@SuppressWarnings("unchecked")
 	public CardContactsPageAndroid clickSwisstokContacts(){
-		Rectangle point = webview.getLocation();
-		double x = 11;
-		double y = 170;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		
 		return PageFactory.initElements(driver, CardContactsPageAndroid.class);
 	}
 
