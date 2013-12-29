@@ -44,7 +44,7 @@ public abstract class CardContactsPage extends  BasePage{
 	
 	public abstract void searchContacts(String text);
 	
-	public abstract <T> T clickSearchResult();
+	public abstract <T> T clickSearchResultAndCall(String result);
 	
 	public abstract void clickEditFromList();
 	

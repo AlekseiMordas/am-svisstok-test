@@ -73,10 +73,6 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[2]/UIAKeyboard[1]/UIAKey[28]")
 	private UIView deleteButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[16]/link[1]/text[1]")
-	// "//window[1]/scrollview[1]/webview[1]/link[14]/link[1]")//"//window[1]/scrollview[1]/webview[1]/link[16]/link[1]/text[1]")
-	private UIView contacts;
-
 	@FindBy(locator = "Select All")
 	private UIView selectAll;
 
@@ -95,17 +91,23 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
 	private UIView webview;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[19]/link[1]")
+	@FindBy(locator = "Настройки")
 	private UIView settingsTab;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[18]/link[1]")
+	@FindBy(locator = "Позвонить")
 	private UIView callTab;
+
+	@FindBy(locator = "Контакты")
+	private UIView contactsTab;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]")
 	private UIView timerCall;
-	
+
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[5]")
 	private UIView contactNumber;
+
+	@FindBy(locator = "Позвонить")
+	private UIView callButton;
 
 	private static final Logger LOGGER = Logger.getLogger(CallPageIos.class);
 
@@ -184,24 +186,23 @@ public class CallPageIos extends CallPage {
 	@SuppressWarnings("unchecked")
 	@Override
 	public CardContactsPageIos clickContact() {
-		 contacts.touch();
-		 return PageFactory.initElements(driver, CardContactsPageIos.class);
+		Rectangle point = contactsTab.getLocation();
+		contactsTab.touchWithCoordinates(point.getX(), point.getY());
+		return PageFactory.initElements(driver, CardContactsPageIos.class);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public SettingsPageIos navigateToSettingsTab() {
-		Rectangle point = callTab.getLocation();
-		double x = 80;
-		double y = 0;
-		nine.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = settingsTab.getLocation();
+		settingsTab.touchWithCoordinates(point.getX(), point.getY());
 		return PageFactory.initElements(driver, SettingsPageIos.class);
 	}
 
 	public void clickCallButton() {
 		Rectangle point = webview.getLocation();
-		double x = 55;//165;
-		double y = 351;//407;
+		double x = 55;// 165;
+		double y = 351;// 407;
 		nine.touchWithCoordinates(point.getX() + x, point.getY() + y);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
@@ -240,54 +241,51 @@ public class CallPageIos extends CallPage {
 	public String getTimer() {
 		return timerCall.getAttribute("label");
 	}
-	
-	public void clickBack(){
+
+	public void clickBack() {
 		Rectangle point = webview.getLocation();
 		double x = 10;
 		double y = 5;
 		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
 	}
-	
-	public void clickCall(){
-		Rectangle point = webview.getLocation();
-		double x = 160;
-		double y = 406;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+
+	public void clickCall() {
+		Rectangle point = callButton.getLocation();
+		callButton.touchWithCoordinates(point.getX(), point.getY());
 	}
-	
-	public void clickEditContacts(){
+
+	public void clickEditContacts() {
 		Rectangle point = webview.getLocation();
 		double x = 270;
 		webview.touchWithCoordinates(point.getX() + x, point.getY());
-		
-	}	
-	
-	public void clickDeletefromList(){
+
+	}
+
+	public void clickDeletefromList() {
 		Rectangle point = webview.getLocation();
 		double x = 116;
 		webview.touchWithCoordinates(point.getX() + x, point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
-	
-	public void clickDelete(){
-		//delete.touch();
+
+	public void clickDelete() {
+		// delete.touch();
 		Rectangle point = webview.getLocation();
 		double x = 20;
 		double y = 245;
 		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
 	}
-	
-	public String getContactNumber(){
+
+	public String getContactNumber() {
 		return contactNumber.getAttribute("label");
 	}
-	
-	public HistoryPageIos clickHistory(){
+
+	public HistoryPageIos clickHistory() {
 		Rectangle point = webview.getLocation();
 		double x = 80;
 		double y = 406;
 		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
-    return PageFactory.initElements(driver, HistoryPageIos.class);
+		return PageFactory.initElements(driver, HistoryPageIos.class);
 	}
-	
 
 }

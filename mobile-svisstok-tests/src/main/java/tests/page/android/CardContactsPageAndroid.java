@@ -2,6 +2,8 @@ package tests.page.android;
 
 import java.awt.Rectangle;
 
+import org.openqa.selenium.By;
+
 import tests.page.CardContactsPage;
 import tests.page.SettingsPage;
 
@@ -23,7 +25,7 @@ public class CardContactsPageAndroid extends CardContactsPage {
 
 	@FindBy(locator = "//a[@id='contactsView-btn-addPhone']")
 	private UIView addContactsFromList;
-	
+
 	@FindBy(locator = "//a[@data-icon='add-contact-wr']")
 	private UIView addContact;
 
@@ -32,10 +34,10 @@ public class CardContactsPageAndroid extends CardContactsPage {
 
 	@FindBy(locator = "//div[@class='ui-block-c']//input")
 	private UIView contactField;
-	
-	@FindBy(locator="//a[@id='contactCardView-btn-back']")
+
+	@FindBy(locator = "//a[@id='contactCardView-btn-back']")
 	private UIView backButton;
-	
+
 	@FindBy(locator = "//div[@id='contactCardView-favour-contact']")
 	private UIView contactNumber;
 
@@ -43,38 +45,59 @@ public class CardContactsPageAndroid extends CardContactsPage {
 	private UIView contactName;
 
 	@FindBy(locator = "//ul[@data-role='listview']//h1[text()='Удалить']")
-	private UIView delete;
+	private UIView deleteFromList;
+
+	@FindBy(locator = "//ul[@data-role='listview']//h1[text()='Заблокировать']")
+	private UIView blockFromList;
+
+	@FindBy(locator = "//a[contains(@id,'confirm-btn-ok')]")
+	private UIView block;
+
+	@FindBy(locator = "//a[@id='contactCardView-btn-call']")
+	private UIView callButton;
 
 	@FindBy(locator = "//li[@id='1']")
 	private UIView firstContact;
+
+	@FindBy(locator = "//h1[contains(.,'%s')]")
+	private UIView searchedContact;
 
 	@FindBy(locator = "//li[@id='2']")
 	private UIView secondContact;
 
 	@FindBy(locator = "//input[@id='contactsView-search']")
 	private UIView searchFiled;
-	
+
 	@FindBy(locator = "//a[@id='contactsView-btn-filter']")
 	private UIView settings;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/textfield[4]")
+	@FindBy(locator = "//li[@id='contactCardView-contacts-edit-list-li-1']//input")
 	private UIView contactSecondField;
 
-	@FindBy(locator = "Профиль")
+	@FindBy(locator = "//ul[@data-role='listview']//h1[text()='Профиль']")
 	private UIView profileFromList;
+
+	@FindBy(locator = "//ul[@data-role='listview']//h1[text()='Изменить']")
+	private UIView editFromList;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[20]")
 	private UIView secondNumber;
-	
+
 	@FindBy(locator = "//a[@data-icon='edit']")
 	private UIView editContactProfile;
 
 	@FindBy(locator = "//a[@id='contactCardView-delete-confirm-btn-ok']")
 	private UIView deleteNumber;
 
-	@FindBy(locator = "/window[1]/scrollview[1]/webview[1]/text[14]")
+	@FindBy(locator = "//div[@data-icon='trash'][2]")
+	private UIView deleteSecondNumber;
+
+	@FindBy(locator = "//div[@id='toast']")
 	private UIView messageDelete;
 
+	@FindBy(locator = "//a[@data-icon='star']")
+	private UIView starButton;
+	
 	public void clickAddContacts() {
 		addContact.touch();
 	}
@@ -95,13 +118,12 @@ public class CardContactsPageAndroid extends CardContactsPage {
 
 	@Override
 	public void inputSecondContact(String contact) {
+		System.out.println(((AppiumDriver) driver).getDriver().getPageSource());
 		contactSecondField.touch();
 		contactSecondField.type(contact);
 	}
 
 	public void clickBack() {
-		backButton.touch();
-		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		backButton.touch();
 	}
 
@@ -118,8 +140,8 @@ public class CardContactsPageAndroid extends CardContactsPage {
 	}
 
 	public void clickDeletefromList() {
-		delete.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
-		delete.touch();
+		deleteFromList.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
+		deleteFromList.touch();
 	}
 
 	public void clickDelete() {
@@ -150,6 +172,7 @@ public class CardContactsPageAndroid extends CardContactsPage {
 		return (first && second);
 	}
 
+	@SuppressWarnings("unchecked")
 	public SettingsPageAndroid clickSettings() {
 		settings.touch();
 		return PageFactory.initElements(driver, SettingsPageAndroid.class);
@@ -158,22 +181,31 @@ public class CardContactsPageAndroid extends CardContactsPage {
 	public void searchContacts(String text) {
 		searchFiled.touch();
 		searchFiled.type(text);
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 
-	public CallPageAndroid clickSearchResult() {
+	@SuppressWarnings("unchecked")
+	public CallPageAndroid clickSearchResultAndCall(String name) {
+		((AppiumDriver) driver)
+				.getDriver()
+				.findElement(
+						By.xpath(String.format(searchedContact.getFoundBy(),
+								name))).click();
+		callButton.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
+		callButton.touch();
 		return PageFactory.initElements(driver, CallPageAndroid.class);
 	}
 
 	public void clickEditFromList() {
-		deleteNumber.touchByName();
+		editFromList.touch();
 	}
 
 	public void clickProfile() {
-		profileFromList.touchByName();
+		profileFromList.touch();
 	}
 
 	public String getSecondNumber() {
-		 secondNumber.touchByName();
+		secondNumber.touchByName();
 		return secondNumber.getText();
 	}
 
@@ -193,6 +225,28 @@ public class CardContactsPageAndroid extends CardContactsPage {
 	public void checkPage() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void clickBlockFromList() {
+		blockFromList.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
+		blockFromList.touch();
+	}
+
+	@Override
+	public void clickBlock() {
+		block.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
+		block.touch();
+	}
+
+	@Override
+	public String getMessageBlock() {
+		return messageDelete.getText();
+	}
+
+	@Override
+	public void clickStar() {
+		starButton.touch();
 	}
 
 }

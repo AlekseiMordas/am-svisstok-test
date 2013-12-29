@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebElement;
 
 import com.annotation.FindBy;
 import com.element.UIView;
@@ -60,6 +62,9 @@ public class CallPageAndroid extends CallPage {
 	@FindBy(locator = "//div[text()='#']")
 	private UIView grill;
 
+	@FindBy(locator = "//div[@id='activeCallView-call-avatar-panlel-status']")
+	private UIView timer;
+
 	@FindBy(locator = "//input[@class='ui-input-text ui-body-c']")
 	public UIView fieldNumber;
 
@@ -68,6 +73,9 @@ public class CallPageAndroid extends CallPage {
 
 	@FindBy(locator = "//a[contains(@id, 'contacts')]")
 	private UIView contactTabButton;
+	
+	@FindBy(locator = "//a[contains(@id, 'history')]")
+	private UIView historyTabButton;
 
 	@FindBy(locator = "//td[@class='center call']/a/span")
 	private UIView callButton;
@@ -178,7 +186,10 @@ public class CallPageAndroid extends CallPage {
 
 	@Override
 	public CallPageAndroid cancelCall() {
-		cancelCallButton.touch();
+		List<WebElement> elements = AppiumDriver.class.cast(driver).getDriver()
+				.findElements(By.xpath(cancelCallButton.getFoundBy()));
+		elements.get(elements.size() - 1).click();
+		LOGGER.info("Click cancel call");
 		return PageFactory.initElements(driver, CallPageAndroid.class);
 	}
 
@@ -190,19 +201,18 @@ public class CallPageAndroid extends CallPage {
 	@Override
 	public <T> T navigateToSettingsTab() {
 		// TODO Auto-generated method stub
-		return null;
+		throw new RuntimeException("Method not yet implemented for Android");
 	}
 
 	@Override
 	public String getTimer() {
-		// TODO Auto-generated method stub
-		throw new RuntimeException("Method not yet implemented for Android");
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		return timer.getText();
 	}
 
 	@Override
 	public boolean isMicrophoneWork() {
 		microphoneButton.touch();
-		// TODO: real check
 		return true;
 	}
 
@@ -223,6 +233,36 @@ public class CallPageAndroid extends CallPage {
 	public CardContactsPageAndroid clickContact() {
 		contactTabButton.touch();
 		return PageFactory.initElements(driver, CardContactsPageAndroid.class);
+	}
+
+	@Override
+	public void clickEditContacts() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void clickDeletefromList() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void clickDelete() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public String getContactNumber() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public HistoryPageAndroid clickHistory() {
+		historyTabButton.touch();
+		return PageFactory.initElements(driver, HistoryPageAndroid.class);
 	}
 
 }

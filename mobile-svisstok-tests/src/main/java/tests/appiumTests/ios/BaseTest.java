@@ -27,9 +27,11 @@ import tests.page.HistoryPage;
 import tests.page.LoginPage;
 import tests.page.SavedContactsPage;
 import tests.page.SettingsPage;
+import tests.page.android.CardContactsPageAndroid;
 import tests.page.android.LoginPageAndroid;
 import tests.page.exceptions.XmlParametersException;
 import tests.page.ios.CallPageIos;
+import tests.page.ios.CardContactsPageIos;
 import tests.page.ios.LoginPageIos;
 import utils.ApplicationStorage;
 
@@ -46,11 +48,13 @@ public class BaseTest {
 	private static final String PORT = DeviceConfig.getPort();
 
 	private static final String DEVICE = DeviceConfig.getDevice();
+	
+	protected static final String USER_NAME_SEARCH = "sipnet";
 
-	protected static final String USER_NAME = "skustov3";//"skustov4";// ApplicationStorage.getDefaultUsername();//"sip:skustov2@sipnet.ru";//"7812009957@217.195.69.250";
+	protected static final String USER_NAME = ApplicationStorage.getDefaultUsername();;//"skustov4";// //"sip:skustov2@sipnet.ru";//"7812009957@217.195.69.250";
 															// 7789 pas 1246
 
-	protected static final String USER_PASSWORD = "zzzzzz";//vstarshinin psw: 6Terminator6// ApplicationStorage.getDefaultPassword();//"zzzzzz";//"JNcW5qTBaRvy";
+	protected static final String USER_PASSWORD = ApplicationStorage.getDefaultPassword();//vstarshinin psw: 6Terminator6// //"zzzzzz";//"JNcW5qTBaRvy";
 
 	protected static final String INCORRECT_USER_NAME = "7812001245@211.195.68.250";
 
@@ -82,6 +86,7 @@ public class BaseTest {
 			driver = IosDriverWrapper.getIphone(HOST, PORT);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
 			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+			cardContacts = PageFactory.initElements(driver, CardContactsPageIos.class);
 			Sleeper.SYSTEM_SLEEPER.sleep(5000);
 			break;
 		case ANDROID:
@@ -89,6 +94,7 @@ public class BaseTest {
 			Sleeper.SYSTEM_SLEEPER.sleep(10000);
 			main = PageFactory.initElements(driver, LoginPageAndroid.class);
 			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+			cardContacts = PageFactory.initElements(driver, CardContactsPageAndroid.class);
 			call.checkPage();
 			break;
 		default:

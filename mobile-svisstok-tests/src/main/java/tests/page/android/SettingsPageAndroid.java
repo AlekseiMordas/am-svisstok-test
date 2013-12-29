@@ -15,8 +15,17 @@ public class SettingsPageAndroid extends SettingsPage {
 	@FindBy(locator = "//a[@id='contactsFilterView-btn-ALL']")
 	private UIView allContactsButton;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[14]")
+	@FindBy(locator = "//a[@id='contactsFilterView-btn-SWISSTOK']")
 	private UIView swisstokContacts;
+	
+	@FindBy(locator = "//a[@id='contactsFilterView-btn-BLOCKED']")
+	private UIView blockedContacts;
+	
+	@FindBy(locator = "//a[@id='contactsFilterView-btn-FAVOUR']")
+	private UIView favourContacts;
+	
+	@FindBy(locator = "//a[@id='contactsFilterView-btn-SAVED']")
+	private UIView savedContacts;
 	
 	public SettingsPageAndroid(NativeDriver driver) {
 		super(driver);
@@ -53,8 +62,29 @@ public class SettingsPageAndroid extends SettingsPage {
 	
 	@SuppressWarnings("unchecked")
 	public CardContactsPageAndroid clickSwisstokContacts(){
-		
+		swisstokContacts.touch();
 		return PageFactory.initElements(driver, CardContactsPageAndroid.class);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public BlockPageAndroid clickBlock() {
+		blockedContacts.touch();
+		return PageFactory.initElements(driver, BlockPageAndroid.class);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public FavoritePageAndroid clickFavorite() {
+		favourContacts.touch();
+		return PageFactory.initElements(driver, FavoritePageAndroid.class);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public SavedContactsPageAndroid clickSavedContacts() {
+		savedContacts.touch();
+		return PageFactory.initElements(driver, SavedContactsPageAndroid.class);
 	}
 
 }

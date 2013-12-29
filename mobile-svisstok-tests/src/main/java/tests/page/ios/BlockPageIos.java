@@ -43,7 +43,7 @@ public class BlockPageIos extends BlockPage {
 		   doneButton.touch();
 	   }
 	
-    public void clickSearchResult(){
+    public void clickSearchResult(String name){
 		   Rectangle point = webview.getLocation();
 			double y = 113;
 			webview.touchWithCoordinates(point.getX(), point.getY() + y);

@@ -19,11 +19,17 @@ public class SettingsPageIos extends SettingsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/slider[3]")
 	private UIView autoLoginSlider;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
-	private UIView webview;
+	@FindBy(locator = "Все контакты")
+	private UIView allContacts;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[14]")
+	@FindBy(locator = "Контакты в Swisstok")
 	private UIView swisstokContacts;
+	
+	@FindBy(locator = "Избранные")
+	private UIView favourContacts;
+	
+	@FindBy(locator = "Сохраненные номера")
+	private UIView savedContacts;
 	
 	@FindBy(locator = "Заблокированные")
 	private UIView block;
@@ -56,41 +62,44 @@ public class SettingsPageIos extends SettingsPage {
 		return autoLoginSlider.getAttribute("value").equals("0.00") ? true:false;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public CardContactsPageIos clickAllContacts(){
-		Rectangle point = webview.getLocation();
-		double x = 11;
-		double y = 63;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
+		Rectangle point = allContacts.getLocation();
+		allContacts.touchWithCoordinates(point.getX(), point.getY());
 		return PageFactory.initElements(driver, CardContactsPageIos.class);
 	}
 	
 	//use coordinats, because dynamic xPath
+	@SuppressWarnings("unchecked")
 	public CardContactsPageIos clickSwisstokContacts(){
-		Rectangle point = webview.getLocation();
-		double x = 11;
-		double y = 170;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
+		Rectangle point = swisstokContacts.getLocation();
+		swisstokContacts.touchWithCoordinates(point.getX(), 200);
 		return PageFactory.initElements(driver, CardContactsPageIos.class);
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public BlockPageIos clickBlock() {
-		block.touchByName();
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
+		Rectangle point = block.getLocation();
+		block.touchWithCoordinates(point.getX(), point.getY());
 		return PageFactory.initElements(driver, BlockPageIos.class);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public FavoritePageIos clickFavorite(){
-		Rectangle point = webview.getLocation();
-		double x = 11;
-		double y = 299;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
+		Rectangle point = favourContacts.getLocation();
+		favourContacts.touchWithCoordinates(point.getX(), point.getY());
 		return PageFactory.initElements(driver, FavoritePageIos.class);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public SavedContactsPageIos clickSavedContacts(){
-		Rectangle point = webview.getLocation();
-		double x = 11;
-		double y = 213;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
+		Rectangle point = savedContacts.getLocation();
+		savedContacts.touchWithCoordinates(point.getX(), point.getY());
 		return PageFactory.initElements(driver, SavedContactsPageIos.class);
 	}
 

@@ -10,6 +10,9 @@ import java.util.regex.Pattern;
 
 import org.openqa.selenium.JavascriptExecutor;
 
+import runner.DeviceConfig;
+import runner.Devices;
+
 import com.element.UIView;
 import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
@@ -28,15 +31,16 @@ public abstract class BasePage extends Page {
 	protected void makeScreenshot() {
 		AppiumDriver.class.cast(driver).takeScreenshot("");
 	}
-	
-	public static boolean checkVisibleText(String element){
-        Pattern p = Pattern.compile("^.+$");
-        Matcher m = p.matcher(element); 
-        return m.matches(); 
-    }
+
+	public static boolean checkVisibleText(String element) {
+		Pattern p = Pattern.compile("^.+$");
+		Matcher m = p.matcher(element);
+		return m.matches();
+	}
 
 	/**
 	 * For Android Implementation
+	 * 
 	 * @param element
 	 * @return
 	 */
@@ -47,16 +51,19 @@ public abstract class BasePage extends Page {
 			return element.getAttribute("value");
 		}
 	}
-	
+
 	public void swipe(double startX, double startY, double endX, double endY,
-			   double duration) {
-			  JavascriptExecutor js = (JavascriptExecutor) ((AppiumDriver)driver).getDriver();
-			  HashMap swipeObject = new HashMap();
-			  swipeObject.put("startX", Double.valueOf(startX));
-			  swipeObject.put("startY", Double.valueOf(startY));
-			  swipeObject.put("endX", Double.valueOf(endX));
-			  swipeObject.put("endY", Double.valueOf(endY));
-			  swipeObject.put("duration", Double.valueOf(duration));
-			  js.executeScript("mobile: swipe", new Object[] { swipeObject });
-			 }
+			double duration) {
+		if (!Devices.ANDROID.toString().toUpperCase().equals((DeviceConfig.getDevice()))) {
+			JavascriptExecutor js = (JavascriptExecutor) ((AppiumDriver) driver)
+					.getDriver();
+			HashMap<String, Double> swipeObject = new HashMap<String, Double>();
+			swipeObject.put("startX", Double.valueOf(startX));
+			swipeObject.put("startY", Double.valueOf(startY));
+			swipeObject.put("endX", Double.valueOf(endX));
+			swipeObject.put("endY", Double.valueOf(endY));
+			swipeObject.put("duration", Double.valueOf(duration));
+			js.executeScript("mobile: swipe", new Object[] { swipeObject });
+		}
+	}
 }

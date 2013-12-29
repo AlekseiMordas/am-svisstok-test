@@ -39,7 +39,7 @@ public class CallTest extends BaseTest {
 				"Last symbol not clear successfull");
 	}
 
-	@Test(priority = 3, description = "Checck call name")
+	@Test(priority = 3, description = "Check call name")
 	public void checkConnectAnotherAbonent() {
 		call.inputFromNativeKeyboard(PHONE_NUMBER);
 		call.clickCallButton();
@@ -102,9 +102,9 @@ public class CallTest extends BaseTest {
 	 * call.clickCallButton(); call.getNameConnection(); String
 	 * actualAbonentName = call.getNameAbonent(); call.cancelCall();
 	 * Assert.assertEquals(PHONE_NUMBER, actualAbonentName); }
-	 */
+*/
 	
-	@Test(priority = 10, description = "Check call from favorite")
+	@Test(priority = 10, description = "Check call from favorite") //Android bug
 	public void checkCallFromFavotite() {
 		cardContacts = call.clickContact();
 		setting = cardContacts.clickSettings();
@@ -115,18 +115,17 @@ public class CallTest extends BaseTest {
 		cardContacts.inputContact(USER_NAME);
 		cardContacts.clickBack();
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		
 		cardContacts.swipe(0.5, 0.8, 0.5, 0.1, 0.5);
-
 		cardContacts.clickStar();
 		cardContacts.clickBack();
 		setting = cardContacts.clickSettings();
 		favorite = setting.clickFavorite();
 		favorite.searchContacts(USER_NAME);
-		favorite.clickSearchResult();
+		favorite.clickSearchResult(USER_NAME);
 		favorite.clickCallingButton();
 		boolean actualTimer = checkTimer(favorite.getTimer());
 		favorite.cancelCall();
+		//after cancel android returns in on favourite page
 		favorite.clickEditContacts();
 		favorite.clickDeletefromList();
 		favorite.clickDelete();
@@ -148,7 +147,7 @@ public class CallTest extends BaseTest {
 		  history.clickCall();
 		  Assert.assertTrue(actualTimer); 
 	  }
-	 
+
 	
 	@AfterMethod
 	public void clearField() {
