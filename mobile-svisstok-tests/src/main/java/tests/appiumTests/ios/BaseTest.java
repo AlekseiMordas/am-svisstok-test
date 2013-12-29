@@ -43,11 +43,11 @@ public class BaseTest {
 
 	protected static final String DELIMETER = ":";
 
-	private static final String HOST = DeviceConfig.getHost();
+	protected static final String HOST = DeviceConfig.getHost();
 
-	private static final String PORT = DeviceConfig.getPort();
+	protected static final String PORT = DeviceConfig.getPort();
 
-	private static final String DEVICE = DeviceConfig.getDevice();
+	protected static final String DEVICE = DeviceConfig.getDevice();
 	
 	protected static final String USER_NAME_SEARCH = "sipnet";
 

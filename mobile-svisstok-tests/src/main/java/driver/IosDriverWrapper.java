@@ -1,5 +1,7 @@
 package driver;
 
+import utils.HttpClient;
+
 import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
 import factory.CapabilitiesFactory;
@@ -10,21 +12,35 @@ import factory.CapabilitiesFactory;
  */
 public class IosDriverWrapper {
 
+	private static final String SESSION_ID_MATCHER = "sessionId";
+
+	private static final String STATUS_APPIUM = "/status";
+
 	private static final String URL = "http://%s:%s/wd/hub";
+
+	private static boolean isSeesionExist;
 
 	private static NativeDriver instance;
 
 	public static NativeDriver getIphone(String host, String port) {
-		instance = new AppiumDriver(String.format(URL, host, port),
-				CapabilitiesFactory.createIphoneCapabilities());
+		if (!isSeesionExist) {
+			instance = new AppiumDriver(String.format(URL, host, port),
+					CapabilitiesFactory.createIphoneCapabilities());
+		}
 		return instance;
 	}
 
 	public static NativeDriver getAndroid(String host, String port) {
-		instance = new AppiumDriver(String.format(URL, host, port),
-				CapabilitiesFactory.createAndroidCapabilities());
+		if (!isSeesionExist) {
+			instance = new AppiumDriver(String.format(URL, host, port),
+					CapabilitiesFactory.createAndroidCapabilities());
+		}
 		return instance;
 	}
 
-
+	public static boolean isSessionExist(String host, String port) {
+		return HttpClient
+				.getInstance(String.format(URL, host, port) + STATUS_APPIUM)
+				.getRequest().contains(SESSION_ID_MATCHER);
+	}
 }

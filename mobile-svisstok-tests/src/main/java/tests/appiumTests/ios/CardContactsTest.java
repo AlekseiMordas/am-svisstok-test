@@ -5,14 +5,22 @@ import java.util.Random;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import runner.Devices;
 import tests.page.android.CardContactsPageAndroid;
+import tests.page.android.LoginPageAndroid;
+import tests.page.exceptions.XmlParametersException;
+import tests.page.ios.CardContactsPageIos;
+import tests.page.ios.LoginPageIos;
 
 import com.ios.AppiumDriver;
 import com.mobile.driver.page.PageFactory;
 import com.mobile.driver.wait.Sleeper;
+
+import driver.IosDriverWrapper;
 
 public class CardContactsTest extends BaseTest {
 
@@ -23,6 +31,36 @@ public class CardContactsTest extends BaseTest {
 	protected static final String MSG_DELETE = "Удалено";
 	protected static final String MSG_BLOCK = "Контакт заблокирован";
 
+	@BeforeMethod(description = "Init and check page")
+	public void init() throws Exception {
+
+		switch (Devices.valueOf(DEVICE)) {
+		case IPHONE:
+			driver = IosDriverWrapper.getIphone(HOST, PORT);
+			main = PageFactory.initElements(driver, LoginPageIos.class);
+			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+			cardContacts = PageFactory.initElements(driver, CardContactsPageIos.class);
+			Sleeper.SYSTEM_SLEEPER.sleep(5000);
+			break;
+		case ANDROID:
+			driver = IosDriverWrapper.getAndroid(HOST, PORT);
+			Sleeper.SYSTEM_SLEEPER.sleep(10000);
+			main = PageFactory.initElements(driver, LoginPageAndroid.class);
+			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+			cardContacts = PageFactory.initElements(driver, CardContactsPageAndroid.class);
+			call.checkPage();
+			break;
+		default:
+			throw new XmlParametersException("Invalid device");
+		}
+	}
+	
+	@AfterMethod
+	public void close() {
+		((AppiumDriver)driver).quit();
+	}
+
+	
 	@BeforeMethod
 	public void generateNewUser() {
 		SAVED_NAME = "AutoTest" + String.valueOf(new Random().nextInt(9999));
@@ -66,7 +104,7 @@ public class CardContactsTest extends BaseTest {
 		boolean visibleContact = cardContacts.checkVisibleContactName();
 		cardContacts.clickBack();
 		cardContacts.clickCall();
-		Assert.assertTrue(visibleContact);
+		Assert.assertTrue(visibleContact, "Contact not visible");
 	}
 
 	@Test(priority = 5, description = "Check call contact")

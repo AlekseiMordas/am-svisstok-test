@@ -125,6 +125,8 @@ public class CardContactsPageAndroid extends CardContactsPage {
 
 	public void clickBack() {
 		backButton.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		backButton.touch();
 	}
 
 	public String getContactNumber() {
