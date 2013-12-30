@@ -23,7 +23,7 @@ Note!
 
 Authorization tests runs with xml: testng.xml
 Call tests runs with xml: call-tests.xml
-
+Card contacts tests runs with xml: card-contacts.xml
 Jenkins Integration
 ===
 
