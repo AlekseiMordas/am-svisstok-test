@@ -31,8 +31,8 @@ public class CardContactsTest extends BaseTest {
 	protected static final String MSG_DELETE = "Удалено";
 	protected static final String MSG_BLOCK = "Контакт заблокирован";
 
-	@BeforeMethod(description = "Init and check page")
-	public void init() throws Exception {
+	//@BeforeMethod(description = "Init and check page")
+	/*public void init() throws Exception {
 
 		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:
@@ -53,9 +53,9 @@ public class CardContactsTest extends BaseTest {
 		default:
 			throw new XmlParametersException("Invalid device");
 		}
-	}
+	}*/
 	
-	@AfterMethod
+	//@AfterMethod
 	public void close() {
 		((AppiumDriver)driver).quit();
 	}
@@ -69,7 +69,7 @@ public class CardContactsTest extends BaseTest {
 
 	@Test(priority = 1, description = "Check name contact")
 	public void checkListContacts() {
-		cardContacts = call.clickContact();
+		goToSwisstokList();
 		boolean visibleListContacts = cardContacts.checkVisibleListContacts();
 		cardContacts.clickCall();
 		Assert.assertTrue(visibleListContacts);
@@ -77,6 +77,7 @@ public class CardContactsTest extends BaseTest {
 
 	@Test(priority = 2, description = "Check add contact. Android -bug")
 	public void checkAddContact() {
+		goToSwisstokList();
 		createUser(SAVED_NAME, CONTACT);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		String savedContact = cardContacts.getContactNumber();
@@ -89,7 +90,7 @@ public class CardContactsTest extends BaseTest {
 
 	@Test(priority = 3, description = "Check number contact")
 	public void checkNumberContact() {
-		cardContacts = call.clickContact();
+		goToSwisstokList();
 		cardContacts.clickFirstContact();
 		boolean visibleContact = cardContacts.checkVisibleContactNumber();
 		cardContacts.clickBack();
@@ -99,7 +100,7 @@ public class CardContactsTest extends BaseTest {
 
 	@Test(priority = 4, description = "Check name contact")
 	public void checkNameContact() {
-		cardContacts = call.clickContact();
+		goToSwisstokList();
 		cardContacts.clickFirstContact();
 		boolean visibleContact = cardContacts.checkVisibleContactName();
 		cardContacts.clickBack();
@@ -114,6 +115,7 @@ public class CardContactsTest extends BaseTest {
 		cardContacts = setting.clickAllContacts();
 		cardContacts.searchContacts(USER_NAME);
 		call = cardContacts.clickSearchResultAndCall(USER_NAME);
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		boolean actualTimer = checkTimer(call.getTimer());
 		call.cancelCall();
 		call.clickBack();
@@ -124,9 +126,7 @@ public class CardContactsTest extends BaseTest {
 	@Test(priority = 6, description = "Check add number's contact")
 	// Android Bug. Second number not saved
 	public void checkAddNumberContact() {
-		cardContacts = call.clickContact();
-		setting = cardContacts.clickSettings();
-		cardContacts = setting.clickSwisstokContacts();
+		goToSwisstokList();
 		cardContacts.clickFirstContact();
 		cardContacts.clickEditContacts();
 		cardContacts.clickEditFromList();
@@ -151,12 +151,14 @@ public class CardContactsTest extends BaseTest {
 	@Test(priority = 7, description = "Check delete contact")
 	// Android Bug
 	public void checkDeleteContact() {
+		goToSwisstokList();
 		createUser(SAVED_NAME, CONTACT);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		cardContacts.clickEditContacts();
 		cardContacts.clickDeletefromList();
 		cardContacts.clickDelete();
 		String messageDelete = cardContacts.getMessageDelete();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		cardContacts.clickCall();
 		Assert.assertEquals(messageDelete, MSG_DELETE);
 	}
@@ -164,6 +166,7 @@ public class CardContactsTest extends BaseTest {
 	@Test(priority = 8, description = "Check blocks contact")
 	// Android Bug
 	public void checkBlockContact() {
+		goToSwisstokList();
 		createUser(SAVED_NAME, CONTACT);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		cardContacts.clickEditContacts();
@@ -178,7 +181,6 @@ public class CardContactsTest extends BaseTest {
 		block.clickSearchResult(SAVED_NAME.toLowerCase());
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		String blockContact = block.getContactName();
-		System.out.println("block0 " + blockContact);
 		block.clickEditContacts();
 		block.clickDeletefromList();
 		block.clickDelete();
@@ -186,10 +188,11 @@ public class CardContactsTest extends BaseTest {
 		block.clickCall();
 		Assert.assertEquals(blockContact, CONTACT.toLowerCase());
 	}
-
+	 
 	@Test(priority = 9, description = "Check edit name contact")
 	// Android Bug
 	public void checkEditContact() {
+		goToSwisstokList();
 		createUser(SAVED_NAME, CONTACT);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		cardContacts.clickEditContacts();
@@ -215,9 +218,7 @@ public class CardContactsTest extends BaseTest {
 	@Test(priority = 10, description = "Check edit number contact")
 	// Android Bug
 	public void checkEditNumberContact() {
-		cardContacts = call.clickContact();
-		setting = cardContacts.clickSettings();
-		cardContacts = setting.clickSwisstokContacts();
+		goToSwisstokList();
 		cardContacts.clickAddContacts();
 		cardContacts.clickAddContactsFromList();
 		cardContacts.inputName(SAVED_NAME);
@@ -242,9 +243,7 @@ public class CardContactsTest extends BaseTest {
 	@Test(priority = 10, description = "Check add to favorite contact")
 	// Android Bug
 	public void checkAddToFavotite() {
-		cardContacts = call.clickContact();
-		setting = cardContacts.clickSettings();
-		cardContacts = setting.clickSwisstokContacts();
+		goToSwisstokList();
 		createUser(SAVED_NAME, CONTACT);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		cardContacts.swipe(0.5, 0.8, 0.5, 0.1, 0.5);
@@ -266,9 +265,7 @@ public class CardContactsTest extends BaseTest {
 	@Test(priority = 11, description = "Check add to favorite for saved contact")
 	// Android Bug
 	public void checkAddToFavotiteSavedContact() {
-		cardContacts = call.clickContact();
-		setting = cardContacts.clickSettings();
-		cardContacts = setting.clickSwisstokContacts();
+		goToSwisstokList();
 		createUser(SAVED_NAME, CONTACT);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 
@@ -304,4 +301,11 @@ public class CardContactsTest extends BaseTest {
 		cardContacts.inputContact(contact);
 		cardContacts.clickBack();
 	}
+	
+  private void goToSwisstokList(){
+	cardContacts = call.clickContact();
+	setting = cardContacts.clickSettings();
+	cardContacts = setting.clickSwisstokContacts();
+  }
+	
 }
