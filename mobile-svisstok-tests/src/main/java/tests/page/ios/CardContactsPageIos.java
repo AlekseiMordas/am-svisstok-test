@@ -142,6 +142,14 @@ public class CardContactsPageIos extends CardContactsPage {
 		double y = 5;
 		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
 	}
+	
+	@Override
+	public void clickSave() {
+		Rectangle point = webview.getLocation();
+		double x = 10;
+		double y = 5;
+		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+	}
 
 	@Override
 	public String getContactNumber() {
@@ -261,7 +269,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	}
 
 	@Override
-	public String getSecondNumber() {
+	public String getSecondNumber(String name) {
 		return secondNumber.getAttribute("label");
 	}
 

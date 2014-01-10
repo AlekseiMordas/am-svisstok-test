@@ -44,10 +44,10 @@ public class CardContactsPageAndroid extends CardContactsPage {
 	@FindBy(locator = "//h1[@id='contactCardView-title']")
 	private UIView contactName;
 
-	@FindBy(locator = "//ul[@data-role='listview']//h1[text()='Удалить']")
+	@FindBy(locator = "//div[@id='contactCardView-menu-panel']//h1[text()='Удалить']")
 	private UIView deleteFromList;
 
-	@FindBy(locator = "//ul[@data-role='listview']//h1[text()='Заблокировать']")
+	@FindBy(locator = "//div[@id='contactCardView-menu-panel']//h1[text()='Заблокировать']")
 	private UIView blockFromList;
 
 	@FindBy(locator = "//a[contains(@id,'confirm-btn-ok')]")
@@ -56,13 +56,13 @@ public class CardContactsPageAndroid extends CardContactsPage {
 	@FindBy(locator = "//a[@id='contactCardView-btn-call']")
 	private UIView callButton;
 
-	@FindBy(locator = "//li[@id='1']")
+	@FindBy(locator = "//li[@id='contactsView-ul-li-1']")
 	private UIView firstContact;
 
 	@FindBy(locator = "//h1[contains(.,'%s')]")
 	private UIView searchedContact;
 
-	@FindBy(locator = "//li[@id='2']")
+	@FindBy(locator = "//li[@id='contactsView-ul-li-2']")
 	private UIView secondContact;
 
 	@FindBy(locator = "//input[@id='contactsView-search']")
@@ -74,16 +74,16 @@ public class CardContactsPageAndroid extends CardContactsPage {
 	@FindBy(locator = "//li[@id='contactCardView-contacts-edit-list-li-1']//input")
 	private UIView contactSecondField;
 
-	@FindBy(locator = "//ul[@data-role='listview']//h1[text()='Профиль']")
+	@FindBy(locator = "//div[@id='contactCardView-menu-panel']//h1[text()='Профиль']")
 	private UIView profileFromList;
 
-	@FindBy(locator = "//ul[@data-role='listview']//h1[text()='Изменить']")
+	@FindBy(locator = "//div[@id='contactCardView-menu-panel']//h1[text()='Изменить']")
 	private UIView editFromList;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[20]")
+	@FindBy(locator = "//div[contains(.,'%s')]")
 	private UIView secondNumber;
 
-	@FindBy(locator = "//a[@data-icon='edit']")
+	@FindBy(locator = "//a[@id='contactCardView-btn-menu' and @data-icon='edit']")
 	private UIView editContactProfile;
 
 	@FindBy(locator = "//a[@id='contactCardView-delete-confirm-btn-ok']")
@@ -97,7 +97,7 @@ public class CardContactsPageAndroid extends CardContactsPage {
 
 	@FindBy(locator = "//a[@data-icon='star']")
 	private UIView starButton;
-	
+
 	public void clickAddContacts() {
 		addContact.touch();
 	}
@@ -108,6 +108,7 @@ public class CardContactsPageAndroid extends CardContactsPage {
 
 	public void inputName(String text) {
 		nameField.touch();
+		nameField.clear();
 		nameField.type(text);
 	}
 
@@ -123,10 +124,16 @@ public class CardContactsPageAndroid extends CardContactsPage {
 		contactSecondField.type(contact);
 	}
 
+	@Override
+	public void clickSave() {
+		backButton.touch();
+		backButton.touch();
+	}
+
+	@Override
 	public void clickBack() {
 		backButton.touch();
-		Sleeper.SYSTEM_SLEEPER.sleep(2000);
-		backButton.touch();
+
 	}
 
 	public String getContactNumber() {
@@ -138,6 +145,7 @@ public class CardContactsPageAndroid extends CardContactsPage {
 	}
 
 	public void clickEditContacts() {
+		editContactProfile.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		editContactProfile.touch();
 	}
 
@@ -199,6 +207,7 @@ public class CardContactsPageAndroid extends CardContactsPage {
 	}
 
 	public void clickEditFromList() {
+		editFromList.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		editFromList.touch();
 	}
 
@@ -206,13 +215,20 @@ public class CardContactsPageAndroid extends CardContactsPage {
 		profileFromList.touch();
 	}
 
-	public String getSecondNumber() {
-		secondNumber.touchByName();
-		return secondNumber.getText();
+	public String getSecondNumber(String name) {
+		if (((AppiumDriver) driver)
+				.getDriver()
+				.findElement(
+						By.xpath(String.format(secondNumber.getFoundBy(), name)))
+				.isDisplayed()) {
+			return name;
+		} else
+			return "";
+
 	}
 
 	public void secondDelete() {
-		//
+		System.out.println(((AppiumDriver) driver).getDriver().getPageSource());
 	}
 
 	public void deleteNumber() {

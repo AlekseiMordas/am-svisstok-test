@@ -94,6 +94,18 @@ public class CallPageAndroid extends CallPage {
 
 	@FindBy(locator = "//a[contains(@id,'tab-btn-microphone')]")
 	private UIView microphoneButton;
+	
+	@FindBy(locator = "//div[@id='contactCardView-menu-panel']//h1[text()='Изменить']")
+	private UIView editFromList;
+	
+	@FindBy(locator = "//div[@id='contactCardView-menu-panel']//h1[text()='Удалить']")
+	private UIView deleteFromList;
+
+	@FindBy(locator = "//a[@id='contactCardView-delete-confirm-btn-ok']")
+	private UIView deleteNumber;
+	
+	@FindBy(locator = "//div[@id='contactCardView-favour-contact']")//h1[@id='contactCardView-title']
+	private UIView contactName;
 
 	public CallPageAndroid(NativeDriver driver) {
 		super(driver);
@@ -237,25 +249,24 @@ public class CallPageAndroid extends CallPage {
 
 	@Override
 	public void clickEditContacts() {
-		// TODO Auto-generated method stub
+		editFromList.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
+		editFromList.touch();
 
 	}
 
-	@Override
 	public void clickDeletefromList() {
-		// TODO Auto-generated method stub
-
+		deleteFromList.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
+		deleteFromList.touch();
 	}
 
-	@Override
 	public void clickDelete() {
-		// TODO Auto-generated method stub
+		deleteNumber.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
+		deleteNumber.touch();
 	}
 
 	@Override
 	public String getContactNumber() {
-		// TODO Auto-generated method stub
-		return null;
+		return contactName.getText();
 	}
 
 	@SuppressWarnings("unchecked")

@@ -12,9 +12,9 @@ import factory.CapabilitiesFactory;
  */
 public class IosDriverWrapper {
 
-	private static final String SESSION_ID_MATCHER = "sessionId";
+	private static final String SESSION_ID_MATCHER = "capabilities";
 
-	private static final String STATUS_APPIUM = "/status";
+	private static final String STATUS_APPIUM = "/sessions";
 
 	private static final String URL = "http://%s:%s/wd/hub";
 
@@ -23,6 +23,7 @@ public class IosDriverWrapper {
 	private static NativeDriver instance;
 
 	public static NativeDriver getIphone(String host, String port) {
+		  isSeesionExist = isSessionExist(host, port);
 		if (!isSeesionExist) {
 			instance = new AppiumDriver(String.format(URL, host, port),
 					CapabilitiesFactory.createIphoneCapabilities());
@@ -31,6 +32,7 @@ public class IosDriverWrapper {
 	}
 
 	public static NativeDriver getAndroid(String host, String port) {
+		  isSeesionExist = isSessionExist(host, port);
 		if (!isSeesionExist) {
 			instance = new AppiumDriver(String.format(URL, host, port),
 					CapabilitiesFactory.createAndroidCapabilities());

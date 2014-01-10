@@ -20,6 +20,8 @@ public abstract class CardContactsPage extends  BasePage{
 	
 	public abstract void clickBack();
 	
+	public abstract void clickSave();
+	
 	public abstract String getContactName();
 	
 	public abstract String getContactNumber();
@@ -50,7 +52,7 @@ public abstract class CardContactsPage extends  BasePage{
 	
 	public abstract void clickProfile(); 
 	
-	public abstract String getSecondNumber();
+	public abstract String getSecondNumber(String name);
 	
 	public abstract void secondDelete();
 	
