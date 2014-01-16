@@ -16,41 +16,43 @@ import com.mobile.driver.wait.Sleeper;
 
 import tests.page.FavoritePage;
 
-public class FavoritePageAndroid extends FavoritePage{
+public class FavoritePageAndroid extends FavoritePage {
 
 	public FavoritePageAndroid(NativeDriver driver) {
 		super(driver);
 	}
-	@FindBy(locator = "//input[@id='contactsView-search']")
+
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//input[@id='contactsView-search']")
 	private UIView searchFiled;
 
-	@FindBy(locator = "//ul[@data-role='listview']//h1[text()='Удалить']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//ul[@data-role='listview']//h1[text()='Удалить']")
 	private UIView deleteFromList;
 
 	@FindBy(locator = "//a[@id='contactCardView-delete-confirm-btn-ok']")
 	private UIView deleteNumber;
 
-	@FindBy(locator = "//a[@id='contactsView-tab-btn-dialpad']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactsView-tab-btn-dialpad']")
 	private UIView callTabButton;
 
-	@FindBy(locator = "//a[@id='contactCardView-btn-call']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactCardView-btn-call']")
 	private UIView callingButton;
-	
-	@FindBy(locator = "//h1[@id='contactCardView-title']")
-	private UIView contactName;
 
-	@FindBy(locator = "//h1[contains(.,'%s')]")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@id='contactCardView-favour-contact']")
+	private UIView contactNumber;
+
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//h1[contains(.,'%s')]" +
+			"//ancestor::li[contains(@id, 'contactsView-ul-li')]//span[@data-icon='arrow-r']")
 	private UIView searchedContact;
 
-	@FindBy(locator = "//a[@data-icon='edit']")
-	private UIView editFromList;	
-	
-	@FindBy(locator = "//div[@id='activeCallView-call-avatar-panlel-status']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@data-icon='edit']")
+	private UIView editFromList;
+
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@id='activeCallView-call-avatar-panlel-status']")
 	private UIView timerCall;
-	
+
 	@FindBy(locator = "//a[contains(@class,'ui-btn-color-red')]")
 	private UIView cancelCallButton;
-	
+
 	private static final Logger LOGGER = Logger
 			.getLogger(FavoritePageAndroid.class);
 
@@ -58,7 +60,7 @@ public class FavoritePageAndroid extends FavoritePage{
 	public void checkPage() {
 		// TODO Auto-generated method stub
 	}
-	
+
 	public void searchContacts(String text) {
 		searchFiled.touch();
 		searchFiled.type(text);
@@ -67,19 +69,16 @@ public class FavoritePageAndroid extends FavoritePage{
 
 	@Override
 	public void clickSearchResult(String name) {
-		((AppiumDriver) driver)
-				.getDriver()
-				.findElement(
-						By.xpath(String.format(searchedContact.getFoundBy(),
-								name))).click();
+		String locator = String.format(searchedContact.getFoundBy(), name);
+		((AppiumDriver) driver).getDriver().findElement(By.xpath(locator)).click();
 	}
 
 	public String getContactName() {
-		return contactName.getText();
+		return contactNumber.getText();
 	}
 
 	public void clickEditContacts() {
-		System.out.println(((AppiumDriver)driver).getDriver().getPageSource());
+		System.out.println(((AppiumDriver) driver).getDriver().getPageSource());
 		editFromList.touch();
 	}
 
@@ -92,29 +91,26 @@ public class FavoritePageAndroid extends FavoritePage{
 		deleteNumber.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		deleteNumber.touch();
 	}
-	
-	
+
 	public void clickCall() {
 		callTabButton.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		callTabButton.touch();
 	}
-	
-	public void clickCallingButton(){
+
+	public void clickCallingButton() {
 		callingButton.touch();
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
-	
+
 	public void cancelCall() {
 		List<WebElement> elements = AppiumDriver.class.cast(driver).getDriver()
 				.findElements(By.xpath(cancelCallButton.getFoundBy()));
 		elements.get(elements.size() - 1).click();
 		LOGGER.info("Click cancel call");
 	}
-	
+
 	public String getTimer() {
 		return timerCall.getText();
 	}
-
-
 
 }

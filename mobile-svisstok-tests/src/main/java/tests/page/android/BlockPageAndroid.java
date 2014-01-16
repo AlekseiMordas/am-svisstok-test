@@ -18,25 +18,25 @@ public class BlockPageAndroid extends BlockPage {
 		super(driver);
 	}
 
-	@FindBy(locator = "//input[@id='contactsView-search']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//input[@id='contactsView-search']")
 	private UIView searchFiled;
 
-	@FindBy(locator = "//div[@id='contactCardView-menu-panel']//h1[text()='Удалить']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@id='contactCardView-menu-panel']//h1[text()='Удалить']")
 	private UIView deleteFromList;
 
 	@FindBy(locator = "//a[@id='contactCardView-delete-confirm-btn-ok']")
 	private UIView deleteNumber;
 
-	@FindBy(locator = "//a[@id='contactsView-tab-btn-dialpad']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactsView-tab-btn-dialpad']")
 	private UIView callTabButton;
 
-	@FindBy(locator = "//div[@id='contactCardView-favour-contact']")//h1[@id='contactCardView-title']
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@id='contactCardView-favour-contact']")//h1[@id='contactCardView-title']
 	private UIView contactName;
 
-	@FindBy(locator = "//h1[contains(.,'%s')]")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//h1[contains(.,'%s')]")
 	private UIView searchedContact;
 
-	@FindBy(locator = "//a[@id='contactCardView-btn-menu' and @data-icon='edit']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactCardView-btn-menu' and @data-icon='edit']")
 	private UIView editFromList;
 
 	@Override

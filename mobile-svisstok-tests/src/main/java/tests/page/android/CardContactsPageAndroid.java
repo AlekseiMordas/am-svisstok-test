@@ -20,82 +20,85 @@ public class CardContactsPageAndroid extends CardContactsPage {
 		super(driver);
 	}
 
-	@FindBy(locator = "//a[@id='contactsView-tab-btn-dialpad']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactsView-tab-btn-dialpad']")
 	private UIView callTabButton;
 
-	@FindBy(locator = "//a[@id='contactsView-btn-addPhone']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactsView-btn-addPhone']")
 	private UIView addContactsFromList;
 
-	@FindBy(locator = "//a[@data-icon='add-contact-wr']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@data-icon='add-contact-wr']")
 	private UIView addContact;
 
-	@FindBy(locator = "//input[@id='contactCardView-form-title']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//input[@id='contactCardView-form-title']")
 	private UIView nameField;
 
-	@FindBy(locator = "//div[@class='ui-block-c']//input")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@class='ui-block-c']//input")
 	private UIView contactField;
 
-	@FindBy(locator = "//a[@id='contactCardView-btn-back']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactCardView-btn-back']")
 	private UIView backButton;
 
-	@FindBy(locator = "//div[@id='contactCardView-favour-contact']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@id='contactCardView-favour-contact']")
 	private UIView contactNumber;
 
-	@FindBy(locator = "//h1[@id='contactCardView-title']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//h1[@id='contactCardView-title']")
 	private UIView contactName;
 
-	@FindBy(locator = "//div[@id='contactCardView-menu-panel']//h1[text()='Удалить']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@id='contactCardView-menu-panel']//h1[text()='Удалить']")
 	private UIView deleteFromList;
 
-	@FindBy(locator = "//div[@id='contactCardView-menu-panel']//h1[text()='Заблокировать']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@id='contactCardView-menu-panel']//h1[text()='Заблокировать']")
 	private UIView blockFromList;
 
 	@FindBy(locator = "//a[contains(@id,'confirm-btn-ok')]")
 	private UIView block;
 
-	@FindBy(locator = "//a[@id='contactCardView-btn-call']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactCardView-btn-call']")
 	private UIView callButton;
 
-	@FindBy(locator = "//li[@id='contactsView-ul-li-1']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//li[@id='contactsView-ul-li-1']")
 	private UIView firstContact;
 
-	@FindBy(locator = "//h1[contains(.,'%s')]")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//h1[contains(.,'%s')]")
 	private UIView searchedContact;
 
-	@FindBy(locator = "//li[@id='contactsView-ul-li-2']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//h1[contains(.,'Sipnet contact 1')]")
+	private UIView sipnetContact;
+	
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//li[@id='contactsView-ul-li-2']")
 	private UIView secondContact;
 
-	@FindBy(locator = "//input[@id='contactsView-search']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//input[@id='contactsView-search']")
 	private UIView searchFiled;
 
-	@FindBy(locator = "//a[@id='contactsView-btn-filter']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactsView-btn-filter']")
 	private UIView settings;
 
-	@FindBy(locator = "//li[@id='contactCardView-contacts-edit-list-li-1']//input")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//li[@id='contactCardView-contacts-edit-list-li-1']//input")
 	private UIView contactSecondField;
 
-	@FindBy(locator = "//div[@id='contactCardView-menu-panel']//h1[text()='Профиль']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@id='contactCardView-menu-panel']//h1[text()='Профиль']")
 	private UIView profileFromList;
 
-	@FindBy(locator = "//div[@id='contactCardView-menu-panel']//h1[text()='Изменить']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@id='contactCardView-menu-panel']//h1[text()='Изменить']")
 	private UIView editFromList;
 
-	@FindBy(locator = "//div[contains(.,'%s')]")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[contains(.,'%s')]")
 	private UIView secondNumber;
 
-	@FindBy(locator = "//a[@id='contactCardView-btn-menu' and @data-icon='edit']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactCardView-btn-menu' and @data-icon='edit']")
 	private UIView editContactProfile;
 
 	@FindBy(locator = "//a[@id='contactCardView-delete-confirm-btn-ok']")
 	private UIView deleteNumber;
 
-	@FindBy(locator = "//div[@data-icon='trash'][2]")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@data-icon='trash'][2]")
 	private UIView deleteSecondNumber;
 
 	@FindBy(locator = "//div[@id='toast']")
 	private UIView messageDelete;
 
-	@FindBy(locator = "//a[@data-icon='star']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@data-icon='star']")
 	private UIView starButton;
 
 	public void clickAddContacts() {
@@ -114,6 +117,7 @@ public class CardContactsPageAndroid extends CardContactsPage {
 
 	public void inputContact(String contact) {
 		contactField.touch();
+		contactField.clear();
 		contactField.type(contact);
 	}
 
@@ -265,6 +269,12 @@ public class CardContactsPageAndroid extends CardContactsPage {
 	@Override
 	public void clickStar() {
 		starButton.touch();
+	}
+	
+	@Override
+	public boolean isContactListDownloaded() {
+		sipnetContact.waitForElement(WAIT_CONTACTS);
+		return sipnetContact.isExists();
 	}
 
 }

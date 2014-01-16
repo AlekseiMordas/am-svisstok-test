@@ -319,6 +319,12 @@ public class CardContactsPageIos extends CardContactsPage {
 	}
 
 	@Override
+	public boolean isContactListDownloaded() {
+		//Only for Android
+		return true;
+	}
+	
+	@Override
 	public void checkPage() {
 		// TODO Auto-generated method stub
 

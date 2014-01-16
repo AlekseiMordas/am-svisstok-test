@@ -40,7 +40,8 @@ public class SavedContactsPageIos extends SavedContactsPage {
 		doneButton.touch();
 	}
 
-	public void clickSearchResult() {
+	@Override
+	public void clickSearchResult(String name) {
 		Rectangle point = webview.getLocation();
 		double y = 113;
 		webview.touchWithCoordinates(point.getX(), point.getY() + y);
@@ -89,6 +90,7 @@ public class SavedContactsPageIos extends SavedContactsPage {
 		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
 	}
 
+	@SuppressWarnings("unchecked")
 	public SettingsPageIos clickSettings() {
 		Rectangle point = webview.getLocation();
 		double x = 10;

@@ -62,49 +62,49 @@ public class CallPageAndroid extends CallPage {
 	@FindBy(locator = "//div[text()='#']")
 	private UIView grill;
 
-	@FindBy(locator = "//div[@id='activeCallView-call-avatar-panlel-status']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@id='activeCallView-call-avatar-panlel-status']")
 	private UIView timer;
 
-	@FindBy(locator = "//input[@class='ui-input-text ui-body-c']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//input[@class='ui-input-text ui-body-c']")
 	public UIView fieldNumber;
 
-	@FindBy(locator = "//td[@class='left addContact']/a")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//td[@class='left addContact']/a")
 	private UIView contactButton;
 
-	@FindBy(locator = "//a[contains(@id, 'contacts')]")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[contains(@id, 'contacts')]")
 	private UIView contactTabButton;
 	
-	@FindBy(locator = "//a[contains(@id, 'history')]")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[contains(@id, 'history')]")
 	private UIView historyTabButton;
 
-	@FindBy(locator = "//td[@class='center call']/a/span")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//td[@class='center call']/a/span")
 	private UIView callButton;
 
-	@FindBy(locator = "//td[@class='right backspace']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//td[@class='right backspace']")
 	private UIView deleteButton;
 
 	@FindBy(locator = "//div[contains(@class,'status')]")
 	private UIView nameConnection;
 
-	@FindBy(locator = "//a[contains(@class,'ui-btn-color-red')]")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[contains(@class,'ui-btn-color-red')]")
 	private UIView cancelCallButton;
 
-	@FindBy(locator = "//div[contains(@class, 'title')]")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[contains(@class, 'title')]")
 	private UIView nameAbonent;
 
-	@FindBy(locator = "//a[contains(@id,'tab-btn-microphone')]")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[contains(@id,'tab-btn-microphone')]")
 	private UIView microphoneButton;
 	
-	@FindBy(locator = "//div[@id='contactCardView-menu-panel']//h1[text()='Изменить']")
-	private UIView editFromList;
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactCardView-btn-menu' and @data-icon='edit']")
+	private UIView editContactProfile;
 	
-	@FindBy(locator = "//div[@id='contactCardView-menu-panel']//h1[text()='Удалить']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@id='contactCardView-menu-panel']//h1[text()='Удалить']")
 	private UIView deleteFromList;
 
 	@FindBy(locator = "//a[@id='contactCardView-delete-confirm-btn-ok']")
 	private UIView deleteNumber;
 	
-	@FindBy(locator = "//div[@id='contactCardView-favour-contact']")//h1[@id='contactCardView-title']
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@id='contactCardView-favour-contact']")//h1[@id='contactCardView-title']
 	private UIView contactName;
 
 	public CallPageAndroid(NativeDriver driver) {
@@ -249,8 +249,8 @@ public class CallPageAndroid extends CallPage {
 
 	@Override
 	public void clickEditContacts() {
-		editFromList.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
-		editFromList.touch();
+		editContactProfile.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
+		editContactProfile.touch();
 
 	}
 

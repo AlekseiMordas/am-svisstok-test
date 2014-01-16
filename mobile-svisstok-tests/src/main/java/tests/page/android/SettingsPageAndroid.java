@@ -12,19 +12,19 @@ public class SettingsPageAndroid extends SettingsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/slider[3]")
 	private UIView autoLoginSlider;
 	
-	@FindBy(locator = "//a[@id='contactsFilterView-btn-ALL']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactsFilterView-btn-ALL']")
 	private UIView allContactsButton;
 	
-	@FindBy(locator = "//a[@id='contactsFilterView-btn-SWISSTOK']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactsFilterView-btn-SWISSTOK']")
 	private UIView swisstokContacts;
 	
-	@FindBy(locator = "//a[@id='contactsFilterView-btn-BLOCKED']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactsFilterView-btn-BLOCKED']")
 	private UIView blockedContacts;
 	
-	@FindBy(locator = "//a[@id='contactsFilterView-btn-FAVOUR']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactsFilterView-btn-FAVOUR']")
 	private UIView favourContacts;
 	
-	@FindBy(locator = "//a[@id='contactsFilterView-btn-SAVED']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactsFilterView-btn-SAVED']")
 	private UIView savedContacts;
 	
 	public SettingsPageAndroid(NativeDriver driver) {

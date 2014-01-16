@@ -15,16 +15,16 @@ public class HistoryPageAndroid extends HistoryPage {
 		super(driver);
 	}
 
-	@FindBy(locator = "//div[@id='activeCallView-call-avatar-panlel-status']")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@id='activeCallView-call-avatar-panlel-status']")
 	private UIView timerCall;
 
-	@FindBy(locator = "//ul[contains(@id,'historyViewul')]//li[1]//h1")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//ul[contains(@id,'historyViewul')]//li[1]//h1")
 	private UIView firstContact;
 
-	@FindBy(locator = "//a[contains(@class,'ui-btn-color-red')]")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[contains(@class,'ui-btn-color-red')]")
 	private UIView cancelCallButton;
 	
-	@FindBy(locator = "//a[contains(@id,'historyView-tab-btn-dialpad')]")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[contains(@id,'historyView-tab-btn-dialpad')]")
 	private UIView callTabButton;
 
 	@Override

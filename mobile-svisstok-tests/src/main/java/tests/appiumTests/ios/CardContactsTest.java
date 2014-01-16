@@ -80,10 +80,10 @@ public class CardContactsTest extends BaseTest {
 		goToSwisstokList();
 		boolean visibleListContacts = cardContacts.checkVisibleListContacts();
 		cardContacts.clickCall();
-		Assert.assertTrue(visibleListContacts);
+		Assert.assertTrue(visibleListContacts, "Contact List not do");
 	}
 
-	@Test(priority = 2, description = "Check add contact. Android -bug")
+	@Test(priority = 2, description = "Check add contact.")
 	public void checkAddContact() {
 		main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
@@ -96,24 +96,15 @@ public class CardContactsTest extends BaseTest {
 		Assert.assertEquals(savedContact, CONTACT);
 	}
 
-	@Test(priority = 3, description = "Check number contact")
+	@Test(priority = 3, description = "Check number contact, Check name contact")
 	public void checkNumberContact() {
 		main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
 		cardContacts.clickFirstContact();
 		boolean visibleContact = cardContacts.checkVisibleContactNumber();
-		cardContacts.clickBack();
-		Assert.assertTrue(visibleContact);
-	}
-
-	@Test(priority = 4, description = "Check name contact")
-	public void checkNameContact() {
-		main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
-		goToSwisstokList();
-		cardContacts.clickFirstContact();
-		boolean visibleContact = cardContacts.checkVisibleContactName();
-		cardContacts.clickBack();
-		Assert.assertTrue(visibleContact, "Contact not visible");
+		Assert.assertTrue(visibleContact, "Contact number not visible");
+		boolean visibleContactName = cardContacts.checkVisibleContactName();
+		Assert.assertTrue(visibleContactName, "Contact name not visible");
 	}
 
 	@Test(priority = 5, description = "Check call contact")
@@ -130,7 +121,6 @@ public class CardContactsTest extends BaseTest {
 	}
 
 	@Test(priority = 6, description = "Check add number's contact")
-	// Android Bug
 	public void checkAddNumberContact() {
 		main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
@@ -187,7 +177,6 @@ public class CardContactsTest extends BaseTest {
 	}
 
 	@Test(priority = 9, description = "Check edit name contact")
-	// Cant find locator
 	public void checkEditContact() {
 		main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
@@ -202,7 +191,7 @@ public class CardContactsTest extends BaseTest {
 		setting = cardContacts.clickSettings();
 		cardContacts = setting.clickAllContacts();
 		cardContacts.searchContacts(OTHER_NAME);
-		call = cardContacts.clickSearchResultAndCall(SAVED_NAME);
+		call = cardContacts.clickSearchResultAndCall(OTHER_NAME);
 		String otherName = call.getContactNumber();
 		call.clickEditContacts();
 		call.clickDeletefromList();
@@ -211,32 +200,24 @@ public class CardContactsTest extends BaseTest {
 	}
 
 	@Test(priority = 10, description = "Check edit number contact")
-	// Android Bug
 	public void checkEditNumberContact() {
 		main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
-		cardContacts.clickAddContacts();
-		cardContacts.clickAddContactsFromList();
-		cardContacts.inputName(SAVED_NAME);
-		cardContacts.inputContact(CONTACT);
-		cardContacts.clickBack();
+		createUser(SAVED_NAME, CONTACT);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-
 		cardContacts.clickEditContacts();
 		cardContacts.clickEditFromList();
 		cardContacts.inputContact(SECOND_NUMBER);
-		cardContacts.clickBack();
+		cardContacts.clickSave();
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		String otherNumber = cardContacts.getContactNumber();
 		cardContacts.clickEditContacts();
 		cardContacts.clickDeletefromList();
 		cardContacts.clickDelete();
-
 		Assert.assertEquals(SECOND_NUMBER, otherNumber);
 	}
 
 	@Test(priority = 11, description = "Check add to favorite contact")
-	// Android Bug
 	public void checkAddToFavotite() {
 		main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
@@ -254,25 +235,22 @@ public class CardContactsTest extends BaseTest {
 		favorite.clickDeletefromList();
 		favorite.clickDelete();
 
-		Assert.assertEquals(CONTACT, number);
+		Assert.assertEquals(number, CONTACT );
 	}
 
 	@Test(priority = 12, description = "Check add to favorite for saved contact")
-	// Android Bug
 	public void checkAddToFavotiteSavedContact() {
 		main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
 		createUser(SAVED_NAME, CONTACT);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-
 		cardContacts.clickBack();
 		setting = cardContacts.clickSettings();
 		savedContacts = setting.clickSavedContacts();
 		savedContacts.searchContacts(SAVED_NAME);
-		savedContacts.clickSearchResult();
+		savedContacts.clickSearchResult(SAVED_NAME);
 		savedContacts.swipe(0.5, 0.8, 0.5, 0.1, 0.5);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-
 		savedContacts.clickStar();
 		savedContacts.clickBack();
 		setting = savedContacts.clickSettings();
@@ -283,7 +261,7 @@ public class CardContactsTest extends BaseTest {
 		favorite.clickEditContacts();
 		favorite.clickDeletefromList();
 		favorite.clickDelete();
-		Assert.assertEquals(CONTACT, number);
+		Assert.assertEquals(number, CONTACT);
 	}
 
 	private void createUser(String name, String contact) {
@@ -297,6 +275,7 @@ public class CardContactsTest extends BaseTest {
 
 	private void goToSwisstokList() {
 		cardContacts = call.clickContact();
+		cardContacts.isContactListDownloaded();
 		setting = cardContacts.clickSettings();
 		cardContacts = setting.clickSwisstokContacts();
 	}

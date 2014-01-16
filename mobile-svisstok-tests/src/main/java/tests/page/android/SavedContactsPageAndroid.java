@@ -2,10 +2,13 @@ package tests.page.android;
 
 import java.awt.Rectangle;
 
+import org.openqa.selenium.By;
+
 import tests.page.SavedContactsPage;
 
 import com.annotation.FindBy;
 import com.element.UIView;
+import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
 import com.mobile.driver.page.PageFactory;
 import com.mobile.driver.wait.Sleeper;
@@ -16,34 +19,53 @@ public class SavedContactsPageAndroid extends SavedContactsPage {
 		super(driver);
 	}
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/textfield[1]")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@id='contactCardView-menu-panel']//h1[text()='Удалить']")
+	private UIView deleteFromList;
+
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//input[@id='contactsView-search']")
 	private UIView searchFiled;
 
-	@FindBy(locator = "//window[2]/toolbar[1]/button[1]")
-	private UIView doneButton;
-
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
-	private UIView webview;
-
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[5]")
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//h1[@id='contactCardView-title']")
 	private UIView contactName;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]/link[1]")
-	private UIView searchResult;
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//h1[contains(.,'%s')]")
+	private UIView searchedContact;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[10]")
-	private UIView star;
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@data-icon='star']")
+	private UIView starButton;
+
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactCardView-btn-menu' and @data-icon='edit']")
+	private UIView editContactProfile;
+
+	@FindBy(locator = "//a[@id='contactCardView-delete-confirm-btn-ok']")
+	private UIView deleteNumber;
+
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactCardView-btn-back']")
+	private UIView backButton;
+
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactCardView-btn-call']")
+	private UIView callButton;
+
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactsView-btn-filter']")
+	private UIView settings;
+
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactsView-tab-btn-dialpad']")
+	private UIView callTabButton;
 
 	public void searchContacts(String text) {
 		searchFiled.touch();
 		searchFiled.type(text);
-		doneButton.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 
-	public void clickSearchResult() {
-		Rectangle point = webview.getLocation();
-		double y = 113;
-		webview.touchWithCoordinates(point.getX(), point.getY() + y);
+	@Override
+	public void clickSearchResult(String name) {
+		((AppiumDriver) driver)
+				.getDriver()
+				.findElement(
+						By.xpath(String.format(searchedContact.getFoundBy(),
+								name))).click();
+
 	}
 
 	public String getContactName() {
@@ -51,50 +73,38 @@ public class SavedContactsPageAndroid extends SavedContactsPage {
 	}
 
 	public void clickEditContacts() {
-		Rectangle point = webview.getLocation();
-		double x = 270;
-		webview.touchWithCoordinates(point.getX() + x, point.getY());
+		editContactProfile.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
+		editContactProfile.touch();
 	}
 
 	public void clickDeletefromList() {
-		Rectangle point = webview.getLocation();
-		double x = 116;
-		webview.touchWithCoordinates(point.getX() + x, point.getY());
-		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		deleteFromList.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
+		deleteFromList.touch();
 	}
 
 	public void clickDelete() {
-		// delete.touch();
-		Rectangle point = webview.getLocation();
-		double x = 20;
-		double y = 245;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		deleteNumber.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
+		deleteNumber.touch();
 	}
 
 	public void clickCall() {
-		Rectangle point = webview.getLocation();
-		double x = 160;
-		double y = 406;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		callTabButton.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
+		callTabButton.touch();
 	}
 
 	public void clickStar() {
-		star.touch();
+		starButton.touch();
 	}
 
+	@Override
 	public void clickBack() {
-		Rectangle point = webview.getLocation();
-		double x = 10;
-		double y = 5;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		backButton.touch();
+
 	}
 
 	@SuppressWarnings("unchecked")
 	public SettingsPageAndroid clickSettings() {
-		Rectangle point = webview.getLocation();
-		double x = 10;
-		double y = 5;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		settings.touch();
 		return PageFactory.initElements(driver, SettingsPageAndroid.class);
 	}
 

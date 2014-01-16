@@ -69,4 +69,6 @@ public abstract class CardContactsPage extends  BasePage{
 	public abstract String getMessageBlock();
 	
 	public abstract void clickStar();
+	
+	public abstract boolean isContactListDownloaded();
 }
