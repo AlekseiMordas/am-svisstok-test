@@ -95,6 +95,9 @@ public class CallPageAndroid extends CallPage {
 	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[contains(@id,'tab-btn-microphone')]")
 	private UIView microphoneButton;
 	
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[contains(@id,'activeCallView-tab-btn-speaker')]")
+	private UIView speakerButton;
+	
 	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactCardView-btn-menu' and @data-icon='edit']")
 	private UIView editContactProfile;
 	
@@ -106,6 +109,12 @@ public class CallPageAndroid extends CallPage {
 	
 	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@id='contactCardView-favour-contact']")//h1[@id='contactCardView-title']
 	private UIView contactName;
+	
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[contains(@class,'ui-btn-color-green')]")
+	private UIView answerButton;
+
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[text()='Входящий вызов...']")
+	private UIView incommingCallText;
 
 	public CallPageAndroid(NativeDriver driver) {
 		super(driver);
@@ -225,6 +234,16 @@ public class CallPageAndroid extends CallPage {
 	@Override
 	public boolean isMicrophoneWork() {
 		microphoneButton.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
+		microphoneButton.touch();
+		return true;
+	}
+	
+	@Override
+	public boolean isSpeakerWork() {
+		speakerButton.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
+		speakerButton.touch();
 		return true;
 	}
 
@@ -274,6 +293,14 @@ public class CallPageAndroid extends CallPage {
 	public HistoryPageAndroid clickHistory() {
 		historyTabButton.touch();
 		return PageFactory.initElements(driver, HistoryPageAndroid.class);
+	}
+
+	@Override
+	public String isAnswerIncommingCall() {
+		incommingCallText.waitForElement(WAIT_WHILE_LOGIN);
+		answerButton.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		return getTimer();
 	}
 
 }

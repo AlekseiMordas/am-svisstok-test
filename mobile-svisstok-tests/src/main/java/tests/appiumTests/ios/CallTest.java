@@ -86,13 +86,15 @@ public class CallTest extends BaseTest {
 			Assert.assertTrue(!actualAbonentName.isEmpty(), "Incorrect abonent name");
 		}
 	  
-	 @Test(priority = 9, description = "Check microfone")
+	 @Test(priority = 9, description = "Check microfone, Check speaker")
 		public void checkMicrofone() {
 			call.inputFromNativeKeyboard(USER_NAME);
 			call.clickCallButton();
-			boolean microfone = call.isMicrophoneWork();
+			boolean isMicrofone = call.isMicrophoneWork();
+			boolean isSpeaker = call.isSpeakerWork();
 			call.cancelCall();
-			Assert.assertTrue(microfone);
+			Assert.assertTrue(isMicrofone);
+			Assert.assertTrue(isSpeaker);
 		}
 	 
 	/* * TODO Dublicate methods
@@ -145,6 +147,14 @@ public class CallTest extends BaseTest {
 		  boolean actualTimer = checkTimer(history.getTimer());
 		  history.cancelCall();
 		  history.clickCall();
+		  Assert.assertTrue(actualTimer); 
+	  }
+	 
+	 @Test(priority=12, enabled=false) 
+	  public void checkCallAndAnswer() {
+		 //Ping CI Server to run job
+		  boolean actualTimer = checkTimer(call.isAnswerIncommingCall());
+		  call.cancelCall();
 		  Assert.assertTrue(actualTimer); 
 	  }
 

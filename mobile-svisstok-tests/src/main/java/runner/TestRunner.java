@@ -8,18 +8,14 @@ import org.apache.log4j.Logger;
 import org.uncommons.reportng.FailuresHTMLReporter;
 import org.uncommons.reportng.HTMLReporter;
 
-import runner.clioption.AppiumDirectory;
+import runner.clioption.AbonentOption;
+import runner.clioption.CallerOption;
 import runner.clioption.DeviceHostOption;
 import runner.clioption.DeviceNameOption;
 import runner.clioption.DevicePortOtion;
-import runner.clioption.ServerFlags;
-import runner.clioption.VersionOption;
-import server.AppiumServer;
-
 import com.clioption.CliParser;
-
 import com.runner.Runner;
-import com.runner.TestNgParameters;
+
 
 public class TestRunner extends Runner {
 
@@ -56,6 +52,8 @@ public class TestRunner extends Runner {
 		CliParser.getCmdLineOptions().add(new DeviceNameOption());
 		CliParser.getCmdLineOptions().add(new DevicePortOtion());
 		CliParser.getCmdLineOptions().add(new DeviceHostOption());
+		CliParser.getCmdLineOptions().add(new CallerOption());
+		CliParser.getCmdLineOptions().add(new AbonentOption());
 	}
 
 }

@@ -37,6 +37,8 @@ public abstract class CallPage extends BasePage{
 	
 	public abstract boolean isMicrophoneWork();
 	
+	public abstract boolean isSpeakerWork();
+	
 	public abstract void clickBack();
 	
 	public abstract void clickCall();
@@ -50,4 +52,6 @@ public abstract class CallPage extends BasePage{
 	public abstract String getContactNumber();
 	
 	public abstract <T> T clickHistory();
+
+	public abstract String isAnswerIncommingCall();
 }

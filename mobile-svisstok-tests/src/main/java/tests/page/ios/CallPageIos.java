@@ -1,10 +1,12 @@
 package tests.page.ios;
 
+
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.TimeoutException;
 
 import tests.page.CallPage;
@@ -108,6 +110,15 @@ public class CallPageIos extends CallPage {
 
 	@FindBy(locator = "Позвонить")
 	private UIView callButton;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
+	private UIView answerButton;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
+	private UIView endCallButton;
+	
+	@FindBy(locator = "Входящий вызов...")
+	private UIView incommingCallText;
 
 	private static final Logger LOGGER = Logger.getLogger(CallPageIos.class);
 
@@ -126,6 +137,15 @@ public class CallPageIos extends CallPage {
 		}
 	}
 
+	@Override
+	public String isAnswerIncommingCall() {
+		incommingCallText.waitForElement(WAIT_WHILE_LOGIN);
+		Rectangle point = answerButton.getLocation();
+		answerButton.touchWithCoordinates(point.getX(), point.getY());
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		return getTimer();
+	}
+	
 	@Override
 	public boolean isStatusAvailable() {
 		// TODO Auto-generated method stub
@@ -168,11 +188,9 @@ public class CallPageIos extends CallPage {
 	}
 
 	public void clearField() {
-		// fieldNumber.touchLong();
-		// selectAll.touchByName();
-		// cutButton.touchByName();
-		while (!fieldNumber.getText().isEmpty())
+		while (!fieldNumber.getText().isEmpty()) {
 			deleteLastSymbol();
+		}
 	}
 
 	@Override
@@ -232,6 +250,8 @@ public class CallPageIos extends CallPage {
 		double y = 355;
 		if ((point.getX() + x) == 100) {
 			webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+			Sleeper.SYSTEM_SLEEPER.sleep(1000);
+			webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
 			return true;
 		} else
 			return false;
@@ -287,5 +307,12 @@ public class CallPageIos extends CallPage {
 		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
 		return PageFactory.initElements(driver, HistoryPageIos.class);
 	}
+
+	@Override
+	public boolean isSpeakerWork() {
+		//For IOS this button inactive
+		return true;
+	}
+
 
 }

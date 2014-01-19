@@ -14,6 +14,26 @@ public class DeviceConfig {
 	
 	private static String version;
 	
+	private static String caller;
+	
+	private static String abonent;
+	
+	public static String getCaller() {
+		return caller;
+	}
+
+	public static void setCaller(String caller) {
+		DeviceConfig.caller = caller;
+	}
+
+	public static String getAbonent() {
+		return abonent;
+	}
+
+	public static void setAbonent(String abonent) {
+		DeviceConfig.abonent = abonent;
+	}
+	
 	public static String getVersion() {
 		return version;
 	}
