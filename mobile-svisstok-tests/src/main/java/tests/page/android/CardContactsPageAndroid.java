@@ -154,6 +154,7 @@ public class CardContactsPageAndroid extends CardContactsPage {
 
 	@Override
 	public void clickEditContacts() {
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		editContactProfile.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		editContactProfile.touch();
 	}

@@ -8,15 +8,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 
+import tests.page.CallPage;
+
 import com.annotation.FindBy;
 import com.element.UIView;
 import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
 import com.mobile.driver.page.PageFactory;
 import com.mobile.driver.wait.Sleeper;
-
-import tests.page.CallPage;
-import tests.page.ios.CardContactsPageIos;
 
 public class CallPageAndroid extends CallPage {
 
@@ -268,16 +267,19 @@ public class CallPageAndroid extends CallPage {
 
 	@Override
 	public void clickEditContacts() {
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		editContactProfile.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		editContactProfile.touch();
 
 	}
 
+	@Override
 	public void clickDeletefromList() {
 		deleteFromList.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		deleteFromList.touch();
 	}
 
+	@Override
 	public void clickDelete() {
 		deleteNumber.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		deleteNumber.touch();
