@@ -1,7 +1,5 @@
 package tests.page.android;
 
-import java.awt.Rectangle;
-
 import org.openqa.selenium.By;
 
 import tests.page.BlockPage;
@@ -10,7 +8,6 @@ import com.annotation.FindBy;
 import com.element.UIView;
 import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
-import com.mobile.driver.page.PageFactory;
 import com.mobile.driver.wait.Sleeper;
 
 public class BlockPageAndroid extends BlockPage {
@@ -45,12 +42,14 @@ public class BlockPageAndroid extends BlockPage {
 
 	}
 
+	@Override
 	public void searchContacts(String text) {
 		searchFiled.touch();
 		searchFiled.type(text);
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 
+	@Override
 	public void clickSearchResult(String name) {
 		((AppiumDriver) driver)
 				.getDriver()
@@ -59,24 +58,30 @@ public class BlockPageAndroid extends BlockPage {
 								name))).click();
 	}
 
+	@Override
 	public String getContactName() {
 		return contactName.getText();
 	}
 
+	@Override
 	public void clickEditContacts() {
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		editFromList.touch();
 	}
 
+	@Override
 	public void clickDeletefromList() {
 		deleteFromList.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		deleteFromList.touch();
 	}
 
+	@Override
 	public void clickDelete() {
 		deleteNumber.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		deleteNumber.touch();
 	}
 
+	@Override
 	public void clickCall() {
 		callTabButton.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		callTabButton.touch();
