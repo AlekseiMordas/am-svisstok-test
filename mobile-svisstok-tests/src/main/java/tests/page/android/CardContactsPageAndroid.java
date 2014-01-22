@@ -252,7 +252,7 @@ public class CardContactsPageAndroid extends CardContactsPage {
 
 	@Override
 	public void secondDelete() {
-		System.out.println(((AppiumDriver) driver).getDriver().getPageSource());
+		
 	}
 
 	@Override
