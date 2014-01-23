@@ -225,6 +225,18 @@ public class CardContactsPageAndroid extends CardContactsPage {
 		callButton.touch();
 		return PageFactory.initElements(driver, CallPageAndroid.class);
 	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public CallPageAndroid clickSearchResult(String name) {
+		((AppiumDriver) driver)
+				.getDriver()
+				.findElement(
+						By.xpath(String.format(searchedContact.getFoundBy(),
+								name))).click();
+		callButton.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
+		return PageFactory.initElements(driver, CallPageAndroid.class);
+	}
 
 	@Override
 	public void clickEditFromList() {

@@ -3,7 +3,6 @@ package tests.page.ios;
 import java.awt.Rectangle;
 
 import tests.page.CardContactsPage;
-import tests.page.SettingsPage;
 
 import com.annotation.FindBy;
 import com.element.UIView;
@@ -249,6 +248,17 @@ public class CardContactsPageIos extends CardContactsPage {
 	@SuppressWarnings("unchecked")
 	@Override
 	public CallPageIos clickSearchResultAndCall(String result) {
+		Rectangle point = webview.getLocation();
+		double y = 88;
+		webview.touchWithCoordinates(point.getX(), point.getY() + y);
+		CallPageIos call = PageFactory.initElements(driver, CallPageIos.class);
+		call.clickCall();
+		return call;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public CallPageIos clickSearchResult(String result) {
 		Rectangle point = webview.getLocation();
 		double y = 88;
 		webview.touchWithCoordinates(point.getX(), point.getY() + y);
