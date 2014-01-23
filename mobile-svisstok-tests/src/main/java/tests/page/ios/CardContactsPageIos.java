@@ -263,7 +263,6 @@ public class CardContactsPageIos extends CardContactsPage {
 		double y = 88;
 		webview.touchWithCoordinates(point.getX(), point.getY() + y);
 		CallPageIos call = PageFactory.initElements(driver, CallPageIos.class);
-		call.clickCall();
 		return call;
 	}
 
