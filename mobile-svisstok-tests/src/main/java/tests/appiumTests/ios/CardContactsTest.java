@@ -105,18 +105,19 @@ public class CardContactsTest extends BaseTest {
 		Assert.assertTrue(visibleContactName, "Contact name not visible");
 	}
 
-	@Test(priority = 5, description = "Check call contact")
-	public void checkCallContact() {
-		main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
-		cardContacts = call.clickContact();
-		setting = cardContacts.clickSettings();
-		cardContacts = setting.clickAllContacts();
-		cardContacts.searchContacts(USER_NAME);
-		call = cardContacts.clickSearchResultAndCall(USER_NAME);
-		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		boolean actualTimer = checkTimer(call.getTimer());
-		Assert.assertTrue(actualTimer, "Call timer not started");
-	}
+	//TODO wait CI
+//	@Test(priority = 5, description = "Check call contact")
+//	public void checkCallContact() {
+//		main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+//		cardContacts = call.clickContact();
+//		setting = cardContacts.clickSettings();
+//		cardContacts = setting.clickAllContacts();
+//		cardContacts.searchContacts(USER_NAME);
+//		call = cardContacts.clickSearchResultAndCall(USER_NAME);
+//		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+//		boolean actualTimer = checkTimer(call.getTimer());
+//		Assert.assertTrue(actualTimer, "Call timer not started");
+//	}
 
 	@Test(priority = 6, description = "Check add number's contact")
 	public void checkAddNumberContact() {
