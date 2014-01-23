@@ -189,7 +189,7 @@ public class CardContactsTest extends BaseTest {
 		setting = cardContacts.clickSettings();
 		cardContacts = setting.clickAllContacts();
 		cardContacts.searchContacts(OTHER_NAME);
-		call = cardContacts.clickSearchResultAndCall(OTHER_NAME);
+		call = cardContacts.clickSearchResult(OTHER_NAME);
 		String otherName = call.getContactNumber();
 		call.clickEditContacts();
 		call.clickDeletefromList();
