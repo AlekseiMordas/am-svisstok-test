@@ -1,14 +1,13 @@
 package tests.appiumTests.ios;
 
-import org.openqa.selenium.html5.ApplicationCache;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
-import com.mobile.driver.wait.Sleeper;
-
 import tests.page.CallPage;
 import utils.ApplicationStorage;
+
+import com.mobile.driver.wait.Sleeper;
 
 public class CallTest extends BaseTest {
 
@@ -150,9 +149,9 @@ public class CallTest extends BaseTest {
 		  Assert.assertTrue(actualTimer); 
 	  }
 	 
-	 @Test(priority=12, enabled=false) 
+	 @Test(priority=12) 
 	  public void checkCallAndAnswer() {
-		 //Ping CI Server to run job
+		 // TODO : Ping CI Server to run job
 		  boolean actualTimer = checkTimer(call.isAnswerIncommingCall());
 		  call.cancelCall();
 		  Assert.assertTrue(actualTimer); 
