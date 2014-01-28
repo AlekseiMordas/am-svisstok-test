@@ -6,11 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.TimeoutException;
 
 import tests.page.CallPage;
-import tests.page.android.CallPageAndroid;
 
 import com.annotation.FindBy;
 import com.element.UIView;
@@ -140,6 +138,12 @@ public class CallPageIos extends CallPage {
 	@Override
 	public String isAnswerIncommingCall() {
 		incommingCallText.waitForElement(WAIT_WHILE_LOGIN);
+		long t = System.currentTimeMillis();
+        long timeInSeconds = 60 * 1000;
+        long end = t + timeInSeconds;
+		while(incommingCallText.getAttribute("visible").contains("true") || System.currentTimeMillis() < end) {
+			Sleeper.SYSTEM_SLEEPER.sleep(1000);
+		}
 		Rectangle point = answerButton.getLocation();
 		answerButton.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
@@ -169,6 +173,7 @@ public class CallPageIos extends CallPage {
 		return container;
 	}
 
+	@Override
 	public void inputAllDigites() {
 
 		for (UIView digit : dial()) {
@@ -177,16 +182,19 @@ public class CallPageIos extends CallPage {
 
 	}
 
+	@Override
 	public void inputFromNativeKeyboard(String text) {
 		fieldNumber.touchLong();
 		fieldNumber.type(text);
 		doneButton.touch();
 	}
 
+	@Override
 	public String getTextFieldDigitDisplay() {
 		return digitDisplay.getText();
 	}
 
+	@Override
 	public void clearField() {
 		while (!fieldNumber.getText().isEmpty()) {
 			deleteLastSymbol();
@@ -217,6 +225,7 @@ public class CallPageIos extends CallPage {
 		return PageFactory.initElements(driver, SettingsPageIos.class);
 	}
 
+	@Override
 	public void clickCallButton() {
 		Rectangle point = webview.getLocation();
 		double x = 55;// 165;
@@ -225,6 +234,7 @@ public class CallPageIos extends CallPage {
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
 
+	@Override
 	public String getNameConnection() {
 		return nameConnection.getFoundBy().toString();
 	}
@@ -239,6 +249,7 @@ public class CallPageIos extends CallPage {
 		return PageFactory.initElements(driver, CallPageIos.class);
 	}
 
+	@Override
 	public String getNameAbonent() {
 		return nameAbonent.getAttribute("label");
 	}
@@ -262,6 +273,7 @@ public class CallPageIos extends CallPage {
 		return timerCall.getAttribute("label");
 	}
 
+	@Override
 	public void clickBack() {
 		Rectangle point = webview.getLocation();
 		double x = 10;
@@ -269,11 +281,13 @@ public class CallPageIos extends CallPage {
 		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
 	}
 
+	@Override
 	public void clickCall() {
 		Rectangle point = callButton.getLocation();
 		callButton.touchWithCoordinates(point.getX(), point.getY());
 	}
 
+	@Override
 	public void clickEditContacts() {
 		Rectangle point = webview.getLocation();
 		double x = 270;
@@ -281,6 +295,7 @@ public class CallPageIos extends CallPage {
 
 	}
 
+	@Override
 	public void clickDeletefromList() {
 		Rectangle point = webview.getLocation();
 		double x = 116;
@@ -288,6 +303,7 @@ public class CallPageIos extends CallPage {
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
 
+	@Override
 	public void clickDelete() {
 		// delete.touch();
 		Rectangle point = webview.getLocation();
@@ -296,10 +312,12 @@ public class CallPageIos extends CallPage {
 		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
 	}
 
+	@Override
 	public String getContactNumber() {
 		return contactNumber.getAttribute("label");
 	}
 
+	@Override
 	public HistoryPageIos clickHistory() {
 		Rectangle point = webview.getLocation();
 		double x = 80;
