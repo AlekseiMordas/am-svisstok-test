@@ -1,6 +1,5 @@
 package tests.page.ios;
 
-
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
@@ -108,15 +107,16 @@ public class CallPageIos extends CallPage {
 
 	@FindBy(locator = "Позвонить")
 	private UIView callButton;
-	
+
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
 	private UIView answerButton;
-	
+
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
 	private UIView endCallButton;
-	
-	@FindBy(locator = "Входящий вызов...")
-	private UIView incommingCallText;
+
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]")
+	// Входящий вызов...
+	private UIView incommingCall;
 
 	private static final Logger LOGGER = Logger.getLogger(CallPageIos.class);
 
@@ -137,19 +137,13 @@ public class CallPageIos extends CallPage {
 
 	@Override
 	public String isAnswerIncommingCall() {
-		incommingCallText.waitForElement(WAIT_WHILE_LOGIN);
-		long t = System.currentTimeMillis();
-        long timeInSeconds = 60 * 1000;
-        long end = t + timeInSeconds;
-		while(incommingCallText.getAttribute("visible").contains("true") || System.currentTimeMillis() < end) {
-			Sleeper.SYSTEM_SLEEPER.sleep(1000);
-		}
+		incommingCall.waitForElement(WAIT_WHILE_LOGIN);
 		Rectangle point = answerButton.getLocation();
 		answerButton.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		return getTimer();
 	}
-	
+
 	@Override
 	public boolean isStatusAvailable() {
 		// TODO Auto-generated method stub
@@ -328,9 +322,8 @@ public class CallPageIos extends CallPage {
 
 	@Override
 	public boolean isSpeakerWork() {
-		//For IOS this button inactive
+		// For IOS this button inactive
 		return true;
 	}
-
 
 }

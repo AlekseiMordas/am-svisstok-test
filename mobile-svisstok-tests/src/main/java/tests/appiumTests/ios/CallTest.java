@@ -148,7 +148,7 @@ public class CallTest extends BaseTest {
 		  history.clickCall();
 		  Assert.assertTrue(actualTimer); 
 	  }
-	 
+ 
 	 @Test(priority=12) 
 	  public void checkCallAndAnswer() {
 		 // TODO : Ping CI Server to run job
