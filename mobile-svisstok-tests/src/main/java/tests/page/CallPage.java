@@ -1,6 +1,7 @@
 package tests.page;
 
 import tests.page.ios.BasePage;
+
 import com.mobile.driver.nativedriver.NativeDriver;
 
 public abstract class CallPage extends BasePage{
@@ -54,4 +55,6 @@ public abstract class CallPage extends BasePage{
 	public abstract <T> T clickHistory();
 
 	public abstract String isAnswerIncommingCall();
+
+	public abstract <T> T endCall();
 }

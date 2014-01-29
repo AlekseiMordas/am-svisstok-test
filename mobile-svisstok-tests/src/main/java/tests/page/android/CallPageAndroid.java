@@ -305,4 +305,14 @@ public class CallPageAndroid extends CallPage {
 		return getTimer();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public CallPageAndroid endCall() {
+		List<WebElement> elements = AppiumDriver.class.cast(driver).getDriver()
+				.findElements(By.xpath(cancelCallButton.getFoundBy()));
+		elements.get(elements.size() - 1).click();
+		LOGGER.info("Click cancel call");
+		return PageFactory.initElements(driver, CallPageAndroid.class);
+	}
+
 }

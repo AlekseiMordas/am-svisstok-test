@@ -242,6 +242,14 @@ public class CallPageIos extends CallPage {
 		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
 		return PageFactory.initElements(driver, CallPageIos.class);
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public CallPageIos endCall() {
+		Rectangle point = endCallButton.getLocation();
+		endCallButton.touchWithCoordinates(point.getX() , point.getY() );
+		return PageFactory.initElements(driver, CallPageIos.class);
+	}
 
 	@Override
 	public String getNameAbonent() {

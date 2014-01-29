@@ -153,7 +153,7 @@ public class CallTest extends BaseTest {
 	  public void checkCallAndAnswer() {
 		 // TODO : Ping CI Server to run job
 		  boolean actualTimer = checkTimer(call.isAnswerIncommingCall());
-		  call.cancelCall();
+		  call.endCall();
 		  Assert.assertTrue(actualTimer); 
 	  }
 
