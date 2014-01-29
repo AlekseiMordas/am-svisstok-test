@@ -315,4 +315,15 @@ public class CallPageAndroid extends CallPage {
 		return PageFactory.initElements(driver, CallPageAndroid.class);
 	}
 
+	@Override
+	public CallPageAndroid isIncommingCallReset() {
+		incommingCallText.waitForElement(WAIT_WHILE_LOGIN);
+		List<WebElement> elements = AppiumDriver.class.cast(driver).getDriver()
+				.findElements(By.xpath(cancelCallButton.getFoundBy()));
+		elements.get(elements.size() - 1).click();
+		LOGGER.info("Click cancel call");
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		return PageFactory.initElements(driver, CallPageAndroid.class);
+	}
+
 }

@@ -143,6 +143,15 @@ public class CallPageIos extends CallPage {
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		return getTimer();
 	}
+	
+	@Override
+	public CallPageIos isIncommingCallReset() {
+		incommingCall.waitForElement(WAIT_WHILE_LOGIN);
+		Rectangle point = endCallButton.getLocation();
+		endCallButton.touchWithCoordinates(point.getX(), point.getY());
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		return PageFactory.initElements(driver, CallPageIos.class);
+	}
 
 	@Override
 	public boolean isStatusAvailable() {

@@ -157,6 +157,12 @@ public class CallTest extends BaseTest {
 		  Assert.assertTrue(actualTimer); 
 	  }
 
+	 @Test(priority=13) 
+	  public void checkCallAndReset() {
+		 // TODO : Ping CI Server to run job
+		  CallPage callPage = call.isIncommingCallReset();
+		  callPage.checkPage();
+	  }
 	
 	@AfterMethod
 	public void clearField() {

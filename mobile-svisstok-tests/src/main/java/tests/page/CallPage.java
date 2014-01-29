@@ -57,4 +57,6 @@ public abstract class CallPage extends BasePage{
 	public abstract String isAnswerIncommingCall();
 
 	public abstract <T> T endCall();
+
+	public abstract <T> T isIncommingCallReset();
 }
