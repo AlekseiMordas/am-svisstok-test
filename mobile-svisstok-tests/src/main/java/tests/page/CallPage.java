@@ -40,7 +40,7 @@ public abstract class CallPage extends BasePage{
 	
 	public abstract boolean isSpeakerWork();
 	
-	public abstract void clickBack();
+	//public abstract void clickBack();
 	
 	public abstract void clickCall();
 	

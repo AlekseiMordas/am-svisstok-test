@@ -20,6 +20,21 @@ public class HistoryPageIos extends HistoryPage{
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]")
 	private UIView timerCall;
+	
+	@FindBy(locator = "Позвонить")
+	private UIView callTab;
+	
+//	@FindBy(locator = "")
+	//private UIView editButton;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
+	private UIView trashButton;
+	
+	@FindBy(locator ="//window[1]/scrollview[1]/webview[1]/link[3]")
+	private UIView arrowButton;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
+	private UIView contact;
 
 	@Override
 	public void checkPage() {
@@ -38,8 +53,8 @@ public class HistoryPageIos extends HistoryPage{
 	public void cancelCall() {
 		Rectangle point = webview.getLocation();
 		double x = 24;
-		double y = 412;
-	webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		double y = 432;
+		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
 		}
 	
 	public String getTimer() {
@@ -47,11 +62,26 @@ public class HistoryPageIos extends HistoryPage{
 	}
 	
 	public void clickCall(){
-		Rectangle point = webview.getLocation();
-		double x = 160;
-		double y = 406;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = callTab.getLocation();
+		webview.touchWithCoordinates(point.getX(), point.getY());
 	}
+	
+	 public void clickEdit() {
+	    	Rectangle point = arrowButton.getLocation();
+	    	arrowButton.touchWithCoordinates(point.getX(), point.getY()-30);
+			
+		}
+
+	public void clickTrash() {
+		Rectangle point = trashButton.getLocation();
+		trashButton.touchWithCoordinates(point.getX(), point.getY());
+			
+		}
+
+	public void findDeleteContacts() {
+			Rectangle point = contact.getLocation();
+			
+		}
 	
 
 }

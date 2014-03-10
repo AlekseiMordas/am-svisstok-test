@@ -28,8 +28,17 @@ public class BlockPageIos extends BlockPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[5]")
 	private UIView contactName;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]/link[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
 	private UIView searchResult;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
+	private UIView settingTab;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
+	private UIView deleteFromList;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[16]")
+	private UIView deleteButton;
 
 	@Override
 	public void checkPage() {
@@ -44,9 +53,8 @@ public class BlockPageIos extends BlockPage {
 	   }
 	
     public void clickSearchResult(String name){
-		   Rectangle point = webview.getLocation();
-			double y = 113;
-			webview.touchWithCoordinates(point.getX(), point.getY() + y);
+		   Rectangle point = searchResult.getLocation();
+		   searchResult.touchWithCoordinates(point.getX(), point.getY());
 	   }
  
    public String getContactName(){
@@ -54,36 +62,20 @@ public class BlockPageIos extends BlockPage {
 	}
    
 	public void clickEditContacts(){
-		Rectangle point = webview.getLocation();
-		double x = 270;
-		webview.touchWithCoordinates(point.getX() + x, point.getY());
-		
+		Rectangle point = settingTab.getLocation();
+		settingTab.touchWithCoordinates(point.getX(), point.getY());
 	}
 	
 	@Override	
 	public void clickDeletefromList(){
-		Rectangle point = webview.getLocation();
-		double x = 116;
-		webview.touchWithCoordinates(point.getX() + x, point.getY());
+		Rectangle point = deleteFromList.getLocation();
+		deleteFromList.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
 	
 	@Override	
 	public void clickDelete(){
-		//delete.touch();
-		Rectangle point = webview.getLocation();
-		double x = 20;
-		double y = 245;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = deleteButton.getLocation();
+		deleteButton.touchWithCoordinates(point.getX(), point.getY());
 	}
-	
-	@Override	
-	public void clickCall(){
-		Rectangle point = webview.getLocation();
-		double x = 160;
-		double y = 406;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
-	}
-	
-
 }

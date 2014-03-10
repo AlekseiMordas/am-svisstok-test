@@ -33,6 +33,18 @@ public class SavedContactsPageIos extends SavedContactsPage {
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[10]")
 	private UIView star;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[12]")//window[1]/scrollview[1]/webview[1]/link[1]
+	private UIView settingTab;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
+	private UIView deleteFromList;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[16]")
+	private UIView deleteButton;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]/link[1]")
+	private UIView backTab;
 
 	public void searchContacts(String text) {
 		searchFiled.touch();
@@ -57,19 +69,17 @@ public class SavedContactsPageIos extends SavedContactsPage {
 		webview.touchWithCoordinates(point.getX() + x, point.getY());
 	}
 
-	public void clickDeletefromList() {
-		Rectangle point = webview.getLocation();
-		double x = 116;
-		webview.touchWithCoordinates(point.getX() + x, point.getY());
+	@Override	
+	public void clickDeletefromList(){
+		Rectangle point = deleteFromList.getLocation();
+		deleteFromList.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
-
-	public void clickDelete() {
-		// delete.touch();
-		Rectangle point = webview.getLocation();
-		double x = 20;
-		double y = 245;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+	
+	@Override	
+	public void clickDelete(){
+		Rectangle point = deleteButton.getLocation();
+		deleteButton.touchWithCoordinates(point.getX(), point.getY());
 	}
 
 	public void clickCall() {
@@ -84,18 +94,15 @@ public class SavedContactsPageIos extends SavedContactsPage {
 	}
 
 	public void clickBack() {
-		Rectangle point = webview.getLocation();
-		double x = 10;
-		double y = 5;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = backTab.getLocation();
+		backTab.touchWithCoordinates(point.getX(), point.getY());
 	}
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public SettingsPageIos clickSettings() {
-		Rectangle point = webview.getLocation();
-		double x = 10;
-		double y = 5;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = settingTab.getLocation();
+		settingTab.touchWithCoordinates(point.getX(), point.getY());
 		return PageFactory.initElements(driver, SettingsPageIos.class);
 	}
 

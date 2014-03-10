@@ -35,6 +35,21 @@ public class FavoritePageIos extends FavoritePage{
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[9]/link[1]")
 	private UIView callingButton;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[14]/link[1]")
+	private UIView callButton;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[5]/link[1]")
+	private UIView cancelCallButton;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
+	private UIView trashButton;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
+	private UIView settingTab;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
+	private UIView deleteFromList;
 
 	@Override
 	public void checkPage() {
@@ -58,36 +73,27 @@ public class FavoritePageIos extends FavoritePage{
 		return contactName.getAttribute("name");
 	}
    
-	public void clickEditContacts(){
-		Rectangle point = webview.getLocation();
-		double x = 270;
-		webview.touchWithCoordinates(point.getX() + x, point.getY());
-		
+   public void clickEditContacts(){
+		Rectangle point = settingTab.getLocation();
+		settingTab.touchWithCoordinates(point.getX(), point.getY());
 	}
 	
-	
+	@Override	
 	public void clickDeletefromList(){
-		Rectangle point = webview.getLocation();
-		double x = 116;
-		webview.touchWithCoordinates(point.getX() + x, point.getY());
+		Rectangle point = deleteFromList.getLocation();
+		deleteFromList.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
-	
 		
 	public void clickDelete(){
-		//delete.touch();
-		Rectangle point = webview.getLocation();
-		double x = 20;
-		double y = 245;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = trashButton.getLocation();
+		trashButton.touchWithCoordinates(point.getX(), point.getY());
 	}
 	
 	
 	public void clickCall(){
-		Rectangle point = webview.getLocation();
-		double x = 160;
-		double y = 406;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = callButton.getLocation();
+		callButton.touchWithCoordinates(point.getX(), point.getY());
 	}
 	
 	public void clickCallingButton(){
@@ -96,10 +102,8 @@ public class FavoritePageIos extends FavoritePage{
 	}
 	
 	public void cancelCall() {
-		Rectangle point = webview.getLocation();
-		double x = 24;
-		double y = 412;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = cancelCallButton.getLocation();
+		cancelCallButton.touchWithCoordinates(point.getX(), point.getY());
 	}
 	
 	public String getTimer() {

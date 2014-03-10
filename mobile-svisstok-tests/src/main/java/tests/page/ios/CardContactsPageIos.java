@@ -70,7 +70,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[24]")
 	private UIView block;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[4]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]")
 	private UIView messageBlock;
 
 	@FindBy(locator = "Select All")
@@ -81,6 +81,22 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[16]")
 	private UIView star;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]/link[1]")
+	private UIView backTab;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[12]")//window[1]/scrollview[1]/webview[1]/link[1]
+	private UIView settingTab;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
+	private UIView deleteFromList;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[16]")
+	private UIView deleteButton;
+	
+	@FindBy(locator = "Позвонить")
+	private UIView callTab;
+	
 
 	public CardContactsPageIos(NativeDriver driver) {
 		super(driver);
@@ -136,10 +152,10 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public void clickBack() {
-		Rectangle point = webview.getLocation();
-		double x = 10;
-		double y = 5;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = backTab.getLocation();
+	//	double x = 10;
+	//	double y = 5;
+		backTab.touchWithCoordinates(point.getX(), point.getY());
 	}
 	
 	@Override
@@ -162,36 +178,28 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public void clickEditContacts() {
-		Rectangle point = webview.getLocation();
-		double x = 270;
-		webview.touchWithCoordinates(point.getX() + x, point.getY());
-
+		Rectangle point = settingTab.getLocation();
+		settingTab.touchWithCoordinates(point.getX(), point.getY());
 	}
 
 	@Override
 	public void clickDeletefromList() {
-		Rectangle point = webview.getLocation();
-		double x = 116;
-		webview.touchWithCoordinates(point.getX() + x, point.getY());
+		Rectangle point = deleteFromList.getLocation();
+		deleteFromList.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(5000);
 	}
 
-	@Override
-	public void clickDelete() {
-		// delete.touch();
-		Rectangle point = webview.getLocation();
-		double x = 20;
-		double y = 245;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
-		// Sleeper.SYSTEM_SLEEPER.sleep(3000);
+	
+	@Override	
+	public void clickDelete(){
+		Rectangle point = deleteButton.getLocation();
+		deleteButton.touchWithCoordinates(point.getX(), point.getY());
 	}
 
 	@Override
 	public void clickCall() {
-		Rectangle point = webview.getLocation();
-		double x = 160;
-		double y = 406;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = callTab.getLocation();
+		callTab.touchWithCoordinates(point.getX(), point.getY());
 	}
 
 	@Override
@@ -222,19 +230,13 @@ public class CardContactsPageIos extends CardContactsPage {
 		boolean second = checkVisibleText((secondContact.getAttribute("name")
 				.split(" ")[0]));
 		return (first && second);
-		// if
-		// return true;
-		// else
-		// return false;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public SettingsPageIos clickSettings() {
-		Rectangle point = webview.getLocation();
-		double x = 10;
-		double y = 5;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = settingTab.getLocation();
+		settingTab.touchWithCoordinates(point.getX(), point.getY());
 		return PageFactory.initElements(driver, SettingsPageIos.class);
 	}
 
@@ -308,10 +310,8 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public void clickBlock() {
-		Rectangle point = webview.getLocation();
-		double x = 20;
-		double y = 245;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = blockFromList.getLocation();
+		blockFromList.touchWithCoordinates(point.getX(), point.getY());
 	}
 
 	@Override
@@ -321,10 +321,8 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public void clickStar() {
-		Rectangle point = webview.getLocation();
-		double x = 275;
-		double y = 331;
-		webview.touchWithCoordinates(275, 331);
+		Rectangle point = star.getLocation();
+		star.touchWithCoordinates(point.getX(), point.getY());
 	}
 
 	@Override

@@ -69,7 +69,7 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[2]/UIAKeyboard[1]/UIAKey[29]")
 	private UIView moreNumber;
 
-	@FindBy(locator = "//window[2]/UIAKeyboard[1]/UIAKey[28]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[15]/link[1]")
 	private UIView deleteButton;
 
 	@FindBy(locator = "Select All")
@@ -93,8 +93,11 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "Настройки")
 	private UIView settingsTab;
 
-	@FindBy(locator = "Позвонить")
-	private UIView callTab;
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[14]/link[1]")
+	private UIView callButton;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[5]/link[1]")
+	private UIView cancelCallButton;
 
 	@FindBy(locator = "Контакты")
 	private UIView contactsTab;
@@ -106,13 +109,22 @@ public class CallPageIos extends CallPage {
 	private UIView contactNumber;
 
 	@FindBy(locator = "Позвонить")
-	private UIView callButton;
+	private UIView callTab;
+	
+	@FindBy(locator = "История")
+	private UIView historyButton;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
 	private UIView answerButton;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
 	private UIView endCallButton;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[12]")
+	private UIView settingTab;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
+	private UIView deleteFromList;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]")
 	// Входящий вызов...
@@ -206,10 +218,8 @@ public class CallPageIos extends CallPage {
 
 	@Override
 	public void deleteLastSymbol() {
-		Rectangle point = nine.getLocation();
-		double y = 135;
-		double x = 58;
-		nine.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = deleteButton.getLocation();
+		deleteButton.touchWithCoordinates(point.getX(), point.getY());
 	}
 
 	@SuppressWarnings("unchecked")
@@ -230,10 +240,8 @@ public class CallPageIos extends CallPage {
 
 	@Override
 	public void clickCallButton() {
-		Rectangle point = webview.getLocation();
-		double x = 55;// 165;
-		double y = 351;// 407;
-		nine.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = callButton.getLocation();
+		callTab.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
 
@@ -245,10 +253,8 @@ public class CallPageIos extends CallPage {
 	@SuppressWarnings("unchecked")
 	@Override
 	public CallPageIos cancelCall() {
-		Rectangle point = webview.getLocation();
-		double x = 24;
-		double y = 412;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = cancelCallButton.getLocation();
+		cancelCallButton.touchWithCoordinates(point.getX(), point.getY());
 		return PageFactory.initElements(driver, CallPageIos.class);
 	}
 	
@@ -284,13 +290,13 @@ public class CallPageIos extends CallPage {
 		return timerCall.getAttribute("label");
 	}
 
-	@Override
+	/*@Override
 	public void clickBack() {
 		Rectangle point = webview.getLocation();
 		double x = 10;
 		double y = 5;
 		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
-	}
+	}*/
 
 	@Override
 	public void clickCall() {
@@ -298,29 +304,22 @@ public class CallPageIos extends CallPage {
 		callButton.touchWithCoordinates(point.getX(), point.getY());
 	}
 
-	@Override
-	public void clickEditContacts() {
-		Rectangle point = webview.getLocation();
-		double x = 270;
-		webview.touchWithCoordinates(point.getX() + x, point.getY());
-
+	public void clickEditContacts(){
+		Rectangle point = settingTab.getLocation();
+		settingTab.touchWithCoordinates(point.getX(), point.getY());
 	}
-
-	@Override
-	public void clickDeletefromList() {
-		Rectangle point = webview.getLocation();
-		double x = 116;
-		webview.touchWithCoordinates(point.getX() + x, point.getY());
+	
+	@Override	
+	public void clickDeletefromList(){
+		Rectangle point = deleteFromList.getLocation();
+		deleteFromList.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
-
-	@Override
-	public void clickDelete() {
-		// delete.touch();
-		Rectangle point = webview.getLocation();
-		double x = 20;
-		double y = 245;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+	
+	@Override	
+	public void clickDelete(){
+		Rectangle point = deleteButton.getLocation();
+		deleteButton.touchWithCoordinates(point.getX(), point.getY());
 	}
 
 	@Override
@@ -330,10 +329,8 @@ public class CallPageIos extends CallPage {
 
 	@Override
 	public HistoryPageIos clickHistory() {
-		Rectangle point = webview.getLocation();
-		double x = 80;
-		double y = 406;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = historyButton.getLocation();
+		historyButton.touchWithCoordinates(point.getX(), point.getY());
 		return PageFactory.initElements(driver, HistoryPageIos.class);
 	}
 
