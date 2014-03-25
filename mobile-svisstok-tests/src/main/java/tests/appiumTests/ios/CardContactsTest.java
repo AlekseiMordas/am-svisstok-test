@@ -30,6 +30,7 @@ public class CardContactsTest extends BaseTest {
 	protected static String SECOND_NUMBER;
 	protected static final String MSG_DELETE = "Удалено";
 	protected static final String MSG_BLOCK = "Контакт заблокирован";
+	protected static final String STATUS_BLOCK = "Заблокирован";
 
 	@BeforeMethod(description = "Init and check page")
 	public void init() throws Exception {
@@ -43,6 +44,7 @@ public class CardContactsTest extends BaseTest {
 			cardContacts = PageFactory.initElements(driver,
 					CardContactsPageIos.class);
 			Sleeper.SYSTEM_SLEEPER.sleep(5000);
+			//if()
 			break;
 		case ANDROID:
 			driver = IosDriverWrapper.getAndroid(HOST, PORT);
@@ -77,7 +79,7 @@ public class CardContactsTest extends BaseTest {
 	public void checkListContacts() {
 		goToSwisstokList();
 		boolean visibleListContacts = cardContacts.checkVisibleListContacts();
-		cardContacts.clickCall();
+		//cardContacts.clickCall(); we don't need if use afterMethod for driver quite
 		Assert.assertTrue(visibleListContacts, "Contact List not do");
 	}
 
@@ -153,7 +155,7 @@ public class CardContactsTest extends BaseTest {
 
 	@Test(priority = 8, description = "Check blocks contact")
 	public void checkBlockContact() {
-		main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+		//main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
 		createUser(SAVED_NAME, CONTACT);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
@@ -168,11 +170,11 @@ public class CardContactsTest extends BaseTest {
 		block.searchContacts(SAVED_NAME);
 		block.clickSearchResult(SAVED_NAME);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		String blockContact = block.getContactName();
+		String blockContact = block.getContactStatusBlock();
 		block.clickEditContacts();
 		block.clickDeletefromList();
 		block.clickDelete();
-		Assert.assertEquals(blockContact, CONTACT);
+		Assert.assertEquals(blockContact, STATUS_BLOCK);
 	}
 
 	@Test(priority = 9, description = "Check edit name contact")
@@ -228,7 +230,7 @@ public class CardContactsTest extends BaseTest {
 		setting = cardContacts.clickSettings();
 		favorite = setting.clickFavorite();
 		favorite.searchContacts(SAVED_NAME);
-		favorite.clickSearchResult(SAVED_NAME);
+		favorite.clickSearchResult(SAVED_NAME);//redirect to back, it is bug
 		String number = favorite.getContactName();
 		favorite.clickEditContacts();
 		favorite.clickDeletefromList();
@@ -255,7 +257,7 @@ public class CardContactsTest extends BaseTest {
 		setting = savedContacts.clickSettings();
 		favorite = setting.clickFavorite();
 		favorite.searchContacts(SAVED_NAME);
-		favorite.clickSearchResult(SAVED_NAME);
+		favorite.clickSearchResult(SAVED_NAME);//redirect to back, it is bug
 		String number = favorite.getContactName();
 		favorite.clickEditContacts();
 		favorite.clickDeletefromList();

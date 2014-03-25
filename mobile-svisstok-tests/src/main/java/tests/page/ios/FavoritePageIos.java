@@ -50,6 +50,9 @@ public class FavoritePageIos extends FavoritePage{
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
 	private UIView deleteFromList;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
+	private UIView firstResult;
 
 	@Override
 	public void checkPage() {
@@ -64,9 +67,9 @@ public class FavoritePageIos extends FavoritePage{
 	   }
 	
     public void clickSearchResult(String name){
-		   Rectangle point = webview.getLocation();
-			double y = 113;
-			webview.touchWithCoordinates(point.getX(), point.getY() + y);
+		   Rectangle point = firstResult.getLocation();
+			//double y = 113;
+			firstResult.touchWithCoordinates(point.getX(), point.getY());
 	   }
  
    public String getContactName(){

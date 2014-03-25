@@ -87,4 +87,10 @@ public class BlockPageAndroid extends BlockPage {
 		callTabButton.touch();
 	}
 
+	@Override
+	public String getContactStatusBlock() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

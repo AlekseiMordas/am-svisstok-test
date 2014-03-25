@@ -73,4 +73,10 @@ public abstract class CardContactsPage extends  BasePage{
 	public abstract void clickStar();
 	
 	public abstract boolean isContactListDownloaded();
+
+//	public abstract boolean isAccessContacts();
+//
+//	public abstract <T> T clickOk();
+	
+	
 }

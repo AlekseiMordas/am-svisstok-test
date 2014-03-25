@@ -30,6 +30,8 @@ public abstract class BlockPage extends BasePage{
 	
 	public abstract void clickDelete();
 	
-	public abstract void clickCall();
+	public abstract String getContactStatusBlock();
+	
+	public abstract void clickCall() ;
 	   
 }

@@ -246,7 +246,6 @@ public class CallPageAndroid extends CallPage {
 		return true;
 	}
 
-	@Override
 	public void clickBack() {
 		// TODO Auto-generated method stub
 

@@ -105,7 +105,7 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]")
 	private UIView timerCall;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[5]")
+	@FindBy(locator =  "//window[1]/scrollview[1]/webview[1]/text[4]")
 	private UIView contactNumber;
 
 	@FindBy(locator = "Позвонить")
@@ -120,11 +120,17 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
 	private UIView endCallButton;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[12]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
 	private UIView settingTab;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[5]")
 	private UIView deleteFromList;
+	
+	@FindBy(locator = "OK")
+	private UIView okButton;
+	
+	@FindBy(locator = "//window[4]/alert[1]/scrollview[1]/text[1]")
+	private UIView alertAccessContacts;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]")
 	// Входящий вызов...
@@ -206,7 +212,7 @@ public class CallPageIos extends CallPage {
 
 	@Override
 	public String getTextFieldDigitDisplay() {
-		return digitDisplay.getText();
+		return digitDisplay.getAttribute("value");
 	}
 
 	@Override
@@ -339,5 +345,14 @@ public class CallPageIos extends CallPage {
 		// For IOS this button inactive
 		return true;
 	}
+	
+//	public CallPageIos clickOk(){
+//		okButton.touchByName();
+//		return PageFactory.initElements(driver, CallPageIos.class);
+//	}
+//	public boolean isAccessContacts(){
+//		System.out.println("==" + alertAccessContacts.getAttribute("name"));
+//		return alertAccessContacts.getAttribute("name").equals("Swisstok” Would Like to Access Your Contacts");
+//	}
 
 }

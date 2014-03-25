@@ -54,4 +54,22 @@ public class HistoryPageAndroid extends HistoryPage {
 		callTabButton.touch();
 	}
 
+	@Override
+	public void clickEdit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clickTrash() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void findDeleteContacts() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

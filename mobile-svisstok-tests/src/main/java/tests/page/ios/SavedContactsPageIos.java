@@ -34,7 +34,7 @@ public class SavedContactsPageIos extends SavedContactsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[10]")
 	private UIView star;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[12]")//window[1]/scrollview[1]/webview[1]/link[1]
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")//window[1]/scrollview[1]/webview[1]/link[1]
 	private UIView settingTab;
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")

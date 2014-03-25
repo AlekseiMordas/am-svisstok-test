@@ -30,10 +30,10 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/textfield[3]")
 	private UIView contactField;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[16]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[8]")
 	private UIView contactNumber;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[14]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[6]")
 	private UIView contactName;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[17]/link[1]")
@@ -57,14 +57,13 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "Изменить")
 	private UIView editFromList;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[20]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[12]")
 	private UIView secondNumber;
 
 	@FindBy(locator = "Удалить")
 	private UIView deleteNumber;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[14]")
-	// "//window[1]/scrollview[1]/webview[1]/text[28]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[6]")
 	private UIView messageDelete;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[24]")
@@ -85,17 +84,26 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]/link[1]")
 	private UIView backTab;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[12]")//window[1]/scrollview[1]/webview[1]/link[1]
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]/link[1]")
 	private UIView settingTab;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
+	private UIView settingTabRight;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[11]")
 	private UIView deleteFromList;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[16]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[23]")
 	private UIView deleteButton;
 	
 	@FindBy(locator = "Позвонить")
 	private UIView callTab;
+	
+	@FindBy(locator = "OK")
+	private UIView okButton;
+	
+	@FindBy(locator = "//window[4]/alert[1]/scrollview[1]/text[1]")
+	private UIView alertAccessContacts;
 	
 
 	public CardContactsPageIos(NativeDriver driver) {
@@ -131,7 +139,8 @@ public class CardContactsPageIos extends CardContactsPage {
 		if (!(element.getText().isEmpty())) {
 			element.touchLong();
 			selectAll.touchByName();
-			cutButton.touchByName();
+			Rectangle point = cutButton.getLocation();
+			cutButton.touchWithCoordinates(point.getX(), point.getY());
 		}
 	}
 
@@ -178,8 +187,8 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public void clickEditContacts() {
-		Rectangle point = settingTab.getLocation();
-		settingTab.touchWithCoordinates(point.getX(), point.getY());
+		Rectangle point = settingTabRight.getLocation();
+		settingTabRight.touchWithCoordinates(point.getX(), point.getY());
 	}
 
 	@Override
@@ -194,6 +203,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	public void clickDelete(){
 		Rectangle point = deleteButton.getLocation();
 		deleteButton.touchWithCoordinates(point.getX(), point.getY());
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 
 	@Override
@@ -312,6 +322,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	public void clickBlock() {
 		Rectangle point = blockFromList.getLocation();
 		blockFromList.touchWithCoordinates(point.getX(), point.getY());
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 
 	@Override
@@ -334,7 +345,14 @@ public class CardContactsPageIos extends CardContactsPage {
 	@Override
 	public void checkPage() {
 		// TODO Auto-generated method stub
-
 	}
+	
+	/*public CallPageIos clickOk(){
+		okButton.touchByName();
+		return PageFactory.initElements(driver, CallPageIos.class);
+	}
+	public boolean isAccessContacts(){
+		return alertAccessContacts.getAttribute("name").equals("Swisstok” Would Like to Access Your Contacts");
+	}*/
 
 }

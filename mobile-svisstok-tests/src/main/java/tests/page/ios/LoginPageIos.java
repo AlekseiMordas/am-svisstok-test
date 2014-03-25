@@ -84,9 +84,6 @@ public class LoginPageIos extends LoginPage {
 		setSavePassword(isSavePassword);
 		setAutoLogin(isAutoLogin);
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
-//		if(keyBoard.isExists()) {
-//			
-//		}
 		loginButton.touch();
 		return PageFactory.initElements(driver, CallPageIos.class);
 	}
