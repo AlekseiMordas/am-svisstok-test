@@ -17,11 +17,10 @@ import com.mobile.driver.wait.Sleeper;
 
 public class CallPageIos extends CallPage {
 
-	@FindBy(locator = "В сети")
-	// "LinphoneRegistrationOk")
+	@FindBy(locator = "Зарегистрирован")
 	public UIView status;
 
-	@FindBy(locator = "/window[1]/scrollview[1]/webview[1]/text[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[1]")
 	public UIView online;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
@@ -69,7 +68,7 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[2]/UIAKeyboard[1]/UIAKey[29]")
 	private UIView moreNumber;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[15]/link[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[16]/link[1]")
 	private UIView deleteButton;
 
 	@FindBy(locator = "Select All")
@@ -93,19 +92,19 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "Настройки")
 	private UIView settingsTab;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[14]/link[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[15]/link[1]")
 	private UIView callButton;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[5]/link[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]/link[1]")
 	private UIView cancelCallButton;
 
 	@FindBy(locator = "Контакты")
 	private UIView contactsTab;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[4]")
 	private UIView timerCall;
 
-	@FindBy(locator =  "//window[1]/scrollview[1]/webview[1]/text[4]")
+	@FindBy(locator =  "//window[1]/scrollview[1]/webview[1]/text[3]")
 	private UIView contactNumber;
 
 	@FindBy(locator = "Позвонить")
@@ -125,6 +124,9 @@ public class CallPageIos extends CallPage {
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[5]")
 	private UIView deleteFromList;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
+	private UIView microphone;
 	
 	@FindBy(locator = "OK")
 	private UIView okButton;
@@ -173,7 +175,6 @@ public class CallPageIos extends CallPage {
 
 	@Override
 	public boolean isStatusAvailable() {
-		// TODO Auto-generated method stub
 		return star.isExists();
 	}
 
@@ -279,7 +280,7 @@ public class CallPageIos extends CallPage {
 
 	@Override
 	public boolean isMicrophoneWork() {
-		Rectangle point = webview.getLocation();
+		/*Rectangle point = webview.getLocation();
 		double x = 100;
 		double y = 355;
 		if ((point.getX() + x) == 100) {
@@ -288,7 +289,13 @@ public class CallPageIos extends CallPage {
 			webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
 			return true;
 		} else
-			return false;
+			return false; */
+		Rectangle point = microphone.getLocation();
+		microphone.touchWithCoordinates(point.getX(), point.getY());
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
+		microphone.touchWithCoordinates(point.getX(), point.getY());
+		return true;
+		
 	}
 
 	@Override

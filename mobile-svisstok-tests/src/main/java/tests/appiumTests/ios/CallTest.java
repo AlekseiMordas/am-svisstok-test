@@ -20,7 +20,7 @@ public class CallTest extends BaseTest {
 	//protected static final String USER_NAME = ApplicationStorage.getCallerName();
 	protected static final String NAME = "Qwerty";
 	protected static final String NUMBER = "1234";
-
+/*
 	@Test(priority = 1)
 	public void checkNumberFieldDigits() {
 		call.inputFromNativeKeyboard(EXPECTED_TYPE_VALUE);
@@ -44,12 +44,10 @@ public class CallTest extends BaseTest {
 		call.clickCallButton();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		String callNameConnection = call.getNameConnection();
-	//	String actualAbonentName = call.getNameAbonent();
 		((CallPage) call.cancelCall()).checkPage();
 		Assert.assertEquals(EXPECTED_CALL_NAME, callNameConnection);
-	//	Assert.assertEquals(PHONE_NUMBER, actualAbonentName);
 	}
-	
+
 	@Test(priority = 8, description = "Check timer call")
 	public void checkTimerCall() {
 		call.inputFromNativeKeyboard(USER_NAME);
@@ -75,7 +73,7 @@ public class CallTest extends BaseTest {
 		  Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		  Assert.assertTrue(call.isStatusAvailable()); 
 	  }
-	 
+*/
 	 @Test(priority = 7, description = "Check display name abonent in time call")
 		public void checkDisplayNameAbonentInCall() {
 			call.inputFromNativeKeyboard(USER_NAME);
@@ -84,7 +82,7 @@ public class CallTest extends BaseTest {
 			((CallPage) call.cancelCall()).checkPage();
 			Assert.assertTrue(!actualAbonentName.isEmpty(), "Incorrect abonent name");
 		}
-	  
+/*  
 	 @Test(priority = 9, description = "Check microfone, Check speaker")
 		public void checkMicrofone() {
 			call.inputFromNativeKeyboard(USER_NAME);
@@ -96,15 +94,6 @@ public class CallTest extends BaseTest {
 			Assert.assertTrue(isSpeaker);
 		}
 	 
-	/* * TODO Dublicate methods
-	 * @Test(priority=5) public void checkDisplayNameAbonent() {
-	 * 
-	 * call.inputFromNativeKeyboard(PHONE_NUMBER, DIGITS);
-	 * call.clickCallButton(); call.getNameConnection(); String
-	 * actualAbonentName = call.getNameAbonent(); call.cancelCall();
-	 * Assert.assertEquals(PHONE_NUMBER, actualAbonentName); }
-*/
-	
 	@Test(priority = 10, description = "Check call from favorite") //Android bug
 	public void checkCallFromFavotite() {
 		cardContacts = call.clickContact();
@@ -163,7 +152,7 @@ public class CallTest extends BaseTest {
 		  CallPage callPage = call.isIncommingCallReset();
 		  callPage.checkPage();
 	  }
-	
+	*/
 	@AfterMethod
 	public void clearField() {
 		call.clearField();
