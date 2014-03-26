@@ -15,12 +15,14 @@ public class CallTest extends BaseTest {
 
 	private static final String EXPECTED_TYPE_VALUE = "1234567890";
 
-	protected static final String PHONE_NUMBER = ApplicationStorage.getCallerNumber();
-	
-	//protected static final String USER_NAME = ApplicationStorage.getCallerName();
+	protected static final String PHONE_NUMBER = ApplicationStorage
+			.getCallerNumber();
+
+	// protected static final String USER_NAME =
+	// ApplicationStorage.getCallerName();
 	protected static final String NAME = "Qwerty";
 	protected static final String NUMBER = "1234";
-/*
+
 	@Test(priority = 1)
 	public void checkNumberFieldDigits() {
 		call.inputFromNativeKeyboard(EXPECTED_TYPE_VALUE);
@@ -56,7 +58,7 @@ public class CallTest extends BaseTest {
 		call.cancelCall();
 		Assert.assertTrue(actualTimer);
 	}
-	
+
 	@Test(priority = 5, description = "Check button cancel in currently call")
 	public void checkCancelCallButtonInCall() {
 		call.inputFromNativeKeyboard(USER_NAME);
@@ -65,36 +67,38 @@ public class CallTest extends BaseTest {
 		Assert.assertTrue(call.isStatusAvailable());
 	}
 
-	  @Test(priority=6) 
-	  public void checkCancelCallButton() {
-		  call.inputFromNativeKeyboard(USER_NAME);
-		  call.clickCallButton(); 
-		  call.cancelCall();
-		  Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		  Assert.assertTrue(call.isStatusAvailable()); 
-	  }
-*/
-	 @Test(priority = 7, description = "Check display name abonent in time call")
-		public void checkDisplayNameAbonentInCall() {
-			call.inputFromNativeKeyboard(USER_NAME);
-			call.clickCallButton();
-			String actualAbonentName = call.getNameAbonent();
-			((CallPage) call.cancelCall()).checkPage();
-			Assert.assertTrue(!actualAbonentName.isEmpty(), "Incorrect abonent name");
-		}
-/*  
-	 @Test(priority = 9, description = "Check microfone, Check speaker")
-		public void checkMicrofone() {
-			call.inputFromNativeKeyboard(USER_NAME);
-			call.clickCallButton();
-			boolean isMicrofone = call.isMicrophoneWork();
-			boolean isSpeaker = call.isSpeakerWork();
-			call.cancelCall();
-			Assert.assertTrue(isMicrofone);
-			Assert.assertTrue(isSpeaker);
-		}
-	 
-	@Test(priority = 10, description = "Check call from favorite") //Android bug
+	@Test(priority = 6)
+	public void checkCancelCallButton() {
+		call.inputFromNativeKeyboard(USER_NAME);
+		call.clickCallButton();
+		call.cancelCall();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		Assert.assertTrue(call.isStatusAvailable());
+	}
+
+	@Test(priority = 7, description = "Check display name abonent in time call")
+	public void checkDisplayNameAbonentInCall() {
+		call.inputFromNativeKeyboard(USER_NAME);
+		call.clickCallButton();
+		String actualAbonentName = call.getNameAbonent();
+		((CallPage) call.cancelCall()).checkPage();
+		Assert.assertTrue(!actualAbonentName.isEmpty(),
+				"Incorrect abonent name");
+	}
+
+	@Test(priority = 9, description = "Check microfone, Check speaker")
+	public void checkMicrofone() {
+		call.inputFromNativeKeyboard(USER_NAME);
+		call.clickCallButton();
+		boolean isMicrofone = call.isMicrophoneWork();
+		boolean isSpeaker = call.isSpeakerWork();
+		call.cancelCall();
+		Assert.assertTrue(isMicrofone);
+		Assert.assertTrue(isSpeaker);
+	}
+
+	@Test(priority = 10, description = "Check call from favorite")
+	// Android bug
 	public void checkCallFromFavotite() {
 		cardContacts = call.clickContact();
 		setting = cardContacts.clickSettings();
@@ -115,7 +119,7 @@ public class CallTest extends BaseTest {
 		favorite.clickCallingButton();
 		boolean actualTimer = checkTimer(favorite.getTimer());
 		favorite.cancelCall();
-		//after cancel android returns in on favourite page
+		// after cancel android returns in on favourite page
 		favorite.clickEditContacts();
 		favorite.clickDeletefromList();
 		favorite.clickDelete();
@@ -123,36 +127,36 @@ public class CallTest extends BaseTest {
 		cardContacts.clickCall();
 		Assert.assertTrue(actualTimer);
 	}
-	
-	 @Test(priority=11) 
-	  public void checkCallFromHistory() {
-		  call.inputFromNativeKeyboard(USER_NAME);
-		  call.clickCallButton(); 
-		  call.cancelCall();
-		  history = call.clickHistory();
-		  history.clickFirstContact();
-		  Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		  boolean actualTimer = checkTimer(history.getTimer());
-		  history.cancelCall();
-		  history.clickCall();
-		  Assert.assertTrue(actualTimer); 
-	  }
- 
-	 @Test(priority=12) 
-	  public void checkCallAndAnswer() {
-		 // TODO : Ping CI Server to run job
-		  boolean actualTimer = checkTimer(call.isAnswerIncommingCall());
-		  call.endCall();
-		  Assert.assertTrue(actualTimer); 
-	  }
 
-	 @Test(priority=13) 
-	  public void checkCallAndReset() {
-		 // TODO : Ping CI Server to run job
-		  CallPage callPage = call.isIncommingCallReset();
-		  callPage.checkPage();
-	  }
-	*/
+	@Test(priority = 11)
+	public void checkCallFromHistory() {
+		call.inputFromNativeKeyboard(USER_NAME);
+		call.clickCallButton();
+		call.cancelCall();
+		history = call.clickHistory();
+		history.clickFirstContact();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		boolean actualTimer = checkTimer(history.getTimer());
+		history.cancelCall();
+		history.clickCall();
+		Assert.assertTrue(actualTimer);
+	}
+
+	@Test(priority = 12)
+	public void checkCallAndAnswer() {
+		// TODO : Ping CI Server to run job
+		boolean actualTimer = checkTimer(call.isAnswerIncommingCall());
+		call.endCall();
+		Assert.assertTrue(actualTimer);
+	}
+
+	@Test(priority = 13)
+	public void checkCallAndReset() {
+		// TODO : Ping CI Server to run job
+		CallPage callPage = call.isIncommingCallReset();
+		callPage.checkPage();
+	}
+
 	@AfterMethod
 	public void clearField() {
 		call.clearField();
