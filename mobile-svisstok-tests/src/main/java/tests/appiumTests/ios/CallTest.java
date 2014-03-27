@@ -22,7 +22,7 @@ public class CallTest extends BaseTest {
 	// ApplicationStorage.getCallerName();
 	protected static final String NAME = "Qwerty";
 	protected static final String NUMBER = "1234";
-
+/*
 	@Test(priority = 1)
 	public void checkNumberFieldDigits() {
 		call.inputFromNativeKeyboard(EXPECTED_TYPE_VALUE);
@@ -141,8 +141,24 @@ public class CallTest extends BaseTest {
 		history.clickCall();
 		Assert.assertTrue(actualTimer);
 	}
-
+*/
 	@Test(priority = 12)
+	public void deleteCallFromHistory() {
+		history = call.clickHistory();
+		int count = history.deleteCall();
+		Assert.assertEquals(history.getCountUsers(), count -1, "User didn't delete");
+		history.clickCall();
+	}
+	
+	@Test(priority = 13)
+	public void deleteAllCallsFromHistory() {
+		history = call.clickHistory();
+		history.deleteAllCalls();
+		Assert.assertEquals(history.getCountUsers(), 0,"Users didn't delete" );
+		history.clickCall();
+	}
+	/*
+	@Test(priority = 14)
 	public void checkCallAndAnswer() {
 		// TODO : Ping CI Server to run job
 		boolean actualTimer = checkTimer(call.isAnswerIncommingCall());
@@ -150,13 +166,13 @@ public class CallTest extends BaseTest {
 		Assert.assertTrue(actualTimer);
 	}
 
-	@Test(priority = 13)
+	@Test(priority = 15)
 	public void checkCallAndReset() {
 		// TODO : Ping CI Server to run job
 		CallPage callPage = call.isIncommingCallReset();
 		callPage.checkPage();
 	}
-
+*/
 	@AfterMethod
 	public void clearField() {
 		call.clearField();

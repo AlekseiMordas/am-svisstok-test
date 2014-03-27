@@ -82,6 +82,22 @@ public class HistoryPageIos extends HistoryPage{
 			Rectangle point = contact.getLocation();
 			
 		}
+
+	@Override
+	public int deleteCall() {
+		throw new RuntimeException("Not yet implemented for IOS");
+	}
+
+
+	@Override
+	public void deleteAllCalls() {
+		throw new RuntimeException("Not yet implemented for IOS");
+	}
+
+	@Override
+	public int getCountUsers() {
+		throw new RuntimeException("Not yet implemented for IOS");
+	}
 	
 
 }

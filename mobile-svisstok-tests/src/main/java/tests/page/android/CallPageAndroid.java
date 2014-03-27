@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -302,8 +303,23 @@ public class CallPageAndroid extends CallPage {
 	@SuppressWarnings("unchecked")
 	@Override
 	public HistoryPageAndroid clickHistory() {
-		historyTabButton.touch();
-		return PageFactory.initElements(driver, HistoryPageAndroid.class);
+		Sleeper.SYSTEM_SLEEPER.sleep(4000);
+		List<WebElement> elements = AppiumDriver.class.cast(driver).getDriver()
+				.findElements(By.xpath(historyTabButton.getFoundBy()));
+		for(WebElement element:elements) {
+			try {
+				element.click();
+				LOGGER.info("Click on history tab");
+				return PageFactory.initElements(driver, HistoryPageAndroid.class);
+			}
+			catch(ElementNotVisibleException e) {
+				
+			}
+		}
+		//elements.get(elements.size()-1).click();
+	
+		//historyTabButton.touch();
+		throw new RuntimeException("Can't click on history tab");
 	}
 
 	@Override

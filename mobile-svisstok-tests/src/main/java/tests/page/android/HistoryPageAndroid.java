@@ -11,21 +11,47 @@ import tests.page.HistoryPage;
 
 public class HistoryPageAndroid extends HistoryPage {
 
+	private static final String ACTIVE_PAGE = "//div[contains(@class,'ui-page-active')]";
+
+	@FindBy(locator = ACTIVE_PAGE
+			+ "//div[@id='activeCallView-call-avatar-panlel-status']")
+	private UIView timerCall;
+
+	@FindBy(locator = ACTIVE_PAGE
+			+ "//ul[contains(@id,'historyViewul')]//li[1]//h1")
+	private UIView firstContact;
+
+	@FindBy(locator = ACTIVE_PAGE + "//a[contains(@class,'ui-btn-color-red')]")
+	private UIView cancelCallButton;
+
+	@FindBy(locator = ACTIVE_PAGE
+			+ "//a[contains(@id,'historyView-tab-btn-dialpad')]")
+	private UIView callTabButton;
+
+	@FindBy(locator = ACTIVE_PAGE + "//a[@id='historyView-btn-filter']")
+	private UIView historyFilter;
+
+	@FindBy(locator = ACTIVE_PAGE + "//a[@id='historyView-btn-trash']")
+	private UIView deleteAllButton;
+
+	@FindBy(locator = ACTIVE_PAGE + "//a[@id='historyView-btn-cancel']")
+	private UIView cancelDelete;
+
+	@FindBy(locator = ACTIVE_PAGE + "//a[@id='historyView-btn-apply']")
+	private UIView applyDelete;
+
+	@FindBy(locator = ACTIVE_PAGE + "//a[@id='historyView-btn-edit']")
+	private UIView editContactsButton;
+
+	private static final String CURRENT_USER = "//div[contains(@class,'ui-page-active')]//li//h1[contains(.,'%s')]";
+
+	private static final String LIST_USERS = "//div[contains(@class,'ui-page-active')]//ul[contains(@id,'historyViewul')]//li";
+
+	private static final String TRASH_CURRENT_USER = "//li[1]//span[contains(@class,'ui-icon-trash')]";
+
 	public HistoryPageAndroid(NativeDriver driver) {
 		super(driver);
 	}
-
-	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@id='activeCallView-call-avatar-panlel-status']")
-	private UIView timerCall;
-
-	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//ul[contains(@id,'historyViewul')]//li[1]//h1")
-	private UIView firstContact;
-
-	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[contains(@class,'ui-btn-color-red')]")
-	private UIView cancelCallButton;
-	
-	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[contains(@id,'historyView-tab-btn-dialpad')]")
-	private UIView callTabButton;
 
 	@Override
 	public void checkPage() {
@@ -57,19 +83,41 @@ public class HistoryPageAndroid extends HistoryPage {
 	@Override
 	public void clickEdit() {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	private void clickTrash() {	
+		((AppiumDriver) driver).getDriver()
+				.findElement(By.xpath(TRASH_CURRENT_USER)).click();
 	}
 
 	@Override
-	public void clickTrash() {
-		// TODO Auto-generated method stub
-		
+	public int deleteCall() {
+		int count = getCountUsers();
+		editContactsButton.touch();
+		clickTrash();
+		applyDelete.touch();
+		return count;
+	}
+
+	@Override
+	public void deleteAllCalls() {
+		editContactsButton.touch();
+		deleteAllButton.touch();
+		applyDelete.touch();
+	}
+
+	@Override
+	public int getCountUsers() {
+		List<WebElement> elements = ((AppiumDriver) driver).getDriver()
+				.findElements(By.xpath(LIST_USERS));
+		return elements.size();
 	}
 
 	@Override
 	public void findDeleteContacts() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

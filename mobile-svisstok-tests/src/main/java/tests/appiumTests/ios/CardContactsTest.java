@@ -40,22 +40,17 @@ public class CardContactsTest extends BaseTest {
 			driver = IosDriverWrapper.getIphone(HOST, PORT);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
 			call = PageFactory.initElements(driver, CallPageIos.class);
-			// call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 			cardContacts = PageFactory.initElements(driver,
 					CardContactsPageIos.class);
 			Sleeper.SYSTEM_SLEEPER.sleep(5000);
-			//if()
 			break;
 		case ANDROID:
 			driver = IosDriverWrapper.getAndroid(HOST, PORT);
 			Sleeper.SYSTEM_SLEEPER.sleep(10000);
 			main = PageFactory.initElements(driver, LoginPageAndroid.class);
 			call = PageFactory.initElements(driver, CallPageAndroid.class);
-			// / call = main.simpleLogin(USER_NAME, USER_PASSWORD, false,
-			// false);
 			cardContacts = PageFactory.initElements(driver,
 					CardContactsPageAndroid.class);
-			// call.checkPage();
 			break;
 		default:
 			throw new XmlParametersException("Invalid device");
