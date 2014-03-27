@@ -14,7 +14,7 @@ public abstract class HistoryPage extends BasePage {
 
 	public abstract void clickFirstContact();
 
-	public abstract void cancelCall();
+	public abstract <T> T cancelCall();
 
 	public abstract String getTimer();
 

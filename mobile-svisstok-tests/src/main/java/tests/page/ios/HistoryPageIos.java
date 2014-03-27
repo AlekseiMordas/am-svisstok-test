@@ -18,7 +18,7 @@ public class HistoryPageIos extends HistoryPage{
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
 	private UIView webview;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[4]")
 	private UIView timerCall;
 	
 	@FindBy(locator = "Позвонить")
@@ -35,6 +35,9 @@ public class HistoryPageIos extends HistoryPage{
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
 	private UIView contact;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]/link[1]")
+	private UIView cancelCallButton;
 
 	@Override
 	public void checkPage() {
@@ -50,11 +53,10 @@ public class HistoryPageIos extends HistoryPage{
 	}
 
 	@Override
-	public void cancelCall() {
-		Rectangle point = webview.getLocation();
-		double x = 24;
-		double y = 432;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+	public HistoryPageIos cancelCall() {
+		Rectangle point = cancelCallButton.getLocation();
+		cancelCallButton.touchWithCoordinates(point.getX(), point.getY());
+		return PageFactory.initElements(driver, HistoryPageIos.class);
 		}
 	
 	public String getTimer() {
