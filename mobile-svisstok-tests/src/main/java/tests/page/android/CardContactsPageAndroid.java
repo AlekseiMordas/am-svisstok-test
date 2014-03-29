@@ -1,11 +1,8 @@
 package tests.page.android;
 
-import java.awt.Rectangle;
-
 import org.openqa.selenium.By;
 
 import tests.page.CardContactsPage;
-import tests.page.SettingsPage;
 
 import com.annotation.FindBy;
 import com.element.UIView;
@@ -101,20 +98,25 @@ public class CardContactsPageAndroid extends CardContactsPage {
 	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@data-icon='star']")
 	private UIView starButton;
 
+	@Override
 	public void clickAddContacts() {
 		addContact.touch();
 	}
 
+	@Override
 	public void clickAddContactsFromList() {
 		addContactsFromList.touch();
 	}
 
+	@Override
 	public void inputName(String text) {
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		nameField.touch();
 		nameField.clear();
 		nameField.type(text);
 	}
 
+	@Override
 	public void inputContact(String contact) {
 		contactField.touch();
 		contactField.clear();
@@ -123,7 +125,6 @@ public class CardContactsPageAndroid extends CardContactsPage {
 
 	@Override
 	public void inputSecondContact(String contact) {
-		System.out.println(((AppiumDriver) driver).getDriver().getPageSource());
 		contactSecondField.touch();
 		contactSecondField.type(contact);
 	}
@@ -131,6 +132,7 @@ public class CardContactsPageAndroid extends CardContactsPage {
 	@Override
 	public void clickSave() {
 		backButton.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		backButton.touch();
 	}
 
@@ -140,64 +142,78 @@ public class CardContactsPageAndroid extends CardContactsPage {
 
 	}
 
+	@Override
 	public String getContactNumber() {
 		return contactNumber.getText();
 	}
 
+	@Override
 	public String getContactName() {
 		return contactName.getText();
 	}
 
+	@Override
 	public void clickEditContacts() {
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		editContactProfile.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		editContactProfile.touch();
 	}
 
+	@Override
 	public void clickDeletefromList() {
 		deleteFromList.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		deleteFromList.touch();
 	}
 
+	@Override
 	public void clickDelete() {
 		deleteNumber.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		deleteNumber.touch();
 	}
 
+	@Override
 	public void clickCall() {
 		callTabButton.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		callTabButton.touch();
 	}
 
+	@Override
 	public void clickFirstContact() {
 		firstContact.touch();
 	}
 
+	@Override
 	public boolean checkVisibleContactNumber() {
 		return checkVisibleText(getContactNumber());
 	}
 
+	@Override
 	public boolean checkVisibleContactName() {
 		return checkVisibleText(getContactName());
 	}
 
+	@Override
 	public boolean checkVisibleListContacts() {
 		boolean first = checkVisibleText((firstContact.getText().split(" ")[0]));
 		boolean second = checkVisibleText((secondContact.getText().split(" ")[0]));
 		return (first && second);
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public SettingsPageAndroid clickSettings() {
 		settings.touch();
 		return PageFactory.initElements(driver, SettingsPageAndroid.class);
 	}
 
+	@Override
 	public void searchContacts(String text) {
 		searchFiled.touch();
 		searchFiled.type(text);
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public CallPageAndroid clickSearchResultAndCall(String name) {
 		((AppiumDriver) driver)
@@ -209,16 +225,31 @@ public class CardContactsPageAndroid extends CardContactsPage {
 		callButton.touch();
 		return PageFactory.initElements(driver, CallPageAndroid.class);
 	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public CallPageAndroid clickSearchResult(String name) {
+		((AppiumDriver) driver)
+				.getDriver()
+				.findElement(
+						By.xpath(String.format(searchedContact.getFoundBy(),
+								name))).click();
+		callButton.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
+		return PageFactory.initElements(driver, CallPageAndroid.class);
+	}
 
+	@Override
 	public void clickEditFromList() {
 		editFromList.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		editFromList.touch();
 	}
 
+	@Override
 	public void clickProfile() {
 		profileFromList.touch();
 	}
 
+	@Override
 	public String getSecondNumber(String name) {
 		if (((AppiumDriver) driver)
 				.getDriver()
@@ -231,14 +262,17 @@ public class CardContactsPageAndroid extends CardContactsPage {
 
 	}
 
+	@Override
 	public void secondDelete() {
-		System.out.println(((AppiumDriver) driver).getDriver().getPageSource());
+		
 	}
 
+	@Override
 	public void deleteNumber() {
 		deleteNumber.touchByName();
 	}
 
+	@Override
 	public String getMessageDelete() {
 		return messageDelete.getText();
 	}

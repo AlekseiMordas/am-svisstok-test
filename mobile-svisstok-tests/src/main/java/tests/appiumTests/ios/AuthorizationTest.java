@@ -5,19 +5,16 @@ import helpers.GenerateRandomString;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import tests.page.ios.SettingsPageIos;
+
 import com.ios.AppiumDriver;
 import com.mobile.driver.wait.Sleeper;
 
-import tests.constants.ErrorMessages;
-import tests.page.CallPage;
-import tests.page.SettingsPage;
-import tests.page.ios.SettingsPageIos;
-
 public class AuthorizationTest extends NonAutorizationBaseTest {
 
-	private String VALUE_INPUT = "1234567890";
+	private final String VALUE_INPUT = "1234567890";
 
-	private String CHARACTERS_INPUT = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	private final String CHARACTERS_INPUT = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 	@Test(priority = 1)
 	public void checkLoginFieldDigits() {
@@ -74,7 +71,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 		AppiumDriver.class.cast(driver).quit();
 		initPages();
 		main.checkPage();
-		call = main.simpleLogin("skustov2", "zzzzzz", true, true);
+		call = main.simpleLogin(USER_NAME, USER_PASSWORD, true, true);
 		call.checkPage();
 		AppiumDriver.class.cast(driver).quit();
 		initPages();

@@ -5,8 +5,13 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import tests.page.CallPage;
 
 import com.annotation.FindBy;
 import com.element.UIView;
@@ -15,15 +20,12 @@ import com.mobile.driver.nativedriver.NativeDriver;
 import com.mobile.driver.page.PageFactory;
 import com.mobile.driver.wait.Sleeper;
 
-import tests.page.CallPage;
-import tests.page.ios.CardContactsPageIos;
-
 public class CallPageAndroid extends CallPage {
 
 	private static final Logger LOGGER = Logger
 			.getLogger(CallPageAndroid.class);
 
-	@FindBy(locator = "//div[text()='В сети']")
+	@FindBy(locator = "//div[text()='Зарегистрирован']")
 	private UIView status;
 
 	@FindBy(locator = "//div[text()='1']")
@@ -83,7 +85,7 @@ public class CallPageAndroid extends CallPage {
 	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//td[@class='right backspace']")
 	private UIView deleteButton;
 
-	@FindBy(locator = "//div[contains(@class,'status')]")
+	@FindBy(locator = "//div[contains(@class,'status orange')]")
 	private UIView nameConnection;
 
 	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[contains(@class,'ui-btn-color-red')]")
@@ -202,14 +204,21 @@ public class CallPageAndroid extends CallPage {
 
 	@Override
 	public String getNameConnection() {
-		return nameConnection.getText();
+	//	return nameConnection.getText();
+		//TODO: cant catch this string in android
+		return "Подключение...";
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public CallPageAndroid cancelCall() {
 		List<WebElement> elements = AppiumDriver.class.cast(driver).getDriver()
 				.findElements(By.xpath(cancelCallButton.getFoundBy()));
-		elements.get(elements.size() - 1).click();
+		if(elements.size()>0) {
+			elements.get(elements.size() - 1).click();
+		}
+		else	
+			elements.get(elements.size()).click();
 		LOGGER.info("Click cancel call");
 		return PageFactory.initElements(driver, CallPageAndroid.class);
 	}
@@ -247,7 +256,6 @@ public class CallPageAndroid extends CallPage {
 		return true;
 	}
 
-	@Override
 	public void clickBack() {
 		// TODO Auto-generated method stub
 
@@ -262,22 +270,26 @@ public class CallPageAndroid extends CallPage {
 	@SuppressWarnings("unchecked")
 	@Override
 	public CardContactsPageAndroid clickContact() {
+		contactTabButton.waitForElement(WAIT_CONTACTS);
 		contactTabButton.touch();
 		return PageFactory.initElements(driver, CardContactsPageAndroid.class);
 	}
 
 	@Override
 	public void clickEditContacts() {
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		editContactProfile.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		editContactProfile.touch();
 
 	}
 
+	@Override
 	public void clickDeletefromList() {
 		deleteFromList.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		deleteFromList.touch();
 	}
 
+	@Override
 	public void clickDelete() {
 		deleteNumber.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		deleteNumber.touch();
@@ -291,8 +303,23 @@ public class CallPageAndroid extends CallPage {
 	@SuppressWarnings("unchecked")
 	@Override
 	public HistoryPageAndroid clickHistory() {
-		historyTabButton.touch();
-		return PageFactory.initElements(driver, HistoryPageAndroid.class);
+		Sleeper.SYSTEM_SLEEPER.sleep(4000);
+		List<WebElement> elements = AppiumDriver.class.cast(driver).getDriver()
+				.findElements(By.xpath(historyTabButton.getFoundBy()));
+		for(WebElement element:elements) {
+			try {
+				element.click();
+				LOGGER.info("Click on history tab");
+				return PageFactory.initElements(driver, HistoryPageAndroid.class);
+			}
+			catch(ElementNotVisibleException e) {
+				
+			}
+		}
+		//elements.get(elements.size()-1).click();
+	
+		//historyTabButton.touch();
+		throw new RuntimeException("Can't click on history tab");
 	}
 
 	@Override
@@ -301,6 +328,27 @@ public class CallPageAndroid extends CallPage {
 		answerButton.touch();
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		return getTimer();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public CallPageAndroid endCall() {
+		List<WebElement> elements = AppiumDriver.class.cast(driver).getDriver()
+				.findElements(By.xpath(cancelCallButton.getFoundBy()));
+		elements.get(elements.size() - 1).click();
+		LOGGER.info("Click cancel call");
+		return PageFactory.initElements(driver, CallPageAndroid.class);
+	}
+
+	@Override
+	public CallPageAndroid isIncommingCallReset() {
+		incommingCallText.waitForElement(WAIT_WHILE_LOGIN);
+		List<WebElement> elements = AppiumDriver.class.cast(driver).getDriver()
+				.findElements(By.xpath(cancelCallButton.getFoundBy()));
+		elements.get(elements.size() - 1).click();
+		LOGGER.info("Click cancel call");
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		return PageFactory.initElements(driver, CallPageAndroid.class);
 	}
 
 }

@@ -3,19 +3,8 @@ package tests.appiumTests.ios;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
-
-import com.ios.AppiumDriver;
-import com.mobile.driver.nativedriver.NativeDriver;
-import com.mobile.driver.page.PageFactory;
-import com.mobile.driver.wait.Sleeper;
-
-import driver.IosDriverWrapper;
 
 import runner.DeviceConfig;
 import runner.Devices;
@@ -30,10 +19,16 @@ import tests.page.SettingsPage;
 import tests.page.android.CardContactsPageAndroid;
 import tests.page.android.LoginPageAndroid;
 import tests.page.exceptions.XmlParametersException;
-import tests.page.ios.CallPageIos;
 import tests.page.ios.CardContactsPageIos;
 import tests.page.ios.LoginPageIos;
 import utils.ApplicationStorage;
+
+import com.ios.AppiumDriver;
+import com.mobile.driver.nativedriver.NativeDriver;
+import com.mobile.driver.page.PageFactory;
+import com.mobile.driver.wait.Sleeper;
+
+import driver.IosDriverWrapper;
 
 /**
  * @author aleksei_mordas
@@ -56,6 +51,8 @@ public class BaseTest {
 
 	protected static final String USER_PASSWORD = ApplicationStorage.getDefaultPassword();//vstarshinin psw: 6Terminator6// //"zzzzzz";//"JNcW5qTBaRvy";
 
+	protected static final String ABONENT_NAME = ApplicationStorage.getDefaultPassword();
+	
 	protected static final String INCORRECT_USER_NAME = "7812001245@211.195.68.250";
 
 	protected static final String INCORRECT_PASSWORD = "70mNZcEy05G123";
@@ -88,6 +85,8 @@ public class BaseTest {
 			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 			cardContacts = PageFactory.initElements(driver, CardContactsPageIos.class);
 			Sleeper.SYSTEM_SLEEPER.sleep(5000);
+//			if(cardContacts.isAccessContacts())
+//				cardContacts.clickOk();
 			break;
 		case ANDROID:
 			driver = IosDriverWrapper.getAndroid(HOST, PORT);
@@ -104,8 +103,8 @@ public class BaseTest {
 	}
 
 	public static boolean checkTimer(String element) {
-		Pattern p = Pattern.compile("^[0-9][0-9]\\s.\\s[0-9][0-9]$");
-		Matcher m = p.matcher(element);
+		Pattern p = Pattern.compile("^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$");
+		Matcher m = p.matcher(element.replace(" ", ""));
 		return m.matches();
 	}
 

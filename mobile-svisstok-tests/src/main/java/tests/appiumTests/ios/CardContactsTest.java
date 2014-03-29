@@ -1,11 +1,9 @@
 package tests.appiumTests.ios;
 
-import java.util.Locale;
 import java.util.Random;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -32,6 +30,7 @@ public class CardContactsTest extends BaseTest {
 	protected static String SECOND_NUMBER;
 	protected static final String MSG_DELETE = "Удалено";
 	protected static final String MSG_BLOCK = "Контакт заблокирован";
+	protected static final String STATUS_BLOCK = "Заблокирован";
 
 	@BeforeMethod(description = "Init and check page")
 	public void init() throws Exception {
@@ -41,7 +40,6 @@ public class CardContactsTest extends BaseTest {
 			driver = IosDriverWrapper.getIphone(HOST, PORT);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
 			call = PageFactory.initElements(driver, CallPageIos.class);
-			// call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 			cardContacts = PageFactory.initElements(driver,
 					CardContactsPageIos.class);
 			Sleeper.SYSTEM_SLEEPER.sleep(5000);
@@ -51,11 +49,8 @@ public class CardContactsTest extends BaseTest {
 			Sleeper.SYSTEM_SLEEPER.sleep(10000);
 			main = PageFactory.initElements(driver, LoginPageAndroid.class);
 			call = PageFactory.initElements(driver, CallPageAndroid.class);
-			// / call = main.simpleLogin(USER_NAME, USER_PASSWORD, false,
-			// false);
 			cardContacts = PageFactory.initElements(driver,
 					CardContactsPageAndroid.class);
-			// call.checkPage();
 			break;
 		default:
 			throw new XmlParametersException("Invalid device");
@@ -79,7 +74,7 @@ public class CardContactsTest extends BaseTest {
 	public void checkListContacts() {
 		goToSwisstokList();
 		boolean visibleListContacts = cardContacts.checkVisibleListContacts();
-		cardContacts.clickCall();
+		//cardContacts.clickCall(); we don't need if use afterMethod for driver quite
 		Assert.assertTrue(visibleListContacts, "Contact List not do");
 	}
 
@@ -107,18 +102,19 @@ public class CardContactsTest extends BaseTest {
 		Assert.assertTrue(visibleContactName, "Contact name not visible");
 	}
 
-	@Test(priority = 5, description = "Check call contact")
-	public void checkCallContact() {
-		main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
-		cardContacts = call.clickContact();
-		setting = cardContacts.clickSettings();
-		cardContacts = setting.clickAllContacts();
-		cardContacts.searchContacts(USER_NAME);
-		call = cardContacts.clickSearchResultAndCall(USER_NAME);
-		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		boolean actualTimer = checkTimer(call.getTimer());
-		Assert.assertTrue(actualTimer, "Call timer not started");
-	}
+	//TODO wait CI
+//	@Test(priority = 5, description = "Check call contact")
+//	public void checkCallContact() {
+//		main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+//		cardContacts = call.clickContact();
+//		setting = cardContacts.clickSettings();
+//		cardContacts = setting.clickAllContacts();
+//		cardContacts.searchContacts(USER_NAME);
+//		call = cardContacts.clickSearchResultAndCall(USER_NAME);
+//		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+//		boolean actualTimer = checkTimer(call.getTimer());
+//		Assert.assertTrue(actualTimer, "Call timer not started");
+//	}
 
 	@Test(priority = 6, description = "Check add number's contact")
 	public void checkAddNumberContact() {
@@ -154,7 +150,7 @@ public class CardContactsTest extends BaseTest {
 
 	@Test(priority = 8, description = "Check blocks contact")
 	public void checkBlockContact() {
-		main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+		//main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
 		createUser(SAVED_NAME, CONTACT);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
@@ -169,11 +165,11 @@ public class CardContactsTest extends BaseTest {
 		block.searchContacts(SAVED_NAME);
 		block.clickSearchResult(SAVED_NAME);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		String blockContact = block.getContactName();
+		String blockContact = block.getContactStatusBlock();
 		block.clickEditContacts();
 		block.clickDeletefromList();
 		block.clickDelete();
-		Assert.assertEquals(blockContact, CONTACT);
+		Assert.assertEquals(blockContact, STATUS_BLOCK);
 	}
 
 	@Test(priority = 9, description = "Check edit name contact")
@@ -191,7 +187,7 @@ public class CardContactsTest extends BaseTest {
 		setting = cardContacts.clickSettings();
 		cardContacts = setting.clickAllContacts();
 		cardContacts.searchContacts(OTHER_NAME);
-		call = cardContacts.clickSearchResultAndCall(OTHER_NAME);
+		call = cardContacts.clickSearchResult(OTHER_NAME);
 		String otherName = call.getContactNumber();
 		call.clickEditContacts();
 		call.clickDeletefromList();
@@ -229,7 +225,7 @@ public class CardContactsTest extends BaseTest {
 		setting = cardContacts.clickSettings();
 		favorite = setting.clickFavorite();
 		favorite.searchContacts(SAVED_NAME);
-		favorite.clickSearchResult(SAVED_NAME);
+		favorite.clickSearchResult(SAVED_NAME);//redirect to back, it is bug
 		String number = favorite.getContactName();
 		favorite.clickEditContacts();
 		favorite.clickDeletefromList();
@@ -256,7 +252,7 @@ public class CardContactsTest extends BaseTest {
 		setting = savedContacts.clickSettings();
 		favorite = setting.clickFavorite();
 		favorite.searchContacts(SAVED_NAME);
-		favorite.clickSearchResult(SAVED_NAME);
+		favorite.clickSearchResult(SAVED_NAME);//redirect to back, it is bug
 		String number = favorite.getContactName();
 		favorite.clickEditContacts();
 		favorite.clickDeletefromList();

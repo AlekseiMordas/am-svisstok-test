@@ -3,7 +3,6 @@ package tests.page.ios;
 import java.awt.Rectangle;
 
 import tests.page.CardContactsPage;
-import tests.page.SettingsPage;
 
 import com.annotation.FindBy;
 import com.element.UIView;
@@ -31,10 +30,10 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/textfield[3]")
 	private UIView contactField;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[16]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[7]")
 	private UIView contactNumber;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[14]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[7]")
 	private UIView contactName;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[17]/link[1]")
@@ -58,20 +57,19 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "Изменить")
 	private UIView editFromList;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[20]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[11]")
 	private UIView secondNumber;
 
 	@FindBy(locator = "Удалить")
 	private UIView deleteNumber;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[14]")
-	// "//window[1]/scrollview[1]/webview[1]/text[28]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[6]")
 	private UIView messageDelete;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[24]")
 	private UIView block;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[4]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]")
 	private UIView messageBlock;
 
 	@FindBy(locator = "Select All")
@@ -80,8 +78,33 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "Cut")
 	private UIView cutButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[16]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[17]")
 	private UIView star;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]/link[1]")
+	private UIView backTab;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]/link[1]")
+	private UIView settingTab;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
+	private UIView settingTabRight;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[12]")
+	private UIView deleteFromList;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[24]")
+	private UIView deleteButton;
+	
+	@FindBy(locator = "Позвонить")
+	private UIView callTab;
+	
+	@FindBy(locator = "OK")
+	private UIView okButton;
+	
+	@FindBy(locator = "//window[4]/alert[1]/scrollview[1]/text[1]")
+	private UIView alertAccessContacts;
+	
 
 	public CardContactsPageIos(NativeDriver driver) {
 		super(driver);
@@ -116,7 +139,8 @@ public class CardContactsPageIos extends CardContactsPage {
 		if (!(element.getText().isEmpty())) {
 			element.touchLong();
 			selectAll.touchByName();
-			cutButton.touchByName();
+			Rectangle point = cutButton.getLocation();
+			cutButton.touchWithCoordinates(point.getX(), point.getY());
 		}
 	}
 
@@ -137,10 +161,10 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public void clickBack() {
-		Rectangle point = webview.getLocation();
-		double x = 10;
-		double y = 5;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = backTab.getLocation();
+	//	double x = 10;
+	//	double y = 5;
+		backTab.touchWithCoordinates(point.getX(), point.getY());
 	}
 	
 	@Override
@@ -163,36 +187,29 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public void clickEditContacts() {
-		Rectangle point = webview.getLocation();
-		double x = 270;
-		webview.touchWithCoordinates(point.getX() + x, point.getY());
-
+		Rectangle point = settingTabRight.getLocation();
+		settingTabRight.touchWithCoordinates(point.getX(), point.getY());
 	}
 
 	@Override
 	public void clickDeletefromList() {
-		Rectangle point = webview.getLocation();
-		double x = 116;
-		webview.touchWithCoordinates(point.getX() + x, point.getY());
+		Rectangle point = deleteFromList.getLocation();
+		deleteFromList.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(5000);
 	}
 
-	@Override
-	public void clickDelete() {
-		// delete.touch();
-		Rectangle point = webview.getLocation();
-		double x = 20;
-		double y = 245;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
-		// Sleeper.SYSTEM_SLEEPER.sleep(3000);
+	
+	@Override	
+	public void clickDelete(){
+		Rectangle point = deleteButton.getLocation();
+		deleteButton.touchWithCoordinates(point.getX(), point.getY());
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 
 	@Override
 	public void clickCall() {
-		Rectangle point = webview.getLocation();
-		double x = 160;
-		double y = 406;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = callTab.getLocation();
+		callTab.touchWithCoordinates(point.getX(), point.getY());
 	}
 
 	@Override
@@ -223,19 +240,13 @@ public class CardContactsPageIos extends CardContactsPage {
 		boolean second = checkVisibleText((secondContact.getAttribute("name")
 				.split(" ")[0]));
 		return (first && second);
-		// if
-		// return true;
-		// else
-		// return false;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public SettingsPageIos clickSettings() {
-		Rectangle point = webview.getLocation();
-		double x = 10;
-		double y = 5;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = settingTab.getLocation();
+		settingTab.touchWithCoordinates(point.getX(), point.getY());
 		return PageFactory.initElements(driver, SettingsPageIos.class);
 	}
 
@@ -254,6 +265,16 @@ public class CardContactsPageIos extends CardContactsPage {
 		webview.touchWithCoordinates(point.getX(), point.getY() + y);
 		CallPageIos call = PageFactory.initElements(driver, CallPageIos.class);
 		call.clickCall();
+		return call;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public CallPageIos clickSearchResult(String result) {
+		Rectangle point = webview.getLocation();
+		double y = 88;
+		webview.touchWithCoordinates(point.getX(), point.getY() + y);
+		CallPageIos call = PageFactory.initElements(driver, CallPageIos.class);
 		return call;
 	}
 
@@ -299,10 +320,9 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public void clickBlock() {
-		Rectangle point = webview.getLocation();
-		double x = 20;
-		double y = 245;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		Rectangle point = blockFromList.getLocation();
+		blockFromList.touchWithCoordinates(point.getX(), point.getY());
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 
 	@Override
@@ -312,10 +332,8 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public void clickStar() {
-		Rectangle point = webview.getLocation();
-		double x = 275;
-		double y = 331;
-		webview.touchWithCoordinates(275, 331);
+		Rectangle point = star.getLocation();
+		star.touchWithCoordinates(point.getX(), point.getY());
 	}
 
 	@Override
@@ -327,7 +345,14 @@ public class CardContactsPageIos extends CardContactsPage {
 	@Override
 	public void checkPage() {
 		// TODO Auto-generated method stub
-
 	}
+	
+	/*public CallPageIos clickOk(){
+		okButton.touchByName();
+		return PageFactory.initElements(driver, CallPageIos.class);
+	}
+	public boolean isAccessContacts(){
+		return alertAccessContacts.getAttribute("name").equals("Swisstok” Would Like to Access Your Contacts");
+	}*/
 
 }

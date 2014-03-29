@@ -48,6 +48,8 @@ public abstract class CardContactsPage extends  BasePage{
 	
 	public abstract <T> T clickSearchResultAndCall(String result);
 	
+	public abstract <T> T clickSearchResult(String result);
+	
 	public abstract void clickEditFromList();
 	
 	public abstract void clickProfile(); 
@@ -71,4 +73,10 @@ public abstract class CardContactsPage extends  BasePage{
 	public abstract void clickStar();
 	
 	public abstract boolean isContactListDownloaded();
+
+//	public abstract boolean isAccessContacts();
+//
+//	public abstract <T> T clickOk();
+	
+	
 }

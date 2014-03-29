@@ -1,20 +1,18 @@
 package tests.page.android;
 
-import java.awt.Rectangle;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import tests.page.FavoritePage;
+
 import com.annotation.FindBy;
 import com.element.UIView;
 import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
-import com.mobile.driver.page.PageFactory;
 import com.mobile.driver.wait.Sleeper;
-
-import tests.page.FavoritePage;
 
 public class FavoritePageAndroid extends FavoritePage {
 
@@ -61,6 +59,7 @@ public class FavoritePageAndroid extends FavoritePage {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
 	public void searchContacts(String text) {
 		searchFiled.touch();
 		searchFiled.type(text);
@@ -73,35 +72,42 @@ public class FavoritePageAndroid extends FavoritePage {
 		((AppiumDriver) driver).getDriver().findElement(By.xpath(locator)).click();
 	}
 
+	@Override
 	public String getContactName() {
 		return contactNumber.getText();
 	}
 
+	@Override
 	public void clickEditContacts() {
-		System.out.println(((AppiumDriver) driver).getDriver().getPageSource());
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		editFromList.touch();
 	}
 
+	@Override
 	public void clickDeletefromList() {
 		deleteFromList.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		deleteFromList.touch();
 	}
 
+	@Override
 	public void clickDelete() {
 		deleteNumber.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		deleteNumber.touch();
 	}
 
+	@Override
 	public void clickCall() {
 		callTabButton.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		callTabButton.touch();
 	}
 
+	@Override
 	public void clickCallingButton() {
 		callingButton.touch();
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
 
+	@Override
 	public void cancelCall() {
 		List<WebElement> elements = AppiumDriver.class.cast(driver).getDriver()
 				.findElements(By.xpath(cancelCallButton.getFoundBy()));
@@ -109,6 +115,7 @@ public class FavoritePageAndroid extends FavoritePage {
 		LOGGER.info("Click cancel call");
 	}
 
+	@Override
 	public String getTimer() {
 		return timerCall.getText();
 	}
