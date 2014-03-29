@@ -22,14 +22,14 @@ public class CallTest extends BaseTest {
 	// ApplicationStorage.getCallerName();
 	protected static final String NAME = "Qwerty";
 	protected static final String NUMBER = "1234";
-/*
+
 	@Test(priority = 1)
 	public void checkNumberFieldDigits() {
 		call.inputFromNativeKeyboard(EXPECTED_TYPE_VALUE);
 		Assert.assertEquals(call.getTextFieldDigitDisplay(),
 				EXPECTED_TYPE_VALUE, "Digits in field are not equasls");
 	}
-
+/*
 	@Test(priority = 2)
 	public void checkDeleteLastSymbol() {
 		call.inputFromNativeKeyboard(PHONE_NUMBER);
@@ -126,36 +126,6 @@ public class CallTest extends BaseTest {
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		cardContacts.clickCall();
 		Assert.assertTrue(actualTimer);
-	}*/
-	
-	@Test(priority = 11)
-	public void checkCallFromHistory() {
-		call.inputFromNativeKeyboard(USER_NAME);
-		call.clickCallButton();
-		call.cancelCall();
-		history = call.clickHistory();
-		history.clickFirstContact();
-		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		boolean actualTimer = checkTimer(history.getTimer());
-		history.cancelCall();
-		history.clickCall();
-		Assert.assertTrue(actualTimer);
-	}
-/*
-	@Test(priority = 12)
-	public void deleteCallFromHistory() {
-		history = call.clickHistory();
-		int count = history.deleteCall();
-		Assert.assertEquals(history.getCountUsers(), count -1, "User didn't delete");
-		history.clickCall();
-	}
-	
-	@Test(priority = 13)
-	public void deleteAllCallsFromHistory() {
-		history = call.clickHistory();
-		history.deleteAllCalls();
-		Assert.assertEquals(history.getCountUsers(), 0,"Users didn't delete" );
-		history.clickCall();
 	}
 	
 	@Test(priority = 14)

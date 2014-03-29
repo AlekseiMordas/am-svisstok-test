@@ -1,9 +1,14 @@
 package tests.page.ios;
 
 import java.awt.Rectangle;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import com.annotation.FindBy;
 import com.element.UIView;
+import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
 import com.mobile.driver.page.PageFactory;
 
@@ -33,12 +38,20 @@ public class HistoryPageIos extends HistoryPage{
 	@FindBy(locator ="//window[1]/scrollview[1]/webview[1]/link[3]")
 	private UIView arrowButton;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
+	@FindBy(locator = FIRST_RESULT)
 	private UIView contact;
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]/link[1]")
 	private UIView cancelCallButton;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]")
+	private UIView messageEmptyList;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]/link[1]")
+	private UIView allContacts;
 
+	private static final String FIRST_RESULT = "//window[1]/scrollview[1]/webview[1]/link[3]";
+	
 	@Override
 	public void checkPage() {
 		// TODO Auto-generated method stub
@@ -69,11 +82,14 @@ public class HistoryPageIos extends HistoryPage{
 	}
 	
 	 public void clickEdit() {
-	    	Rectangle point = arrowButton.getLocation();
-	    	arrowButton.touchWithCoordinates(point.getX(), point.getY()-30);
-			
-		}
+	    Rectangle point = arrowButton.getLocation();
+	    arrowButton.touchWithCoordinates(point.getX(), point.getY()-30);
+	}
 
+	public void clickConfirmation(){
+		Rectangle point = trashButton.getLocation();
+		trashButton.touchWithCoordinates(point.getX(), point.getY()-30);
+	}
 	public void clickTrash() {
 		Rectangle point = trashButton.getLocation();
 		trashButton.touchWithCoordinates(point.getX(), point.getY());
@@ -87,19 +103,29 @@ public class HistoryPageIos extends HistoryPage{
 
 	@Override
 	public int deleteCall() {
-		throw new RuntimeException("Not yet implemented for IOS");
+		int count = getCountUsers();
+		clickTrash();
+		clickConfirmation();
+		return count;
 	}
 
 
 	@Override
 	public void deleteAllCalls() {
-		throw new RuntimeException("Not yet implemented for IOS");
+		Rectangle point =  allContacts.getLocation();
+		allContacts.touchWithCoordinates(point.getX(), point.getY());
+		clickConfirmation();
 	}
 
 	@Override
 	public int getCountUsers() {
-		throw new RuntimeException("Not yet implemented for IOS");
+		List<WebElement> elements = ((AppiumDriver) driver).getDriver()
+				.findElements(By.xpath(FIRST_RESULT));
+		return elements.size();
 	}
 	
+	public String getMessageEmptyList(){
+		return messageEmptyList.getAttribute("name");
+	}
 
 }

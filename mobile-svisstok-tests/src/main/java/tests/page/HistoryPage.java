@@ -29,4 +29,7 @@ public abstract class HistoryPage extends BasePage {
 	public abstract void deleteAllCalls();
 
 	public abstract int getCountUsers();
+	
+	public abstract String getMessageEmptyList();
+
 }
