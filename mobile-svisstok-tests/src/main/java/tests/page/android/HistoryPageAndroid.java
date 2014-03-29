@@ -7,7 +7,10 @@ import com.annotation.FindBy;
 import com.element.UIView;
 import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
+import com.mobile.driver.page.PageFactory;
+
 import tests.page.HistoryPage;
+import tests.page.ios.HistoryPageIos;
 
 public class HistoryPageAndroid extends HistoryPage {
 
@@ -64,11 +67,13 @@ public class HistoryPageAndroid extends HistoryPage {
 		firstContact.touch();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public void cancelCall() {
+	public HistoryPageAndroid cancelCall() {
 		List<WebElement> elements = AppiumDriver.class.cast(driver).getDriver()
 				.findElements(By.xpath(cancelCallButton.getFoundBy()));
 		elements.get(elements.size() - 1).click();
+		return PageFactory.initElements(driver, HistoryPageAndroid.class);
 	}
 
 	public String getTimer() {
@@ -118,6 +123,12 @@ public class HistoryPageAndroid extends HistoryPage {
 	public void findDeleteContacts() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public String getMessageEmptyList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
