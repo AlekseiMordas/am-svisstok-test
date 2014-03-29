@@ -80,7 +80,7 @@ public class BaseTest {
 
 	@BeforeClass(description = "Init and check page")
 	public void initPages() throws Exception {
-
+		driver.setDriverType(DEVICE);
 		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:
 			driver = IosDriverWrapper.getIphone(HOST, PORT);

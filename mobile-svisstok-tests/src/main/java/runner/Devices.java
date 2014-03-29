@@ -2,7 +2,7 @@ package runner;
 
 public enum Devices {
 
-	IPHONE("iPhone Simulator"), ANDROID("android");
+	IPHONE("iPhone Simulator"), ANDROID("android"), IOS7("ios7");
 
 	private final String text;
 
