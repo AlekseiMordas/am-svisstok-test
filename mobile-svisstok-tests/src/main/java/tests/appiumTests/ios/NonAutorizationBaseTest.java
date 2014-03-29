@@ -51,16 +51,25 @@ public class NonAutorizationBaseTest {
 	
 	@BeforeClass(description = "Init and check page")
 	public void initPages() throws Exception {
-		
+
 		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:
 			driver = IosDriverWrapper.getIphone(HOST, PORT);
+			driver.setDriverType(DEVICE);
+			main = PageFactory.initElements(driver, LoginPageIos.class);
+			call = PageFactory.initElements(driver, CallPageIos.class);
+			settings = PageFactory.initElements(driver, SettingsPageIos.class);
+			break;
+		case IOS7:
+			driver = IosDriverWrapper.getIphone(HOST, PORT);
+			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
 			call = PageFactory.initElements(driver, CallPageIos.class);
 			settings = PageFactory.initElements(driver, SettingsPageIos.class);
 			break;
 		case ANDROID:
 			driver = IosDriverWrapper.getAndroid(HOST, PORT);
+			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageAndroid.class);
 			call = PageFactory.initElements(driver, CallPageAndroid.class);
 			break;

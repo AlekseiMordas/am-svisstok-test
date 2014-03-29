@@ -77,16 +77,26 @@ public class BaseTest {
 
 	@BeforeClass(description = "Init and check page")
 	public void initPages() throws Exception {
-		driver.setDriverType(DEVICE);
+		
 		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:
 			driver = IosDriverWrapper.getIphone(HOST, PORT);
+			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
 			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 			cardContacts = PageFactory.initElements(driver, CardContactsPageIos.class);
 			Sleeper.SYSTEM_SLEEPER.sleep(5000);
+			
 //			if(cardContacts.isAccessContacts())
 //				cardContacts.clickOk();
+			break;
+		case IOS7:
+			driver = IosDriverWrapper.getIphone(HOST, PORT);
+			driver.setDriverType(DEVICE);
+			main = PageFactory.initElements(driver, LoginPageIos.class);
+			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+			cardContacts = PageFactory.initElements(driver, CardContactsPageIos.class);
+			Sleeper.SYSTEM_SLEEPER.sleep(5000);
 			break;
 		case ANDROID:
 			driver = IosDriverWrapper.getAndroid(HOST, PORT);
