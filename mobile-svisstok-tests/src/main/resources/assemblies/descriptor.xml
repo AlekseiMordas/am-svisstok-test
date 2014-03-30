@@ -35,6 +35,10 @@
 			<destName>jenkinsCall.xml</destName>
 		</file>
 		<file>
+			<source>history-tests.xml</source>
+			<destName>history-tests.xml</destName>
+		</file>
+		<file>
 			<source>local.properties</source>
 			<destName>local.properties</destName>
 		</file>

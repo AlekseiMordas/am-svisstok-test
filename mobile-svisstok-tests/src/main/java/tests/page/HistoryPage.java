@@ -1,7 +1,5 @@
 package tests.page;
 
-import java.awt.Rectangle;
-
 import tests.page.ios.BasePage;
 
 import com.mobile.driver.nativedriver.NativeDriver;
@@ -31,5 +29,7 @@ public abstract class HistoryPage extends BasePage {
 	public abstract int getCountUsers();
 	
 	public abstract String getMessageEmptyList();
+	
+	public abstract <T> T openFilter();
 
 }

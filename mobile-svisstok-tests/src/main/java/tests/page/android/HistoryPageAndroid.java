@@ -1,16 +1,17 @@
 package tests.page.android;
 
 import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import tests.page.HistoryPage;
+
 import com.annotation.FindBy;
 import com.element.UIView;
 import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
 import com.mobile.driver.page.PageFactory;
-
-import tests.page.HistoryPage;
-import tests.page.ios.HistoryPageIos;
 
 public class HistoryPageAndroid extends HistoryPage {
 
@@ -45,6 +46,9 @@ public class HistoryPageAndroid extends HistoryPage {
 
 	@FindBy(locator = ACTIVE_PAGE + "//a[@id='historyView-btn-edit']")
 	private UIView editContactsButton;
+	
+	@FindBy(locator = ACTIVE_PAGE + "//a[@id='historyView-btn-filter']")
+	private UIView filterButton;
 
 	private static final String CURRENT_USER = "//div[contains(@class,'ui-page-active')]//li//h1[contains(.,'%s')]";
 
@@ -76,10 +80,12 @@ public class HistoryPageAndroid extends HistoryPage {
 		return PageFactory.initElements(driver, HistoryPageAndroid.class);
 	}
 
+	@Override
 	public String getTimer() {
 		return timerCall.getText();
 	}
 
+	@Override
 	public void clickCall() {
 		callTabButton.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		callTabButton.touch();
@@ -131,4 +137,11 @@ public class HistoryPageAndroid extends HistoryPage {
 		return null;
 	}
 
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public HistoryFilterPageAndroid openFilter() {
+		filterButton.touch();
+		return PageFactory.initElements(driver, HistoryFilterPageAndroid.class);
+	}
 }
