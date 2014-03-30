@@ -17,7 +17,7 @@ import tests.page.ios.LoginPageIos;
 import com.ios.AppiumDriver;
 import com.mobile.driver.page.PageFactory;
 import com.mobile.driver.wait.Sleeper;
-
+	
 import driver.IosDriverWrapper;
 
 public class HistoryTests extends BaseTest {
