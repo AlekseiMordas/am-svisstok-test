@@ -367,5 +367,15 @@ public class CallPageAndroid extends CallPage {
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		return PageFactory.initElements(driver, CallPageAndroid.class);
 	}
+	
+    public  boolean isAccessContacts(){
+    	//TODO
+    	return false;
+    }
+	
+	public  HistoryPageAndroid clickOk(){
+		//TODO
+		return PageFactory.initElements(driver, HistoryPageAndroid.class);
+	}
 
 }

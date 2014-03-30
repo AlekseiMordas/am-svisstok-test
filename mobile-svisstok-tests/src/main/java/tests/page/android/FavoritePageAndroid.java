@@ -120,4 +120,10 @@ public class FavoritePageAndroid extends FavoritePage {
 		return timerCall.getText();
 	}
 
+	@Override
+	public void deleteAllCalls() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
