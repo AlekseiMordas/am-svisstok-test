@@ -103,5 +103,26 @@ public class SettingsPageIos extends SettingsPage {
 		return PageFactory.initElements(driver, SavedContactsPageIos.class);
 	}
 
+	@Override
+	public void setZRTPconnection() {
+		throw new RuntimeException("Need Implement this method");
+	}
+
+	@Override
+	public void setSRTPconnection() {
+		throw new RuntimeException("Need Implement this method");
+	}
+
+
+	@Override
+	public <T> T clickCall() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setConnectionByDefault() {
+		throw new RuntimeException("Need Implement this method");
+	}
 
 }

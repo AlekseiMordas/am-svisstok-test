@@ -75,9 +75,12 @@ public class CallPageAndroid extends CallPage {
 
 	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[contains(@id, 'contacts')]")
 	private UIView contactTabButton;
-	
+
 	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[contains(@id, 'history')]")
 	private UIView historyTabButton;
+
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[contains(@id, 'setting')]")
+	private UIView settingsTabButton;
 
 	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//td[@class='center call']/a/span")
 	private UIView callButton;
@@ -96,22 +99,23 @@ public class CallPageAndroid extends CallPage {
 
 	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[contains(@id,'tab-btn-microphone')]")
 	private UIView microphoneButton;
-	
+
 	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[contains(@id,'activeCallView-tab-btn-speaker')]")
 	private UIView speakerButton;
-	
+
 	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactCardView-btn-menu' and @data-icon='edit']")
 	private UIView editContactProfile;
-	
+
 	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@id='contactCardView-menu-panel']//h1[text()='Удалить']")
 	private UIView deleteFromList;
 
 	@FindBy(locator = "//a[@id='contactCardView-delete-confirm-btn-ok']")
 	private UIView deleteNumber;
-	
-	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@id='contactCardView-favour-contact']")//h1[@id='contactCardView-title']
+
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//div[@id='contactCardView-favour-contact']")
+	// h1[@id='contactCardView-title']
 	private UIView contactName;
-	
+
 	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[contains(@class,'ui-btn-color-green')]")
 	private UIView answerButton;
 
@@ -204,8 +208,8 @@ public class CallPageAndroid extends CallPage {
 
 	@Override
 	public String getNameConnection() {
-	//	return nameConnection.getText();
-		//TODO: cant catch this string in android
+		// return nameConnection.getText();
+		// TODO: cant catch this string in android
 		return "Подключение...";
 	}
 
@@ -214,10 +218,9 @@ public class CallPageAndroid extends CallPage {
 	public CallPageAndroid cancelCall() {
 		List<WebElement> elements = AppiumDriver.class.cast(driver).getDriver()
 				.findElements(By.xpath(cancelCallButton.getFoundBy()));
-		if(elements.size()>0) {
+		if (elements.size() > 0) {
 			elements.get(elements.size() - 1).click();
-		}
-		else	
+		} else
 			elements.get(elements.size()).click();
 		LOGGER.info("Click cancel call");
 		return PageFactory.initElements(driver, CallPageAndroid.class);
@@ -228,10 +231,23 @@ public class CallPageAndroid extends CallPage {
 		return nameAbonent.getText();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T navigateToSettingsTab() {
-		// TODO Auto-generated method stub
-		throw new RuntimeException("Method not yet implemented for Android");
+	public SettingsPageAndroid navigateToSettingsTab() {
+		List<WebElement> elements = AppiumDriver.class.cast(driver).getDriver()
+				.findElements(By.xpath(settingsTabButton.getFoundBy()));
+		for (WebElement element : elements) {
+			try {
+				element.click();
+				LOGGER.info("Click on settings tab");
+				return PageFactory.initElements(driver,
+						SettingsPageAndroid.class);
+			} catch (ElementNotVisibleException e) {
+
+			}
+		}
+		throw new RuntimeException("Can't click on settings tab");
+
 	}
 
 	@Override
@@ -247,7 +263,7 @@ public class CallPageAndroid extends CallPage {
 		microphoneButton.touch();
 		return true;
 	}
-	
+
 	@Override
 	public boolean isSpeakerWork() {
 		speakerButton.touch();
@@ -306,19 +322,19 @@ public class CallPageAndroid extends CallPage {
 		Sleeper.SYSTEM_SLEEPER.sleep(4000);
 		List<WebElement> elements = AppiumDriver.class.cast(driver).getDriver()
 				.findElements(By.xpath(historyTabButton.getFoundBy()));
-		for(WebElement element:elements) {
+		for (WebElement element : elements) {
 			try {
 				element.click();
 				LOGGER.info("Click on history tab");
-				return PageFactory.initElements(driver, HistoryPageAndroid.class);
-			}
-			catch(ElementNotVisibleException e) {
-				
+				return PageFactory.initElements(driver,
+						HistoryPageAndroid.class);
+			} catch (ElementNotVisibleException e) {
+
 			}
 		}
-		//elements.get(elements.size()-1).click();
-	
-		//historyTabButton.touch();
+		// elements.get(elements.size()-1).click();
+
+		// historyTabButton.touch();
 		throw new RuntimeException("Can't click on history tab");
 	}
 
@@ -340,6 +356,7 @@ public class CallPageAndroid extends CallPage {
 		return PageFactory.initElements(driver, CallPageAndroid.class);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public CallPageAndroid isIncommingCallReset() {
 		incommingCallText.waitForElement(WAIT_WHILE_LOGIN);

@@ -5,6 +5,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import tests.page.CallPage;
+import tests.page.SettingsPage;
 import utils.ApplicationStorage;
 
 import com.mobile.driver.wait.Sleeper;
@@ -22,14 +23,14 @@ public class CallTest extends BaseTest {
 	// ApplicationStorage.getCallerName();
 	protected static final String NAME = "Qwerty";
 	protected static final String NUMBER = "1234";
-
+	/*
 	@Test(priority = 1)
 	public void checkNumberFieldDigits() {
 		call.inputFromNativeKeyboard(EXPECTED_TYPE_VALUE);
 		Assert.assertEquals(call.getTextFieldDigitDisplay(),
 				EXPECTED_TYPE_VALUE, "Digits in field are not equasls");
 	}
-/*
+
 	@Test(priority = 2)
 	public void checkDeleteLastSymbol() {
 		call.inputFromNativeKeyboard(PHONE_NUMBER);
@@ -143,6 +144,34 @@ public class CallTest extends BaseTest {
 		callPage.checkPage();
 	}
 */
+	@Test(priority = 16)
+	public void callWithZRTPConnection() {
+		SettingsPage settings = call.navigateToSettingsTab();
+		settings.setZRTPconnection();
+		CallPage callPage = settings.clickCall();
+		callPage.inputFromNativeKeyboard(USER_NAME);
+		callPage.clickCallButton();
+		boolean actualTimer = checkTimer(call.getTimer());
+		callPage.cancelCall();
+		settings = call.navigateToSettingsTab();
+		settings.setConnectionByDefault();
+		Assert.assertTrue(actualTimer);
+	}
+	
+	@Test(priority = 17)
+	public void callWithSRTPConnection() {
+		SettingsPage settings = call.navigateToSettingsTab();
+		settings.setSRTPconnection();
+		CallPage callPage = settings.clickCall();
+		callPage.inputFromNativeKeyboard(USER_NAME);
+		callPage.clickCallButton();
+		boolean actualTimer = checkTimer(call.getTimer());
+		callPage.cancelCall();
+		settings = call.navigateToSettingsTab();
+		settings.setConnectionByDefault();
+		Assert.assertTrue(actualTimer);
+	}
+	
 	@AfterMethod
 	public void clearField() {
 		call.clearField();
