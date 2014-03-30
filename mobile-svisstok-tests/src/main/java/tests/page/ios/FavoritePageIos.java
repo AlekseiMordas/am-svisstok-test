@@ -18,7 +18,7 @@ public class FavoritePageIos extends FavoritePage{
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/textfield[1]")
 	private UIView searchFiled;
 	
-	@FindBy(locator = "//window[2]/toolbar[1]/button[1]")
+	@FindBy(locator = "//window[2]/toolbar[1]/button[1]", ios7 = "//window[2]/toolbar[1]/button[3]")
 	private UIView doneButton;
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")

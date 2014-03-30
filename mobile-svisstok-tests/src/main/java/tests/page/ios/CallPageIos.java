@@ -77,7 +77,7 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "Cut")
 	private UIView cutButton;
 
-	@FindBy(locator = "//window[2]/toolbar[1]/button[1]")
+	@FindBy(locator = "//window[2]/toolbar[1]/button[1]", ios7 = "//window[2]/toolbar[1]/button[3]")
 	private UIView doneButton;
 
 	@FindBy(locator = "Подключение...")
@@ -92,10 +92,10 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "Настройки")
 	private UIView settingsTab;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[15]/link[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[15]")
 	private UIView callButton;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]/link[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
 	private UIView cancelCallButton;
 
 	@FindBy(locator = "Контакты")
@@ -353,13 +353,11 @@ public class CallPageIos extends CallPage {
 		return true;
 	}
 	
-//	public CallPageIos clickOk(){
-//		okButton.touchByName();
-//		return PageFactory.initElements(driver, CallPageIos.class);
-//	}
-//	public boolean isAccessContacts(){
-//		System.out.println("==" + alertAccessContacts.getAttribute("name"));
-//		return alertAccessContacts.getAttribute("name").equals("Swisstok” Would Like to Access Your Contacts");
-//	}
-
+	public CallPageIos clickOk(){
+		okButton.touchByName();
+		return PageFactory.initElements(driver, CallPageIos.class);
+	}
+	public boolean isAccessContacts(){
+		return alertAccessContacts.getAttribute("name").equals("“Swisstok” Would Like to Access Your Contacts");
+	}
 }

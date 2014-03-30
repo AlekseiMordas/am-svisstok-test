@@ -47,7 +47,7 @@ public class HistoryPageIos extends HistoryPage{
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]")
 	private UIView messageEmptyList;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]/link[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
 	private UIView allContacts;
 
 	private static final String FIRST_RESULT = "//window[1]/scrollview[1]/webview[1]/link[3]";
@@ -73,12 +73,13 @@ public class HistoryPageIos extends HistoryPage{
 		}
 	
 	public String getTimer() {
+		System.out.println("==" + timerCall.getAttribute("label"));
 		return timerCall.getAttribute("label");
 	}
 	
 	public void clickCall(){
 		Rectangle point = callTab.getLocation();
-		webview.touchWithCoordinates(point.getX(), point.getY());
+		callTab.touchWithCoordinates(point.getX(), point.getY());
 	}
 	
 	 public void clickEdit() {

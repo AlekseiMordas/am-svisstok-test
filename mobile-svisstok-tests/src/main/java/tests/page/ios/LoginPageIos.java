@@ -27,7 +27,7 @@ public class LoginPageIos extends LoginPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
 	private UIView loginButton;
 
-	@FindBy(locator = "//window[2]/toolbar[1]/button[1]")
+	@FindBy(locator = "//window[2]/toolbar[1]/button[1]", ios7 = "//window[2]/toolbar[1]/button[3]")
 	private UIView doneButton;
 
 	@FindBy(locator = "Select All")

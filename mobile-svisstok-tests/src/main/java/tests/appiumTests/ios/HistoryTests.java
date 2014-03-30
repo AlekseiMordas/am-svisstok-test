@@ -23,7 +23,7 @@ import driver.IosDriverWrapper;
 public class HistoryTests extends BaseTest {
 	
 	private static final String MESSAGE_EMPTY_LIST = "Список пустой.";
-
+/*
 	@Test(priority = 1)
 	public void checkCallFromHistory() {
 		callOneself();
@@ -37,7 +37,7 @@ public class HistoryTests extends BaseTest {
 		history.clickCall();
 		Assert.assertTrue(actualTimer);
 	}
-
+*/
 	@Test(priority = 2)	
 	public void deleteCallFromHistory() {
 		callOneself();
@@ -47,7 +47,7 @@ public class HistoryTests extends BaseTest {
 		Assert.assertEquals(history.getMessageEmptyList(), MESSAGE_EMPTY_LIST);
 		history.clickCall();
 	}
-	
+/*	
 	@Test(priority = 3)
 	public void deleteAllCallsFromHistory() {
 		callOneself();
@@ -59,7 +59,7 @@ public class HistoryTests extends BaseTest {
 		Assert.assertEquals(history.getMessageEmptyList(), MESSAGE_EMPTY_LIST);
 		history.clickCall();
 	}
-	
+	*/
 	private void callOneself(){
 	   call.inputFromNativeKeyboard(USER_NAME);  
 	   call.clickCallButton(); 

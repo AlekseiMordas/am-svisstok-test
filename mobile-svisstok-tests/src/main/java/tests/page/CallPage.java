@@ -60,7 +60,7 @@ public abstract class CallPage extends BasePage{
 
 	public abstract <T> T isIncommingCallReset();
 	
-//	public abstract boolean isAccessContacts();
-//	
-//	public abstract <T> T clickOk(); 
+	public abstract boolean isAccessContacts();
+	
+	public abstract <T> T clickOk(); 
 }

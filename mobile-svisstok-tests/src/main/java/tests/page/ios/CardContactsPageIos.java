@@ -18,7 +18,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "Заблокировать")
 	private UIView blockFromList;
 
-	@FindBy(locator = "//window[2]/toolbar[1]/button[1]")
+	@FindBy(locator = "//window[2]/toolbar[1]/button[1]", ios7 = "//window[2]/toolbar[1]/button[3]")
 	private UIView doneButton;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
@@ -102,7 +102,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "OK")
 	private UIView okButton;
 	
-	@FindBy(locator = "//window[4]/alert[1]/scrollview[1]/text[1]")
+	@FindBy(locator = "//window[4]/alert[1]")
 	private UIView alertAccessContacts;
 	
 
@@ -346,13 +346,4 @@ public class CardContactsPageIos extends CardContactsPage {
 	public void checkPage() {
 		// TODO Auto-generated method stub
 	}
-	
-	/*public CallPageIos clickOk(){
-		okButton.touchByName();
-		return PageFactory.initElements(driver, CallPageIos.class);
-	}
-	public boolean isAccessContacts(){
-		return alertAccessContacts.getAttribute("name").equals("Swisstok” Would Like to Access Your Contacts");
-	}*/
-
 }
