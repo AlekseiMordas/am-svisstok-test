@@ -12,7 +12,7 @@ public class LoginPageIos extends LoginPage {
 
 	private static final Logger LOGGER = Logger.getLogger(LoginPageIos.class);
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/textfield[1]", ios7 = "blabla")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/textfield[1]")
 	public UIView loginTextfield;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/secure[1]")
