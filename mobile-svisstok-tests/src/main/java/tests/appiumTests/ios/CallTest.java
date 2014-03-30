@@ -8,8 +8,6 @@ import tests.page.CallPage;
 import tests.page.SettingsPage;
 import utils.ApplicationStorage;
 
-import com.mobile.driver.wait.Sleeper;
-
 public class CallTest extends BaseTest {
 
 	private static final String EXPECTED_CALL_NAME = "Подключение...";
@@ -159,7 +157,7 @@ public class CallTest extends BaseTest {
 		settings.setConnectionByDefault();
 		Assert.assertTrue(actualTimer);
 	}
-/*	
+	
 	@Test(priority = 17)
 	public void callWithSRTPConnection() {
 		SettingsPage settings = call.navigateToSettingsTab();
@@ -172,7 +170,7 @@ public class CallTest extends BaseTest {
 		settings = call.navigateToSettingsTab();
 		settings.setConnectionByDefault();
 		Assert.assertTrue(actualTimer);
-	}*/
+	}
 	
 	@AfterMethod
 	public void clearField() {

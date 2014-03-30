@@ -55,6 +55,8 @@ public class HistoryPageAndroid extends HistoryPage {
 	private static final String LIST_USERS = "//div[contains(@class,'ui-page-active')]//ul[contains(@id,'historyViewul')]//li";
 
 	private static final String TRASH_CURRENT_USER = "//li[1]//span[contains(@class,'ui-icon-trash')]";
+	
+	private static final String MESSAGE_EMPTY_LIST = "Список пустой.";
 
 	public HistoryPageAndroid(NativeDriver driver) {
 		super(driver);

@@ -5,7 +5,7 @@ import helpers.GenerateRandomString;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import tests.page.ios.SettingsPageIos;
+import tests.page.SettingsPage;
 
 import com.ios.AppiumDriver;
 import com.mobile.driver.wait.Sleeper;
@@ -77,7 +77,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 		initPages();
 		Sleeper.SYSTEM_SLEEPER.sleep(10000);
 		Assert.assertTrue(call.isStatusAvailable(), "");
-		SettingsPageIos settings = call.navigateToSettingsTab();
+		SettingsPage settings = call.navigateToSettingsTab();
 		settings.setAutoLogin(false);
 		Assert.assertTrue(settings.isAutoLoginFlagEnable());
 	}

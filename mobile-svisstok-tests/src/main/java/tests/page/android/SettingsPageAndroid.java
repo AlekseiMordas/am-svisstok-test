@@ -1,22 +1,21 @@
 package tests.page.android;
 
-import java.awt.Rectangle;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+
+import tests.page.SettingsPage;
 
 import com.annotation.FindBy;
 import com.element.UIView;
 import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
 import com.mobile.driver.page.PageFactory;
-import tests.page.SettingsPage;
 
 public class SettingsPageAndroid extends SettingsPage {
 
 	private static final String ACTIVE_PAGE = "//div[contains(@class,'ui-page-active')]";
-	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/slider[3]")
+
+	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//select[@id='settingsView-form-autoLogin']/ancestor::div[@class='right']")
 	private UIView autoLoginSlider;
 
 	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//a[@id='contactsFilterView-btn-ALL']")
@@ -36,7 +35,7 @@ public class SettingsPageAndroid extends SettingsPage {
 
 	@FindBy(locator = "//div[contains(@class,'ui-page-active')]//select[@id='settingsView-form-encryption']")
 	private UIView enctyptionDropdown;
-	
+
 	@FindBy(locator = ACTIVE_PAGE
 			+ "//a[contains(@id,'settingsView-tab-btn-dialpad')]")
 	private UIView callTabButton;
@@ -52,28 +51,30 @@ public class SettingsPageAndroid extends SettingsPage {
 	@Override
 	public void setAutoLogin(boolean flag) {
 		if (flag) {
-			if (autoLoginSlider.getAttribute("value").equals("0.00")) {
+			if (autoLoginSlider.getText().equals("Нет")) {
 				autoLoginSlider.touch();
 			}
 		} else {
-			if (autoLoginSlider.getAttribute("value").equals("1")) {
+			if (autoLoginSlider.getText().equals("Да")) {
 				autoLoginSlider.touch();
 			}
 		}
+
 	}
 
 	@Override
 	public boolean isAutoLoginFlagEnable() {
-		return autoLoginSlider.getAttribute("value").equals("0.00") ? true
-				: false;
+		return autoLoginSlider.getText().equals("Да");
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public CardContactsPageAndroid clickAllContacts() {
 		allContactsButton.touch();
 		return PageFactory.initElements(driver, CardContactsPageAndroid.class);
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public CardContactsPageAndroid clickSwisstokContacts() {
 		swisstokContacts.touch();
@@ -118,7 +119,7 @@ public class SettingsPageAndroid extends SettingsPage {
 		select.selectByVisibleText("SRTP");
 
 	}
-	
+
 	@Override
 	public void setConnectionByDefault() {
 		WebElement dropdown = ((AppiumDriver) driver).getDriver()
@@ -127,7 +128,7 @@ public class SettingsPageAndroid extends SettingsPage {
 		select.selectByVisibleText("Отключено");
 
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public CallPageAndroid clickCall() {

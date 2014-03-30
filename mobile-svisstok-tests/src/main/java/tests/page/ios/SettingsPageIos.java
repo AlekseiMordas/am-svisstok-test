@@ -2,17 +2,13 @@ package tests.page.ios;
 
 import java.awt.Rectangle;
 
-import org.openqa.selenium.support.FindAll;
+import tests.page.SettingsPage;
 
 import com.annotation.FindBy;
 import com.element.UIView;
 import com.mobile.driver.nativedriver.NativeDriver;
 import com.mobile.driver.page.PageFactory;
 import com.mobile.driver.wait.Sleeper;
-
-import tests.page.BlockPage;
-import tests.page.SettingsPage;
-import tests.page.ios.BasePage;
 
 public class SettingsPageIos extends SettingsPage {
 
@@ -59,9 +55,10 @@ public class SettingsPageIos extends SettingsPage {
 
 	@Override
 	public boolean isAutoLoginFlagEnable() {
-		return autoLoginSlider.getAttribute("value").equals("0.00") ? true:false;
+		return autoLoginSlider.getAttribute("value").equals("0.00");
 	}
 	
+	@Override
 	@SuppressWarnings("unchecked")
 	public CardContactsPageIos clickAllContacts(){
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
@@ -71,6 +68,7 @@ public class SettingsPageIos extends SettingsPage {
 	}
 	
 	//use coordinats, because dynamic xPath
+	@Override
 	@SuppressWarnings("unchecked")
 	public CardContactsPageIos clickSwisstokContacts(){
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
@@ -87,6 +85,7 @@ public class SettingsPageIos extends SettingsPage {
 		return PageFactory.initElements(driver, BlockPageIos.class);
 	}
 	
+	@Override
 	@SuppressWarnings("unchecked")
 	public FavoritePageIos clickFavorite(){
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
@@ -95,6 +94,7 @@ public class SettingsPageIos extends SettingsPage {
 		return PageFactory.initElements(driver, FavoritePageIos.class);
 	}
 	
+	@Override
 	@SuppressWarnings("unchecked")
 	public SavedContactsPageIos clickSavedContacts(){
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
