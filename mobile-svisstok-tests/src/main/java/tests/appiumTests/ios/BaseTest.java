@@ -77,7 +77,6 @@ public class BaseTest {
 
 	@BeforeClass(description = "Init and check page")
 	public void initPages() throws Exception {
-		
 		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:
 			driver = IosDriverWrapper.getIphone(HOST, PORT);
@@ -101,6 +100,7 @@ public class BaseTest {
 		case ANDROID:
 			driver = IosDriverWrapper.getAndroid(HOST, PORT);
 			Sleeper.SYSTEM_SLEEPER.sleep(10000);
+			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageAndroid.class);
 			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 			cardContacts = PageFactory.initElements(driver, CardContactsPageAndroid.class);
