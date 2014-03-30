@@ -62,5 +62,5 @@ public abstract class CallPage extends BasePage{
 	
 	public abstract boolean isAccessContacts();
 	
-	public abstract <T> T clickOk(); 
+	public abstract <T> T clickOk();
 }

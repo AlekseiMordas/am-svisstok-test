@@ -18,7 +18,8 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "Заблокировать")
 	private UIView blockFromList;
 
-	@FindBy(locator = "//window[2]/toolbar[1]/button[1]", ios7 = "//window[2]/toolbar[1]/button[3]")
+	@FindBy(locator = "//window[2]/toolbar[1]/button[1]", 
+			ios7 = "//window[2]/toolbar[1]/button[3]")
 	private UIView doneButton;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
@@ -81,10 +82,10 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[17]")
 	private UIView star;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]/link[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
 	private UIView backTab;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]/link[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
 	private UIView settingTab;
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")

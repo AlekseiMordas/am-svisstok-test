@@ -68,7 +68,7 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[2]/UIAKeyboard[1]/UIAKey[29]")
 	private UIView moreNumber;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[16]/link[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[16]")
 	private UIView deleteButton;
 
 	@FindBy(locator = "Select All")
@@ -77,13 +77,15 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "Cut")
 	private UIView cutButton;
 
-	@FindBy(locator = "//window[2]/toolbar[1]/button[1]", ios7 = "//window[2]/toolbar[1]/button[3]")
+	@FindBy(locator = "//window[2]/toolbar[1]/button[1]", 
+			ios7 = "//window[2]/toolbar[1]/button[3]")
 	private UIView doneButton;
 
 	@FindBy(locator = "Подключение...")
 	private UIView nameConnection;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[1]",
+			ios7 = "//window[1]/scrollview[1]/webview[1]/text[3]")
 	private UIView nameAbonent;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
@@ -98,7 +100,8 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
 	private UIView cancelCallButton;
 
-	@FindBy(locator = "Контакты")
+	@FindBy(locator = "Контакты",
+			ios7 = "//window[1]/scrollview[1]/webview[1]/link[17]")
 	private UIView contactsTab;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[4]")
@@ -110,7 +113,8 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "Позвонить")
 	private UIView callTab;
 	
-	@FindBy(locator = "История")
+	@FindBy(locator = "История", 
+			ios7 = "//window[1]/scrollview[1]/webview[1]/link[18]")
 	private UIView historyButton;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
@@ -218,7 +222,7 @@ public class CallPageIos extends CallPage {
 
 	@Override
 	public void clearField() {
-		while (!fieldNumber.getText().isEmpty()) {
+		while (!fieldNumber.getAttribute("value").isEmpty()) {
 			deleteLastSymbol();
 		}
 	}
@@ -260,8 +264,9 @@ public class CallPageIos extends CallPage {
 	@SuppressWarnings("unchecked")
 	@Override
 	public CallPageIos cancelCall() {
-		Rectangle point = cancelCallButton.getLocation();
-		cancelCallButton.touchWithCoordinates(point.getX(), point.getY());
+//		Rectangle point = cancelCallButton.getLocation();
+//		cancelCallButton.touchWithCoordinates(point.getX(), point.getY());
+		cancelCallButton.touch();
 		return PageFactory.initElements(driver, CallPageIos.class);
 	}
 	

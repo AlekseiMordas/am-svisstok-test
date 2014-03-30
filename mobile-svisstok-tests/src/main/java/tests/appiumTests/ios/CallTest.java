@@ -23,7 +23,7 @@ public class CallTest extends BaseTest {
 	// ApplicationStorage.getCallerName();
 	protected static final String NAME = "Qwerty";
 	protected static final String NUMBER = "1234";
-	/*
+/*	
 	@Test(priority = 1)
 	public void checkNumberFieldDigits() {
 		call.inputFromNativeKeyboard(EXPECTED_TYPE_VALUE);
@@ -94,6 +94,7 @@ public class CallTest extends BaseTest {
 		boolean isMicrofone = call.isMicrophoneWork();
 		boolean isSpeaker = call.isSpeakerWork();
 		call.cancelCall();
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		Assert.assertTrue(isMicrofone);
 		Assert.assertTrue(isSpeaker);
 	}
@@ -116,19 +117,20 @@ public class CallTest extends BaseTest {
 		setting = cardContacts.clickSettings();
 		favorite = setting.clickFavorite();
 		favorite.searchContacts(USER_NAME);
-		favorite.clickSearchResult(USER_NAME);//bug, redirected back
-		favorite.clickCallingButton();
+		favorite.clickSearchResult(USER_NAME);//bug, redirected back iOS6
+//		favorite.clickCallingButton();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		boolean actualTimer = checkTimer(favorite.getTimer());
 		favorite.cancelCall();
 		// after cancel android returns in on favourite page
 		favorite.clickEditContacts();
-		favorite.clickDeletefromList();
-		favorite.clickDelete();
+		favorite.deleteAllCalls();
+		//favorite.clickDelete();
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		cardContacts.clickCall();
 		Assert.assertTrue(actualTimer);
-	}
-	
+	}*/
+/*	
 	@Test(priority = 14)
 	public void checkCallAndAnswer() {
 		// TODO : Ping CI Server to run job
@@ -157,7 +159,7 @@ public class CallTest extends BaseTest {
 		settings.setConnectionByDefault();
 		Assert.assertTrue(actualTimer);
 	}
-	
+/*	
 	@Test(priority = 17)
 	public void callWithSRTPConnection() {
 		SettingsPage settings = call.navigateToSettingsTab();
@@ -170,7 +172,7 @@ public class CallTest extends BaseTest {
 		settings = call.navigateToSettingsTab();
 		settings.setConnectionByDefault();
 		Assert.assertTrue(actualTimer);
-	}
+	}*/
 	
 	@AfterMethod
 	public void clearField() {

@@ -26,7 +26,8 @@ public class HistoryPageIos extends HistoryPage{
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[4]")
 	private UIView timerCall;
 	
-	@FindBy(locator = "Позвонить")
+	@FindBy(locator = "Позвонить", 
+			ios7 = "//window[1]/scrollview[1]/webview[1]/link[4]")
 	private UIView callTab;
 	
 //	@FindBy(locator = "")
@@ -41,7 +42,7 @@ public class HistoryPageIos extends HistoryPage{
 	@FindBy(locator = FIRST_RESULT)
 	private UIView contact;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]/link[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
 	private UIView cancelCallButton;
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]")
@@ -49,6 +50,9 @@ public class HistoryPageIos extends HistoryPage{
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
 	private UIView allContacts;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
+	private UIView settingButton;
 
 	private static final String FIRST_RESULT = "//window[1]/scrollview[1]/webview[1]/link[3]";
 	
@@ -67,13 +71,13 @@ public class HistoryPageIos extends HistoryPage{
 
 	@Override
 	public HistoryPageIos cancelCall() {
-		Rectangle point = cancelCallButton.getLocation();
-		cancelCallButton.touchWithCoordinates(point.getX(), point.getY());
+//		Rectangle point = cancelCallButton.getLocation();
+//		cancelCallButton.touchWithCoordinates(point.getX(), point.getY());
+		cancelCallButton.touch();
 		return PageFactory.initElements(driver, HistoryPageIos.class);
 		}
 	
 	public String getTimer() {
-		System.out.println("==" + timerCall.getAttribute("label"));
 		return timerCall.getAttribute("label");
 	}
 	
@@ -84,12 +88,12 @@ public class HistoryPageIos extends HistoryPage{
 	
 	 public void clickEdit() {
 	    Rectangle point = arrowButton.getLocation();
-	    arrowButton.touchWithCoordinates(point.getX(), point.getY()-30);
+	    arrowButton.touchWithCoordinates(point.getX(), point.getY()-35);
 	}
 
 	public void clickConfirmation(){
 		Rectangle point = trashButton.getLocation();
-		trashButton.touchWithCoordinates(point.getX(), point.getY()-30);
+		trashButton.touchWithCoordinates(point.getX(), point.getY()-35);
 	}
 	public void clickTrash() {
 		Rectangle point = trashButton.getLocation();
