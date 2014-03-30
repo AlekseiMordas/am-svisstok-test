@@ -34,16 +34,16 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 				CHARACTERS_INPUT.toLowerCase());
 	}
 
-	 @Test(priority=3, enabled = false)
-	 public void checkLoginWithIncorrectCredentionals() {
-	 main.checkPage();
-	 String password = GenerateRandomString.generateString();
-	 main.inputLoginTextfield(INCORRECT_USER_NAME);
-	 main.inputPasswordTextfield(password);
-	 main.clickLogin();
-	 Assert.assertTrue(main.isErrorMessageAppears());
-	 }
-	
+	@Test(priority = 3, enabled = false)
+	public void checkLoginWithIncorrectCredentionals() {
+		main.checkPage();
+		String password = GenerateRandomString.generateString();
+		main.inputLoginTextfield(INCORRECT_USER_NAME);
+		main.inputPasswordTextfield(password);
+		main.clickLogin();
+		Assert.assertTrue(main.isErrorMessageAppears());
+	}
+
 	@Test(priority = 4)
 	public void simpleLogin() {
 		main.checkPage();
@@ -63,7 +63,8 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 		initPages();
 		Sleeper.SYSTEM_SLEEPER.sleep(10000);
 		main.checkPage();
-		Assert.assertTrue(main.isSavePasswordCorrect(), "Sava password flad doesn't work correctly.Login or Password filed are empty");
+		Assert.assertTrue(main.isSavePasswordCorrect(),
+				"Save password flag doesn't work correctly.Login or Password field are empty");
 	}
 
 	@Test(priority = 6, description = "Check auto login functionality")
@@ -76,7 +77,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 		AppiumDriver.class.cast(driver).quit();
 		initPages();
 		Sleeper.SYSTEM_SLEEPER.sleep(10000);
-		Assert.assertTrue(call.isStatusAvailable(), "");
+		Assert.assertTrue(call.isStatusAvailable(), "Status not availablee");
 		SettingsPage settings = call.navigateToSettingsTab();
 		settings.setAutoLogin(false);
 		Assert.assertTrue(settings.isAutoLoginFlagEnable());
