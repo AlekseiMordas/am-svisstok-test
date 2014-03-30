@@ -1,6 +1,6 @@
 package tests.appiumTests.ios;
 
-import org.testng.annotations.AfterMethod;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import tests.page.HistoryFilterPage;
@@ -8,9 +8,9 @@ import tests.page.HistoryFilterPage;
 import com.mobile.driver.wait.Sleeper;
 
 public class HistoryTests extends BaseTest {
-	
+
 	private static final String MESSAGE_EMPTY_LIST = "Список пустой.";
-/*
+
 	@Test(priority = 1)
 	public void checkCallFromHistory() {
 		callOneself();
@@ -25,45 +25,51 @@ public class HistoryTests extends BaseTest {
 		Assert.assertTrue(actualTimer);
 	}
 
-	@Test(priority = 2)	
+	@Test(priority = 2)
 	public void deleteCallFromHistory() {
+		clearField();
 		callOneself();
 		history = call.clickHistory();
 		history.clickEdit();
-		history.deleteCall();
-		Assert.assertEquals(history.getMessageEmptyList(), MESSAGE_EMPTY_LIST);
+		int count = history.deleteCall();
+		Assert.assertEquals(history.getCountUsers(), count - 1,
+				"User didn't delete");
+		// Assert.assertEquals(history.getMessageEmptyList(),
+		// MESSAGE_EMPTY_LIST);
 		history.clickCall();
 	}
 
 	@Test(priority = 3)
 	public void deleteAllCallsFromHistory() {
+		clearField();
 		callOneself();
 		call.clearField();
 		callOneself();
 		history = call.clickHistory();
 		history.clickEdit();
 		history.deleteAllCalls();
-		Assert.assertEquals(history.getMessageEmptyList(), MESSAGE_EMPTY_LIST);
+		Assert.assertEquals(history.getCountUsers(), 0, "Users didn't delete");
+		// Assert.assertEquals(history.getMessageEmptyList(),
+		// MESSAGE_EMPTY_LIST);
 		history.clickCall();
 	}
-*/	
-	@Test(priority = 3)
+
+	@Test(priority = 4)
 	public void checkGroupingCallsInHistory() {
 		history = call.clickHistory();
-		HistoryFilterPage historyFilter =history.openFilter();
+		HistoryFilterPage historyFilter = history.openFilter();
 		historyFilter.checkHistoryFilter();
 	}
-	
-	private void callOneself(){
-	   call.inputFromNativeKeyboard(USER_NAME);  
-	   call.clickCallButton(); 
-	   call.cancelCall();
+
+	private void callOneself() {
+		call.inputFromNativeKeyboard(USER_NAME);
+		call.clickCallButton();
+		call.cancelCall();
 	}
-	
-	@AfterMethod
-	public void clearField() {
+
+	private void clearField() {
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		call.clearField();
 	}
-	
+
 }

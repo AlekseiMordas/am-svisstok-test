@@ -109,11 +109,11 @@ public class HistoryFilterPageAndroid extends HistoryFilterPage {
 		Assert.assertEquals(Headers.MISSED.toString(), clickMissedCalls()
 				.getTitle());
 		openFilter();
-		//Assert.assertEquals(Headers.INCOMING, clickIncomingCalls().getTitle());
-	//	openFilter();
-		Assert.assertEquals(Headers.OUTGOING, clickOutcommingCalls().getTitle());
+		Assert.assertEquals(Headers.INCOMING.toString(), clickIncomingCalls().getTitle());
 		openFilter();
-		Assert.assertEquals(Headers.REJECTED, clickRejectedCalls().getTitle());
+		Assert.assertEquals(Headers.OUTGOING.toString(), clickOutcommingCalls().getTitle());
+		openFilter();
+		Assert.assertEquals(Headers.REJECTED.toString(), clickRejectedCalls().getTitle());
 	}
 
 	private void openFilter() {
