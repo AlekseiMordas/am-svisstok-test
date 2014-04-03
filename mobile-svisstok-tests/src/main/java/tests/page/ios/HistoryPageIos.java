@@ -41,7 +41,8 @@ public class HistoryPageIos extends HistoryPage {
 	@FindBy(locator = FIRST_RESULT)
 	private UIView contact;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]/link[1]",
+			ios7 = "//window[1]/scrollview[1]/webview[1]/link[2]")
 	private UIView cancelCallButton;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]")
@@ -53,7 +54,7 @@ public class HistoryPageIos extends HistoryPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
 	private UIView settingButton;
 
-	private static final String FIRST_RESULT = "//window[1]/scrollview[1]/webview[1]/link[3]";
+	private static final String FIRST_RESULT = "//window[1]/scrollview[1]/webview[1]/link";//link[3]
 
 	@Override
 	public void checkPage() {

@@ -3,7 +3,9 @@ package tests.appiumTests.ios;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import runner.Devices;
 import tests.page.HistoryFilterPage;
+import tests.page.exceptions.XmlParametersException;
 
 import com.mobile.driver.wait.Sleeper;
 
@@ -32,10 +34,22 @@ public class HistoryTests extends BaseTest {
 		history = call.clickHistory();
 		history.clickEdit();
 		int count = history.deleteCall();
-		Assert.assertEquals(history.getCountUsers(), count - 1,
-				"User didn't delete");
-		// Assert.assertEquals(history.getMessageEmptyList(),
-		// MESSAGE_EMPTY_LIST);
+		switch (Devices.valueOf(DEVICE)) {
+		case IPHONE:
+			Assert.assertEquals(history.getCountUsers(), count - 3,
+					"User didn't delete");
+			break;
+		case IOS7:
+			Assert.assertEquals(history.getCountUsers(), count -3,
+					"User didn't delete");
+			break;
+		case ANDROID:
+			Assert.assertEquals(history.getCountUsers(), count - 1,
+					"User didn't delete");
+			break;
+		default:
+			throw new XmlParametersException("Invalid device");
+		}
 		history.clickCall();
 	}
 
@@ -43,24 +57,39 @@ public class HistoryTests extends BaseTest {
 	public void deleteAllCallsFromHistory() {
 		clearField();
 		callOneself();
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		call.clearField();
 		callOneself();
 		history = call.clickHistory();
+		int count = history.getCountUsers();
 		history.clickEdit();
 		history.deleteAllCalls();
-		Assert.assertEquals(history.getCountUsers(), 0, "Users didn't delete");
-		// Assert.assertEquals(history.getMessageEmptyList(),
-		// MESSAGE_EMPTY_LIST);
+		switch (Devices.valueOf(DEVICE)) {
+		case IPHONE:
+			Assert.assertEquals(history.getCountUsers(), count - 4,
+					"User didn't delete");
+			break;
+		case IOS7:
+			Assert.assertEquals(history.getCountUsers(), count -4,
+					"User didn't delete");
+			break;
+		case ANDROID:
+			Assert.assertEquals(history.getCountUsers(), 0,
+					"User didn't delete");
+			break;
+		default:
+			throw new XmlParametersException("Invalid device");
+		}
 		history.clickCall();
 	}
-
+/*
 	@Test(priority = 4)
 	public void checkGroupingCallsInHistory() {
 		history = call.clickHistory();
 		HistoryFilterPage historyFilter = history.openFilter();
 		historyFilter.checkHistoryFilter();
 	}
-
+*/
 	private void callOneself() {
 		call.inputFromNativeKeyboard(USER_NAME);
 		call.clickCallButton();

@@ -4,6 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import com.mobile.driver.wait.Sleeper;
+
 import tests.page.CallPage;
 import tests.page.SettingsPage;
 import utils.ApplicationStorage;
@@ -147,6 +149,8 @@ public class CallTest extends BaseTest {
 	@Test(priority = 16)
 	public void callWithZRTPConnection() {
 		SettingsPage settings = call.navigateToSettingsTab();
+		settings.swipe(0.5, 0.8, 1.0, 0.1, 0.5);
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		settings.setZRTPconnection();
 		CallPage callPage = settings.clickCall();
 		callPage.inputFromNativeKeyboard(USER_NAME);
@@ -157,7 +161,7 @@ public class CallTest extends BaseTest {
 		settings.setConnectionByDefault();
 		Assert.assertTrue(actualTimer);
 	}
-	
+	/*
 	@Test(priority = 17)
 	public void callWithSRTPConnection() {
 		SettingsPage settings = call.navigateToSettingsTab();
@@ -170,7 +174,7 @@ public class CallTest extends BaseTest {
 		settings = call.navigateToSettingsTab();
 		settings.setConnectionByDefault();
 		Assert.assertTrue(actualTimer);
-	}
+	}*/
 	
 	@AfterMethod
 	public void clearField() {
