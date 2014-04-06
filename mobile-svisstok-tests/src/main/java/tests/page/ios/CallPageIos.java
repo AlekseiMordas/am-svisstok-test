@@ -98,7 +98,8 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[15]")
 	private UIView callButton;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
+	@FindBy(locator ="//window[1]/scrollview[1]/webview[1]/link[2]/link[1]", 
+			ios7 = "//window[1]/scrollview[1]/webview[1]/link[2]")
 	private UIView cancelCallButton;
 
 	@FindBy(locator = "Контакты",
@@ -265,9 +266,9 @@ public class CallPageIos extends CallPage {
 	@SuppressWarnings("unchecked")
 	@Override
 	public CallPageIos cancelCall() {
-//		Rectangle point = cancelCallButton.getLocation();
-//		cancelCallButton.touchWithCoordinates(point.getX(), point.getY());
-		cancelCallButton.touch();
+		Rectangle point = cancelCallButton.getLocation();
+		cancelCallButton.touchWithCoordinates(point.getX(), point.getY());
+		//cancelCallButton.touch(); for ios7
 		return PageFactory.initElements(driver, CallPageIos.class);
 	}
 	

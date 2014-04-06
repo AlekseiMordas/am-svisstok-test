@@ -2,6 +2,7 @@ package tests.page.ios;
 
 import java.awt.Rectangle;
 
+import tests.page.CallPage;
 import tests.page.SettingsPage;
 
 import com.annotation.FindBy;
@@ -33,8 +34,11 @@ public class SettingsPageIos extends SettingsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[22]")
 	private UIView encryption;
 	
-	@FindBy(locator = "//window[2]/toolbar[1]/segmented[1]")
+	@FindBy(locator = "//window[2]/picker[1]/pickerwheel[1]")
 	private UIView popUpMenu;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[13]/link[1]")
+	private UIView callTab;
 	
 
 	public SettingsPageIos(NativeDriver driver) {
@@ -114,9 +118,9 @@ public class SettingsPageIos extends SettingsPage {
 		Rectangle point = encryption.getLocation();
 		encryption.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
-		
-		
-		
+		point = popUpMenu.getLocation();
+		popUpMenu.touchWithCoordinates(point.getX(), point.getY() + 216/2 + 80);
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 
 	@Override
@@ -125,20 +129,27 @@ public class SettingsPageIos extends SettingsPage {
 		encryption.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		point = popUpMenu.getLocation();
-		popUpMenu.touchWithCoordinates(point.getX() + 400, point.getY() + 10);
+		popUpMenu.touchWithCoordinates(point.getX(), point.getY() + 216/2 + 30);
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 
 
 	@Override
-	public <T> T clickCall() {
-		// TODO Auto-generated method stub
-		return null;
+	public CallPage clickCall() {
+		Rectangle point = callTab.getLocation();
+		callTab.touchWithCoordinates(point.getX(), point.getY());
+		return PageFactory.initElements(driver, CallPageIos.class);
 	}
 
 	@Override
 	public void setConnectionByDefault() {
-		throw new RuntimeException("Need Implement this method");
+		Rectangle point = encryption.getLocation();
+		encryption.touchWithCoordinates(point.getX(), point.getY());
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		point = popUpMenu.getLocation();
+		popUpMenu.touchWithCoordinates(point.getX(), point.getY());
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		clickCall();
 	}
 
 }

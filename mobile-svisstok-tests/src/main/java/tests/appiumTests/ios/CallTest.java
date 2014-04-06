@@ -147,13 +147,12 @@ public class CallTest extends BaseTest {
 		CallPage callPage = call.isIncommingCallReset();
 		callPage.checkPage();
 	}
-
+*/
 	@Test(priority = 16)
 	public void callWithZRTPConnection() {
 		SettingsPage settings = call.navigateToSettingsTab();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		settings.swipe(0.5, 0.8, 1.0, 0.0, 0.5);
-//		BasePage.scrollTop();//((AppiumDriver)driver).scrollTop();
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		settings.setZRTPconnection();
 		CallPage callPage = settings.clickCall();
@@ -162,15 +161,16 @@ public class CallTest extends BaseTest {
 		boolean actualTimer = checkTimer(call.getTimer());
 		callPage.cancelCall();
 		settings = call.navigateToSettingsTab();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		settings.setConnectionByDefault();
 		Assert.assertTrue(actualTimer);
-	}*/
+	}
 	
 	@Test(priority = 17)
 	public void callWithSRTPConnection() {
 		SettingsPage settings = call.navigateToSettingsTab();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
-		settings.swipe(0.5, 0.8, 1.0, 0.0, 0.5);
+		//settings.swipe(0.5, 0.8, 1.0, 0.0, 0.5);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		settings.setSRTPconnection();
 		CallPage callPage = settings.clickCall();
@@ -179,6 +179,7 @@ public class CallTest extends BaseTest {
 		boolean actualTimer = checkTimer(call.getTimer());
 		callPage.cancelCall();
 		settings = call.navigateToSettingsTab();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		settings.setConnectionByDefault();
 		Assert.assertTrue(actualTimer);
 	}
