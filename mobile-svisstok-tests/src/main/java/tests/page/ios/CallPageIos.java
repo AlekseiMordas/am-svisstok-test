@@ -7,6 +7,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.TimeoutException;
 
+import runner.DeviceConfig;
+import runner.Devices;
 import tests.page.CallPage;
 
 import com.annotation.FindBy;
@@ -143,6 +145,8 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]")
 	// Входящий вызов...
 	private UIView incommingCall;
+	
+	protected static final String DEVICE = DeviceConfig.getDevice();
 
 	private static final Logger LOGGER = Logger.getLogger(CallPageIos.class);
 
@@ -266,9 +270,16 @@ public class CallPageIos extends CallPage {
 	@SuppressWarnings("unchecked")
 	@Override
 	public CallPageIos cancelCall() {
-		Rectangle point = cancelCallButton.getLocation();
-		cancelCallButton.touchWithCoordinates(point.getX(), point.getY());
-		//cancelCallButton.touch(); for ios7
+		switch (Devices.valueOf(DEVICE)) {
+		case IPHONE:
+			Rectangle point = cancelCallButton.getLocation();
+			cancelCallButton.touchWithCoordinates(point.getX(), point.getY());
+			break;
+		case IOS7:
+			cancelCallButton.touch();
+		default:
+			break;
+		}
 		return PageFactory.initElements(driver, CallPageIos.class);
 	}
 	
