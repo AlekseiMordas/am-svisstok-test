@@ -12,7 +12,7 @@ import com.mobile.driver.wait.Sleeper;
 public class HistoryTests extends BaseTest {
 
 	private static final String MESSAGE_EMPTY_LIST = "Список пустой.";
-
+/*
 	@Test(priority = 1)
 	public void checkCallFromHistory() {
 		callOneself();
@@ -81,15 +81,16 @@ public class HistoryTests extends BaseTest {
 			throw new XmlParametersException("Invalid device");
 		}
 		history.clickCall();
-	}
-/*
+	}*/
+
 	@Test(priority = 4)
 	public void checkGroupingCallsInHistory() {
 		history = call.clickHistory();
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		HistoryFilterPage historyFilter = history.openFilter();
 		historyFilter.checkHistoryFilter();
 	}
-*/
+
 	private void callOneself() {
 		call.inputFromNativeKeyboard(USER_NAME);
 		call.clickCallButton();

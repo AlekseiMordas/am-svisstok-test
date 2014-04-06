@@ -4,10 +4,12 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import com.ios.AppiumDriver;
 import com.mobile.driver.wait.Sleeper;
 
 import tests.page.CallPage;
 import tests.page.SettingsPage;
+import tests.page.ios.BasePage;
 import utils.ApplicationStorage;
 
 public class CallTest extends BaseTest {
@@ -145,11 +147,13 @@ public class CallTest extends BaseTest {
 		CallPage callPage = call.isIncommingCallReset();
 		callPage.checkPage();
 	}
-*/
+
 	@Test(priority = 16)
 	public void callWithZRTPConnection() {
 		SettingsPage settings = call.navigateToSettingsTab();
-		settings.swipe(0.5, 0.8, 1.0, 0.1, 0.5);
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		settings.swipe(0.5, 0.8, 1.0, 0.0, 0.5);
+//		BasePage.scrollTop();//((AppiumDriver)driver).scrollTop();
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		settings.setZRTPconnection();
 		CallPage callPage = settings.clickCall();
@@ -160,11 +164,14 @@ public class CallTest extends BaseTest {
 		settings = call.navigateToSettingsTab();
 		settings.setConnectionByDefault();
 		Assert.assertTrue(actualTimer);
-	}
-	/*
+	}*/
+	
 	@Test(priority = 17)
 	public void callWithSRTPConnection() {
 		SettingsPage settings = call.navigateToSettingsTab();
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		settings.swipe(0.5, 0.8, 1.0, 0.0, 0.5);
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		settings.setSRTPconnection();
 		CallPage callPage = settings.clickCall();
 		callPage.inputFromNativeKeyboard(USER_NAME);
@@ -174,7 +181,7 @@ public class CallTest extends BaseTest {
 		settings = call.navigateToSettingsTab();
 		settings.setConnectionByDefault();
 		Assert.assertTrue(actualTimer);
-	}*/
+	}
 	
 	@AfterMethod
 	public void clearField() {

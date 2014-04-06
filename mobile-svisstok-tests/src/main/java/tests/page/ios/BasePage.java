@@ -20,7 +20,7 @@ import com.mobile.driver.page.Page;
 
 public abstract class BasePage extends Page {
 
-	protected NativeDriver driver;
+	protected static NativeDriver driver;
 
 	protected static final int WAIT_FOR_ELEMENT_TIMEOUT = 10;
 
@@ -67,5 +67,15 @@ public abstract class BasePage extends Page {
 			swipeObject.put("duration", Double.valueOf(duration));
 			js.executeScript("mobile: swipe", new Object[] { swipeObject });
 		}
+	}
+	
+	public static void scrollTop() {
+		
+		JavascriptExecutor js =(JavascriptExecutor) ((AppiumDriver) driver)
+				.getDriver();
+		/* 192 */     HashMap<String, String> scrollObject = new HashMap<String, String>();
+		/* 193 */     scrollObject.put("direction", "up");
+		/* 194 */     js.executeScript("mobile: scroll", new Object[] { scrollObject });
+		/* 195 */     //LOGGER.info("Scroll top");
 	}
 }

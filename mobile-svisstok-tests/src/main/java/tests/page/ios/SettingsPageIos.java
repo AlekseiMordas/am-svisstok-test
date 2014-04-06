@@ -30,6 +30,12 @@ public class SettingsPageIos extends SettingsPage {
 	@FindBy(locator = "Заблокированные")
 	private UIView block;
 	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[22]")
+	private UIView encryption;
+	
+	@FindBy(locator = "//window[2]/toolbar[1]/segmented[1]")
+	private UIView popUpMenu;
+	
 
 	public SettingsPageIos(NativeDriver driver) {
 		super(driver);
@@ -105,12 +111,22 @@ public class SettingsPageIos extends SettingsPage {
 
 	@Override
 	public void setZRTPconnection() {
-		throw new RuntimeException("Need Implement this method");
+		Rectangle point = encryption.getLocation();
+		encryption.touchWithCoordinates(point.getX(), point.getY());
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		
+		
+		
 	}
 
 	@Override
 	public void setSRTPconnection() {
-		throw new RuntimeException("Need Implement this method");
+		Rectangle point = encryption.getLocation();
+		encryption.touchWithCoordinates(point.getX(), point.getY());
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		point = popUpMenu.getLocation();
+		popUpMenu.touchWithCoordinates(point.getX() + 400, point.getY() + 10);
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 
 

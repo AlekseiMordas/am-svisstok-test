@@ -53,6 +53,9 @@ public class HistoryPageIos extends HistoryPage {
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
 	private UIView settingButton;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
+	private UIView filterButton;
 
 	private static final String FIRST_RESULT = "//window[1]/scrollview[1]/webview[1]/link";//link[3]
 
@@ -140,8 +143,10 @@ public class HistoryPageIos extends HistoryPage {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T openFilter() {
-		throw new RuntimeException("need implement");
+	public HistoryFilterPageIos openFilter() {
+		Rectangle point = filterButton.getLocation();
+		filterButton.touchWithCoordinates(point.getX(), point.getY());
+		return PageFactory.initElements(driver, HistoryFilterPageIos.class);
 	}
 
 }
