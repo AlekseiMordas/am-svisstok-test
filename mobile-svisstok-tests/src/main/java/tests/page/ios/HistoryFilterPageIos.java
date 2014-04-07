@@ -37,6 +37,9 @@ public class HistoryFilterPageIos extends HistoryFilterPage{
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]")
 	private UIView editButton;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]/link[3]/text[1]")
+	private UIView nameContact;
 
 	public HistoryFilterPageIos(NativeDriver driver) {
 		super(driver);
@@ -94,15 +97,6 @@ public class HistoryFilterPageIos extends HistoryFilterPage{
 		// TODO Auto-generated method stub
 		
 	}
-	private String getTitle() {
-		Sleeper.SYSTEM_SLEEPER.sleep(1000);
-		return header.getAttribute("label");
-	}
-	
-	private boolean isExistElement(UIView element){
-		return element.isExists();
-	}
-	
 	public HistoryFilterPageIos openFilter() {
 		Rectangle point = filterButton.getLocation();
 		filterButton.touchWithCoordinates(point.getX(), point.getY());
@@ -121,6 +115,36 @@ public class HistoryFilterPageIos extends HistoryFilterPage{
 		Assert.assertTrue(clickOutcommingCalls().isExistElement(header));
 		openFilter();
 		Assert.assertTrue(clickRejectedCalls().isExistElement(header));
+	}
+	
+	public void checkVisibleShortName(){
+		Assert.assertEquals("skustov", clickAllContacts()
+				.getName(nameContact));
+		openFilter();
+		Assert.assertEquals("skustov", clickMissedCalls()
+				.getName(nameContact));
+		openFilter();
+		Assert.assertEquals("skustov", clickIncomingCalls()
+				.getName(nameContact));
+		openFilter();
+		Assert.assertEquals("skustov", clickOutcommingCalls()
+				.getName(nameContact));
+		openFilter();
+		Assert.assertEquals("skustov", clickRejectedCalls()
+				.getName(nameContact));
+	}
+	
+	private String getTitle() {
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
+		return header.getAttribute("label");
+	}
+	
+	private boolean isExistElement(UIView element){
+		return element.isExists();
+	}
+	
+	private String getName(UIView element){
+		return element.getAttribute("name");
 	}
 
 }

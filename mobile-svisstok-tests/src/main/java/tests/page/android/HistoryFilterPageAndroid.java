@@ -126,5 +126,9 @@ public class HistoryFilterPageAndroid extends HistoryFilterPage {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public void checkVisibleShortName(){
+		throw new RuntimeException("need to implement");
+	}
 
 }

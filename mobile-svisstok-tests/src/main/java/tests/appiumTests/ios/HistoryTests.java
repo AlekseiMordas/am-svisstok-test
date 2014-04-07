@@ -81,7 +81,7 @@ public class HistoryTests extends BaseTest {
 			throw new XmlParametersException("Invalid device");
 		}
 		history.clickCall();
-	}*/
+	}
 
 	@Test(priority = 4)
 	public void checkGroupingCallsInHistory() {
@@ -89,6 +89,17 @@ public class HistoryTests extends BaseTest {
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		HistoryFilterPage historyFilter = history.openFilter();
 		historyFilter.checkHistoryFilter();
+	}*/
+	
+	@Test(priority = 5)
+	public void checkShortNumber() {
+		clearField();
+		callOneself();
+		history = call.clickHistory();
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		//TODO generate test data
+		HistoryFilterPage historyFilter = history.openFilter();
+		historyFilter.checkVisibleShortName();
 	}
 
 	private void callOneself() {

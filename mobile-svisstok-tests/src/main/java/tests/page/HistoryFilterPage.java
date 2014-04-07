@@ -21,4 +21,6 @@ public abstract class HistoryFilterPage extends BasePage{
 	public abstract <T> T clickRejectedCalls();
 	
 	public abstract void checkHistoryFilter();
+	
+	public abstract void checkVisibleShortName();
 }
