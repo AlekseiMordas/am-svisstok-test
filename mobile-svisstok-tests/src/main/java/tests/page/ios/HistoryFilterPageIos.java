@@ -117,6 +117,7 @@ public class HistoryFilterPageIos extends HistoryFilterPage{
 		Assert.assertTrue(clickRejectedCalls().isExistElement(header));
 	}
 	
+	@Override
 	public void checkVisibleShortName(){
 		Assert.assertEquals("skustov", clickAllContacts()
 				.getName(nameContact));

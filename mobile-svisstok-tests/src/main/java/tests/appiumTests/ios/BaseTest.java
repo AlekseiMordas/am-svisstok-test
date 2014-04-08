@@ -120,5 +120,6 @@ public class BaseTest {
 	@AfterClass
 	public void tearDown() throws Exception {
 		AppiumDriver.class.cast(driver).quit();
+		
 	}
 }

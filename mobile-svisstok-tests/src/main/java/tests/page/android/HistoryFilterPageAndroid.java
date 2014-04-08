@@ -37,6 +37,10 @@ public class HistoryFilterPageAndroid extends HistoryFilterPage {
 	@FindBy(locator = "//div[contains(@class,'ui-header ui-bar-a')]//h1[@id='historyView-title']")
 	private UIView header;
 
+	@FindBy(locator = ACTIVE_PAGE
+			+ "//ul[contains(@id,'historyViewul')]//li[1]//h1")
+	private UIView firstContact;
+
 	private static final Logger LOGGER = Logger.getLogger(AppiumDriver.class);
 
 	public HistoryFilterPageAndroid(NativeDriver driver) {
@@ -109,11 +113,14 @@ public class HistoryFilterPageAndroid extends HistoryFilterPage {
 		Assert.assertEquals(Headers.MISSED.toString(), clickMissedCalls()
 				.getTitle());
 		openFilter();
-		Assert.assertEquals(Headers.INCOMING.toString(), clickIncomingCalls().getTitle());
+		Assert.assertEquals(Headers.INCOMING.toString(), clickIncomingCalls()
+				.getTitle());
 		openFilter();
-		Assert.assertEquals(Headers.OUTGOING.toString(), clickOutcommingCalls().getTitle());
+		Assert.assertEquals(Headers.OUTGOING.toString(), clickOutcommingCalls()
+				.getTitle());
 		openFilter();
-		Assert.assertEquals(Headers.REJECTED.toString(), clickRejectedCalls().getTitle());
+		Assert.assertEquals(Headers.REJECTED.toString(), clickRejectedCalls()
+				.getTitle());
 	}
 
 	private void openFilter() {
@@ -126,9 +133,25 @@ public class HistoryFilterPageAndroid extends HistoryFilterPage {
 		// TODO Auto-generated method stub
 
 	}
-	
-	public void checkVisibleShortName(){
-		throw new RuntimeException("need to implement");
+
+	@Override
+	public void checkVisibleShortName() {
+		Assert.assertEquals("skustov", clickAllContacts().getName(firstContact));
+		openFilter();
+		Assert.assertEquals("skustov", clickMissedCalls().getName(firstContact));
+		openFilter();
+		Assert.assertEquals("skustov",
+				clickIncomingCalls().getName(firstContact));
+		openFilter();
+		Assert.assertEquals("skustov",
+				clickOutcommingCalls().getName(firstContact));
+		openFilter();
+		Assert.assertEquals("skustov",
+				clickRejectedCalls().getName(firstContact));
+	}
+
+	private String getName(UIView element) {
+		return element.getText();
 	}
 
 }

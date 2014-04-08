@@ -12,7 +12,7 @@ import com.mobile.driver.wait.Sleeper;
 public class HistoryTests extends BaseTest {
 
 	private static final String MESSAGE_EMPTY_LIST = "Список пустой.";
-/*
+
 	@Test(priority = 1)
 	public void checkCallFromHistory() {
 		callOneself();
@@ -89,7 +89,7 @@ public class HistoryTests extends BaseTest {
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		HistoryFilterPage historyFilter = history.openFilter();
 		historyFilter.checkHistoryFilter();
-	}*/
+	}
 	
 	@Test(priority = 5)
 	public void checkShortNumber() {
