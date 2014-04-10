@@ -6,6 +6,8 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import runner.DeviceConfig;
+import runner.Devices;
 import tests.page.HistoryPage;
 
 import com.annotation.FindBy;
@@ -15,6 +17,8 @@ import com.mobile.driver.nativedriver.NativeDriver;
 import com.mobile.driver.page.PageFactory;
 
 public class HistoryPageIos extends HistoryPage {
+	
+	protected static final String DEVICE = DeviceConfig.getDevice();
 
 	public HistoryPageIos(NativeDriver driver) {
 		super(driver);
@@ -74,9 +78,18 @@ public class HistoryPageIos extends HistoryPage {
 
 	@Override
 	public HistoryPageIos cancelCall() {
-		// Rectangle point = cancelCallButton.getLocation();
-		// cancelCallButton.touchWithCoordinates(point.getX(), point.getY());
-		cancelCallButton.touch();
+		switch (Devices.valueOf(DEVICE)) {
+		case IPHONE:
+			Rectangle point = cancelCallButton.getLocation();
+			 cancelCallButton.touchWithCoordinates(point.getX(), point.getY());
+			break;
+		case IOS7:
+			cancelCallButton.touch();
+			break;
+
+		default:
+			break;
+		}
 		return PageFactory.initElements(driver, HistoryPageIos.class);
 	}
 
