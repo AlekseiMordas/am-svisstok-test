@@ -67,8 +67,9 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[6]")
 	private UIView messageDelete;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[24]")
-	private UIView block;
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[24]",
+			ios7 = "//window[1]/scrollview[1]/webview[1]/link[24]/text[1]")
+	private UIView blockButton;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]")
 	private UIView messageBlock;
@@ -321,8 +322,8 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public void clickBlock() {
-		Rectangle point = blockFromList.getLocation();
-		blockFromList.touchWithCoordinates(point.getX(), point.getY());
+		Rectangle point = blockButton.getLocation();
+		blockButton.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 

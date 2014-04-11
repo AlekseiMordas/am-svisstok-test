@@ -100,7 +100,7 @@ public class CallTest extends BaseTest {
 		Assert.assertTrue(isMicrofone);
 		Assert.assertTrue(isSpeaker);
 	}
-
+*/
 	@Test(priority = 10, description = "Check call from favorite")
 	// Android bug
 	public void checkCallFromFavotite() {
@@ -119,19 +119,19 @@ public class CallTest extends BaseTest {
 		setting = cardContacts.clickSettings();
 		favorite = setting.clickFavorite();
 		favorite.searchContacts(USER_NAME);
-		favorite.clickSearchResult(USER_NAME);//bug, redirected back iOS6
+		favorite.clickSearchResult(USER_NAME);
 //		favorite.clickCallingButton();
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		boolean actualTimer = checkTimer(favorite.getTimer());
 		favorite.cancelCall();
 		// after cancel android returns in on favourite page
-		favorite.clickEditContacts();
-		favorite.deleteAllCalls();
+//		favorite.clickEditContacts();
+//		favorite.deleteAllCalls();
 		//favorite.clickDelete();
-		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+//		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		cardContacts.clickCall();
 		Assert.assertTrue(actualTimer);
-	}*/
+	}
 /*	
 	@Test(priority = 14)
 	public void checkCallAndAnswer() {
@@ -165,7 +165,7 @@ public class CallTest extends BaseTest {
 		settings.setConnectionByDefault();
 		Assert.assertTrue(actualTimer);
 	}
-	
+	/*
 	@Test(priority = 17)
 	public void callWithSRTPConnection() {
 		SettingsPage settings = call.navigateToSettingsTab();
@@ -182,7 +182,7 @@ public class CallTest extends BaseTest {
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		settings.setConnectionByDefault();
 		Assert.assertTrue(actualTimer);
-	}
+	}*/
 	
 	@AfterMethod
 	public void clearField() {
