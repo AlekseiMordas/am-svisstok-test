@@ -11,7 +11,7 @@ Clone project with git clone https://github.com/AlekseiMordas/am-svisstok-test.g
 
 in terminal type "cd mobile-svisstok-tests"
 
-In folder run "mvn clean install"
+In folder run "mvn clean install -Djsse.enableSNIExtension=false"
 
 Go to tests/target/am.svisstok.tests-1.0.0 and run your tests with command:
 
