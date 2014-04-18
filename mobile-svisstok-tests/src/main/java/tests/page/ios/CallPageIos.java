@@ -335,6 +335,7 @@ public class CallPageIos extends CallPage {
 		callButton.touchWithCoordinates(point.getX(), point.getY());
 	}
 
+	@Override
 	public void clickEditContacts(){
 		Rectangle point = settingTab.getLocation();
 		settingTab.touchWithCoordinates(point.getX(), point.getY());
@@ -371,10 +372,12 @@ public class CallPageIos extends CallPage {
 		return true;
 	}
 	
+	@Override
 	public CallPageIos clickOk(){
 		okButton.touchByName();
 		return PageFactory.initElements(driver, CallPageIos.class);
 	}
+	@Override
 	public boolean isAccessContacts(){
 		return alertAccessContacts.getAttribute("name").equals("“Swisstok” Would Like to Access Your Contacts");
 	}

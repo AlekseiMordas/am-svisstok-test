@@ -3,6 +3,7 @@ package tests.page.android;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 
+import runner.DeviceConfig;
 import tests.page.HistoryFilterPage;
 
 import com.annotation.FindBy;
@@ -136,18 +137,16 @@ public class HistoryFilterPageAndroid extends HistoryFilterPage {
 
 	@Override
 	public void checkVisibleShortName() {
-		Assert.assertEquals("skustov", clickAllContacts().getName(firstContact));
+		String name = DeviceConfig.getCaller();
+		Assert.assertEquals(name, clickAllContacts().getName(firstContact));
 		openFilter();
-		Assert.assertEquals("skustov", clickMissedCalls().getName(firstContact));
+		Assert.assertEquals(name, clickMissedCalls().getName(firstContact));
 		openFilter();
-		Assert.assertEquals("skustov",
-				clickIncomingCalls().getName(firstContact));
+		Assert.assertEquals(name, clickIncomingCalls().getName(firstContact));
 		openFilter();
-		Assert.assertEquals("skustov",
-				clickOutcommingCalls().getName(firstContact));
+		Assert.assertEquals(name, clickOutcommingCalls().getName(firstContact));
 		openFilter();
-		Assert.assertEquals("skustov",
-				clickRejectedCalls().getName(firstContact));
+		Assert.assertEquals(name, clickRejectedCalls().getName(firstContact));
 	}
 
 	private String getName(UIView element) {

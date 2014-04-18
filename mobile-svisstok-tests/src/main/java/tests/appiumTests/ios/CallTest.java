@@ -4,13 +4,11 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
-import com.ios.AppiumDriver;
-import com.mobile.driver.wait.Sleeper;
-
 import tests.page.CallPage;
 import tests.page.SettingsPage;
-import tests.page.ios.BasePage;
 import utils.ApplicationStorage;
+
+import com.mobile.driver.wait.Sleeper;
 
 public class CallTest extends BaseTest {
 
@@ -25,7 +23,7 @@ public class CallTest extends BaseTest {
 	// ApplicationStorage.getCallerName();
 	protected static final String NAME = "Qwerty";
 	protected static final String NUMBER = "1234";
-/*	
+	
 	@Test(priority = 1)
 	public void checkNumberFieldDigits() {
 		call.inputFromNativeKeyboard(EXPECTED_TYPE_VALUE);
@@ -45,6 +43,7 @@ public class CallTest extends BaseTest {
 
 	@Test(priority = 3, description = "Check call name")
 	public void checkConnectAnotherAbonent() {
+		
 		call.inputFromNativeKeyboard(PHONE_NUMBER);
 		call.clickCallButton();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
@@ -100,7 +99,7 @@ public class CallTest extends BaseTest {
 		Assert.assertTrue(isMicrofone);
 		Assert.assertTrue(isSpeaker);
 	}
-*/
+
 	@Test(priority = 10, description = "Check call from favorite")
 	// Android bug
 	public void checkCallFromFavotite() {
@@ -165,7 +164,7 @@ public class CallTest extends BaseTest {
 		settings.setConnectionByDefault();
 		Assert.assertTrue(actualTimer);
 	}
-	/*
+	
 	@Test(priority = 17)
 	public void callWithSRTPConnection() {
 		SettingsPage settings = call.navigateToSettingsTab();
@@ -182,7 +181,7 @@ public class CallTest extends BaseTest {
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		settings.setConnectionByDefault();
 		Assert.assertTrue(actualTimer);
-	}*/
+	}
 	
 	@AfterMethod
 	public void clearField() {

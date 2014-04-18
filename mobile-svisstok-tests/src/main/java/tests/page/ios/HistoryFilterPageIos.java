@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 
 import org.testng.Assert;
 
+import runner.DeviceConfig;
 import tests.page.HistoryFilterPage;
 
 import com.annotation.FindBy;
@@ -119,19 +120,20 @@ public class HistoryFilterPageIos extends HistoryFilterPage{
 	
 	@Override
 	public void checkVisibleShortName(){
-		Assert.assertEquals("skustov", clickAllContacts()
+		String name = DeviceConfig.getCaller();
+		Assert.assertEquals(name, clickAllContacts()
 				.getName(nameContact));
 		openFilter();
-		Assert.assertEquals("skustov", clickMissedCalls()
+		Assert.assertEquals(name, clickMissedCalls()
 				.getName(nameContact));
 		openFilter();
-		Assert.assertEquals("skustov", clickIncomingCalls()
+		Assert.assertEquals(name, clickIncomingCalls()
 				.getName(nameContact));
 		openFilter();
-		Assert.assertEquals("skustov", clickOutcommingCalls()
+		Assert.assertEquals(name, clickOutcommingCalls()
 				.getName(nameContact));
 		openFilter();
-		Assert.assertEquals("skustov", clickRejectedCalls()
+		Assert.assertEquals(name, clickRejectedCalls()
 				.getName(nameContact));
 	}
 	

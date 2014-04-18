@@ -5,9 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -21,11 +19,9 @@ import tests.page.HistoryPage;
 import tests.page.LoginPage;
 import tests.page.SavedContactsPage;
 import tests.page.SettingsPage;
-import tests.page.android.CallPageAndroid;
 import tests.page.android.CardContactsPageAndroid;
 import tests.page.android.LoginPageAndroid;
 import tests.page.exceptions.XmlParametersException;
-import tests.page.ios.CallPageIos;
 import tests.page.ios.CardContactsPageIos;
 import tests.page.ios.LoginPageIos;
 import utils.ApplicationStorage;
@@ -34,7 +30,6 @@ import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
 import com.mobile.driver.page.PageFactory;
 import com.mobile.driver.wait.Sleeper;
-import com.sun.jna.platform.win32.BaseTSD;
 
 import driver.IosDriverWrapper;
 
@@ -135,7 +130,7 @@ public class CardContactsTest{
 		OTHER_NAME = "Other" + String.valueOf(new Random().nextInt(99999));
 		SECOND_NUMBER = String.valueOf(new Random().nextInt(99999));
 	}
-/*
+
 	@Test(priority = 1, description = "Check name contact")
 	public void checkListContacts() {
 		goToSwisstokList();
@@ -169,18 +164,18 @@ public class CardContactsTest{
 	}
 
 	//TODO wait CI
-//	@Test(priority = 5, description = "Check call contact")
-//	public void checkCallContact() {
-//		main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
-//		cardContacts = call.clickContact();
-//		setting = cardContacts.clickSettings();
-//		cardContacts = setting.clickAllContacts();
-//		cardContacts.searchContacts(USER_NAME);
-//		call = cardContacts.clickSearchResultAndCall(USER_NAME);
-//		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-//		boolean actualTimer = checkTimer(call.getTimer());
-//		Assert.assertTrue(actualTimer, "Call timer not started");
-//	}
+	@Test(priority = 5, description = "Check call contact")
+	public void checkCallContact() {
+		main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+		cardContacts = call.clickContact();
+		setting = cardContacts.clickSettings();
+		cardContacts = setting.clickAllContacts();
+		cardContacts.searchContacts(USER_NAME);
+		call = cardContacts.clickSearchResultAndCall(USER_NAME);
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		boolean actualTimer = checkTimer(call.getTimer());
+		Assert.assertTrue(actualTimer, "Call timer not started");
+	}
 
 	@Test(priority = 6, description = "Check add number's contact")
 	public void checkAddNumberContact() {
@@ -237,7 +232,7 @@ public class CardContactsTest{
 		block.clickDelete();
 		Assert.assertEquals(blockContact, STATUS_BLOCK);
 	}
-/*
+
 	@Test(priority = 9, description = "Check edit name contact")
 	public void checkEditContact() {
 		//main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
@@ -277,7 +272,7 @@ public class CardContactsTest{
 		cardContacts.clickDeletefromList();
 		cardContacts.clickDelete();
 		Assert.assertEquals(SECOND_NUMBER, otherNumber);
-	}*/
+	}
 
 	@Test(priority = 11, description = "Check add to favorite contact")
 	public void checkAddToFavotite() {
@@ -292,18 +287,39 @@ public class CardContactsTest{
 		favorite = setting.clickFavorite();
 		favorite.searchContacts(USER_NAME);
 		favorite.clickSearchResult(USER_NAME);
+		boolean actualTimer=false;
+		switch (Devices.valueOf(DEVICE)) {
+		case IPHONE:
+			Sleeper.SYSTEM_SLEEPER.sleep(3000);
+			actualTimer = checkTimer(call.getTimer());
+			call.cancelCall();
+			Assert.assertTrue(actualTimer);
+			break;
+		case IOS7:
+			Sleeper.SYSTEM_SLEEPER.sleep(3000);
+			actualTimer = checkTimer(call.getTimer());
+			call.cancelCall();
+			Assert.assertTrue(actualTimer);
+			break;
+		case ANDROID:
+			String number = favorite.getContactName();
+			favorite.clickEditContacts();
+			favorite.clickDeletefromList();
+			favorite.clickDelete();
+			Assert.assertEquals(number, CONTACT);
+			break;
+		default:
+			throw new XmlParametersException("Invalid device");
+		}
 		//Functionality app was changed
 	/*	String number = favorite.getContactName();
 		favorite.clickEditContacts();
 		favorite.clickDeletefromList();
 		favorite.clickDelete();
 		Assert.assertEquals(number, CONTACT );*/
-		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		boolean actualTimer = checkTimer(call.getTimer());
-		call.cancelCall();
-		Assert.assertTrue(actualTimer);
+		
 	}
-/*
+
 	@Test(priority = 12, description = "Check add to favorite for saved contact")
 	public void checkAddToFavotiteSavedContact() {
 	//	main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
@@ -323,20 +339,41 @@ public class CardContactsTest{
 		favorite = setting.clickFavorite();
 		favorite.searchContacts(USER_NAME);
 		favorite.clickSearchResult(USER_NAME);
+		boolean actualTimer=false;
+		switch (Devices.valueOf(DEVICE)) {
+		case IPHONE:
+			Sleeper.SYSTEM_SLEEPER.sleep(3000);
+			actualTimer = checkTimer(call.getTimer());
+			call.cancelCall();
+			Assert.assertTrue(actualTimer);
+			break;
+		case IOS7:
+			Sleeper.SYSTEM_SLEEPER.sleep(3000);
+			actualTimer = checkTimer(call.getTimer());
+			call.cancelCall();
+			Assert.assertTrue(actualTimer);
+			break;
+		case ANDROID:
+			String number = favorite.getContactName();
+			favorite.clickEditContacts();
+			favorite.clickDeletefromList();
+			favorite.clickDelete();
+			Assert.assertEquals(number, CONTACT);
+			break;
+		default:
+			throw new XmlParametersException("Invalid device");
+		}
 		//Functionality app was changed
 		/*String number = favorite.getContactName();
 		favorite.clickEditContacts();
 		favorite.clickDeletefromList();
 		favorite.clickDelete();
 		Assert.assertEquals(number, CONTACT);*/
-		/*Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		boolean actualTimer = checkTimer(call.getTimer());
-		call.cancelCall();
-		Assert.assertTrue(actualTimer);
-	}*/
+		
+	}
 
 	private void createUser(String name, String contact) {
-		// cardContacts = call.clickContact();
+		cardContacts = call.clickContact();
 		cardContacts.clickAddContacts();
 		cardContacts.clickAddContactsFromList();
 		cardContacts.inputName(name);

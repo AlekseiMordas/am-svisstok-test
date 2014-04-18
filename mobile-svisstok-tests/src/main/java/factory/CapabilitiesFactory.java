@@ -1,9 +1,5 @@
 package factory;
 
-import java.io.File;
-import java.net.URISyntaxException;
-import java.net.URL;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
