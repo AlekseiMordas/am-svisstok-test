@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import runner.Devices;
+import runner.annotation.IgnoreTest;
 import tests.page.HistoryFilterPage;
 import tests.page.exceptions.XmlParametersException;
 
@@ -92,6 +93,7 @@ public class HistoryTests extends BaseTest {
 		history.clickCallTab();
 	}
 
+	@IgnoreTest(device="ios7")
 	@Test(priority = 5, enabled = true)
 	public void checkShortNumber() {
 		clearField();

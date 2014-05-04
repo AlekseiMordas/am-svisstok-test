@@ -211,7 +211,6 @@ public class CallPageAndroid extends CallPage {
 		return "Подключение...";
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public CallPageAndroid cancelCall() {
 		List<WebElement> elements = AppiumDriver.class.cast(driver).getDriver()
@@ -229,7 +228,6 @@ public class CallPageAndroid extends CallPage {
 		return nameAbonent.getText();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public SettingsPageAndroid navigateToSettingsTab() {
 		List<WebElement> elements = AppiumDriver.class.cast(driver).getDriver()
@@ -281,7 +279,6 @@ public class CallPageAndroid extends CallPage {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public CardContactsPageAndroid clickContact() {
 		contactTabButton.waitForElement(WAIT_CONTACTS);
@@ -314,7 +311,6 @@ public class CallPageAndroid extends CallPage {
 		return contactName.getText();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public HistoryPageAndroid clickHistoryTab() {
 		Sleeper.SYSTEM_SLEEPER.sleep(4000);
@@ -344,7 +340,6 @@ public class CallPageAndroid extends CallPage {
 		return getTimer();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public CallPageAndroid endCall() {
 		List<WebElement> elements = AppiumDriver.class.cast(driver).getDriver()
@@ -354,7 +349,6 @@ public class CallPageAndroid extends CallPage {
 		return PageFactory.initElements(driver, CallPageAndroid.class);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public CallPageAndroid isIncommingCallReset() {
 		incommingCallText.waitForElement(WAIT_WHILE_LOGIN);

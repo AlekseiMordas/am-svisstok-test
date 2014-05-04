@@ -4,6 +4,7 @@ import utils.HttpClient;
 
 import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
+
 import factory.CapabilitiesFactory;
 
 /**
@@ -40,6 +41,10 @@ public class IosDriverWrapper {
 		return instance;
 	}
 
+	public static NativeDriver getDriver() {
+		return instance;
+	}
+	
 	public static boolean isSessionExist(String host, String port) {
 		return HttpClient
 				.getInstance(String.format(URL, host, port) + STATUS_APPIUM)

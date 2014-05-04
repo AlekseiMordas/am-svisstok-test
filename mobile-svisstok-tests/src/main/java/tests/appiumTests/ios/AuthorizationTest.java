@@ -80,7 +80,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 		Assert.assertTrue(call.isStatusAvailable(), "Status not availablee");
 		SettingsPage settings = call.navigateToSettingsTab();
 		settings.setAutoLogin(false);
-		Assert.assertTrue(settings.isAutoLoginFlagEnable());
+		Assert.assertTrue(settings.isAutoLoginFlagDisable());
 	}
 
 }

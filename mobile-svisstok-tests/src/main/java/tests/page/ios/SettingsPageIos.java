@@ -65,7 +65,7 @@ public class SettingsPageIos extends SettingsPage {
 	}
 
 	@Override
-	public boolean isAutoLoginFlagEnable() {
+	public boolean isAutoLoginFlagDisable() {
 		return autoLoginSlider.getAttribute("value").equals("0.00");
 	}
 	

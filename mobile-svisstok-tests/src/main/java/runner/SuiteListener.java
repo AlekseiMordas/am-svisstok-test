@@ -18,6 +18,7 @@ import org.testng.SkipException;
 import org.testng.internal.ConstructorOrMethod;
 
 import runner.annotation.IgnoreTest;
+import driver.IosDriverWrapper;
 
 public class SuiteListener implements ISuiteListener, ITestListener,
 		IConfigurationListener, IInvokedMethodListener2 {
@@ -26,6 +27,7 @@ public class SuiteListener implements ISuiteListener, ITestListener,
 
 	@Override
 	public void onTestFailure(ITestResult result) {
+		IosDriverWrapper.getDriver().takeScreenshot("");
 		LOGGER.info("================================== TEST "
 				+ result.getName()
 				+ " FAILED ==================================");

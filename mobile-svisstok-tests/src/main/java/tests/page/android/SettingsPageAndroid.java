@@ -63,8 +63,8 @@ public class SettingsPageAndroid extends SettingsPage {
 	}
 
 	@Override
-	public boolean isAutoLoginFlagEnable() {
-		return autoLoginSlider.getText().equals("Да");
+	public boolean isAutoLoginFlagDisable() {
+		return autoLoginSlider.getText().equals("Нет");
 	}
 
 	@Override
