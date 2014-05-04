@@ -88,7 +88,7 @@ public class HistoryPageAndroid extends HistoryPage {
 	}
 
 	@Override
-	public void clickCall() {
+	public void clickCallTab() {
 		callTabButton.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		callTabButton.touch();
 	}

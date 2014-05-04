@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
 import org.apache.log4j.Logger;
 
 public class HttpClient {
@@ -53,7 +54,7 @@ public class HttpClient {
 			}
 			rd.close();
 		} catch (Exception e) {
-			LOGGER.info("Can't send request via Http connection");
+			LOGGER.info("Appium Server don't respond. Start again.");
 			throw new RuntimeException(e.getMessage(), e);
 		}
 		return result;

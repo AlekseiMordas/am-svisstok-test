@@ -16,7 +16,7 @@ public abstract class HistoryPage extends BasePage {
 
 	public abstract String getTimer();
 
-	public abstract void clickCall();
+	public abstract void clickCallTab();
 
 	public abstract void clickEdit();
 

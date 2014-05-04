@@ -43,9 +43,10 @@ public class SavedContactsPageIos extends SavedContactsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[16]")
 	private UIView deleteButton;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]/link[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
 	private UIView backTab;
 
+	@Override
 	public void searchContacts(String text) {
 		searchFiled.touch();
 		searchFiled.type(text);
@@ -59,10 +60,12 @@ public class SavedContactsPageIos extends SavedContactsPage {
 		webview.touchWithCoordinates(point.getX(), point.getY() + y);
 	}
 
+	@Override
 	public String getContactName() {
 		return contactName.getAttribute("name");
 	}
 
+	@Override
 	public void clickEditContacts() {
 		Rectangle point = webview.getLocation();
 		double x = 270;
@@ -82,6 +85,7 @@ public class SavedContactsPageIos extends SavedContactsPage {
 		deleteButton.touchWithCoordinates(point.getX(), point.getY());
 	}
 
+	@Override
 	public void clickCall() {
 		Rectangle point = webview.getLocation();
 		double x = 160;
@@ -89,10 +93,12 @@ public class SavedContactsPageIos extends SavedContactsPage {
 		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
 	}
 
+	@Override
 	public void clickStar() {
 		star.touch();
 	}
 
+	@Override
 	public void clickBack() {
 		Rectangle point = backTab.getLocation();
 		backTab.touchWithCoordinates(point.getX(), point.getY());

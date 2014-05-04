@@ -37,5 +37,7 @@ public abstract class FavoritePage extends BasePage{
 	public abstract String getTimer();
 	
 	public abstract void deleteAllCalls();
+
+	public abstract void  openFirstContact();
  	
 }

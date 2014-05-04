@@ -8,8 +8,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import tests.page.CallPage;
 
@@ -318,7 +316,7 @@ public class CallPageAndroid extends CallPage {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public HistoryPageAndroid clickHistory() {
+	public HistoryPageAndroid clickHistoryTab() {
 		Sleeper.SYSTEM_SLEEPER.sleep(4000);
 		List<WebElement> elements = AppiumDriver.class.cast(driver).getDriver()
 				.findElements(By.xpath(historyTabButton.getFoundBy()));
@@ -368,14 +366,16 @@ public class CallPageAndroid extends CallPage {
 		return PageFactory.initElements(driver, CallPageAndroid.class);
 	}
 	
-    public  boolean isAccessContacts(){
+    @Override
+	public  boolean isAccessContacts(){
     	//TODO
     	return false;
     }
 	
-	public  HistoryPageAndroid clickOk(){
+	@Override
+	public CallPageAndroid clickOk(){
 		//TODO
-		return PageFactory.initElements(driver, HistoryPageAndroid.class);
+		return PageFactory.initElements(driver, CallPageAndroid.class);
 	}
 
 }

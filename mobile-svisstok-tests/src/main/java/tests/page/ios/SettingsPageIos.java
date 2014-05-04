@@ -61,6 +61,7 @@ public class SettingsPageIos extends SettingsPage {
 				autoLoginSlider.touch();
 			}
 		}
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 
 	@Override

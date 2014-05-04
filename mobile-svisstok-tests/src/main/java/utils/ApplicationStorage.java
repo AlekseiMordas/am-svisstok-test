@@ -2,6 +2,8 @@ package utils;
 
 public class ApplicationStorage {
 
+	private static final String CALL_MYSELF_NUMBER = "call_myself_number";
+
 	private static final String DEFAULT_CALLER_NUMBER = "caller_number";
 
 	private static final String AUT_PROPERTIES = "local.properties";
@@ -38,6 +40,10 @@ public class ApplicationStorage {
 
 	public static String getCallerNumber() {
 		return getFromFile(DEFAULT_CALLER_NUMBER);
+	}
+	
+	public static String getCallerNumberYourself() {
+		return getFromFile(CALL_MYSELF_NUMBER);
 	}
 	
 	public static String getCallerName() {

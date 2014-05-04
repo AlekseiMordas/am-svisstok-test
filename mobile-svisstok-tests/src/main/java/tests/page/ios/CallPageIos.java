@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.TimeoutException;
 
 import runner.DeviceConfig;
@@ -70,7 +71,7 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[2]/UIAKeyboard[1]/UIAKey[29]")
 	private UIView moreNumber;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[16]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[15]")
 	private UIView deleteButton;
 
 	@FindBy(locator = "Select All")
@@ -79,72 +80,75 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "Cut")
 	private UIView cutButton;
 
-	@FindBy(locator = "//window[2]/toolbar[1]/button[1]", 
-			ios7 = "//window[2]/toolbar[1]/button[3]")
+	@FindBy(locator = "//window[2]/toolbar[1]/button[1]", ios7 = "//window[2]/toolbar[1]/button[3]")
 	private UIView doneButton;
 
 	@FindBy(locator = "Подключение...")
 	private UIView nameConnection;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[1]",
-			ios7 = "//window[1]/scrollview[1]/webview[1]/text[3]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[1]", ios7 = "//window[1]/scrollview[1]/webview[1]/text[3]")
 	private UIView nameAbonent;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
 	private UIView webview;
 
-	@FindBy(locator = "Настройки",
-			ios7 = "//window[1]/scrollview[1]/webview[1]/link[20]")
+	@FindBy(locator = "Настройки", ios7 = "//window[1]/scrollview[1]/webview[1]/link[19]")
 	private UIView settingsTab;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[15]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[14]")
 	private UIView callButton;
-	
-	@FindBy(locator ="//window[1]/scrollview[1]/webview[1]/link[2]/link[1]", 
-			ios7 = "//window[1]/scrollview[1]/webview[1]/link[2]")
-	private UIView cancelCallButton;
 
-	@FindBy(locator = "Контакты",
-			ios7 = "//window[1]/scrollview[1]/webview[1]/link[17]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]/link[1]", ios7 = "//window[1]/scrollview[1]/webview[1]/link[2]")
+	private UIView cancelCallButton;
+	
+	@FindBy(locator = "Отклонить")
+	private UIView resetCallButton;
+
+	@FindBy(locator = "Контакты", ios7 = "//window[1]/scrollview[1]/webview[1]/link[16]")
 	private UIView contactsTab;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[4]")
 	private UIView timerCall;
 
-	@FindBy(locator =  "//window[1]/scrollview[1]/webview[1]/text[3]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]")
 	private UIView contactNumber;
 
-	@FindBy(locator = "Позвонить")
+	@FindBy(locator = "Позвонить", ios7="//window[1]/scrollview[1]/webview[1]/link[18]")
 	private UIView callTab;
-	
-	@FindBy(locator = "История", 
-			ios7 = "//window[1]/scrollview[1]/webview[1]/link[18]")
+
+	@FindBy(locator = "История", ios7 = "//window[1]/scrollview[1]/webview[1]/link[7]")
 	private UIView historyButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
+	@FindBy(locator = "Ответить")
 	private UIView answerButton;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
 	private UIView endCallButton;
-	
+
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
 	private UIView settingTab;
-	
+
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[5]")
 	private UIView deleteFromList;
-	
+
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
 	private UIView microphone;
-	
+
 	@FindBy(locator = "OK")
 	private UIView okButton;
-	
+
 	@FindBy(locator = "//window[4]/alert[1]/scrollview[1]/text[1]")
 	private UIView alertAccessContacts;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]")
+	@FindBy(locator = "Входящий вызов...")
 	// Входящий вызов...
 	private UIView incommingCall;
+	
+	@FindBy(locator="/window[1]/scrollview[1]/webview[1]/link[3]/")
+	private UIView moreButton;
+
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
+	private UIView speakerButton;
 	
 	protected static final String DEVICE = DeviceConfig.getDevice();
 
@@ -157,9 +161,9 @@ public class CallPageIos extends CallPage {
 	@Override
 	public void checkPage() {
 		try {
-			status.waitForElementByName(WAIT_WHILE_LOGIN);
+			callButton.waitForElement(WAIT_WHILE_LOGIN);
 		} catch (TimeoutException e) {
-			LOGGER.error("Login was unsuccessfull. Can't find " + status);
+			LOGGER.error("Login was unsuccessfull.");
 			throw new com.mobile.driver.wait.exception.TimeoutException(
 					"Call page didn't download");
 		}
@@ -173,12 +177,12 @@ public class CallPageIos extends CallPage {
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		return getTimer();
 	}
-	
+
 	@Override
 	public CallPageIos isIncommingCallReset() {
 		incommingCall.waitForElement(WAIT_WHILE_LOGIN);
 		Rectangle point = endCallButton.getLocation();
-		endCallButton.touchWithCoordinates(point.getX(), point.getY());
+		resetCallButton.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		return PageFactory.initElements(driver, CallPageIos.class);
 	}
@@ -242,23 +246,24 @@ public class CallPageIos extends CallPage {
 	@SuppressWarnings("unchecked")
 	@Override
 	public CardContactsPageIos clickContact() {
-		Rectangle point = contactsTab.getLocation();
-		contactsTab.touchWithCoordinates(point.getX(), point.getY());
+		Dimension dim = webview.getSize();
+		callTab.touchWithCoordinates(dim.width/4-10, dim.height-10);
 		return PageFactory.initElements(driver, CardContactsPageIos.class);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public SettingsPageIos navigateToSettingsTab() {
-		Rectangle point = settingsTab.getLocation();
-		settingsTab.touchWithCoordinates(point.getX(), point.getY());
+		Dimension dim = webview.getSize();
+		callTab.touchWithCoordinates(dim.width/4*3+10, dim.height-10);
 		return PageFactory.initElements(driver, SettingsPageIos.class);
 	}
 
 	@Override
 	public void clickCallButton() {
-		Rectangle point = callButton.getLocation();
-		callTab.touchWithCoordinates(point.getX(), point.getY());
+	//	Rectangle point = callButton.getLocation();
+		callButton.touch();
+	//	touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
 
@@ -282,12 +287,12 @@ public class CallPageIos extends CallPage {
 		}
 		return PageFactory.initElements(driver, CallPageIos.class);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public CallPageIos endCall() {
 		Rectangle point = endCallButton.getLocation();
-		endCallButton.touchWithCoordinates(point.getX() , point.getY() );
+		endCallButton.touchWithCoordinates(point.getX(), point.getY());
 		return PageFactory.initElements(driver, CallPageIos.class);
 	}
 
@@ -298,22 +303,20 @@ public class CallPageIos extends CallPage {
 
 	@Override
 	public boolean isMicrophoneWork() {
-		/*Rectangle point = webview.getLocation();
-		double x = 100;
-		double y = 355;
-		if ((point.getX() + x) == 100) {
-			webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
-			Sleeper.SYSTEM_SLEEPER.sleep(1000);
-			webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
-			return true;
-		} else
-			return false; */
+		/*
+		 * Rectangle point = webview.getLocation(); double x = 100; double y =
+		 * 355; if ((point.getX() + x) == 100) {
+		 * webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		 * Sleeper.SYSTEM_SLEEPER.sleep(1000);
+		 * webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		 * return true; } else return false;
+		 */
 		Rectangle point = microphone.getLocation();
 		microphone.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		microphone.touchWithCoordinates(point.getX(), point.getY());
 		return true;
-		
+
 	}
 
 	@Override
@@ -321,13 +324,11 @@ public class CallPageIos extends CallPage {
 		return timerCall.getAttribute("label");
 	}
 
-	/*@Override
-	public void clickBack() {
-		Rectangle point = webview.getLocation();
-		double x = 10;
-		double y = 5;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
-	}*/
+	/*
+	 * @Override public void clickBack() { Rectangle point =
+	 * webview.getLocation(); double x = 10; double y = 5;
+	 * webview.touchWithCoordinates(point.getX() + x, point.getY() + y); }
+	 */
 
 	@Override
 	public void clickCall() {
@@ -336,20 +337,20 @@ public class CallPageIos extends CallPage {
 	}
 
 	@Override
-	public void clickEditContacts(){
+	public void clickEditContacts() {
 		Rectangle point = settingTab.getLocation();
 		settingTab.touchWithCoordinates(point.getX(), point.getY());
 	}
-	
-	@Override	
-	public void clickDeletefromList(){
+
+	@Override
+	public void clickDeletefromList() {
 		Rectangle point = deleteFromList.getLocation();
 		deleteFromList.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
-	
-	@Override	
-	public void clickDelete(){
+
+	@Override
+	public void clickDelete() {
 		Rectangle point = deleteButton.getLocation();
 		deleteButton.touchWithCoordinates(point.getX(), point.getY());
 	}
@@ -360,25 +361,33 @@ public class CallPageIos extends CallPage {
 	}
 
 	@Override
-	public HistoryPageIos clickHistory() {
-		Rectangle point = historyButton.getLocation();
-		historyButton.touchWithCoordinates(point.getX(), point.getY());
+	public HistoryPageIos clickHistoryTab() {
+		Dimension dim = webview.getSize();
+		historyButton.touchWithCoordinates(dim.width/4+10, dim.height-10);
 		return PageFactory.initElements(driver, HistoryPageIos.class);
 	}
 
 	@Override
 	public boolean isSpeakerWork() {
-		// For IOS this button inactive
+		moreButton.touch();
+		speakerButton.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
+		speakerButton.touch();
 		return true;
 	}
-	
+
 	@Override
-	public CallPageIos clickOk(){
-		okButton.touchByName();
+	public CallPageIos clickOk() {
+		okButton.touch();
 		return PageFactory.initElements(driver, CallPageIos.class);
 	}
+
 	@Override
-	public boolean isAccessContacts(){
-		return alertAccessContacts.getAttribute("name").equals("“Swisstok” Would Like to Access Your Contacts");
+	public boolean isAccessContacts() {
+		if (alertAccessContacts.isExists()) {
+			return alertAccessContacts.getAttribute("name").equals(
+					"“Swisstok” Would Like to Access Your Contacts");
+		}
+		return false;
 	}
 }

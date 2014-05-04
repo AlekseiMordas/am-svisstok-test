@@ -4,9 +4,9 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import runner.annotation.IgnoreTest;
 import tests.page.CallPage;
 import tests.page.SettingsPage;
-import utils.ApplicationStorage;
 
 import com.mobile.driver.wait.Sleeper;
 
@@ -15,9 +15,6 @@ public class CallTest extends BaseTest {
 	private static final String EXPECTED_CALL_NAME = "Подключение...";
 
 	private static final String EXPECTED_TYPE_VALUE = "1234567890";
-
-	protected static final String PHONE_NUMBER = ApplicationStorage
-			.getCallerNumber();
 
 	// protected static final String USER_NAME =
 	// ApplicationStorage.getCallerName();
@@ -48,13 +45,13 @@ public class CallTest extends BaseTest {
 		call.clickCallButton();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		String callNameConnection = call.getNameConnection();
-		((CallPage) call.cancelCall()).checkPage();
+		call.cancelCall().checkPage();
 		Assert.assertEquals(EXPECTED_CALL_NAME, callNameConnection);
 	}
 
 	@Test(priority = 8, description = "Check timer call")
 	public void checkTimerCall() {
-		call.inputFromNativeKeyboard(USER_NAME);
+		call.inputFromNativeKeyboard(PHONE_NUMBER);
 		call.clickCallButton();
 		boolean actualTimer = checkTimer(call.getTimer());
 		call.cancelCall();
@@ -63,7 +60,7 @@ public class CallTest extends BaseTest {
 
 	@Test(priority = 5, description = "Check button cancel in currently call")
 	public void checkCancelCallButtonInCall() {
-		call.inputFromNativeKeyboard(USER_NAME);
+		call.inputFromNativeKeyboard(PHONE_NUMBER);
 		call.clickCallButton();
 		call.cancelCall();
 		Assert.assertTrue(call.isStatusAvailable());
@@ -71,7 +68,7 @@ public class CallTest extends BaseTest {
 
 	@Test(priority = 6)
 	public void checkCancelCallButton() {
-		call.inputFromNativeKeyboard(USER_NAME);
+		call.inputFromNativeKeyboard(PHONE_NUMBER);
 		call.clickCallButton();
 		call.cancelCall();
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
@@ -80,17 +77,17 @@ public class CallTest extends BaseTest {
 
 	@Test(priority = 7, description = "Check display name abonent in time call")
 	public void checkDisplayNameAbonentInCall() {
-		call.inputFromNativeKeyboard(USER_NAME);
+		call.inputFromNativeKeyboard(PHONE_NUMBER);
 		call.clickCallButton();
 		String actualAbonentName = call.getNameAbonent();
-		((CallPage) call.cancelCall()).checkPage();
+		call.cancelCall().checkPage();
 		Assert.assertTrue(!actualAbonentName.isEmpty(),
 				"Incorrect abonent name");
 	}
 
 	@Test(priority = 9, description = "Check microfone, Check speaker")
 	public void checkMicrofone() {
-		call.inputFromNativeKeyboard(USER_NAME);
+		call.inputFromNativeKeyboard(PHONE_NUMBER);
 		call.clickCallButton();
 		boolean isMicrofone = call.isMicrophoneWork();
 		boolean isSpeaker = call.isSpeakerWork();
@@ -101,15 +98,14 @@ public class CallTest extends BaseTest {
 	}
 
 	@Test(priority = 10, description = "Check call from favorite")
-	// Android bug
 	public void checkCallFromFavotite() {
 		cardContacts = call.clickContact();
 		setting = cardContacts.clickSettings();
 		cardContacts = setting.clickSwisstokContacts();
 		cardContacts.clickAddContacts();
 		cardContacts.clickAddContactsFromList();
-		cardContacts.inputName(USER_NAME);
-		cardContacts.inputContact(USER_NAME);
+		cardContacts.inputName(PHONE_NUMBER);
+		cardContacts.inputContact(PHONE_NUMBER);
 		cardContacts.clickSave();
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		cardContacts.swipe(0.5, 0.8, 0.5, 0.1, 0.5);
@@ -117,20 +113,20 @@ public class CallTest extends BaseTest {
 		cardContacts.clickBack();
 		setting = cardContacts.clickSettings();
 		favorite = setting.clickFavorite();
-		favorite.searchContacts(USER_NAME);
-		favorite.clickSearchResult(USER_NAME);
-//		favorite.clickCallingButton();
+		favorite.searchContacts(PHONE_NUMBER);
+		favorite.clickSearchResult(PHONE_NUMBER);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		boolean actualTimer = checkTimer(favorite.getTimer());
 		favorite.cancelCall();
-		// after cancel android returns in on favourite page
-//		favorite.clickEditContacts();
-//		favorite.deleteAllCalls();
-		//favorite.clickDelete();
-//		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		cardContacts.clickCall();
+		favorite.openFirstContact(); 
+		favorite.clickEditContacts();
+		favorite.clickDeletefromList();
+		favorite.clickDelete();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		cardContacts.clickCallTab();
 		Assert.assertTrue(actualTimer);
 	}
+	
 /*	
 	@Test(priority = 14)
 	public void checkCallAndAnswer() {
@@ -147,7 +143,8 @@ public class CallTest extends BaseTest {
 		callPage.checkPage();
 	}
 */
-	@Test(priority = 16)
+	@IgnoreTest(device="ios7")
+	@Test(priority = 16 )
 	public void callWithZRTPConnection() {
 		SettingsPage settings = call.navigateToSettingsTab();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
@@ -155,7 +152,7 @@ public class CallTest extends BaseTest {
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		settings.setZRTPconnection();
 		CallPage callPage = settings.clickCall();
-		callPage.inputFromNativeKeyboard(USER_NAME);
+		callPage.inputFromNativeKeyboard(PHONE_NUMBER);
 		callPage.clickCallButton();
 		boolean actualTimer = checkTimer(call.getTimer());
 		callPage.cancelCall();
@@ -165,6 +162,7 @@ public class CallTest extends BaseTest {
 		Assert.assertTrue(actualTimer);
 	}
 	
+	@IgnoreTest(device="ios7")
 	@Test(priority = 17)
 	public void callWithSRTPConnection() {
 		SettingsPage settings = call.navigateToSettingsTab();
@@ -173,7 +171,7 @@ public class CallTest extends BaseTest {
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		settings.setSRTPconnection();
 		CallPage callPage = settings.clickCall();
-		callPage.inputFromNativeKeyboard(USER_NAME);
+		callPage.inputFromNativeKeyboard(PHONE_NUMBER);
 		callPage.clickCallButton();
 		boolean actualTimer = checkTimer(call.getTimer());
 		callPage.cancelCall();

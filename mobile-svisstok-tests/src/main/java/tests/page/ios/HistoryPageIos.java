@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
 import runner.DeviceConfig;
@@ -52,7 +53,7 @@ public class HistoryPageIos extends HistoryPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]")
 	private UIView messageEmptyList;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
 	private UIView allContacts;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
@@ -99,9 +100,9 @@ public class HistoryPageIos extends HistoryPage {
 	}
 
 	@Override
-	public void clickCall() {
-		Rectangle point = callTab.getLocation();
-		callTab.touchWithCoordinates(point.getX(), point.getY());
+	public void clickCallTab() {
+		Dimension dim = webview.getSize();
+		callTab.touchWithCoordinates(dim.width / 4 * 2 + 10, dim.height - 10);
 	}
 
 	@Override

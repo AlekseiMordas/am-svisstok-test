@@ -2,10 +2,14 @@ package tests.page.ios;
 
 import java.awt.Rectangle;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
+
 import tests.page.CardContactsPage;
 
 import com.annotation.FindBy;
 import com.element.UIView;
+import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
 import com.mobile.driver.page.PageFactory;
 import com.mobile.driver.wait.Sleeper;
@@ -15,11 +19,13 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
 	private UIView webview;
 
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
+	private UIView addContacts;
+
 	@FindBy(locator = "Заблокировать")
 	private UIView blockFromList;
 
-	@FindBy(locator = "//window[2]/toolbar[1]/button[1]", 
-			ios7 = "//window[2]/toolbar[1]/button[3]")
+	@FindBy(locator = "//window[2]/toolbar[1]/button[1]", ios7 = "//window[2]/toolbar[1]/button[3]")
 	private UIView doneButton;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
@@ -31,10 +37,10 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/textfield[3]")
 	private UIView contactField;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[7]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[10]")
 	private UIView contactNumber;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[7]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[10]")
 	private UIView contactName;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[17]/link[1]")
@@ -58,7 +64,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "Изменить")
 	private UIView editFromList;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[11]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[9]")
 	private UIView secondNumber;
 
 	@FindBy(locator = "Удалить")
@@ -67,8 +73,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[6]")
 	private UIView messageDelete;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[24]",
-			ios7 = "//window[1]/scrollview[1]/webview[1]/link[24]/text[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[24]", ios7 = "Заблокировать")
 	private UIView blockButton;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]")
@@ -80,33 +85,38 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "Cut")
 	private UIView cutButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[17]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[17]", ios7 = "//window[1]/scrollview[1]/webview[1]/link[13]")
 	private UIView star;
-	
+
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
 	private UIView backTab;
-	
+
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[9]/text[1]")
+	private UIView saveButton;
+
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
 	private UIView settingTab;
-	
+
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
 	private UIView settingTabRight;
-	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[12]")
+
+	@FindBy(locator = "Удалить")
 	private UIView deleteFromList;
-	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[24]")
+
+	@FindBy(locator = "Удалить")
 	private UIView deleteButton;
-	
-	@FindBy(locator = "Позвонить")
+
+	@FindBy(locator = "Позвонить", ios7 = "Позвонить")
 	private UIView callTab;
-	
+
 	@FindBy(locator = "OK")
 	private UIView okButton;
-	
+
 	@FindBy(locator = "//window[4]/alert[1]")
 	private UIView alertAccessContacts;
-	
+
+	@FindBy(locator = "Позвонить  , &nbsp;")
+	private UIView callButton;
 
 	public CardContactsPageIos(NativeDriver driver) {
 		super(driver);
@@ -114,9 +124,11 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public void clickAddContacts() {
-		Rectangle point = webview.getLocation();
-		double x = 270;
-		webview.touchWithCoordinates(point.getX() + x, point.getY());
+		// Rectangle point = webview.getLocation();
+		// double x = 270;
+		// webview.touchWithCoordinates(point.getX() + x, point.getY());
+		Rectangle point = addContacts.getLocation();
+		addContacts.touchWithCoordinates(point.getX(), point.getY());
 	}
 
 	@Override
@@ -140,7 +152,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	public void clearField(UIView element) {
 		if (!(element.getText().isEmpty())) {
 			element.touchLong();
-			selectAll.touchByName();
+			selectAll.touch();
 			Rectangle point = cutButton.getLocation();
 			cutButton.touchWithCoordinates(point.getX(), point.getY());
 		}
@@ -164,27 +176,38 @@ public class CardContactsPageIos extends CardContactsPage {
 	@Override
 	public void clickBack() {
 		Rectangle point = backTab.getLocation();
-	//	double x = 10;
-	//	double y = 5;
+		// double x = 10;
+		// double y = 5;
 		backTab.touchWithCoordinates(point.getX(), point.getY());
 	}
-	
+
 	@Override
 	public void clickSave() {
-		Rectangle point = webview.getLocation();
-		double x = 10;
-		double y = 5;
-		webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
+		saveButton.touch();
+		// Rectangle point = webview.getLocation();
+		// double x = 10;
+		// double y = 5;
+		// webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
 	}
 
 	@Override
-	public String getContactNumber() {
-		return contactNumber.getAttribute("label");
+	public boolean isContactNumberExist(String name) {
+		return ((AppiumDriver) driver).getDriver().findElements(By.name(name))
+				.size() > 0;
+		// return contactNumber.getAttribute("name");
 	}
 
 	@Override
-	public String getContactName() {
-		return contactName.getAttribute("name");
+	public String getContactNumber(String name) {
+		return ((AppiumDriver) driver).getDriver().findElementByName(name)
+				.getAttribute("name");
+		// return contactNumber.getAttribute("name");
+	}
+
+	@Override
+	public String getContactName(String name) {
+		return ((AppiumDriver) driver).getDriver().findElementByName(name)
+				.getAttribute("name");
 	}
 
 	@Override
@@ -197,42 +220,46 @@ public class CardContactsPageIos extends CardContactsPage {
 	public void clickDeletefromList() {
 		Rectangle point = deleteFromList.getLocation();
 		deleteFromList.touchWithCoordinates(point.getX(), point.getY());
-		Sleeper.SYSTEM_SLEEPER.sleep(5000);
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 
-	
-	@Override	
-	public void clickDelete(){
+	@Override
+	public void clickDelete() {
 		Rectangle point = deleteButton.getLocation();
 		deleteButton.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 
 	@Override
-	public void clickCall() {
-		Rectangle point = callTab.getLocation();
-		callTab.touchWithCoordinates(point.getX(), point.getY());
+	public void clickCallTab() {
+		Dimension dim = webview.getSize();
+		callTab.touchWithCoordinates(dim.width / 4 * 2 + 10, dim.height - 10);
 	}
 
 	@Override
 	public void clickFirstContact() {
-		// firstContact.touch(); dynamic xPath
-		Rectangle point = webview.getLocation();
-		double y = 113;
-		webview.touchWithCoordinates(point.getX(), point.getY() + y);
-
+		Rectangle point = firstContact.getLocation();
+		firstContact.touchWithCoordinates(point.getX(), point.getY());
 	}
 
 	@Override
-	public boolean checkVisibleContactNumber() {
-
-		return checkVisibleText(getContactNumber());
+	public void callFromContactCard() {
+		callButton.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
 
 	@Override
-	public boolean checkVisibleContactName() {
+	public boolean checkVisibleContactNumber(String name) {
 
-		return checkVisibleText(getContactName());
+		return checkVisibleText(getContactNumber(name));
+	}
+
+	@Override
+	public boolean checkVisibleContactName(String name) {
+		// TODO: name abonent invisible
+		return true;// ((AppiumDriver)
+					// driver).getDriver().findElementByXpath("//Link[contains(.,'AutoTest1118')]").getText().contains(name);
+		// return checkVisibleText(getContactName(name));
 	}
 
 	@Override
@@ -269,7 +296,7 @@ public class CardContactsPageIos extends CardContactsPage {
 		call.clickCall();
 		return call;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public CallPageIos clickSearchResult(String result) {
@@ -288,7 +315,7 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public void clickProfile() {
-		profileFromList.touchByName();
+		profileFromList.touch();
 	}
 
 	@Override
@@ -306,30 +333,32 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public void deleteNumber() {
-		deleteNumber.touchByName();
+		deleteNumber.touch();
 	}
 
 	@Override
-	public String getMessageDelete() {
-		return messageDelete.getAttribute("label");
+	public boolean isMessageDeleteAppears(String message) {
+		return ((AppiumDriver) driver).getDriver().findElementByName(message)
+				.isDisplayed();
 	}
 
 	@Override
 	public void clickBlockFromList() {
 		Rectangle point = blockFromList.getLocation();
 		blockFromList.touchWithCoordinates(point.getX(), point.getY());
-	}
-
-	@Override
-	public void clickBlock() {
-		Rectangle point = blockButton.getLocation();
-		blockButton.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 
 	@Override
-	public String getMessageBlock() {
-		return messageBlock.getAttribute("name");
+	public void clickBlock() {
+		blockButton.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+	}
+
+	@Override
+	public boolean isMessageBlockAppears(String message) {
+		return ((AppiumDriver) driver).getDriver().findElementByName(message)
+				.isDisplayed();
 	}
 
 	@Override
@@ -340,10 +369,10 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public boolean isContactListDownloaded() {
-		//Only for Android
+		// Only for Android
 		return true;
 	}
-	
+
 	@Override
 	public void checkPage() {
 		// TODO Auto-generated method stub

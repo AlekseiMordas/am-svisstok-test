@@ -2,8 +2,6 @@ package tests.page;
 
 import tests.page.ios.BasePage;
 
-import com.annotation.FindBy;
-import com.element.UIView;
 import com.mobile.driver.nativedriver.NativeDriver;
 
 public abstract class BlockPage extends BasePage{
@@ -30,7 +28,7 @@ public abstract class BlockPage extends BasePage{
 	
 	public abstract void clickDelete();
 	
-	public abstract String getContactStatusBlock();
+	public abstract boolean isContactStatusBlockAppears(String message);
 	
 	public abstract void clickCall() ;
 	   

@@ -1,9 +1,5 @@
 package tests.page.ios;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -57,7 +53,7 @@ public abstract class BasePage extends Page {
 	public void swipe(double startX, double startY, double endX, double endY,
 			double duration) {
 		if (!Devices.ANDROID.toString().toUpperCase().equals((DeviceConfig.getDevice()))) {
-			JavascriptExecutor js = (JavascriptExecutor) ((AppiumDriver) driver)
+			JavascriptExecutor js = ((AppiumDriver) driver)
 					.getDriver();
 			HashMap<String, Double> swipeObject = new HashMap<String, Double>();
 			swipeObject.put("startX", Double.valueOf(startX));
@@ -71,7 +67,7 @@ public abstract class BasePage extends Page {
 	
 	public static void scrollTop() {
 		
-		JavascriptExecutor js =(JavascriptExecutor) ((AppiumDriver) driver)
+		JavascriptExecutor js =((AppiumDriver) driver)
 				.getDriver();
 		/* 192 */     HashMap<String, String> scrollObject = new HashMap<String, String>();
 		/* 193 */     scrollObject.put("direction", "up");

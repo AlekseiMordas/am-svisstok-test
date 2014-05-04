@@ -53,6 +53,9 @@ public class BaseTest {
 
 	protected static final String ABONENT_NAME = ApplicationStorage.getDefaultPassword();
 	
+	protected static final String PHONE_NUMBER = ApplicationStorage
+			.getCallerNumberYourself();
+	
 	protected static final String INCORRECT_USER_NAME = "7812001245@211.195.68.250";
 
 	protected static final String INCORRECT_PASSWORD = "70mNZcEy05G123";

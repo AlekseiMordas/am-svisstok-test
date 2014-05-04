@@ -1,7 +1,9 @@
 package tests.page.ios;
 
 import org.apache.log4j.Logger;
+
 import tests.page.LoginPage;
+
 import com.annotation.FindBy;
 import com.element.UIView;
 import com.mobile.driver.nativedriver.NativeDriver;
@@ -49,6 +51,7 @@ public class LoginPageIos extends LoginPage {
 		super(driver);
 	}
 
+	@Override
 	public void setSavePassword(boolean flag) {
 		if (flag) {
 			if (savePasswordSlider.getAttribute("value").equals("0.00")) {
@@ -62,6 +65,7 @@ public class LoginPageIos extends LoginPage {
 		}
 	}
 
+	@Override
 	public void setAutoLogin(boolean flag) {
 		if (flag) {
 			if (autoLoginSlider.getAttribute("value").equals("0.00")) {
@@ -74,10 +78,12 @@ public class LoginPageIos extends LoginPage {
 		}
 	}
 
+	@Override
 	public void clickLogin() {
 		loginButton.touch();
 	}
 
+	@Override
 	public CallPageIos simpleLogin(String login, String password, boolean isSavePassword, boolean isAutoLogin) {
 		inputLoginTextfield(login);
 		inputPasswordTextfield(password);
@@ -88,43 +94,49 @@ public class LoginPageIos extends LoginPage {
 		return PageFactory.initElements(driver, CallPageIos.class);
 	}
 
+	@Override
 	public void inputLoginTextfield(String text) {
 		loginTextfield.touch();
 		clearField(loginTextfield);
 		loginTextfield.type(text);
 	}
 
+	@Override
 	public boolean isErrorMessageAppears() {
 		errorMessage.waitForElement(WAIT_WHILE_LOGIN);
 		return errorMessage.isExists();
 	}
 
+	@Override
 	public void clearField(UIView element) {
-		if (!(element.getText().isEmpty())) {
+		if (!(element.getText().contains("Логин"))) {
 			element.touchLong();
-			selectAll.touchByName();
-			cutButton.touchByName();
+			selectAll.touch();
+			cutButton.touch();
 		}
 	}
 
 	public void clearPasswordField(UIView element) {
-		if (!(element.getText().isEmpty())) {
+		if (!(element.getText().contains("Пароль"))) {
 			element.touchLong();
-			selectAll.touchByName();
+			selectAll.touch();
 			deleteButton.touch();
 		}
 	}
 
+	@Override
 	public String getLoginFieldText() {
 		return loginTextfield.getText();
 	}
 
+	@Override
 	public String getPasswordFieldText() {
 		return passwordTextfield.getText();
 	}
 
+	@Override
 	public void inputPasswordTextfield(String text) {
-		passwordTextfield.touch();
+		passwordTextfield.touch();;
 		clearPasswordField(passwordTextfield);
 		passwordTextfield.type(text);
 		doneButton.touch();

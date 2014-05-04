@@ -28,11 +28,15 @@ public class CapabilitiesFactory {
 
 	public static DesiredCapabilities createDefaultCapabilities(Devices device) {
 		capabilities.setCapability(CapabilityType.BROWSER_NAME, BROWSER_NAME);
-		capabilities.setCapability(CapabilityType.VERSION, VERSION);
+//		capabilities.setCapability(CapabilityType.VERSION, VERSION);
 		capabilities.setCapability(CapabilityType.PLATFORM, PLATFORM);
-	//	capabilities.setCapability("app", ApplicationStorage.getDefaultPathToApp() );
+		// capabilities.setCapability("app",
+		// ApplicationStorage.getDefaultPathToApp() );
 		capabilities.setCapability("device", device.toString());
-		LOGGER.info("CAPABILITY PATH: " + ApplicationStorage.getDefaultPathToApp() );
+		capabilities.setCapability("platformName", "iOS");
+		capabilities.setCapability("deviceName", "iPhone");
+		LOGGER.info("CAPABILITY PATH: "
+				+ ApplicationStorage.getDefaultPathToApp());
 		return capabilities;
 	}
 
@@ -41,11 +45,15 @@ public class CapabilitiesFactory {
 	}
 
 	public static DesiredCapabilities createAndroidCapabilities() {
-	//	capabilities.setCapability("app", ApplicationStorage.getDefaultPathToApk() );
+		// capabilities.setCapability("app",
+		// ApplicationStorage.getDefaultPathToApk() );
 		capabilities.setCapability("device", "selendroid");
-		capabilities.setCapability("app-package", ApplicationStorage.getDefaultPackage());
-        capabilities.setCapability("app-activity",ApplicationStorage.getDefaultActivity());
-		LOGGER.info("CAPABILITY PATH: " + ApplicationStorage.getDefaultPathToApk());
+		capabilities.setCapability("app-package",
+				ApplicationStorage.getDefaultPackage());
+		capabilities.setCapability("app-activity",
+				ApplicationStorage.getDefaultActivity());
+		LOGGER.info("CAPABILITY PATH: "
+				+ ApplicationStorage.getDefaultPathToApk());
 		return capabilities;
 	}
 

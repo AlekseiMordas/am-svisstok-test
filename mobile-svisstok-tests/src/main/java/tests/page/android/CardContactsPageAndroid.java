@@ -143,13 +143,20 @@ public class CardContactsPageAndroid extends CardContactsPage {
 	}
 
 	@Override
-	public String getContactNumber() {
-		return contactNumber.getText();
+	public boolean isContactNumberExist(String name) {
+		return ((AppiumDriver) driver).getDriver().findElementByName(name).isDisplayed();
+		//return contactNumber.getText();
+	}
+	
+
+	@Override
+	public String getContactNumber(String name) {
+		return ((AppiumDriver) driver).getDriver().findElementByName(name).getText();
 	}
 
 	@Override
-	public String getContactName() {
-		return contactName.getText();
+	public String getContactName(String name) {
+		return ((AppiumDriver) driver).getDriver().findElementByName(name).getText();
 	}
 
 	@Override
@@ -172,7 +179,7 @@ public class CardContactsPageAndroid extends CardContactsPage {
 	}
 
 	@Override
-	public void clickCall() {
+	public void clickCallTab() {
 		callTabButton.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		callTabButton.touch();
 	}
@@ -183,13 +190,13 @@ public class CardContactsPageAndroid extends CardContactsPage {
 	}
 
 	@Override
-	public boolean checkVisibleContactNumber() {
-		return checkVisibleText(getContactNumber());
+	public boolean checkVisibleContactNumber(String name) {
+		return checkVisibleText(getContactNumber( name));
 	}
 
 	@Override
-	public boolean checkVisibleContactName() {
-		return checkVisibleText(getContactName());
+	public boolean checkVisibleContactName(String name) {
+		return checkVisibleText(getContactName( name));
 	}
 
 	@Override
@@ -269,12 +276,12 @@ public class CardContactsPageAndroid extends CardContactsPage {
 
 	@Override
 	public void deleteNumber() {
-		deleteNumber.touchByName();
+		deleteNumber.touch();
 	}
 
 	@Override
-	public String getMessageDelete() {
-		return messageDelete.getText();
+	public boolean isMessageDeleteAppears(String message) {
+		return messageDelete.getText().equals(message);
 	}
 
 	@Override
@@ -296,8 +303,8 @@ public class CardContactsPageAndroid extends CardContactsPage {
 	}
 
 	@Override
-	public String getMessageBlock() {
-		return messageDelete.getText();
+	public boolean isMessageBlockAppears(String message) {
+		return messageDelete.getText().equals(message);
 	}
 
 	@Override
@@ -310,5 +317,14 @@ public class CardContactsPageAndroid extends CardContactsPage {
 		sipnetContact.waitForElement(WAIT_CONTACTS);
 		return sipnetContact.isExists();
 	}
+
+	
+
+	@Override
+	public void callFromContactCard() {
+		throw new RuntimeException("need implementation");
+		
+	}
+
 
 }

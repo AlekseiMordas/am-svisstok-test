@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 
 import runner.DeviceConfig;
 import runner.Devices;
+import runner.annotation.IgnoreTest;
 import tests.page.BlockPage;
 import tests.page.CallPage;
 import tests.page.CardContactsPage;
@@ -33,8 +34,8 @@ import com.mobile.driver.wait.Sleeper;
 
 import driver.IosDriverWrapper;
 
-public class CardContactsTest{
-	
+public class CardContactsTest {
+
 	protected static String SAVED_NAME;
 	protected static String OTHER_NAME;
 	protected static String CONTACT;
@@ -50,19 +51,24 @@ public class CardContactsTest{
 	protected static final String PORT = DeviceConfig.getPort();
 
 	protected static final String DEVICE = DeviceConfig.getDevice();
-	
+
 	protected static final String USER_NAME_SEARCH = "sipnet";
 
-	protected static final String USER_NAME = ApplicationStorage.getDefaultUsername();;//"skustov4";// //"sip:skustov2@sipnet.ru";//"7812009957@217.195.69.250";
-															// 7789 pas 1246
+	protected static final String USER_NAME = ApplicationStorage
+			.getDefaultUsername();
 
-	protected static final String USER_PASSWORD = ApplicationStorage.getDefaultPassword();//vstarshinin psw: 6Terminator6// //"zzzzzz";//"JNcW5qTBaRvy";
+	protected static final String USER_PASSWORD = ApplicationStorage
+			.getDefaultPassword();
 
-	protected static final String ABONENT_NAME = ApplicationStorage.getDefaultPassword();
-	
+	protected static final String ABONENT_NAME = ApplicationStorage
+			.getDefaultPassword();
+
 	protected static final String INCORRECT_USER_NAME = "7812001245@211.195.68.250";
 
 	protected static final String INCORRECT_PASSWORD = "70mNZcEy05G123";
+
+	protected static final String PHONE_NUMBER = ApplicationStorage
+			.getCallerNumberYourself();
 
 	protected NativeDriver driver;
 
@@ -73,13 +79,13 @@ public class CardContactsTest{
 	protected CardContactsPage cardContacts;
 
 	protected SettingsPage setting;
-	
+
 	protected BlockPage block;
-	
+
 	protected FavoritePage favorite;
-	
+
 	protected SavedContactsPage savedContacts;
-	
+
 	protected HistoryPage history;
 
 	@BeforeMethod(description = "Init and check page")
@@ -90,7 +96,8 @@ public class CardContactsTest{
 			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
 			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
-			cardContacts = PageFactory.initElements(driver, CardContactsPageIos.class);
+			cardContacts = PageFactory.initElements(driver,
+					CardContactsPageIos.class);
 			Sleeper.SYSTEM_SLEEPER.sleep(5000);
 			break;
 		case IOS7:
@@ -98,10 +105,11 @@ public class CardContactsTest{
 			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
 			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
-			cardContacts = PageFactory.initElements(driver, CardContactsPageIos.class);
+			cardContacts = PageFactory.initElements(driver,
+					CardContactsPageIos.class);
 			Sleeper.SYSTEM_SLEEPER.sleep(5000);
-			if(call.isAccessContacts())
-			  call.clickOk();
+			if (call.isAccessContacts())
+				call.clickOk();
 			break;
 		case ANDROID:
 			driver = IosDriverWrapper.getAndroid(HOST, PORT);
@@ -109,7 +117,8 @@ public class CardContactsTest{
 			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageAndroid.class);
 			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
-			cardContacts = PageFactory.initElements(driver, CardContactsPageAndroid.class);
+			cardContacts = PageFactory.initElements(driver,
+					CardContactsPageAndroid.class);
 			call.checkPage();
 			break;
 		default:
@@ -121,8 +130,9 @@ public class CardContactsTest{
 	@AfterMethod
 	public void tearDown() throws Exception {
 		AppiumDriver.class.cast(driver).quit();
-		
+
 	}
+
 	@BeforeMethod
 	public void generateNewUser() {
 		SAVED_NAME = "AutoTest" + String.valueOf(new Random().nextInt(9999));
@@ -131,55 +141,59 @@ public class CardContactsTest{
 		SECOND_NUMBER = String.valueOf(new Random().nextInt(99999));
 	}
 
-	@Test(priority = 1, description = "Check name contact")
-	public void checkListContacts() {
-		goToSwisstokList();
-		boolean visibleListContacts = cardContacts.checkVisibleListContacts();
-		//cardContacts.clickCall(); we don't need if use afterMethod for driver quite
-		Assert.assertTrue(visibleListContacts, "Contact List not do");
-	}
-
-	@Test(priority = 2, description = "Check add contact.")
+	/*
+	 * @Test(priority = 1, description = "Check name contact") public void
+	 * checkListContacts() { goToSwisstokList(); boolean visibleListContacts =
+	 * cardContacts.checkVisibleListContacts(); //cardContacts.clickCall(); we
+	 * don't need if use afterMethod for driver quite
+	 * Assert.assertTrue(visibleListContacts, "Contact List not do"); }
+	 */
+	@Test(priority = 2, description = "Check add contact.", enabled = true)
 	public void checkAddContact() {
-		//main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
 		createUser(SAVED_NAME, CONTACT);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		String savedContact = cardContacts.getContactNumber();
+		boolean result = cardContacts.isContactNumberExist(CONTACT);
 		cardContacts.clickEditContacts();
 		cardContacts.clickDeletefromList();
 		cardContacts.clickDelete();
-		Assert.assertEquals(savedContact, CONTACT);
+		Assert.assertTrue(result, "Contact number isn't exist");
 	}
 
-	@Test(priority = 3, description = "Check number contact, Check name contact")
+	@Test(priority = 3, description = "Check number contact, Check name contact", enabled = true)
 	public void checkNumberContact() {
-	//	main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+		// main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
-		cardContacts.clickFirstContact();
-		boolean visibleContact = cardContacts.checkVisibleContactNumber();
+		createUser(SAVED_NAME, CONTACT);
+		boolean visibleContact = cardContacts
+				.checkVisibleContactNumber(CONTACT);
 		Assert.assertTrue(visibleContact, "Contact number not visible");
-		boolean visibleContactName = cardContacts.checkVisibleContactName();
+		boolean visibleContactName = cardContacts
+				.checkVisibleContactName(SAVED_NAME);
 		Assert.assertTrue(visibleContactName, "Contact name not visible");
+		cardContacts.clickEditContacts();
+		cardContacts.clickDeletefromList();
+		cardContacts.clickDelete();
 	}
 
-	//TODO wait CI
-	@Test(priority = 5, description = "Check call contact")
+	// TODO wait CI
+	@Test(priority = 5, description = "Check call contact", enabled = true)
 	public void checkCallContact() {
-		main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
-		cardContacts = call.clickContact();
-		setting = cardContacts.clickSettings();
-		cardContacts = setting.clickAllContacts();
-		cardContacts.searchContacts(USER_NAME);
-		call = cardContacts.clickSearchResultAndCall(USER_NAME);
-		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		// main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+		goToSwisstokList();
+		createUser(SAVED_NAME, PHONE_NUMBER);
+		cardContacts.callFromContactCard();
 		boolean actualTimer = checkTimer(call.getTimer());
+		call.cancelCall();
+		cardContacts.clickEditContacts();
+		cardContacts.clickDeletefromList();
+		cardContacts.clickDelete();
 		Assert.assertTrue(actualTimer, "Call timer not started");
 	}
 
-	@Test(priority = 6, description = "Check add number's contact")
+	@Test(priority = 6, description = "Check add number's contact", enabled = true)
 	public void checkAddNumberContact() {
-	//	main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+		// main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
 		createUser(SAVED_NAME, CONTACT);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
@@ -196,46 +210,45 @@ public class CardContactsTest{
 		Assert.assertEquals(SECOND_NUMBER, secondNumber);
 	}
 
-	@Test(priority = 7, description = "Check delete contact")
+	@Test(priority = 7, description = "Check delete contact", enabled = true)
 	public void checkDeleteContact() {
-	//	main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
 		createUser(SAVED_NAME, CONTACT);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		cardContacts.clickEditContacts();
 		cardContacts.clickDeletefromList();
 		cardContacts.clickDelete();
-		String messageDelete = cardContacts.getMessageDelete();
-		Assert.assertEquals(messageDelete, MSG_DELETE);
+		Assert.assertTrue(cardContacts.isMessageDeleteAppears(MSG_DELETE),
+				"Delete Message user is incorrect");
 	}
 
-	@Test(priority = 8, description = "Check blocks contact")
+	@Test(priority = 8, description = "Check blocks contact", enabled = true)
 	public void checkBlockContact() {
-		//main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
 		createUser(SAVED_NAME, CONTACT);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		cardContacts.clickEditContacts();
 		cardContacts.clickBlockFromList();
 		cardContacts.clickBlock();
-		String messageBlock = cardContacts.getMessageBlock();
-		Assert.assertEquals(messageBlock, MSG_BLOCK);
+		Assert.assertTrue(cardContacts.isMessageBlockAppears(MSG_BLOCK),
+				"Block Message user is incorrect");
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		setting = cardContacts.clickSettings();
 		block = setting.clickBlock();
 		block.searchContacts(SAVED_NAME);
 		block.clickSearchResult(SAVED_NAME);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		String blockContact = block.getContactStatusBlock();
+		boolean result = block.isContactStatusBlockAppears(STATUS_BLOCK);
 		block.clickEditContacts();
 		block.clickDeletefromList();
 		block.clickDelete();
-		Assert.assertEquals(blockContact, STATUS_BLOCK);
+		Assert.assertTrue(result, "Block status user is incorrect");
 	}
 
-	@Test(priority = 9, description = "Check edit name contact")
+	@IgnoreTest(device = "ios7")
+	@Test(priority = 9, description = "Check edit name contact", enabled = true)
 	public void checkEditContact() {
-		//main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+		// main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
 		createUser(SAVED_NAME, CONTACT);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
@@ -256,9 +269,9 @@ public class CardContactsTest{
 		Assert.assertEquals(otherName, CONTACT);
 	}
 
-	@Test(priority = 10, description = "Check edit number contact")
+	@Test(priority = 10, description = "Check edit number contact", enabled = true)
 	public void checkEditNumberContact() {
-	//	main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+		// main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
 		createUser(SAVED_NAME, CONTACT);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
@@ -267,16 +280,15 @@ public class CardContactsTest{
 		cardContacts.inputContact(SECOND_NUMBER);
 		cardContacts.clickSave();
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		String otherNumber = cardContacts.getContactNumber();
+		boolean result = cardContacts.isContactNumberExist(SECOND_NUMBER);
 		cardContacts.clickEditContacts();
 		cardContacts.clickDeletefromList();
 		cardContacts.clickDelete();
-		Assert.assertEquals(SECOND_NUMBER, otherNumber);
+		Assert.assertTrue(result, "Second number not exist");
 	}
 
-	@Test(priority = 11, description = "Check add to favorite contact")
+	@Test(priority = 11, description = "Check add to favorite contact", enabled = true)
 	public void checkAddToFavotite() {
-	//	main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
 		createUser(USER_NAME, USER_NAME);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
@@ -286,43 +298,16 @@ public class CardContactsTest{
 		setting = cardContacts.clickSettings();
 		favorite = setting.clickFavorite();
 		favorite.searchContacts(USER_NAME);
-		favorite.clickSearchResult(USER_NAME);
-		boolean actualTimer=false;
-		switch (Devices.valueOf(DEVICE)) {
-		case IPHONE:
-			Sleeper.SYSTEM_SLEEPER.sleep(3000);
-			actualTimer = checkTimer(call.getTimer());
-			call.cancelCall();
-			Assert.assertTrue(actualTimer);
-			break;
-		case IOS7:
-			Sleeper.SYSTEM_SLEEPER.sleep(3000);
-			actualTimer = checkTimer(call.getTimer());
-			call.cancelCall();
-			Assert.assertTrue(actualTimer);
-			break;
-		case ANDROID:
-			String number = favorite.getContactName();
-			favorite.clickEditContacts();
-			favorite.clickDeletefromList();
-			favorite.clickDelete();
-			Assert.assertEquals(number, CONTACT);
-			break;
-		default:
-			throw new XmlParametersException("Invalid device");
-		}
-		//Functionality app was changed
-	/*	String number = favorite.getContactName();
+		favorite.openFirstContact();
+		boolean result = cardContacts.isContactNumberExist(USER_NAME);
 		favorite.clickEditContacts();
 		favorite.clickDeletefromList();
 		favorite.clickDelete();
-		Assert.assertEquals(number, CONTACT );*/
-		
+		Assert.assertTrue(result, "Contact not exist in Favourites");
 	}
 
-	@Test(priority = 12, description = "Check add to favorite for saved contact")
+	@Test(priority = 12, description = "Check add to favorite for saved contact", enabled = true)
 	public void checkAddToFavotiteSavedContact() {
-	//	main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
 		createUser(USER_NAME, USER_NAME);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
@@ -338,38 +323,12 @@ public class CardContactsTest{
 		setting = savedContacts.clickSettings();
 		favorite = setting.clickFavorite();
 		favorite.searchContacts(USER_NAME);
-		favorite.clickSearchResult(USER_NAME);
-		boolean actualTimer=false;
-		switch (Devices.valueOf(DEVICE)) {
-		case IPHONE:
-			Sleeper.SYSTEM_SLEEPER.sleep(3000);
-			actualTimer = checkTimer(call.getTimer());
-			call.cancelCall();
-			Assert.assertTrue(actualTimer);
-			break;
-		case IOS7:
-			Sleeper.SYSTEM_SLEEPER.sleep(3000);
-			actualTimer = checkTimer(call.getTimer());
-			call.cancelCall();
-			Assert.assertTrue(actualTimer);
-			break;
-		case ANDROID:
-			String number = favorite.getContactName();
-			favorite.clickEditContacts();
-			favorite.clickDeletefromList();
-			favorite.clickDelete();
-			Assert.assertEquals(number, CONTACT);
-			break;
-		default:
-			throw new XmlParametersException("Invalid device");
-		}
-		//Functionality app was changed
-		/*String number = favorite.getContactName();
+		favorite.openFirstContact();
+		boolean result = cardContacts.isContactNumberExist(USER_NAME);
 		favorite.clickEditContacts();
 		favorite.clickDeletefromList();
 		favorite.clickDelete();
-		Assert.assertEquals(number, CONTACT);*/
-		
+		Assert.assertTrue(result, "Contact not exist in Favourites");
 	}
 
 	private void createUser(String name, String contact) {
@@ -387,7 +346,7 @@ public class CardContactsTest{
 		setting = cardContacts.clickSettings();
 		cardContacts = setting.clickSwisstokContacts();
 	}
-	
+
 	private static boolean checkTimer(String element) {
 		Pattern p = Pattern.compile("^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$");
 		Matcher m = p.matcher(element.replace(" ", ""));

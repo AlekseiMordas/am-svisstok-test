@@ -126,4 +126,10 @@ public class FavoritePageAndroid extends FavoritePage {
 		
 	}
 
+	@Override
+	public void openFirstContact() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

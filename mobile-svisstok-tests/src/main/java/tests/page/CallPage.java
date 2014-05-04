@@ -22,15 +22,15 @@ public abstract class CallPage extends BasePage{
 	
 	public abstract void clearField();
 	
-	public abstract <T> T clickContact();
+	public abstract CardContactsPage clickContact();
 	
 	public abstract void clickCallButton();
 	
 	public abstract String getNameConnection();
 	
-	public abstract <T> T cancelCall();
+	public abstract CallPage cancelCall();
 	
-	public abstract <T> T navigateToSettingsTab();
+	public abstract SettingsPage navigateToSettingsTab();
 	
 	public abstract String getNameAbonent();
 	
@@ -52,15 +52,15 @@ public abstract class CallPage extends BasePage{
 	
 	public abstract String getContactNumber();
 	
-	public abstract <T> T clickHistory();
+	public abstract HistoryPage clickHistoryTab();
 
 	public abstract String isAnswerIncommingCall();
 
-	public abstract <T> T endCall();
+	public abstract CallPage endCall();
 
-	public abstract <T> T isIncommingCallReset();
+	public abstract CallPage isIncommingCallReset();
 	
 	public abstract boolean isAccessContacts();
 	
-	public abstract <T> T clickOk();
+	public abstract CallPage clickOk();
 }

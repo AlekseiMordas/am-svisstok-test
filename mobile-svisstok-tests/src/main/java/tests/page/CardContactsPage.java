@@ -22,9 +22,11 @@ public abstract class CardContactsPage extends  BasePage{
 	
 	public abstract void clickSave();
 	
-	public abstract String getContactName();
+	public abstract String getContactName(String name);
 	
-	public abstract String getContactNumber();
+	public abstract boolean isContactNumberExist(String name);
+	
+	public abstract String getContactNumber(String name);
 	
 	public abstract void clickEditContacts();
 	
@@ -32,13 +34,13 @@ public abstract class CardContactsPage extends  BasePage{
 	
 	public abstract void clickDelete();
 	
-	public abstract void clickCall();
+	public abstract void clickCallTab();
 	
 	public abstract void clickFirstContact();
 	
-	public abstract boolean checkVisibleContactNumber();
+	public abstract boolean checkVisibleContactNumber(String name);
 	
-	public abstract boolean checkVisibleContactName();
+	public abstract boolean checkVisibleContactName(String name);
 	
 	public abstract boolean checkVisibleListContacts();
 	
@@ -62,15 +64,17 @@ public abstract class CardContactsPage extends  BasePage{
 	
 	public abstract void inputSecondContact(String text); 
 	
-	public abstract String getMessageDelete();
+	public abstract boolean isMessageDeleteAppears(String message);
 	
 	public abstract void clickBlockFromList();
 	
 	public abstract void clickBlock();
 	
-	public abstract String getMessageBlock();
+	public abstract boolean isMessageBlockAppears(String message);
 	
 	public abstract void clickStar();
 	
 	public abstract boolean isContactListDownloaded();
+
+	public abstract void callFromContactCard();
 }

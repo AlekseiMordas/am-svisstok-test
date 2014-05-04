@@ -88,9 +88,9 @@ public class BlockPageAndroid extends BlockPage {
 	}
 
 	@Override
-	public String getContactStatusBlock() {
+	public boolean isContactStatusBlockAppears(String message) {
 		// TODO Auto-generated method stub
-		return null;
+		throw new RuntimeException("nedd implement");
 	}
 
 }
