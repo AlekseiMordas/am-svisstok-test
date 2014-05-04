@@ -85,13 +85,13 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "Cut")
 	private UIView cutButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[17]", ios7 = "//window[1]/scrollview[1]/webview[1]/link[13]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[13]", ios7 = "//window[1]/scrollview[1]/webview[1]/link[13]")
 	private UIView star;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
 	private UIView backTab;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[9]/text[1]")
+	@FindBy(locator = "Готово", ios7="//window[1]/scrollview[1]/webview[1]/link[9]/text[1]")
 	private UIView saveButton;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
@@ -161,6 +161,8 @@ public class CardContactsPageIos extends CardContactsPage {
 	@Override
 	public void inputContact(String contact) {
 		contactField.touch();
+		clearField(contactField);
+		contactField.type(contact);
 		clearField(contactField);
 		contactField.type(contact);
 		doneButton.touch();
@@ -271,7 +273,7 @@ public class CardContactsPageIos extends CardContactsPage {
 		return (first && second);
 	}
 
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public SettingsPageIos clickSettings() {
 		Rectangle point = settingTab.getLocation();

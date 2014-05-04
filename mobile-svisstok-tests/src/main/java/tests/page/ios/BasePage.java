@@ -25,6 +25,8 @@ public abstract class BasePage extends Page {
 	protected static final int WAIT_WHILE_LOGIN = 90;
 
 	protected static final long WAIT_SLEPPER_TIMEOUT = 7000;
+	
+	protected static final String DEVICE = DeviceConfig.getDevice();
 
 	protected void makeScreenshot() {
 		AppiumDriver.class.cast(driver).takeScreenshot("");

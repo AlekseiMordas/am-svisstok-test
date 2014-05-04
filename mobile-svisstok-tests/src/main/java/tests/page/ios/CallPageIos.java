@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.TimeoutException;
 
-import runner.DeviceConfig;
 import runner.Devices;
 import tests.page.CallPage;
 
@@ -100,7 +99,7 @@ public class CallPageIos extends CallPage {
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]/link[1]", ios7 = "//window[1]/scrollview[1]/webview[1]/link[2]")
 	private UIView cancelCallButton;
-	
+
 	@FindBy(locator = "Отклонить")
 	private UIView resetCallButton;
 
@@ -113,7 +112,7 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]")
 	private UIView contactNumber;
 
-	@FindBy(locator = "Позвонить", ios7="//window[1]/scrollview[1]/webview[1]/link[18]")
+	@FindBy(locator = "Позвонить", ios7 = "//window[1]/scrollview[1]/webview[1]/link[18]")
 	private UIView callTab;
 
 	@FindBy(locator = "История", ios7 = "//window[1]/scrollview[1]/webview[1]/link[7]")
@@ -143,15 +142,15 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "Входящий вызов...")
 	// Входящий вызов...
 	private UIView incommingCall;
-	
-	@FindBy(locator="/window[1]/scrollview[1]/webview[1]/link[3]/")
+
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
 	private UIView moreButton;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
 	private UIView speakerButton;
-	
-	protected static final String DEVICE = DeviceConfig.getDevice();
 
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]")
+	private UIView nameText;
 	private static final Logger LOGGER = Logger.getLogger(CallPageIos.class);
 
 	public CallPageIos(NativeDriver driver) {
@@ -161,7 +160,7 @@ public class CallPageIos extends CallPage {
 	@Override
 	public void checkPage() {
 		try {
-			callButton.waitForElement(WAIT_WHILE_LOGIN);
+			callTab.waitForElement(WAIT_WHILE_LOGIN);
 		} catch (TimeoutException e) {
 			LOGGER.error("Login was unsuccessfull.");
 			throw new com.mobile.driver.wait.exception.TimeoutException(
@@ -247,7 +246,7 @@ public class CallPageIos extends CallPage {
 	@Override
 	public CardContactsPageIos clickContact() {
 		Dimension dim = webview.getSize();
-		callTab.touchWithCoordinates(dim.width/4-10, dim.height-10);
+		callTab.touchWithCoordinates(dim.width / 4 - 10, dim.height - 10);
 		return PageFactory.initElements(driver, CardContactsPageIos.class);
 	}
 
@@ -255,15 +254,22 @@ public class CallPageIos extends CallPage {
 	@Override
 	public SettingsPageIos navigateToSettingsTab() {
 		Dimension dim = webview.getSize();
-		callTab.touchWithCoordinates(dim.width/4*3+10, dim.height-10);
+		callTab.touchWithCoordinates(dim.width / 4 * 3 + 10, dim.height - 10);
 		return PageFactory.initElements(driver, SettingsPageIos.class);
 	}
 
 	@Override
 	public void clickCallButton() {
-	//	Rectangle point = callButton.getLocation();
-		callButton.touch();
-	//	touchWithCoordinates(point.getX(), point.getY());
+		switch (Devices.valueOf(DEVICE)) {
+		case IPHONE:
+			Rectangle point = callButton.getLocation();
+			callButton.touchWithCoordinates(point.getX(), point.getY());
+			break;
+		case IOS7:
+			callButton.touch();
+		default:
+			break;
+		}
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
 
@@ -272,7 +278,6 @@ public class CallPageIos extends CallPage {
 		return nameConnection.getFoundBy().toString();
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public CallPageIos cancelCall() {
 		switch (Devices.valueOf(DEVICE)) {
@@ -363,16 +368,23 @@ public class CallPageIos extends CallPage {
 	@Override
 	public HistoryPageIos clickHistoryTab() {
 		Dimension dim = webview.getSize();
-		historyButton.touchWithCoordinates(dim.width/4+10, dim.height-10);
+		historyButton.touchWithCoordinates(dim.width / 4 + 10, dim.height - 10);
 		return PageFactory.initElements(driver, HistoryPageIos.class);
 	}
 
 	@Override
 	public boolean isSpeakerWork() {
-		moreButton.touch();
-		speakerButton.touch();
+		Rectangle point = moreButton.getLocation();
+		moreButton.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
-		speakerButton.touch();
+		Rectangle pointSpeaker = speakerButton.getLocation();
+		speakerButton.touchWithCoordinates(pointSpeaker.getX(),
+				pointSpeaker.getY());
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
+		speakerButton.touchWithCoordinates(pointSpeaker.getX(),
+				pointSpeaker.getY());
+		Rectangle pointName = nameText.getLocation();
+		nameText.touchWithCoordinates(pointName.getX(), pointName.getY());
 		return true;
 	}
 

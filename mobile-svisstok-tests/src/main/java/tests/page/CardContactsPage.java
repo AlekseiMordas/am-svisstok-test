@@ -44,7 +44,7 @@ public abstract class CardContactsPage extends  BasePage{
 	
 	public abstract boolean checkVisibleListContacts();
 	
-	public abstract <T> T clickSettings();
+	public abstract SettingsPage clickSettings();
 	
 	public abstract void searchContacts(String text);
 	

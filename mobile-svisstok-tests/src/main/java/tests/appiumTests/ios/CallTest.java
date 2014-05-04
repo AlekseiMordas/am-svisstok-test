@@ -20,7 +20,7 @@ public class CallTest extends BaseTest {
 	// ApplicationStorage.getCallerName();
 	protected static final String NAME = "Qwerty";
 	protected static final String NUMBER = "1234";
-	
+
 	@Test(priority = 1)
 	public void checkNumberFieldDigits() {
 		call.inputFromNativeKeyboard(EXPECTED_TYPE_VALUE);
@@ -38,9 +38,8 @@ public class CallTest extends BaseTest {
 				"Last symbol not clear successfull");
 	}
 
-	@Test(priority = 3, description = "Check call name")
+	@Test(priority = 3, description = "Check call name", enabled = true)
 	public void checkConnectAnotherAbonent() {
-		
 		call.inputFromNativeKeyboard(PHONE_NUMBER);
 		call.clickCallButton();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
@@ -49,7 +48,7 @@ public class CallTest extends BaseTest {
 		Assert.assertEquals(EXPECTED_CALL_NAME, callNameConnection);
 	}
 
-	@Test(priority = 8, description = "Check timer call")
+	@Test(priority = 8, description = "Check timer call", enabled = true)
 	public void checkTimerCall() {
 		call.inputFromNativeKeyboard(PHONE_NUMBER);
 		call.clickCallButton();
@@ -58,7 +57,7 @@ public class CallTest extends BaseTest {
 		Assert.assertTrue(actualTimer);
 	}
 
-	@Test(priority = 5, description = "Check button cancel in currently call")
+	@Test(priority = 5, description = "Check button cancel in currently call", enabled = true)
 	public void checkCancelCallButtonInCall() {
 		call.inputFromNativeKeyboard(PHONE_NUMBER);
 		call.clickCallButton();
@@ -66,7 +65,7 @@ public class CallTest extends BaseTest {
 		Assert.assertTrue(call.isStatusAvailable());
 	}
 
-	@Test(priority = 6)
+	@Test(priority = 6, enabled = false)
 	public void checkCancelCallButton() {
 		call.inputFromNativeKeyboard(PHONE_NUMBER);
 		call.clickCallButton();
@@ -75,7 +74,7 @@ public class CallTest extends BaseTest {
 		Assert.assertTrue(call.isStatusAvailable());
 	}
 
-	@Test(priority = 7, description = "Check display name abonent in time call")
+	@Test(priority = 7, description = "Check display name abonent in time call", enabled = true)
 	public void checkDisplayNameAbonentInCall() {
 		call.inputFromNativeKeyboard(PHONE_NUMBER);
 		call.clickCallButton();
@@ -85,7 +84,7 @@ public class CallTest extends BaseTest {
 				"Incorrect abonent name");
 	}
 
-	@Test(priority = 9, description = "Check microfone, Check speaker")
+	@Test(priority = 9, description = "Check microfone, Check speaker", enabled = true)
 	public void checkMicrofone() {
 		call.inputFromNativeKeyboard(PHONE_NUMBER);
 		call.clickCallButton();
@@ -97,7 +96,7 @@ public class CallTest extends BaseTest {
 		Assert.assertTrue(isSpeaker);
 	}
 
-	@Test(priority = 10, description = "Check call from favorite")
+	@Test(priority = 10, description = "Check call from favorite", enabled = true)
 	public void checkCallFromFavotite() {
 		cardContacts = call.clickContact();
 		setting = cardContacts.clickSettings();
@@ -118,7 +117,7 @@ public class CallTest extends BaseTest {
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		boolean actualTimer = checkTimer(favorite.getTimer());
 		favorite.cancelCall();
-		favorite.openFirstContact(); 
+		favorite.openFirstContact();
 		favorite.clickEditContacts();
 		favorite.clickDeletefromList();
 		favorite.clickDelete();
@@ -126,32 +125,28 @@ public class CallTest extends BaseTest {
 		cardContacts.clickCallTab();
 		Assert.assertTrue(actualTimer);
 	}
-	
-/*	
-	@Test(priority = 14)
-	public void checkCallAndAnswer() {
-		// TODO : Ping CI Server to run job
-		boolean actualTimer = checkTimer(call.isAnswerIncommingCall());
-		call.endCall();
-		Assert.assertTrue(actualTimer);
-	}
 
-	@Test(priority = 15)
-	public void checkCallAndReset() {
-		// TODO : Ping CI Server to run job
-		CallPage callPage = call.isIncommingCallReset();
-		callPage.checkPage();
-	}
-*/
-	@IgnoreTest(device="ios7")
-	@Test(priority = 16 )
+	/*
+	 * @Test(priority = 14) public void checkCallAndAnswer() { // TODO : Ping CI
+	 * Server to run job boolean actualTimer =
+	 * checkTimer(call.isAnswerIncommingCall()); call.endCall();
+	 * Assert.assertTrue(actualTimer); }
+	 * 
+	 * @Test(priority = 15) public void checkCallAndReset() { // TODO : Ping CI
+	 * Server to run job CallPage callPage = call.isIncommingCallReset();
+	 * callPage.checkPage(); }
+	 */
+	
+	
+	@IgnoreTest(device = "ios7")
+	@Test(priority = 16, enabled = true)
 	public void callWithZRTPConnection() {
 		SettingsPage settings = call.navigateToSettingsTab();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
-		settings.swipe(0.5, 0.8, 1.0, 0.0, 0.5);
+		settings.swipe(0.5, 0.8, 1.0, 0, 0.5);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		settings.setZRTPconnection();
-		CallPage callPage = settings.clickCall();
+		CallPage callPage = settings.clickCallTab();
 		callPage.inputFromNativeKeyboard(PHONE_NUMBER);
 		callPage.clickCallButton();
 		boolean actualTimer = checkTimer(call.getTimer());
@@ -161,16 +156,14 @@ public class CallTest extends BaseTest {
 		settings.setConnectionByDefault();
 		Assert.assertTrue(actualTimer);
 	}
-	
-	@IgnoreTest(device="ios7")
-	@Test(priority = 17)
+
+	@IgnoreTest(device = "ios7")
+	@Test(priority = 17, enabled = true)
 	public void callWithSRTPConnection() {
 		SettingsPage settings = call.navigateToSettingsTab();
-		Sleeper.SYSTEM_SLEEPER.sleep(2000);
-		//settings.swipe(0.5, 0.8, 1.0, 0.0, 0.5);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		settings.setSRTPconnection();
-		CallPage callPage = settings.clickCall();
+		CallPage callPage = settings.clickCallTab();
 		callPage.inputFromNativeKeyboard(PHONE_NUMBER);
 		callPage.clickCallButton();
 		boolean actualTimer = checkTimer(call.getTimer());
@@ -180,7 +173,7 @@ public class CallTest extends BaseTest {
 		settings.setConnectionByDefault();
 		Assert.assertTrue(actualTimer);
 	}
-	
+
 	@AfterMethod
 	public void clearField() {
 		call.clearField();

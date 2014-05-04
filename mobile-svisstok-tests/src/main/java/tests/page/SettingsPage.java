@@ -1,6 +1,5 @@
 package tests.page;
 
-import tests.page.android.CallPageAndroid;
 import tests.page.ios.BasePage;
 
 import com.mobile.driver.nativedriver.NativeDriver;
@@ -29,7 +28,7 @@ public abstract class SettingsPage extends BasePage {
 
 	public abstract void setSRTPconnection();
 
-	public abstract <T> T clickCall();
+	public abstract CallPage clickCallTab();
 
 	public abstract void setConnectionByDefault();
 

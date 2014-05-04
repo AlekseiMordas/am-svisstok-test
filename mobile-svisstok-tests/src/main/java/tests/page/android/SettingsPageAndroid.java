@@ -131,7 +131,7 @@ public class SettingsPageAndroid extends SettingsPage {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public CallPageAndroid clickCall() {
+	public CallPageAndroid clickCallTab() {
 		callTabButton.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
 		callTabButton.touch();
 		return PageFactory.initElements(driver, CallPageAndroid.class);
