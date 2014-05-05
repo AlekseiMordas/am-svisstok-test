@@ -34,7 +34,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 				CHARACTERS_INPUT.toLowerCase());
 	}
 
-	@Test(priority = 3, enabled = false)
+	@Test(priority = 3, enabled = true)
 	public void checkLoginWithIncorrectCredentionals() {
 		main.checkPage();
 		String password = GenerateRandomString.generateString();

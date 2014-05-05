@@ -306,7 +306,7 @@ public class CardContactsTest {
 		Assert.assertTrue(result, "Contact not exist in Favourites");
 	}
 
-	@Test(priority = 12, description = "Check add to favorite for saved contact", enabled = false)
+	@Test(priority = 12, description = "Check add to favorite for saved contact", enabled = true)
 	public void checkAddToFavotiteSavedContact() {
 		goToSwisstokList();
 		createUser(USER_NAME, USER_NAME);

@@ -65,7 +65,7 @@ public class CallTest extends BaseTest {
 		Assert.assertTrue(call.isStatusAvailable());
 	}
 
-	@Test(priority = 6, enabled = false)
+	@Test(priority = 6, enabled = true)
 	public void checkCancelCallButton() {
 		call.inputFromNativeKeyboard(PHONE_NUMBER);
 		call.clickCallButton();
