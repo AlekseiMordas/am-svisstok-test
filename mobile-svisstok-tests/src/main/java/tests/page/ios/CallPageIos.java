@@ -70,8 +70,12 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[2]/UIAKeyboard[1]/UIAKey[29]")
 	private UIView moreNumber;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[15]")
+	@FindBy(locator = "Удалить" ,
+			ios7 = "//window[1]/scrollview[1]/webview[1]/link[15]")
 	private UIView deleteButton;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[15]")
+	private UIView deleteButtonFromKeyboard;
 
 	@FindBy(locator = "Select All")
 	private UIView selectAll;
@@ -109,7 +113,8 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[4]")
 	private UIView timerCall;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[5]",
+			ios7 = "//window[1]/scrollview[1]/webview[1]/text[3]")
 	private UIView contactNumber;
 
 	@FindBy(locator = "Позвонить", ios7 = "//window[1]/scrollview[1]/webview[1]/link[18]")
@@ -127,7 +132,8 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
 	private UIView settingTab;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[5]")
+	@FindBy(locator = "Удалить",
+			ios7 = "//window[1]/scrollview[1]/webview[1]/link[5]")
 	private UIView deleteFromList;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
@@ -238,8 +244,8 @@ public class CallPageIos extends CallPage {
 
 	@Override
 	public void deleteLastSymbol() {
-		Rectangle point = deleteButton.getLocation();
-		deleteButton.touchWithCoordinates(point.getX(), point.getY());
+		Rectangle point = deleteButtonFromKeyboard.getLocation();
+		deleteButtonFromKeyboard.touchWithCoordinates(point.getX(), point.getY());
 	}
 
 	@SuppressWarnings("unchecked")

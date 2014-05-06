@@ -36,7 +36,8 @@ public class BlockPageIos extends BlockPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
 	private UIView settingTab;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[5]")
+	@FindBy(locator = "Удалить",
+			ios7 = "//window[1]/scrollview[1]/webview[1]/link[5]")
 	private UIView deleteFromList;
 
 	@FindBy(locator = "Удалить")

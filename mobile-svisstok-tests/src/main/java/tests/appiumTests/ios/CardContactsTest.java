@@ -171,9 +171,9 @@ public class CardContactsTest {
 		boolean visibleContactName = cardContacts
 				.checkVisibleContactName(SAVED_NAME);
 		Assert.assertTrue(visibleContactName, "Contact name not visible");
-		cardContacts.clickEditContacts();
-		cardContacts.clickDeletefromList();
-		cardContacts.clickDelete();
+//		cardContacts.clickEditContacts();
+//		cardContacts.clickDeletefromList();
+//		cardContacts.clickDelete();
 	}
 
 	// TODO wait CI
@@ -221,6 +221,7 @@ public class CardContactsTest {
 		Assert.assertTrue(cardContacts.isMessageDeleteAppears(MSG_DELETE),
 				"Delete Message user is incorrect");
 	}
+	
 
 	@Test(priority = 8, description = "Check blocks contact", enabled = true)
 	public void checkBlockContact() {

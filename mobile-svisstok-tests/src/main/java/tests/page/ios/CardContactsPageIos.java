@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 
+import runner.Devices;
 import tests.page.CardContactsPage;
 
 import com.annotation.FindBy;
@@ -64,7 +65,8 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "Изменить")
 	private UIView editFromList;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[9]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[11]",
+			ios7 = "//window[1]/scrollview[1]/webview[1]/text[9]")
 	private UIView secondNumber;
 
 	@FindBy(locator = "Удалить")
@@ -73,7 +75,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[6]")
 	private UIView messageDelete;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[24]", ios7 = "Заблокировать")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[15]/link[1]", ios7 = "Заблокировать")
 	private UIView blockButton;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]")
@@ -85,7 +87,8 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "Cut")
 	private UIView cutButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[13]", ios7 = "//window[1]/scrollview[1]/webview[1]/link[13]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[8]", 
+			ios7 = "//window[1]/scrollview[1]/webview[1]/link[13]")
 	private UIView star;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
@@ -97,7 +100,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
 	private UIView settingTab;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
 	private UIView settingTabRight;
 
 	@FindBy(locator = "Удалить")

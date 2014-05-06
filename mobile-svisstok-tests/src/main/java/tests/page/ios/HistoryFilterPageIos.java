@@ -22,10 +22,12 @@ public class HistoryFilterPageIos extends HistoryFilterPage{
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[1]")
 	private UIView header;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]/link[1]",
+			ios7 = "//window[1]/scrollview[1]/webview[1]/link[1]")
 	private UIView filterButton;
 	
-	@FindBy(locator = "Все звонки")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]",
+			ios7 = "Все звонки")
 	private UIView allCalls;
 	
 	@FindBy(locator = "Пропущенные звонки")
@@ -45,6 +47,9 @@ public class HistoryFilterPageIos extends HistoryFilterPage{
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]/link[3]/text[1]")
 	private UIView nameContact;
+	
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]/link[1]")
+	private UIView backFromAllContacts;
 
 	public HistoryFilterPageIos(NativeDriver driver) {
 		super(driver);
@@ -69,9 +74,11 @@ public class HistoryFilterPageIos extends HistoryFilterPage{
 
 	@Override
 	public HistoryFilterPageIos clickAllContacts() {
-		List<WebElement> list = ((AppiumDriver) driver).getDriver().findElements(By.name("Все звонки"));
-		Point point=  list.get(list.size()-1).getLocation();
+//		List<WebElement> list = ((AppiumDriver) driver).getDriver().findElements(By.name("Все звонки"));
+//		Point point=  list.get(list.size()-1).getLocation();
+		Rectangle point=  allCalls.getLocation();
 		allCalls.touchWithCoordinates(point.getX(), point.getY());
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		return PageFactory.initElements(driver, HistoryFilterPageIos.class);
 	}
 
