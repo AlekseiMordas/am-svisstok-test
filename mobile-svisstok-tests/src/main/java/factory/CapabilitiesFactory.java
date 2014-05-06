@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import runner.DeviceConfig;
 import runner.Devices;
 import utils.ApplicationStorage;
 
@@ -28,7 +29,16 @@ public class CapabilitiesFactory {
 
 	public static DesiredCapabilities createDefaultCapabilities(Devices device) {
 		capabilities.setCapability(CapabilityType.BROWSER_NAME, BROWSER_NAME);
-//		capabilities.setCapability(CapabilityType.VERSION, VERSION);
+		switch (Devices.valueOf(DeviceConfig.getDevice())) {
+		case IPHONE:
+			capabilities.setCapability(CapabilityType.VERSION, VERSION);
+			break;
+		case IOS7:
+			capabilities.setCapability(CapabilityType.VERSION, "7.1");
+			break;
+		default:
+			break;
+		}
 		capabilities.setCapability(CapabilityType.PLATFORM, PLATFORM);
 		// capabilities.setCapability("app",
 		// ApplicationStorage.getDefaultPathToApp() );
@@ -38,6 +48,7 @@ public class CapabilitiesFactory {
 		LOGGER.info("CAPABILITY PATH: "
 				+ ApplicationStorage.getDefaultPathToApp());
 		return capabilities;
+
 	}
 
 	public static String getSimulatorCapability() {
