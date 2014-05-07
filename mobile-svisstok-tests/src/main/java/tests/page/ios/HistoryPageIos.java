@@ -1,23 +1,18 @@
 package tests.page.ios;
 
 import java.awt.Rectangle;
-import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
-import tests.page.HistoryFilterPage;
+import tests.page.HistoryPage;
 
 import com.annotation.FindBy;
 import com.element.UIView;
-import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
 import com.mobile.driver.page.PageFactory;
 import com.mobile.driver.wait.Sleeper;
 
-public class HistoryFilterPageIos extends HistoryFilterPage{
+public class HistoryPageIos extends HistoryPage{
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[1]")
 	private UIView header;
@@ -51,7 +46,7 @@ public class HistoryFilterPageIos extends HistoryFilterPage{
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]/link[1]")
 	private UIView backFromAllContacts;
 
-	public HistoryFilterPageIos(NativeDriver driver) {
+	public HistoryPageIos(NativeDriver driver) {
 		super(driver);
 	}
 	
@@ -72,38 +67,38 @@ public class HistoryFilterPageIos extends HistoryFilterPage{
 		}
 	};
 
-	@Override
-	public HistoryFilterPageIos clickAllContacts() {
+	
+	public HistoryPageIos clickAllContacts() {
 //		List<WebElement> list = ((AppiumDriver) driver).getDriver().findElements(By.name("Все звонки"));
 //		Point point=  list.get(list.size()-1).getLocation();
 		Rectangle point=  allCalls.getLocation();
 		allCalls.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
-		return PageFactory.initElements(driver, HistoryFilterPageIos.class);
+		return PageFactory.initElements(driver, HistoryPageIos.class);
 	}
 
-	@Override
-	public HistoryFilterPageIos clickMissedCalls() {
+
+	public HistoryPageIos clickMissedCalls() {
 		missed.touch();
-		return PageFactory.initElements(driver, HistoryFilterPageIos.class);
+		return PageFactory.initElements(driver, HistoryPageIos.class);
 	}
 
-	@Override
-	public HistoryFilterPageIos clickIncomingCalls() {
+	
+	public HistoryPageIos clickIncomingCalls() {
 		incoming.touch();
-		return PageFactory.initElements(driver, HistoryFilterPageIos.class);
+		return PageFactory.initElements(driver, HistoryPageIos.class);
 	}
 
-	@Override
-	public HistoryFilterPageIos clickOutcommingCalls() {
+	
+	public HistoryPageIos clickOutcommingCalls() {
 		outgoing.touch();
-		return PageFactory.initElements(driver, HistoryFilterPageIos.class);
+		return PageFactory.initElements(driver, HistoryPageIos.class);
 	}
 
-	@Override
-	public HistoryFilterPageIos clickRejectedCalls() {
+	
+	public HistoryPageIos clickRejectedCalls() {
 		rejected.touch();
-		return PageFactory.initElements(driver, HistoryFilterPageIos.class);
+		return PageFactory.initElements(driver, HistoryPageIos.class);
 	}
 
 	@Override
@@ -111,13 +106,14 @@ public class HistoryFilterPageIos extends HistoryFilterPage{
 		// TODO Auto-generated method stub
 		
 	}
-	public HistoryFilterPageIos openFilter() {
+	@Override
+	public HistoryPageIos openFilter() {
 		Rectangle point = filterButton.getLocation();
 		filterButton.touchWithCoordinates(point.getX(), point.getY());
-		return PageFactory.initElements(driver, HistoryFilterPageIos.class);
+		return PageFactory.initElements(driver, HistoryPageIos.class);
 	}
 
-	@Override
+	
 	public void checkHistoryFilter() {
 		Assert.assertEquals(Headers.ALL_CALLS.toString(), clickAllContacts()
 				.getTitle());
@@ -131,7 +127,7 @@ public class HistoryFilterPageIos extends HistoryFilterPage{
 		Assert.assertTrue(clickRejectedCalls().isExistElement(header));
 	}
 	
-	@Override
+	
 	public void checkVisibleShortName(){
 		//TODO: strange naming of contacts
 //		String name = DeviceConfig.getCaller();
@@ -163,5 +159,76 @@ public class HistoryFilterPageIos extends HistoryFilterPage{
 	private String getName(UIView element){
 		return element.getAttribute("name");
 	}
+
+
+	@Override
+	public void clickFirstContact() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public <T> T cancelCall() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public String getTimer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void clickCallTab() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void clickEdit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void findDeleteContacts() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public int deleteCall() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public void deleteAllCalls() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public int getCountUsers() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public String getMessageEmptyList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
