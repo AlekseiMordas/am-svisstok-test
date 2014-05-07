@@ -141,13 +141,13 @@ public class CardContactsTest {
 		SECOND_NUMBER = String.valueOf(new Random().nextInt(99999));
 	}
 
-	/*
-	 * @Test(priority = 1, description = "Check name contact") public void
-	 * checkListContacts() { goToSwisstokList(); boolean visibleListContacts =
-	 * cardContacts.checkVisibleListContacts(); //cardContacts.clickCall(); we
-	 * don't need if use afterMethod for driver quite
-	 * Assert.assertTrue(visibleListContacts, "Contact List not do"); }
-	 */
+	@Test(priority = 1, description = "Check name contact")
+	public void checkListContacts() {
+		goToSwisstokList();
+		boolean visibleListContacts = cardContacts.checkVisibleListContacts(); 
+		Assert.assertTrue(visibleListContacts, "Contact List not do");
+	}
+
 	@Test(priority = 2, description = "Check add contact.", enabled = true)
 	public void checkAddContact() {
 		goToSwisstokList();
@@ -171,9 +171,9 @@ public class CardContactsTest {
 		boolean visibleContactName = cardContacts
 				.checkVisibleContactName(SAVED_NAME);
 		Assert.assertTrue(visibleContactName, "Contact name not visible");
-//		cardContacts.clickEditContacts();
-//		cardContacts.clickDeletefromList();
-//		cardContacts.clickDelete();
+		// cardContacts.clickEditContacts();
+		// cardContacts.clickDeletefromList();
+		// cardContacts.clickDelete();
 	}
 
 	// TODO wait CI
@@ -221,7 +221,6 @@ public class CardContactsTest {
 		Assert.assertTrue(cardContacts.isMessageDeleteAppears(MSG_DELETE),
 				"Delete Message user is incorrect");
 	}
-	
 
 	@Test(priority = 8, description = "Check blocks contact", enabled = true)
 	public void checkBlockContact() {
