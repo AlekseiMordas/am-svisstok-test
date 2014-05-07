@@ -39,6 +39,10 @@
 			<destName>history-tests.xml</destName>
 		</file>
 		<file>
+			<source>all.xml</source>
+			<destName>all.xml</destName>
+		</file>
+		<file>
 			<source>local.properties</source>
 			<destName>local.properties</destName>
 		</file>

@@ -1,0 +1,28 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Mobile_test_suite">
+
+	<test verbose="1" name="Svisstok test - Authorization Tests" annotations="JDK">
+		<classes>
+			<class name="tests.appiumTests.ios.AuthorizationTest" />
+		</classes>
+	</test> 
+	
+	<test verbose="1" name="Svisstok test - Call Tests" annotations="JDK">
+		<classes>
+			<class name="tests.appiumTests.ios.CallTest" />
+		</classes>
+	</test> 
+	
+	<test verbose="1" name="Svisstok test -Card Contacts Test" annotations="JDK">
+		<classes>
+			<class name="tests.appiumTests.ios.CardContactsTest" />
+		</classes>
+	</test> 
+	
+	<test verbose="1" name="Svisstok test - History Tests" annotations="JDK">
+		<classes>
+			<class name="tests.appiumTests.ios.HistoryTests" />
+		</classes>
+	</test> 
+	
+</suite>
