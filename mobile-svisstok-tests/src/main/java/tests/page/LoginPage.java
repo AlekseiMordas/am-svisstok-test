@@ -1,11 +1,9 @@
 package tests.page;
 
-import com.annotation.FindBy;
+import tests.page.ios.BasePage;
+
 import com.element.UIView;
 import com.mobile.driver.nativedriver.NativeDriver;
-
-
-import tests.page.ios.BasePage;
 
 
 public abstract class LoginPage extends BasePage {
@@ -25,7 +23,7 @@ public abstract class LoginPage extends BasePage {
 
 	public abstract void clickLogin();
 
-	public abstract <T> T simpleLogin(String login, String password, boolean isSavePassword, boolean isAutoLogin);
+	public abstract CallPage simpleLogin(String login, String password, boolean isSavePassword, boolean isAutoLogin);
 	
 	public abstract boolean isSavePasswordCorrect();
 
