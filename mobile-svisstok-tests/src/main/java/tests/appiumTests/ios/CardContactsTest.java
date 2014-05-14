@@ -143,7 +143,10 @@ public class CardContactsTest {
 
 	@Test(priority = 1, description = "Check name contact")
 	public void checkListContacts() {
-		goToSwisstokList();
+		cardContacts = call.clickContact();
+		cardContacts.isContactListDownloaded();
+		setting = cardContacts.clickSettings();
+		cardContacts = setting.clickAllContacts();
 		boolean visibleListContacts = cardContacts.checkVisibleListContacts(); 
 		Assert.assertTrue(visibleListContacts, "Contact List not do");
 	}
