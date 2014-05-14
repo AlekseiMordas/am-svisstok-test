@@ -135,7 +135,7 @@ public class CardContactsTest {
 
 	@BeforeMethod
 	public void generateNewUser() {
-		SAVED_NAME = "AutoTest" + String.valueOf(new Random().nextInt(9999));
+		SAVED_NAME = "Auto" + String.valueOf(new Random().nextInt(9999));
 		CONTACT = String.valueOf(new Random().nextInt(99999));
 		OTHER_NAME = "Other" + String.valueOf(new Random().nextInt(99999));
 		SECOND_NUMBER = String.valueOf(new Random().nextInt(99999));
