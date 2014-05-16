@@ -119,7 +119,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "//window[4]/alert[1]")
 	private UIView alertAccessContacts;
 
-	@FindBy(locator = "Позвонить", ios7 = "Позвонить  , &nbsp;")
+	@FindBy(locator = "Позвонить \n", ios7 = "Позвонить  , &nbsp;")
 	private UIView callButton;
 
 	public CardContactsPageIos(NativeDriver driver) {
