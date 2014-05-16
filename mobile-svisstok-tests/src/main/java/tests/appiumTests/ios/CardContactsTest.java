@@ -145,6 +145,7 @@ public class CardContactsTest {
 	public void checkListContacts() {
 		cardContacts = call.clickContact();
 		cardContacts.isContactListDownloaded();
+		setting = cardContacts.clickSettings();
 		cardContacts = setting.clickAllContacts();
 		boolean visibleListContacts = cardContacts.checkVisibleListContacts(); 
 		Assert.assertTrue(visibleListContacts, "Contact List not do");
