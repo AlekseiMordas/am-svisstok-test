@@ -5,7 +5,6 @@ import java.awt.Rectangle;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 
-import runner.Devices;
 import tests.page.CardContactsPage;
 
 import com.annotation.FindBy;
@@ -118,7 +117,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "//window[4]/alert[1]")
 	private UIView alertAccessContacts;
 
-	@FindBy(locator = "Позвонить  , &nbsp;")
+	@FindBy(locator = "Позвонить", ios7 = "Позвонить  , &nbsp;")
 	private UIView callButton;
 
 	public CardContactsPageIos(NativeDriver driver) {
