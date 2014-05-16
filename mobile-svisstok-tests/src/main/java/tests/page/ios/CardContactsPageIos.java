@@ -101,7 +101,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
 	private UIView settingTab;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]/link[1]")
 	private UIView settingTabRight;
 
 	@FindBy(locator = "Удалить")
