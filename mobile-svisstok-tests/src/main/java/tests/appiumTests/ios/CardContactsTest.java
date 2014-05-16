@@ -145,7 +145,6 @@ public class CardContactsTest {
 	public void checkListContacts() {
 		cardContacts = call.clickContact();
 		cardContacts.isContactListDownloaded();
-		setting = cardContacts.clickSettings();
 		cardContacts = setting.clickAllContacts();
 		boolean visibleListContacts = cardContacts.checkVisibleListContacts(); 
 		Assert.assertTrue(visibleListContacts, "Contact List not do");
@@ -178,7 +177,7 @@ public class CardContactsTest {
 		// cardContacts.clickDeletefromList();
 		// cardContacts.clickDelete();
 	}
-
+	
 	// TODO wait CI
 	@Test(priority = 5, description = "Check call contact", enabled = true)
 	public void checkCallContact() {
@@ -312,22 +311,22 @@ public class CardContactsTest {
 	@Test(priority = 12, description = "Check add to favorite for saved contact", enabled = true)
 	public void checkAddToFavotiteSavedContact() {
 		goToSwisstokList();
-		createUser(USER_NAME, USER_NAME);
+		createUser(SAVED_NAME, SAVED_NAME);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		cardContacts.clickBack();
 		setting = cardContacts.clickSettings();
 		savedContacts = setting.clickSavedContacts();
-		savedContacts.searchContacts(USER_NAME);
-		savedContacts.clickSearchResult(USER_NAME);
+		savedContacts.searchContacts(SAVED_NAME);
+		savedContacts.clickSearchResult(SAVED_NAME);
 		savedContacts.swipe(0.5, 0.8, 0.5, 0.1, 0.5);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		savedContacts.clickStar();
 		savedContacts.clickBack();
 		setting = savedContacts.clickSettings();
 		favorite = setting.clickFavorite();
-		favorite.searchContacts(USER_NAME);
+		favorite.searchContacts(SAVED_NAME);
 		favorite.openFirstContact();
-		boolean result = cardContacts.isContactNumberExist(USER_NAME);
+		boolean result = cardContacts.isContactNumberExist(SAVED_NAME);
 		favorite.clickEditContacts();
 		favorite.clickDeletefromList();
 		favorite.clickDelete();
