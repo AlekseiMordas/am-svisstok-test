@@ -46,10 +46,12 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[17]/link[1]")
 	private UIView delete;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]/link[2]/text[1]",
+			ios7 = "//window[1]/scrollview[1]/webview[1]/link[3]")
 	private UIView firstContact;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]/link[2]/text[1]",
+			ios7 = "//window[1]/scrollview[1]/webview[1]/link[4]")
 	private UIView secondContact;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/textfield[1]")
@@ -305,7 +307,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	@Override
 	public CallPageIos clickSearchResult(String result) {
 		Rectangle point = webview.getLocation();
-		double y = 88;
+		double y = 105;
 		webview.touchWithCoordinates(point.getX(), point.getY() + y);
 		CallPageIos call = PageFactory.initElements(driver, CallPageIos.class);
 		return call;
