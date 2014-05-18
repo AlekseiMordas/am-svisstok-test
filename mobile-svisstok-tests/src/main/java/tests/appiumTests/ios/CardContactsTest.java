@@ -92,7 +92,7 @@ public class CardContactsTest {
 	public void initPages() throws Exception {
 		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:
-			driver = IosDriverWrapper.getIphone(HOST, PORT);
+			driver = IosDriverWrapper.getIos(HOST, PORT);
 			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
 			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
@@ -101,7 +101,7 @@ public class CardContactsTest {
 			Sleeper.SYSTEM_SLEEPER.sleep(5000);
 			break;
 		case IOS7:
-			driver = IosDriverWrapper.getIphone(HOST, PORT);
+			driver = IosDriverWrapper.getIos(HOST, PORT);
 			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
 			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
@@ -212,7 +212,7 @@ public class CardContactsTest {
 		cardContacts.clickDelete();
 		Assert.assertEquals(SECOND_NUMBER, secondNumber);
 	}
-
+	
 	@Test(priority = 7, description = "Check delete contact", enabled = true)
 	public void checkDeleteContact() {
 		goToSwisstokList();

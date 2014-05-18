@@ -5,6 +5,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebElement;
 
 import runner.DeviceConfig;
 import runner.Devices;
@@ -67,13 +69,16 @@ public abstract class BasePage extends Page {
 		}
 	}
 	
-	public static void scrollTop() {
+	public static void scrollDown(String locator) {
 		
 		JavascriptExecutor js =((AppiumDriver) driver)
 				.getDriver();
-		/* 192 */     HashMap<String, String> scrollObject = new HashMap<String, String>();
-		/* 193 */     scrollObject.put("direction", "up");
-		/* 194 */     js.executeScript("mobile: scroll", new Object[] { scrollObject });
-		/* 195 */     //LOGGER.info("Scroll top");
+		WebElement element = ((AppiumDriver) driver)
+				.getDriver().findElementByXPath(locator);
+		HashMap<String, String> scrollObject = new HashMap<String, String>();
+		scrollObject.put("direction", "down");
+		scrollObject.put("element", ((RemoteWebElement) element).getId());
+		js.executeScript("mobile: scroll", new Object[] { scrollObject });
+		
 	}
 }

@@ -16,7 +16,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 
 	private final String CHARACTERS_INPUT = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-	@Test(priority = 1)
+	@Test(priority = 1, enabled = true)
 	public void checkLoginFieldDigits() {
 		Sleeper.SYSTEM_SLEEPER.sleep(10000);
 		main.checkPage();
@@ -24,7 +24,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 		Assert.assertEquals(main.getLoginFieldText(), VALUE_INPUT);
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 2, enabled = true)
 	public void checkLoginFieldLetters() {
 		main.checkPage();
 		main.inputLoginTextfield(CHARACTERS_INPUT);
@@ -33,7 +33,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 		Assert.assertEquals(main.getLoginFieldText(),
 				CHARACTERS_INPUT.toLowerCase());
 	}
-
+	
 	@Test(priority = 3, enabled = true)
 	public void checkLoginWithIncorrectCredentionals() {
 		main.checkPage();
@@ -44,7 +44,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 		Assert.assertTrue(main.isErrorMessageAppears());
 	}
 
-	@Test(priority = 4)
+	@Test(priority = 4, enabled = true)
 	public void simpleLogin() {
 		main.checkPage();
 		call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
@@ -52,7 +52,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 		Assert.assertTrue(call.isStatusAvailable(), "CallPage doesn't open");
 	}
 
-	@Test(priority = 5, description = "Check save password functionality")
+	@Test(priority = 5, description = "Check save password functionality", enabled = true)
 	public void loginWithSavePasswordFlag() throws Exception {
 		AppiumDriver.class.cast(driver).quit();
 		initPages();
@@ -67,7 +67,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 				"Save password flag doesn't work correctly.Login or Password field are empty");
 	}
 
-	@Test(priority = 6, description = "Check auto login functionality")
+	@Test(priority = 6, description = "Check auto login functionality", enabled = true)
 	public void autoLogin() throws Exception {
 		AppiumDriver.class.cast(driver).quit();
 		initPages();

@@ -23,11 +23,11 @@ public class IosDriverWrapper {
 
 	private static NativeDriver instance;
 
-	public static NativeDriver getIphone(String host, String port) {
+	public static NativeDriver getIos(String host, String port) {
 		  isSeesionExist = isSessionExist(host, port);
 		if (!isSeesionExist) {
 			instance = new AppiumDriver(String.format(URL, host, port),
-					CapabilitiesFactory.createIphoneCapabilities());
+					CapabilitiesFactory.createIosCapabilities());
 		}
 		return instance;
 	}

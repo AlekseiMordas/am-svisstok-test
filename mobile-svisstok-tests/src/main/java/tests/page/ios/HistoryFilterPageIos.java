@@ -1,13 +1,10 @@
 package tests.page.ios;
 
 import java.awt.Rectangle;
-import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import runner.DeviceConfig;
 import tests.page.HistoryFilterPage;
 
 import com.annotation.FindBy;
@@ -27,7 +24,7 @@ public class HistoryFilterPageIos extends HistoryFilterPage{
 	private UIView filterButton;
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]",
-			ios7 = "Все звонки")
+			ios7 = "//link[@name='Все звонки']")
 	private UIView allCalls;
 	
 	@FindBy(locator = "Пропущенные звонки")
@@ -47,6 +44,8 @@ public class HistoryFilterPageIos extends HistoryFilterPage{
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]/link[3]/text[1]")
 	private UIView nameContact;
+	
+	private static String NAME = "//link[@name='%s']";
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]/link[1]")
 	private UIView backFromAllContacts;
@@ -134,21 +133,26 @@ public class HistoryFilterPageIos extends HistoryFilterPage{
 	@Override
 	public void checkVisibleShortName(){
 		//TODO: strange naming of contacts
-//		String name = DeviceConfig.getCaller();
-//		Assert.assertEquals(name, clickAllContacts()
-//				.getName(nameContact));
-//		openFilter();
-//		Assert.assertEquals(name, clickMissedCalls()
-//				.getName(nameContact));
-//		openFilter();
-//		Assert.assertEquals(name, clickIncomingCalls()
-//				.getName(nameContact));
-//		openFilter();
-//		Assert.assertEquals(name, clickOutcommingCalls()
-//				.getName(nameContact));
-//		openFilter();
-//		Assert.assertEquals(name, clickRejectedCalls()
-//				.getName(nameContact));
+		String name = DeviceConfig.getCaller();
+		((AppiumDriver) driver).getDriver().findElementByXPath(String.format(NAME, "Auto9893")).isDisplayed();
+		//Assert.assertEquals(name, clickAllContacts()
+			//	.getName(nameContact));
+		openFilter();
+		((AppiumDriver) driver).getDriver().findElementByXPath(String.format(NAME, name)).isDisplayed();
+		//Assert.assertEquals(name, clickMissedCalls()
+		//		.getName(nameContact));
+		openFilter();
+		((AppiumDriver) driver).getDriver().findElementByXPath(String.format(NAME, name)).isDisplayed();
+		//Assert.assertEquals(name, clickIncomingCalls()
+		//		.getName(nameContact));
+		openFilter();
+		((AppiumDriver) driver).getDriver().findElementByXPath(String.format(NAME, name)).isDisplayed();
+		//Assert.assertEquals(name, clickOutcommingCalls()
+		//		.getName(nameContact));
+		openFilter();
+		((AppiumDriver) driver).getDriver().findElementByXPath(String.format(NAME, name)).isDisplayed();
+		//Assert.assertEquals(name, clickRejectedCalls()
+		//		.getName(nameContact));
 	}
 	
 	private String getTitle() {

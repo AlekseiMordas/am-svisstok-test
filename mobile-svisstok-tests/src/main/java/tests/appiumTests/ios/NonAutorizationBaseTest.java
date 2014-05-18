@@ -54,14 +54,14 @@ public class NonAutorizationBaseTest {
 
 		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:
-			driver = IosDriverWrapper.getIphone(HOST, PORT);
+			driver = IosDriverWrapper.getIos(HOST, PORT);
 			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
 			call = PageFactory.initElements(driver, CallPageIos.class);
 			settings = PageFactory.initElements(driver, SettingsPageIos.class);
 			break;
 		case IOS7:
-			driver = IosDriverWrapper.getIphone(HOST, PORT);
+			driver = IosDriverWrapper.getIos(HOST, PORT);
 			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
 			call = PageFactory.initElements(driver, CallPageIos.class);

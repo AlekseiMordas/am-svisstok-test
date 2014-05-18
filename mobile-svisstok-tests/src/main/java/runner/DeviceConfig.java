@@ -18,6 +18,27 @@ public class DeviceConfig {
 	
 	private static String abonent;
 	
+	private static String appiumDevice;
+	
+	private static String appiumDeviceVersion;
+	
+	public static String getAppiumDevice() {
+		return appiumDevice;
+	}
+
+	public static void setAppiumDevice(String appiumDevice) {
+		DeviceConfig.appiumDevice = appiumDevice;
+	}
+
+	public static String getAppiumDeviceVersion() {
+		return appiumDeviceVersion;
+	}
+
+	public static void setAppiumDeviceVersion(String appiumDeviceVersion) {
+		DeviceConfig.appiumDeviceVersion = appiumDeviceVersion;
+	}
+
+	
 	public static String getCaller() {
 		return caller;
 	}

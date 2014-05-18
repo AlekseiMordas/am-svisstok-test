@@ -44,7 +44,7 @@ public class LoginPageIos extends LoginPage {
 	@FindBy(locator = "//window[2]/UIAKeyboard[1]")
 	private UIView keyBoard;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]", ios7="//window[1]/scrollview[1]/webview[1]/text[5]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]", ios7="Не удалось выполнить вход")
 	private UIView errorMessage;
 
 	public LoginPageIos(NativeDriver driver) {

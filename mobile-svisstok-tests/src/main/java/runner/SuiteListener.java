@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriverException;
 import org.testng.IConfigurationListener;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener2;
@@ -27,7 +28,12 @@ public class SuiteListener implements ISuiteListener, ITestListener,
 
 	@Override
 	public void onTestFailure(ITestResult result) {
-		IosDriverWrapper.getDriver().takeScreenshot("");
+		try {
+			IosDriverWrapper.getDriver().takeScreenshot("");
+		}
+		catch(WebDriverException e) {
+			LOGGER.info("Can't take screenshot: " + e.getMessage());
+		}
 		LOGGER.info("================================== TEST "
 				+ result.getName()
 				+ " FAILED ==================================");
@@ -49,9 +55,20 @@ public class SuiteListener implements ISuiteListener, ITestListener,
 
 	@Override
 	public void onTestSkipped(ITestResult result) {
+		IgnoreTest ignore = result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(IgnoreTest.class);
+		if (ignore != null) {
+			if (ignore.device().toUpperCase().equals(DeviceConfig.getDevice())) {
+			result.setStatus(ITestResult.SUCCESS);
+//			LOGGER.info("================================== TEST "
+//					+ result.getName()
+//					+ " SKIPPED DUE SETTINGS======================");
+			}
+		}
+		else {
 		LOGGER.info("================================== TEST "
 				+ result.getName()
 				+ " SKIPPED ==================================");
+		}
 	}
 
 	@Override

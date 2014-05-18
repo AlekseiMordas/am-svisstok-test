@@ -67,7 +67,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	private UIView editFromList;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[11]",
-			ios7 = "//window[1]/scrollview[1]/webview[1]/text[9]")
+			ios7 = "//window[1]/scrollview[1]/webview[1]/text[11]")
 	private UIView secondNumber;
 
 	@FindBy(locator = "Удалить")
@@ -89,19 +89,19 @@ public class CardContactsPageIos extends CardContactsPage {
 	private UIView cutButton;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[8]", 
-			ios7 = "//window[1]/scrollview[1]/webview[1]/link[13]")
+			ios7 = "//window[1]/scrollview[1]/webview[1]/link[8]")
 	private UIView star;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
 	private UIView backTab;
 
-	@FindBy(locator = "Готово", ios7="//window[1]/scrollview[1]/webview[1]/link[9]/text[1]")
+	@FindBy(locator = "Готово")
 	private UIView saveButton;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
 	private UIView settingTab;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]/link[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
 	private UIView settingTabRight;
 
 	@FindBy(locator = "Удалить")

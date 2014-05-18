@@ -22,9 +22,9 @@ public class SettingsPageIos extends SettingsPage {
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
 	private UIView webview;
-	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/slider[3]")
-	private UIView autoLoginSlider;
+
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/slider[3]", ios7 = "//window[1]/scrollview[1]/webview[1]/slider[3]")
+	public UIView autoLoginSlider;
 
 	@FindBy(locator = "Все контакты")
 	private UIView allContacts;
@@ -60,6 +60,7 @@ public class SettingsPageIos extends SettingsPage {
 
 	@Override
 	public void setAutoLogin(boolean flag) {
+		scrollDown(autoLoginSlider.getLocator());
 		if (flag) {
 			if (autoLoginSlider.getAttribute("value").equals("0.00")) {
 				autoLoginSlider.touch();
@@ -146,8 +147,8 @@ public class SettingsPageIos extends SettingsPage {
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		Rectangle pointPopUp = popUpMenu.getLocation();
 		Dimension dim = popUpMenu.getSize();
-		popUpMenu.touchWithCoordinates(pointPopUp.getX(),
-				pointPopUp.getY() + dim.getHeight() / 2 + 30);
+		popUpMenu.touchWithCoordinates(pointPopUp.getX(), pointPopUp.getY()
+				+ dim.getHeight() / 2 + 30);
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 
