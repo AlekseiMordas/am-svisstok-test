@@ -155,7 +155,8 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	public void clearField(UIView element) {
 		if (!(element.getText().isEmpty())) {
-			element.touchLong();
+			element.touch();
+		//	element.touchLong();
 			selectAll.touch();
 			Rectangle point = cutButton.getLocation();
 			cutButton.touchWithCoordinates(point.getX(), point.getY());
