@@ -41,7 +41,7 @@ public class HistoryTests extends BaseTest {
 					"User didn't delete");
 			break;
 		case IOS7:
-			Assert.assertEquals(history.getCountUsers(), 4,
+			Assert.assertEquals(history.getCountUsers(), count - 3,
 					"User didn't delete");
 			break;
 		case ANDROID:
@@ -70,7 +70,7 @@ public class HistoryTests extends BaseTest {
 					"User didn't delete");
 			break;
 		case IOS7:
-			Assert.assertEquals(history.getCountUsers(), DEFAULT_COUNT_LINKS_IN_EMPTY_HISTORY,
+			Assert.assertEquals(history.getCountUsers(), 4,
 					"User didn't delete");
 			break;
 		case ANDROID:
