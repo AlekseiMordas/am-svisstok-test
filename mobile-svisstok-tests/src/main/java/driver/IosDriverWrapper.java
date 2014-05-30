@@ -24,7 +24,7 @@ public class IosDriverWrapper {
 	private static NativeDriver instance;
 
 	public static NativeDriver getIos(String host, String port) {
-		  isSeesionExist = isSessionExist(host, port);
+		isSeesionExist = isSessionExist(host, port);
 		if (!isSeesionExist) {
 			instance = new AppiumDriver(String.format(URL, host, port),
 					CapabilitiesFactory.createIosCapabilities());
@@ -33,7 +33,7 @@ public class IosDriverWrapper {
 	}
 
 	public static NativeDriver getAndroid(String host, String port) {
-		  isSeesionExist = isSessionExist(host, port);
+		isSeesionExist = isSessionExist(host, port);
 		if (!isSeesionExist) {
 			instance = new AppiumDriver(String.format(URL, host, port),
 					CapabilitiesFactory.createAndroidCapabilities());
@@ -44,7 +44,7 @@ public class IosDriverWrapper {
 	public static NativeDriver getDriver() {
 		return instance;
 	}
-	
+
 	public static boolean isSessionExist(String host, String port) {
 		return HttpClient
 				.getInstance(String.format(URL, host, port) + STATUS_APPIUM)
