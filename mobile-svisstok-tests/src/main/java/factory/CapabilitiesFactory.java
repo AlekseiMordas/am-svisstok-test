@@ -28,7 +28,8 @@ public class CapabilitiesFactory {
 
 	public static DesiredCapabilities createDefaultCapabilities() {
 		capabilities.setCapability(CapabilityType.BROWSER_NAME, "");
-		capabilities.setCapability(CapabilityType.VERSION, AppiumVersionDevice.valueOf(VERSION));
+		capabilities.setCapability(CapabilityType.VERSION,
+				AppiumVersionDevice.valueOf(VERSION));
 		// capabilities.setCapability("app",
 		// ApplicationStorage.getDefaultPathToApp() );
 		capabilities.setCapability("platformName", "iOS");
