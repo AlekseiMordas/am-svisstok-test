@@ -13,23 +13,26 @@ import com.mobile.driver.wait.Sleeper;
 public class LoginPageIos extends LoginPage {
 
 	private static final Logger LOGGER = Logger.getLogger(LoginPageIos.class);
+	
+	private static final String VALUE = "value";
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/textfield[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[1]")
 	public UIView loginTextfield;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/secure[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIASecureTextField[1]")
 	public UIView passwordTextfield;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/slider[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAImage[1]")
 	private UIView savePasswordSlider;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/slider[2]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAImage[4]")
 	private UIView autoLoginSlider;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIALink[1]")
 	private UIView loginButton;
 
-	@FindBy(locator = "//window[2]/toolbar[1]/button[1]", ios7 = "//window[2]/toolbar[1]/button[3]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[2]/UIAToolbar[1]/UIAButton[1]", 
+			ios7 = "//UIAApplication[1]/UIAWindow[2]/UIAToolbar[1]/UIAButton[3]")
 	private UIView doneButton;
 
 	@FindBy(locator = "Select All")
@@ -44,7 +47,7 @@ public class LoginPageIos extends LoginPage {
 	@FindBy(locator = "//window[2]/UIAKeyboard[1]")
 	private UIView keyBoard;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]", ios7="Не удалось выполнить вход")
+	@FindBy(locator = "Не удалось выполнить вход")
 	private UIView errorMessage;
 
 	public LoginPageIos(NativeDriver driver) {
@@ -54,12 +57,12 @@ public class LoginPageIos extends LoginPage {
 	@Override
 	public void setSavePassword(boolean flag) {
 		if (flag) {
-			if (savePasswordSlider.getAttribute("value").equals("0.00")) {
+			if (savePasswordSlider.getAttribute(VALUE).equals("0.00")) {
 				savePasswordSlider.touch();
 			}
 		}
 		else {
-			if (savePasswordSlider.getAttribute("value").equals("1")) {
+			if (savePasswordSlider.getAttribute(VALUE).equals("1")) {
 				savePasswordSlider.touch();
 			}
 		}
@@ -68,11 +71,11 @@ public class LoginPageIos extends LoginPage {
 	@Override
 	public void setAutoLogin(boolean flag) {
 		if (flag) {
-			if (autoLoginSlider.getAttribute("value").equals("0.00")) {
+			if (autoLoginSlider.getAttribute(VALUE).equals("0.00")) {
 				autoLoginSlider.touch();
 			}
 		} else {
-			if (autoLoginSlider.getAttribute("value").equals("1")) {
+			if (autoLoginSlider.getAttribute(VALUE).equals("1")) {
 				autoLoginSlider.touch();
 			}
 		}
@@ -109,15 +112,17 @@ public class LoginPageIos extends LoginPage {
 
 	@Override
 	public void clearField(UIView element) {
-		if (!(element.getText().contains("Логин"))) {
+		if (!(element.getText().isEmpty())) {
 			element.touchLong();
 			selectAll.touch();
+			Sleeper.SYSTEM_SLEEPER.sleep(1000);
 			cutButton.touch();
+			Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		}
 	}
 
 	public void clearPasswordField(UIView element) {
-		if (!(element.getText().contains("Пароль"))) {
+		if (!(element.getText().isEmpty())) {
 			element.touchLong();
 			selectAll.touch();
 			deleteButton.touch();
@@ -126,7 +131,7 @@ public class LoginPageIos extends LoginPage {
 
 	@Override
 	public String getLoginFieldText() {
-		return loginTextfield.getText();
+		return loginTextfield.getAttribute(VALUE);
 	}
 
 	@Override

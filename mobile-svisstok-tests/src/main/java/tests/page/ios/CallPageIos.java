@@ -52,7 +52,7 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[9]")
 	private UIView nine;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[10]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[10]")
 	private UIView star;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[11]")
