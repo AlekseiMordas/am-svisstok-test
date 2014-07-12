@@ -15,6 +15,9 @@ public class LoginPageIos extends LoginPage {
 	private static final Logger LOGGER = Logger.getLogger(LoginPageIos.class);
 	
 	private static final String VALUE = "value";
+	
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]")
+	private UIView webview;
 
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[1]")
 	public UIView loginTextfield;
@@ -28,11 +31,11 @@ public class LoginPageIos extends LoginPage {
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAImage[4]")
 	private UIView autoLoginSlider;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIALink[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIALink[1]",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIAStaticText[1]")
 	private UIView loginButton;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[2]/UIAToolbar[1]/UIAButton[1]", 
-			ios7 = "//UIAApplication[1]/UIAWindow[2]/UIAToolbar[1]/UIAButton[3]")
+	@FindBy(locator = "Done")
 	private UIView doneButton;
 
 	@FindBy(locator = "Select All")
@@ -144,7 +147,7 @@ public class LoginPageIos extends LoginPage {
 		passwordTextfield.touch();;
 		clearPasswordField(passwordTextfield);
 		passwordTextfield.type(text);
-		doneButton.touch();
+		doneButton.touch();	
 	}
 
 	@Override

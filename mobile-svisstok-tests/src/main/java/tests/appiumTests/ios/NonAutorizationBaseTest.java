@@ -19,7 +19,6 @@ import utils.ApplicationStorage;
 import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
 import com.mobile.driver.page.PageFactory;
-import com.mobile.driver.wait.Sleeper;
 
 import driver.IosDriverWrapper;
 
@@ -30,7 +29,7 @@ public class NonAutorizationBaseTest {
 
 	private static final String PORT = DeviceConfig.getPort();
 	
-	private static final String DEVICE = DeviceConfig.getDevice();
+	protected static final String DEVICE = DeviceConfig.getDevice();
 	
 	protected static final String USER_NAME = ApplicationStorage.getDefaultUsername();//"sip:skustov2@sipnet.ru";
 	
