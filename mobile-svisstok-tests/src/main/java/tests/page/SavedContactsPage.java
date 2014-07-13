@@ -18,7 +18,7 @@ public abstract class SavedContactsPage extends BasePage{
 	
     public abstract void searchContacts(String text);
 	
-	public abstract void clickSearchResult(String name);
+	public abstract <T> T clickSearchResult(String name);
 	
 	public abstract String getContactName();
 	

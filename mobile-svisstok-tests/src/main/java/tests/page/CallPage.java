@@ -50,7 +50,7 @@ public abstract class CallPage extends BasePage{
 	
 	public abstract void clickDelete();
 	
-	public abstract String getContactNumber();
+	public abstract String getContactNumber(String name);
 	
 	public abstract HistoryPage clickHistoryTab();
 

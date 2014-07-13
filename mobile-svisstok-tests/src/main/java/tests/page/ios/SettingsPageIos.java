@@ -23,7 +23,8 @@ public class SettingsPageIos extends SettingsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
 	private UIView webview;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/slider[3]", ios7 = "//window[1]/scrollview[1]/webview[1]/slider[3]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/slider[3]", 
+			ios7 = "//window[1]/scrollview[1]/webview[1]/slider[3]")
 	public UIView autoLoginSlider;
 
 	@FindBy(locator = "Все контакты")
@@ -119,8 +120,9 @@ public class SettingsPageIos extends SettingsPage {
 	@SuppressWarnings("unchecked")
 	public SavedContactsPageIos clickSavedContacts() {
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
-		Rectangle point = savedContacts.getLocation();
-		savedContacts.touchWithCoordinates(point.getX(), point.getY());
+//		Rectangle point = savedContacts.getLocation();
+//		savedContacts.touchWithCoordinates(point.getX(), point.getY());
+		savedContacts.touch();
 		return PageFactory.initElements(driver, SavedContactsPageIos.class);
 	}
 
