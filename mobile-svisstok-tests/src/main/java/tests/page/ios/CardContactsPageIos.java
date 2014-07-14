@@ -91,11 +91,11 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "Cut")
 	private UIView cutButton;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[8]", 
-			ios7 = "//window[1]/scrollview[1]/webview[1]/link[8]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[8]")
 	private UIView star;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIALink[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIALink[1]",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]")
 	private UIView backTab;
 
 	@FindBy(locator = "Готово")
@@ -190,8 +190,6 @@ public class CardContactsPageIos extends CardContactsPage {
 	@Override
 	public void clickBack() {
 		Rectangle point = backTab.getLocation();
-		// double x = 10;
-		// double y = 5;
 		backTab.touchWithCoordinates(point.getX(), point.getY());
 	}
 

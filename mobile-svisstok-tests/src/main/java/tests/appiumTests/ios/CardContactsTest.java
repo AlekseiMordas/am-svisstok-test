@@ -318,7 +318,6 @@ public class CardContactsTest {
 		savedContacts = setting.clickSavedContacts();
 		savedContacts.searchContacts(SAVED_NAME);
 		savedContacts.clickSearchResult(SAVED_NAME);
-		//savedContacts.swipe(0.5, 0.8, 0.5, 0.1, 0.5);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		savedContacts.clickStar();
 		savedContacts.clickBack();

@@ -33,15 +33,11 @@ public class BlockPageIos extends BlockPage {
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[4]")
 	private UIView searchResult;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIAStaticText[1]")
 	private UIView settingTab;
 
-	@FindBy(locator = "Удалить",
-			ios7 = "//window[1]/scrollview[1]/webview[1]/link[5]")
-	private UIView deleteFromList;
-
 	@FindBy(locator = "Удалить")
-	// window[1]/scrollview[1]/webview[1]/link[23]
 	private UIView deleteButton;
 
 	@FindBy(locator = " //window[1]/scrollview[1]/webview[1]/text[4]")
@@ -85,8 +81,8 @@ public class BlockPageIos extends BlockPage {
 
 	@Override
 	public void clickDeletefromList() {
-		Rectangle point = deleteFromList.getLocation();
-		deleteFromList.touchWithCoordinates(point.getX(), point.getY());
+		Rectangle point = deleteButton.getLocation();
+		deleteButton.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
 
