@@ -32,4 +32,6 @@ public abstract class SettingsPage extends BasePage {
 
 	public abstract void setConnectionByDefault();
 
+	public abstract <T> T clickPhoneBook();
+
 }

@@ -331,6 +331,17 @@ public class CardContactsTest {
 		favorite.clickDelete();
 		Assert.assertTrue(result, "Contact not exist in Favourites");
 	}
+	
+	@Test(priority = 13, description = "Check add to favorite for saved contact", enabled = true)
+	public void checkSearchByNameBookPhone() {
+		cardContacts = call.clickContact();
+		setting = cardContacts.clickSettings();
+		cardContacts = setting.clickPhoneBook();
+		cardContacts.searchContacts("Anna Haro");
+		call = cardContacts.clickSearchResult("Anna Haro");
+		String contactNumber = call.getContactNumber("5555228243");
+		Assert.assertEquals(contactNumber, "5555228243");
+	}
 
 	private void createUser(String name, String contact) {
 		//cardContacts = call.clickContact();

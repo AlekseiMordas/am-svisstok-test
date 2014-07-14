@@ -50,6 +50,9 @@ public class SettingsPageIos extends SettingsPage {
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[13]/link[1]")
 	private UIView callTab;
+	
+	@FindBy(locator = "Контактная книга телефона")
+	private UIView phoneBook;
 
 	public SettingsPageIos(NativeDriver driver) {
 		super(driver);
@@ -170,6 +173,12 @@ public class SettingsPageIos extends SettingsPage {
 		popUpMenu.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		clickCallTab();
+	}
+	
+	@Override
+	public CardContactsPageIos clickPhoneBook(){
+		phoneBook.touch();
+		return PageFactory.initElements(driver, CardContactsPageIos.class);
 	}
 
 }

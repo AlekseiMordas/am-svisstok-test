@@ -136,5 +136,10 @@ public class SettingsPageAndroid extends SettingsPage {
 		callTabButton.touch();
 		return PageFactory.initElements(driver, CallPageAndroid.class);
 	}
+	
+	public CardContactsPageAndroid clickPhoneBook(){
+		//implement only iOS
+		return PageFactory.initElements(driver, CardContactsPageAndroid.class);
+	}
 
 }
