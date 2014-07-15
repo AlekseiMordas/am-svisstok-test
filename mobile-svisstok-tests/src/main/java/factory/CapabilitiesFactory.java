@@ -1,5 +1,7 @@
 package factory;
 
+import io.appium.java_client.remote.MobileCapabilityType;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -28,11 +30,13 @@ public class CapabilitiesFactory {
 
 	public static DesiredCapabilities createDefaultCapabilities() {
 		capabilities.setCapability(CapabilityType.BROWSER_NAME, "");
-		capabilities.setCapability(CapabilityType.VERSION, AppiumVersionDevice.valueOf(VERSION));
+		capabilities.setCapability(CapabilityType.VERSION,
+				AppiumVersionDevice.valueOf(VERSION));
 		// capabilities.setCapability("app",
 		// ApplicationStorage.getDefaultPathToApp() );
-		capabilities.setCapability("platformName", "iOS");
-		capabilities.setCapability("deviceName", AppiumDevices.valueOf(DEVICE_NAME));
+		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "iOS");
+		capabilities.setCapability(MobileCapabilityType.DEVICE_NAME,
+				AppiumDevices.valueOf(DEVICE_NAME));
 		LOGGER.info("CAPABILITY PATH: "
 				+ ApplicationStorage.getDefaultPathToApp());
 		return capabilities;
@@ -41,11 +45,13 @@ public class CapabilitiesFactory {
 	public static DesiredCapabilities createAndroidCapabilities() {
 		// capabilities.setCapability("app",
 		// ApplicationStorage.getDefaultPathToApk() );
-		capabilities.setCapability("automationName", "selendroid");
-		capabilities.setCapability("platformName", "Android");
-		capabilities.setCapability("app-package",
+		capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,
+				"selendroid");
+		capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,
+				"Android");
+		capabilities.setCapability(MobileCapabilityType.APP_PACKAGE,
 				ApplicationStorage.getDefaultPackage());
-		capabilities.setCapability("app-activity",
+		capabilities.setCapability(MobileCapabilityType.APP_ACTIVITY,
 				ApplicationStorage.getDefaultActivity());
 		LOGGER.info("CAPABILITY PATH: "
 				+ ApplicationStorage.getDefaultPathToApk());
