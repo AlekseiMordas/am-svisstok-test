@@ -5,7 +5,9 @@ import helpers.GenerateRandomString;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import runner.Devices;
 import tests.page.SettingsPage;
+import tests.page.exceptions.XmlParametersException;
 
 import com.ios.AppiumDriver;
 import com.mobile.driver.wait.Sleeper;
@@ -48,7 +50,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 	public void simpleLogin() {
 		main.checkPage();
 		call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
-		call.checkPage();
+		checkPage();
 		Assert.assertTrue(call.isStatusAvailable(), "CallPage doesn't open");
 	}
 
@@ -58,7 +60,7 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 		initPages();
 		main.checkPage();
 		call = main.simpleLogin(USER_NAME, USER_PASSWORD, true, false);
-		call.checkPage();
+		checkPage();
 		AppiumDriver.class.cast(driver).quit();
 		initPages();
 		Sleeper.SYSTEM_SLEEPER.sleep(10000);
@@ -69,18 +71,34 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 
 	@Test(priority = 6, description = "Check auto login functionality", enabled = true)
 	public void autoLogin() throws Exception {
-		AppiumDriver.class.cast(driver).quit();
+		//AppiumDriver.class.cast(driver).quit();
 		initPages();
 		main.checkPage();
 		call = main.simpleLogin(USER_NAME, USER_PASSWORD, true, true);
-		call.checkPage();
+		checkPage();
 		AppiumDriver.class.cast(driver).quit();
 		initPages();
-		Sleeper.SYSTEM_SLEEPER.sleep(10000);
+		//call = main.simpleLogin(USER_NAME, USER_PASSWORD, true, true);
+		Sleeper.SYSTEM_SLEEPER.sleep(5000);
 		Assert.assertTrue(call.isStatusAvailable(), "Status not availablee");
 		SettingsPage settings = call.navigateToSettingsTab();
 		settings.setAutoLogin(false);
 		Assert.assertTrue(settings.isAutoLoginFlagDisable());
 	}
-
+	
+	private void checkPage(){
+		switch (Devices.valueOf(DEVICE)) {
+		case IPHONE:
+			call.checkPage();
+			break;
+		case IOS7:
+			Sleeper.SYSTEM_SLEEPER.sleep(5000);
+			if(call.isAccessContacts())
+			  call.clickOk();
+			call.checkPage();
+			break;
+			default:
+				throw new XmlParametersException("Invalid device");
+		}
+	}
 }

@@ -27,7 +27,6 @@ public class IosDriverWrapper {
 
 	public static NativeDriver getIos(String host, String port) {
 		isSeesionExist = isSessionExist(host, port);
-
 		if (!isSeesionExist) {
 			instance = new AppiumDriver(getUrl(host, port),
 			CapabilitiesFactory.createIosCapabilities());

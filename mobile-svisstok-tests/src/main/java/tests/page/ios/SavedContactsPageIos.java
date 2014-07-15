@@ -2,6 +2,8 @@ package tests.page.ios;
 
 import java.awt.Rectangle;
 
+import org.openqa.selenium.Dimension;
+
 import tests.page.SavedContactsPage;
 
 import com.annotation.FindBy;
@@ -16,25 +18,27 @@ public class SavedContactsPageIos extends SavedContactsPage {
 		super(driver);
 	}
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/textfield[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[1]")
 	private UIView searchFiled;
 
-	@FindBy(locator = "//window[2]/toolbar[1]/button[1]", ios7 = "//window[2]/toolbar[1]/button[3]")
+	@FindBy(locator = "Done")
 	private UIView doneButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]")
 	private UIView webview;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[5]")
 	private UIView contactName;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]/link[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[4]")
 	private UIView searchResult;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[10]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[10]",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[10]")
 	private UIView star;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")//window[1]/scrollview[1]/webview[1]/link[1]
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIALink[1]",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]")
 	private UIView settingTab;
 	
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
@@ -43,7 +47,8 @@ public class SavedContactsPageIos extends SavedContactsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[16]")
 	private UIView deleteButton;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIALink[1]",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[5]")
 	private UIView backTab;
 
 	@Override
@@ -54,10 +59,11 @@ public class SavedContactsPageIos extends SavedContactsPage {
 	}
 
 	@Override
-	public void clickSearchResult(String name) {
-		Rectangle point = webview.getLocation();
-		double y = 113;
-		webview.touchWithCoordinates(point.getX(), point.getY() + y);
+	public CallPageIos clickSearchResult(String name) {
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		Dimension dim = webview.getSize();
+		webview.touchWithCoordinates(dim.getWidth() / 2, dim.getHeight() / dim.getHeight() + 120);
+		return PageFactory.initElements(driver, CallPageIos.class);
 	}
 
 	@Override
@@ -95,7 +101,8 @@ public class SavedContactsPageIos extends SavedContactsPage {
 
 	@Override
 	public void clickStar() {
-		star.touch();
+		Rectangle point = star.getLocation();
+		star.touchWithCoordinates(point.getX(), point.getY());
 	}
 
 	@Override

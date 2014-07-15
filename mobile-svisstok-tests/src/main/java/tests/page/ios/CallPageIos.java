@@ -13,6 +13,7 @@ import tests.page.CallPage;
 
 import com.annotation.FindBy;
 import com.element.UIView;
+import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
 import com.mobile.driver.page.PageFactory;
 import com.mobile.driver.wait.Sleeper;
@@ -52,7 +53,7 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[9]")
 	private UIView nine;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[10]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[10]")
 	private UIView star;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[11]")
@@ -61,10 +62,10 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[12]")
 	private UIView grill;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/textfield[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[1]")
 	private UIView digitDisplay;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/textfield[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[1]")
 	public UIView fieldNumber;
 
 	@FindBy(locator = "//window[2]/UIAKeyboard[1]/UIAKey[29]")
@@ -74,7 +75,7 @@ public class CallPageIos extends CallPage {
 			ios7 = "//window[1]/scrollview[1]/webview[1]/link[15]")
 	private UIView deleteButton;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[15]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[15]")
 	private UIView deleteButtonFromKeyboard;
 
 	@FindBy(locator = "Select All")
@@ -83,13 +84,14 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "Cut")
 	private UIView cutButton;
 
-	@FindBy(locator = "//window[2]/toolbar[1]/button[1]", ios7 = "//window[2]/toolbar[1]/button[3]")
+	@FindBy(locator = "Done")
 	private UIView doneButton;
 
 	@FindBy(locator = "Подключение...")
 	private UIView nameConnection;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[1]", ios7 = "//window[1]/scrollview[1]/webview[1]/text[3]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[3]", 
+			ios7 = "//window[1]/scrollview[1]/webview[1]/text[3]")
 	private UIView nameAbonent;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
@@ -98,16 +100,18 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "Настройки", ios7 = "//window[1]/scrollview[1]/webview[1]/link[19]")
 	private UIView settingsTab;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[14]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[14]/UIALink[1]")
 	private UIView callButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]/link[1]", ios7 = "//window[1]/scrollview[1]/webview[1]/link[2]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]/link[1]", 
+			ios7 = "//window[1]/scrollview[1]/webview[1]/link[2]")
 	private UIView cancelCallButton;
 
 	@FindBy(locator = "Отклонить")
 	private UIView resetCallButton;
 
-	@FindBy(locator = "Контакты", ios7 = "//window[1]/scrollview[1]/webview[1]/link[16]")
+	@FindBy(locator = "Контакты",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[16]")
 	private UIView contactsTab;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[4]")
@@ -117,7 +121,8 @@ public class CallPageIos extends CallPage {
 			ios7 = "//window[1]/scrollview[1]/webview[1]/text[3]")
 	private UIView contactNumber;
 
-	@FindBy(locator = "Позвонить", ios7 = "//window[1]/scrollview[1]/webview[1]/link[18]")
+	@FindBy(locator = "Позвонить", 
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[18]")
 	private UIView callTab;
 
 	@FindBy(locator = "История", ios7 = "//window[1]/scrollview[1]/webview[1]/link[7]")
@@ -129,12 +134,8 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
 	private UIView endCallButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]")
 	private UIView settingTab;
-
-	@FindBy(locator = "Удалить",
-			ios7 = "//window[1]/scrollview[1]/webview[1]/link[5]")
-	private UIView deleteFromList;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
 	private UIView microphone;
@@ -142,7 +143,7 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "OK")
 	private UIView okButton;
 
-	@FindBy(locator = "//window[4]/alert[1]/scrollview[1]/text[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[4]/UIAAlert[1]/UIAScrollView[1]/UIAStaticText[1]")
 	private UIView alertAccessContacts;
 
 	@FindBy(locator = "Входящий вызов...")
@@ -251,8 +252,7 @@ public class CallPageIos extends CallPage {
 	@SuppressWarnings("unchecked")
 	@Override
 	public CardContactsPageIos clickContact() {
-		Dimension dim = webview.getSize();
-		callTab.touchWithCoordinates(dim.width / 4 - 10, dim.height - 10);
+		contactsTab.touch();
 		return PageFactory.initElements(driver, CardContactsPageIos.class);
 	}
 
@@ -355,8 +355,8 @@ public class CallPageIos extends CallPage {
 
 	@Override
 	public void clickDeletefromList() {
-		Rectangle point = deleteFromList.getLocation();
-		deleteFromList.touchWithCoordinates(point.getX(), point.getY());
+		Rectangle point = deleteButton.getLocation();
+		deleteButton.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
 
@@ -367,8 +367,9 @@ public class CallPageIos extends CallPage {
 	}
 
 	@Override
-	public String getContactNumber() {
-		return contactNumber.getAttribute("label");
+	public String getContactNumber(String name) {
+		return ((AppiumDriver)driver).getDriver().findElementByName(name)
+				.getAttribute("name");
 	}
 
 	@Override

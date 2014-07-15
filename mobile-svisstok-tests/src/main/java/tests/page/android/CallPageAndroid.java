@@ -307,8 +307,8 @@ public class CallPageAndroid extends CallPage {
 	}
 
 	@Override
-	public String getContactNumber() {
-		return contactName.getText();
+	public String getContactNumber(String name) {
+		return ((AppiumDriver)driver).getDriver().findElementByName(name).getText();
 	}
 
 	@Override
