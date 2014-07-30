@@ -86,6 +86,7 @@ public class BaseTest {
 			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
 			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+			checkUpdateAlert();
 			cardContacts = PageFactory.initElements(driver, CardContactsPageIos.class);
 			Sleeper.SYSTEM_SLEEPER.sleep(5000);
 			break;
@@ -98,6 +99,7 @@ public class BaseTest {
 			Sleeper.SYSTEM_SLEEPER.sleep(5000);
 			if(call.isAccessContacts())
 			  call.clickOk();
+			checkUpdateAlert();
 			break;
 		case ANDROID:
 			driver = IosDriverWrapper.getAndroid(HOST, PORT);
@@ -124,5 +126,10 @@ public class BaseTest {
 	public void tearDown() throws Exception {
 		AppiumDriver.class.cast(driver).quit();
 		
+	}
+	
+	private void checkUpdateAlert(){
+		if(call.isAlertUpdate())
+			call.clickCancel();
 	}
 }

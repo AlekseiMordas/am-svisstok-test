@@ -1,8 +1,6 @@
 package tests.appiumTests.ios;
 
 import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -96,6 +94,7 @@ public class CardContactsTest {
 			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
 			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+			checkUpdateAlert();
 			cardContacts = PageFactory.initElements(driver,
 					CardContactsPageIos.class);
 			Sleeper.SYSTEM_SLEEPER.sleep(5000);
@@ -110,6 +109,7 @@ public class CardContactsTest {
 			Sleeper.SYSTEM_SLEEPER.sleep(5000);
 			if (call.isAccessContacts())
 				call.clickOk();
+			checkUpdateAlert();
 			break;
 		case ANDROID:
 			driver = IosDriverWrapper.getAndroid(HOST, PORT);
@@ -342,6 +342,14 @@ public class CardContactsTest {
 		String contactNumber = call.getContactNumber("5555228243");
 		Assert.assertEquals(contactNumber, "5555228243");
 	}
+	
+	@Test(priority = 14, enabled = true)
+	public void checkGroupingContactsBookName() {
+		cardContacts = call.clickContact();
+		setting = cardContacts.clickSettings();
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		cardContacts.checkGroupingContacts();
+	}
 
 	private void createUser(String name, String contact) {
 		//cardContacts = call.clickContact();
@@ -359,11 +367,10 @@ public class CardContactsTest {
 		setting = cardContacts.clickSettings();
 		cardContacts = setting.clickSwisstokContacts();
 	}
-
-	private static boolean checkTimer(String element) {
-		Pattern p = Pattern.compile("^(([0,1][0-9])|(2[0-3])):[0-5][0-9]$");
-		Matcher m = p.matcher(element.replace(" ", ""));
-		return m.matches();
+	
+	private void checkUpdateAlert(){
+		if(call.isAlertUpdate())
+			call.clickCancel();
 	}
 
 }

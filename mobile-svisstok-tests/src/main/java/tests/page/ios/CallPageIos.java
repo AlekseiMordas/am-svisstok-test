@@ -145,6 +145,9 @@ public class CallPageIos extends CallPage {
 
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[4]/UIAAlert[1]/UIAScrollView[1]/UIAStaticText[1]")
 	private UIView alertAccessContacts;
+	
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[1]")
+	private UIView alertUpdateBuild;
 
 	@FindBy(locator = "Входящий вызов...")
 	// Входящий вызов...
@@ -155,6 +158,9 @@ public class CallPageIos extends CallPage {
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
 	private UIView speakerButton;
+	
+	@FindBy(locator = "Отмена")
+	private UIView cancelButton;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]")
 	private UIView nameText;
@@ -408,5 +414,17 @@ public class CallPageIos extends CallPage {
 					"“Swisstok” Would Like to Access Your Contacts");
 		}
 		return false;
+	}
+	@Override
+	public boolean isAlertUpdate(){
+		if(alertUpdateBuild.isExists())
+			return true;
+		else
+			return false;
+	}
+	
+	@Override
+	public void clickCancel(){
+		cancelButton.touch();
 	}
 }

@@ -95,10 +95,15 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 			Sleeper.SYSTEM_SLEEPER.sleep(5000);
 			if(call.isAccessContacts())
 			  call.clickOk();
+			checkUpdateAlert();
 			call.checkPage();
 			break;
 			default:
 				throw new XmlParametersException("Invalid device");
 		}
+	}
+	private void checkUpdateAlert(){
+		if(call.isAlertUpdate())
+			call.clickCancel();
 	}
 }

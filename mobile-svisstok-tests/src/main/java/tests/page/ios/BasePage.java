@@ -81,4 +81,5 @@ public abstract class BasePage extends Page {
 		js.executeScript("mobile: scroll", new Object[] { scrollObject });
 		
 	}
+
 }

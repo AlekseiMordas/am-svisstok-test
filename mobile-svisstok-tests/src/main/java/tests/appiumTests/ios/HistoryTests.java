@@ -27,7 +27,7 @@ public class HistoryTests extends BaseTest {
 		history.clickCallTab();
 		Assert.assertTrue(actualTimer);
 	}
-
+/*
 	@Test(priority = 2, enabled = true)
 	public void deleteCallFromHistory() {
 		clearField();
@@ -81,7 +81,7 @@ public class HistoryTests extends BaseTest {
 			throw new XmlParametersException("Invalid device");
 		}
 		history.clickCallTab();
-	}
+	}*/
 
 	@Test(priority = 4, enabled = true)
 	public void checkGroupingCallsInHistory() {
@@ -91,7 +91,7 @@ public class HistoryTests extends BaseTest {
 		historyFilter.checkHistoryFilter();
 		history.clickCallTab();
 	}
-
+/*
 	//@IgnoreTest(device="ios7")
 	@Test(priority = 5, enabled = true)
 	public void checkShortNumber() {
@@ -102,7 +102,7 @@ public class HistoryTests extends BaseTest {
 		// TODO generate test data
 		HistoryFilterPage historyFilter = history.openFilter();
 		historyFilter.checkVisibleShortName();
-	}
+	}*/
 
 	private void callOneself() {
 		call.inputFromNativeKeyboard(PHONE_NUMBER);
