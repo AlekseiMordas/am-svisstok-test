@@ -101,7 +101,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	private UIView star;
 
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIALink[1]",
-			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]")
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIAStaticText[1]")
 	private UIView backTab;
 
 	@FindBy(locator = "Готово")
@@ -145,7 +145,8 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "Заблокированные")
 	private UIView buttonBlokingNumber;
 	
-	@FindBy(locator = "Избранные")
+	@FindBy(locator = "Избранные",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[9]")
 	private UIView buttonFavoriteNumber;
 	
 	@FindBy(locator = "Белые контакты")
@@ -449,8 +450,9 @@ public class CardContactsPageIos extends CardContactsPage {
 		return PageFactory.initElements(driver, CardContactsPageIos.class);
 	}
 	public CardContactsPageIos clickFavoriteContacts(){
-		buttonFavoriteNumber.touch();
-		Sleeper.SYSTEM_SLEEPER.sleep(5000);
+		Rectangle point = buttonFavoriteNumber.getLocation();
+		buttonFavoriteNumber.touchWithCoordinates(point.x, point.y);
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		return PageFactory.initElements(driver, CardContactsPageIos.class);
 	}
 	public CardContactsPageIos clickWhiteContact(){
