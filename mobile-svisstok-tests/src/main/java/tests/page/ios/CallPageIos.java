@@ -94,7 +94,7 @@ public class CallPageIos extends CallPage {
 			ios7 = "//window[1]/scrollview[1]/webview[1]/text[3]")
 	private UIView nameAbonent;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]")
 	private UIView webview;
 
 	@FindBy(locator = "Настройки", ios7 = "//window[1]/scrollview[1]/webview[1]/link[19]")

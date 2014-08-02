@@ -142,4 +142,40 @@ public class SettingsPageAndroid extends SettingsPage {
 		return PageFactory.initElements(driver, CardContactsPageAndroid.class);
 	}
 
+	@Override
+	public boolean isBalance() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void clickAboutApp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getUrlAboutApp() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getUrlHelp() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void clickHelp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clickDone() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

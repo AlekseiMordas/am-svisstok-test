@@ -33,5 +33,17 @@ public abstract class SettingsPage extends BasePage {
 	public abstract void setConnectionByDefault();
 
 	public abstract <T> T clickPhoneBook();
+	
+	public abstract boolean isBalance(); 
+	
+	public abstract void clickAboutApp();
+	
+	public abstract String getUrlAboutApp();
+	
+	public abstract String getUrlHelp();
+	
+	public abstract void clickHelp();
+	
+	public abstract void clickDone();
 
 }

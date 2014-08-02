@@ -2,12 +2,15 @@ package tests.page.ios;
 
 import java.awt.Rectangle;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 
+import runner.Devices;
 import tests.page.CallPage;
 import tests.page.SettingsPage;
 
@@ -20,7 +23,7 @@ import com.mobile.driver.wait.Sleeper;
 
 public class SettingsPageIos extends SettingsPage {
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]")
 	private UIView webview;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/slider[3]", 
@@ -53,6 +56,22 @@ public class SettingsPageIos extends SettingsPage {
 	
 	@FindBy(locator = "Контактная книга телефона")
 	private UIView phoneBook;
+	
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[4]")
+	private UIView valueBalance;
+	
+	@FindBy(locator = "О программе")
+	private UIView aboutApp;
+	
+	@FindBy(locator = "Помощь",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[6]/UIALink[2]/UIAStaticText[1]")
+	private UIView help;
+	
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAStaticText[1]")
+	private UIView urlPDFfile;
+	
+	@FindBy(locator = "Done")
+	private UIView done;
 
 	public SettingsPageIos(NativeDriver driver) {
 		super(driver);
@@ -179,6 +198,52 @@ public class SettingsPageIos extends SettingsPage {
 	public CardContactsPageIos clickPhoneBook(){
 		phoneBook.touch();
 		return PageFactory.initElements(driver, CardContactsPageIos.class);
+	}
+	
+	@Override 
+	public boolean isBalance(){
+		String value = valueBalance.getAttribute("name");
+		Pattern p = Pattern.compile("^[0-9]{1,}.руб.$");
+		Matcher m = p.matcher(value);
+		return m.matches();
+	}
+
+	@Override
+	public void clickAboutApp() {
+		aboutApp.touch();
+	}
+
+	@Override
+	public String getUrlAboutApp() {
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		return urlPDFfile.getAttribute("name");
+	}
+	
+	@Override
+	public void clickHelp() {
+		switch (Devices.valueOf(DEVICE)) {
+		case IPHONE:
+			help.touch();
+			break;
+		case IOS7:
+			Rectangle point = help.getLocation();
+			help.touchWithCoordinates(point.getX(), point.getY());
+			break;
+		default:
+			break;
+		}
+	}
+	
+	@Override
+	public String getUrlHelp(){
+		Sleeper.SYSTEM_SLEEPER.sleep(5000);
+		return urlPDFfile.getAttribute("name");
+	}
+	
+	@Override
+	public void clickDone(){
+		done.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
 
 }
