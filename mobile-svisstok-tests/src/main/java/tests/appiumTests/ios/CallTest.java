@@ -41,8 +41,8 @@ public class CallTest extends BaseTest {
 	@Test(priority = 3, description = "Check call name", enabled = true)
 	public void checkConnectAnotherAbonent() {
 		call.inputFromNativeKeyboard(PHONE_NUMBER);
-		call.clickCallButton();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		call.clickCallButton();
 		String callNameConnection = call.getNameConnection();
 		call.cancelCall().checkPage();
 		Assert.assertEquals(EXPECTED_CALL_NAME, callNameConnection);
@@ -136,7 +136,6 @@ public class CallTest extends BaseTest {
 	 * Server to run job CallPage callPage = call.isIncommingCallReset();
 	 * callPage.checkPage(); }
 	 */
-	
 	
 	@IgnoreTest(device = "ios7")
 	@Test(priority = 16, enabled = true)

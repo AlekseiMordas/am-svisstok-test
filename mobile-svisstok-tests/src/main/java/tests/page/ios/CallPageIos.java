@@ -100,11 +100,12 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "Настройки", ios7 = "//window[1]/scrollview[1]/webview[1]/link[19]")
 	private UIView settingsTab;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[14]/UIALink[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[14]/UIALink[1]",
+			ios7 = " //UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[14]")
 	private UIView callButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]/link[1]", 
-			ios7 = "//window[1]/scrollview[1]/webview[1]/link[2]")
+	@FindBy(locator = "/UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]", 
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]")
 	private UIView cancelCallButton;
 
 	@FindBy(locator = "Отклонить")
@@ -266,23 +267,24 @@ public class CallPageIos extends CallPage {
 	@Override
 	public SettingsPageIos navigateToSettingsTab() {
 		Dimension dim = webview.getSize();
-		callTab.touchWithCoordinates(dim.width / 4 * 3 + 10, dim.height - 10);
+		webview.touchWithCoordinates(dim.width / 4 * 3 + 10, dim.height - 10);
 		return PageFactory.initElements(driver, SettingsPageIos.class);
 	}
 
 	@Override
 	public void clickCallButton() {
+		Dimension dim = webview.getSize();
 		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:
-			Rectangle point = callButton.getLocation();
-			callButton.touchWithCoordinates(point.getX(), point.getY());
+			webview.touchWithCoordinates(dim.width / 2, dim.height / 9 * 8);
 			break;
 		case IOS7:
-			callButton.touch();
+			webview.touchWithCoordinates(dim.width / 2, dim.height / 9 * 7);
+			break;
 		default:
 			break;
 		}
-		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		//Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
 
 	@Override
@@ -320,14 +322,6 @@ public class CallPageIos extends CallPage {
 
 	@Override
 	public boolean isMicrophoneWork() {
-		/*
-		 * Rectangle point = webview.getLocation(); double x = 100; double y =
-		 * 355; if ((point.getX() + x) == 100) {
-		 * webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
-		 * Sleeper.SYSTEM_SLEEPER.sleep(1000);
-		 * webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
-		 * return true; } else return false;
-		 */
 		Rectangle point = microphone.getLocation();
 		microphone.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
