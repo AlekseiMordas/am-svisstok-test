@@ -45,5 +45,15 @@ public abstract class SettingsPage extends BasePage {
 	public abstract void clickHelp();
 	
 	public abstract void clickDone();
+	
+	public abstract void scrollToText(String text);
+	
+	public abstract void changeLanguageToEnglish();
+	
+	public abstract void changeLanguageToRussian();
+	
+	public abstract void clickLanguage();
+	
+	public abstract String getLanguage();
 
 }

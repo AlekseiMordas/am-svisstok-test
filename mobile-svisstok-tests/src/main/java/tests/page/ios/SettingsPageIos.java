@@ -48,7 +48,7 @@ public class SettingsPageIos extends SettingsPage {
 	@FindBy(locator = "Шифрование")
 	private UIView encryption;
 
-	@FindBy(locator = "//window[2]/picker[1]/pickerwheel[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[2]/UIAPicker[1]")
 	private UIView popUpMenu;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[13]/link[1]")
@@ -72,6 +72,9 @@ public class SettingsPageIos extends SettingsPage {
 	
 	@FindBy(locator = "Done")
 	private UIView done;
+	
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[14]")
+	private UIView language;
 
 	public SettingsPageIos(NativeDriver driver) {
 		super(driver);
@@ -244,6 +247,62 @@ public class SettingsPageIos extends SettingsPage {
 	public void clickDone(){
 		done.touch();
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+	}
+	
+	@Override
+	public void scrollToText(String text){
+		((AppiumDriver) driver).scrollToText(text);
+	}
+	
+	@Override
+	public void changeLanguageToEnglish(){
+		scrollDown(language.getLocator());
+		clickLanguage();
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		Dimension dim = webview.getSize();
+		
+		switch (Devices.valueOf(DEVICE)) {
+		case IPHONE:
+			webview.touchWithCoordinates(dim.width / 2, dim.height - 50);
+			break;
+		case IOS7:
+			webview.touchWithCoordinates(dim.width / 2, dim.height - 70);
+			clickDone();
+			break;
+		default:
+			break;
+		}
+		
+	}
+	
+	@Override
+	public void changeLanguageToRussian(){
+		clickLanguage();
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		Dimension dim = webview.getSize();
+		
+		switch (Devices.valueOf(DEVICE)) {
+		case IPHONE:
+			webview.touchWithCoordinates(dim.width / 2, dim.height / 2 + 100);
+			break;
+		case IOS7:
+			webview.touchWithCoordinates(dim.width / 2, dim.height / 2 + 150);
+			clickDone();
+			break;
+		default:
+			break;
+		}
+	}
+	
+	@Override
+	public void clickLanguage(){
+		Rectangle point = language.getLocation();
+		language.touchWithCoordinates(point.x, point.y);
+	}
+	
+	@Override
+	public String getLanguage(){
+		return language.getAttribute("name");
 	}
 
 }

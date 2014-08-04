@@ -3,8 +3,10 @@ package tests.appiumTests.ios;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.mobile.driver.wait.Sleeper;
+
 public class SettingTests extends BaseTest {
-	
+	/*
 	@Test(priority = 1, enabled = true)
 	public void checkBalance(){
 		setting = call.navigateToSettingsTab();
@@ -25,6 +27,16 @@ public class SettingTests extends BaseTest {
 		String actualURLHelp = setting.getUrlHelp();
 		Assert.assertEquals(actualURLHelp, expectedURLHelp);
 		setting.clickDone();
+		setting.clickCallTab();
+	}*/
+	
+	@Test(priority = 3, enabled = true)
+	public void checkBalance(){
+		setting = call.navigateToSettingsTab();
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		setting.changeLanguageToEnglish();
+		Assert.assertEquals(setting.getLanguage(), "Английский");
+		setting.changeLanguageToRussian();
 		setting.clickCallTab();
 	}
 	

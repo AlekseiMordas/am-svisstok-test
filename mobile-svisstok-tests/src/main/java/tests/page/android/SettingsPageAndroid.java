@@ -178,4 +178,34 @@ public class SettingsPageAndroid extends SettingsPage {
 		
 	}
 
+	@Override
+	public void scrollToText(String text) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void changeLanguageToEnglish() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void changeLanguageToRussian() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clickLanguage() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getLanguage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
