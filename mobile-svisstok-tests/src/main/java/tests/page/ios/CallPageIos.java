@@ -115,7 +115,7 @@ public class CallPageIos extends CallPage {
 			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[16]")
 	private UIView contactsTab;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[4]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[4]")
 	private UIView timerCall;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[5]",
@@ -138,7 +138,7 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]")
 	private UIView settingTab;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]")
 	private UIView microphone;
 
 	@FindBy(locator = "OK")
@@ -266,6 +266,7 @@ public class CallPageIos extends CallPage {
 	@SuppressWarnings("unchecked")
 	@Override
 	public SettingsPageIos navigateToSettingsTab() {
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		Dimension dim = webview.getSize();
 		webview.touchWithCoordinates(dim.width / 4 * 3 + 10, dim.height - 10);
 		return PageFactory.initElements(driver, SettingsPageIos.class);
@@ -296,8 +297,8 @@ public class CallPageIos extends CallPage {
 	public CallPageIos cancelCall() {
 		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:
-			Rectangle point = cancelCallButton.getLocation();
-			cancelCallButton.touchWithCoordinates(point.getX(), point.getY());
+			Dimension dim = webview.getSize();
+			webview.touchWithCoordinates(dim.width / 2, dim.height - 30);
 			break;
 		case IOS7:
 			cancelCallButton.touch();

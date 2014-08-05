@@ -107,7 +107,6 @@ public class CallTest extends BaseTest {
 		cardContacts.inputContact(PHONE_NUMBER);
 		cardContacts.clickSave();
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		cardContacts.swipe(0.5, 0.8, 0.5, 0.1, 0.5);
 		cardContacts.clickStar();
 		cardContacts.clickBack();
 		setting = cardContacts.clickSettings();

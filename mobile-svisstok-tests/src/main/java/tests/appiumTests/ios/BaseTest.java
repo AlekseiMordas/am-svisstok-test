@@ -86,6 +86,7 @@ public class BaseTest {
 			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
 			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+			Sleeper.SYSTEM_SLEEPER.sleep(5000);
 			checkUpdateAlert();
 			cardContacts = PageFactory.initElements(driver, CardContactsPageIos.class);
 			Sleeper.SYSTEM_SLEEPER.sleep(5000);

@@ -75,6 +75,13 @@ public class SettingsPageIos extends SettingsPage {
 	
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[14]")
 	private UIView language;
+	
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[11]/UIALink[1]/UIAStaticText[1]",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[11]")
+	private UIView logApp;
+	
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[2]")
+	private UIView firstLog;
 
 	public SettingsPageIos(NativeDriver driver) {
 		super(driver);
@@ -303,6 +310,18 @@ public class SettingsPageIos extends SettingsPage {
 	@Override
 	public String getLanguage(){
 		return language.getAttribute("name");
+	}
+	
+	@Override
+	public void openLogApp(){
+		scrollDown(logApp.getLocator());
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		logApp.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+	}
+	
+	public boolean validateLogs(){
+		return checkVisibleText(firstLog.getAttribute("name"));
 	}
 
 }

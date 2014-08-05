@@ -55,5 +55,9 @@ public abstract class SettingsPage extends BasePage {
 	public abstract void clickLanguage();
 	
 	public abstract String getLanguage();
+	
+	public abstract void openLogApp();
+	
+	public abstract boolean validateLogs();
 
 }

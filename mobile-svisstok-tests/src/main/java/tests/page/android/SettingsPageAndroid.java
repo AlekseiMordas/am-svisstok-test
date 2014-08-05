@@ -208,4 +208,16 @@ public class SettingsPageAndroid extends SettingsPage {
 		return null;
 	}
 
+	@Override
+	public void openLogApp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean validateLogs() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
