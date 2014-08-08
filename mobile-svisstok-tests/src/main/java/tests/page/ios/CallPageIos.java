@@ -90,8 +90,7 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "Подключение...")
 	private UIView nameConnection;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[3]", 
-			ios7 = "//window[1]/scrollview[1]/webview[1]/text[3]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[3]")
 	private UIView nameAbonent;
 
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]")
@@ -285,7 +284,7 @@ public class CallPageIos extends CallPage {
 		default:
 			break;
 		}
-		//Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
 
 	@Override

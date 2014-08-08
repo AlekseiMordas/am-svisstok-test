@@ -47,6 +47,9 @@ public class SettingsPageIos extends SettingsPage {
 
 	@FindBy(locator = "Шифрование")
 	private UIView encryption;
+	
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAElement[2]")
+	private UIView encryptionButton;
 
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[2]/UIAPicker[1]")
 	private UIView popUpMenu;
@@ -82,6 +85,9 @@ public class SettingsPageIos extends SettingsPage {
 	
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[2]")
 	private UIView firstLog;
+	
+	@FindBy(locator = "Белый список")
+	private UIView whiteList;
 
 	public SettingsPageIos(NativeDriver driver) {
 		super(driver);
@@ -160,9 +166,10 @@ public class SettingsPageIos extends SettingsPage {
 
 	@Override
 	public void setZRTPconnection() {
-		((AppiumDriver) driver).scrollToText("Номер голосовой почты");
+		//((AppiumDriver) driver).scrollToText("Номер голосовой почты");
+		scrollDown(encryptionButton.getLocator());
 		List<WebElement> list = ((AppiumDriver) driver).getDriver()
-				.findElements(By.name(encryption.getLocator()));
+				.findElements(By.name(encryptionButton.getLocator()));
 		Point point = list.get(list.size() - 1).getLocation();
 		encryption.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
