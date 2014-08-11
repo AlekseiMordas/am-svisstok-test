@@ -167,48 +167,45 @@ public class SettingsPageIos extends SettingsPage {
 	@Override
 	public void setZRTPconnection() {
 		//((AppiumDriver) driver).scrollToText("Номер голосовой почты");
+		scrollDown(language.getLocator());
 		scrollDown(encryptionButton.getLocator());
-		List<WebElement> list = ((AppiumDriver) driver).getDriver()
-				.findElements(By.name(encryptionButton.getLocator()));
-		Point point = list.get(list.size() - 1).getLocation();
-		encryption.touchWithCoordinates(point.getX(), point.getY());
+		Rectangle point = encryptionButton.getLocation();
+		encryptionButton.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
-		Rectangle pointPopUp = popUpMenu.getLocation();
-		popUpMenu.touchWithCoordinates(pointPopUp.getX(),
-				pointPopUp.getY() + 216 / 2 + 80);
+		Dimension dim = webview.getSize();
+		webview.touchWithCoordinates(dim.getWidth() / 2, dim.getHeight() - 80);
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 
 	@Override
 	public void setSRTPconnection() {
-		List<WebElement> list = ((AppiumDriver) driver).getDriver()
-				.findElements(By.name(encryption.getLocator()));
-		Point point = list.get(list.size() - 1).getLocation();
-		encryption.touchWithCoordinates(point.getX(), point.getY());
+		scrollDown(language.getLocator());
+		scrollDown(encryptionButton.getLocator());
+		Rectangle point = encryptionButton.getLocation();
+		encryptionButton.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
-		Rectangle pointPopUp = popUpMenu.getLocation();
-		Dimension dim = popUpMenu.getSize();
-		popUpMenu.touchWithCoordinates(pointPopUp.getX(), pointPopUp.getY()
-				+ dim.getHeight() / 2 + 30);
+		Dimension dim = webview.getSize();
+		webview.touchWithCoordinates(dim.getWidth() / 2, dim.getHeight() - 60);
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 
 	@Override
 	public CallPage clickCallTab() {
 		Dimension dim = webview.getSize();
-		callTab.touchWithCoordinates(dim.width / 4 * 2 + 10, dim.height - 10);
+		webview.touchWithCoordinates(dim.width / 4 * 2 + 10, dim.height - 10);
 		return PageFactory.initElements(driver, CallPageIos.class);
 	}
 
 	@Override
 	public void setConnectionByDefault() {
-		Rectangle point = encryption.getLocation();
-		encryption.touchWithCoordinates(point.getX(), point.getY());
+		scrollDown(language.getLocator());
+		scrollDown(encryptionButton.getLocator());
+		Rectangle point = encryptionButton.getLocation();
+		encryptionButton.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
-		point = popUpMenu.getLocation();
-		popUpMenu.touchWithCoordinates(point.getX(), point.getY());
+		Dimension dim = webview.getSize();
+		webview.touchWithCoordinates(dim.getWidth() / 2, dim.getHeight() - 95);
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
-		clickCallTab();
 	}
 	
 	@Override

@@ -117,9 +117,9 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[4]")
 	private UIView timerCall;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[5]",
-			ios7 = "//window[1]/scrollview[1]/webview[1]/text[3]")
-	private UIView contactNumber;
+//	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[5]",
+//			ios7 = "//window[1]/scrollview[1]/webview[1]/text[3]")
+//	private UIView contactNumber;
 
 	@FindBy(locator = "Позвонить", 
 			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[18]")
