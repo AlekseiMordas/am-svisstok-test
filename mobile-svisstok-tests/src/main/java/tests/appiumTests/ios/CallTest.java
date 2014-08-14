@@ -137,7 +137,7 @@ public class CallTest extends BaseTest {
 	 * callPage.checkPage(); }
 	 */
 	
-	@IgnoreTest(device = "ios7")
+	//@IgnoreTest(device = "ios7")
 	@Test(priority = 16, enabled = true)
 	public void callWithZRTPConnection() {
 		SettingsPage settings = call.navigateToSettingsTab();
