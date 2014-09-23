@@ -14,15 +14,15 @@ public abstract class SettingsPage extends BasePage {
 
 	public abstract boolean isAutoLoginFlagDisable();
 
-	public abstract <T> T clickAllContacts();
+	public abstract CardContactsPage clickAllContacts();
 
-	public abstract <T> T clickSwisstokContacts();
+	public abstract CardContactsPage clickSwisstokContacts();
 
-	public abstract <T> T clickBlock();
+	public abstract BlockPage clickBlock();
 
-	public abstract <T> T clickFavorite();
+	public abstract FavoritePage clickFavorite();
 
-	public abstract <T> T clickSavedContacts();
+	public abstract SavedContactsPage clickSavedContacts();
 
 	public abstract void setZRTPconnection();
 
@@ -32,7 +32,7 @@ public abstract class SettingsPage extends BasePage {
 
 	public abstract void setConnectionByDefault();
 
-	public abstract <T> T clickPhoneBook();
+	public abstract CardContactsPage clickPhoneBook();
 	
 	public abstract boolean isBalance(); 
 	

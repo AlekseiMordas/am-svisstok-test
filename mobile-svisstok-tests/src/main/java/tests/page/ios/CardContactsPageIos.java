@@ -7,7 +7,6 @@ import org.openqa.selenium.Dimension;
 import org.testng.Assert;
 
 import tests.page.CardContactsPage;
-import tests.page.ios.HistoryFilterPageIos.Headers;
 
 import com.annotation.FindBy;
 import com.element.UIView;
@@ -98,7 +97,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	private UIView cutButton;
 
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[12]",
-			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[8]")
+			ios7 = "   , &nbsp;")
 	private UIView star;
 
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIALink[1]",

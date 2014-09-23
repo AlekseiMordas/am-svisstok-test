@@ -143,7 +143,7 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//UIAAlert[1]/UIAScrollView[1]/UIAStaticText[1]")
 	private UIView alertAccessContacts;
 	
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[1]")
+	@FindBy(locator = "//UIALink[@name='Отмена']")
 	private UIView alertUpdateBuild;
 
 	@FindBy(locator = "Входящий вызов...")
