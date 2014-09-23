@@ -20,7 +20,7 @@ public class CallTest extends BaseTest {
 	// ApplicationStorage.getCallerName();
 	protected static final String NAME = "Qwerty";
 	protected static final String NUMBER = "1234";
-/*
+
 	@Test(priority = 1)
 	public void checkNumberFieldDigits() {
 		call.inputFromNativeKeyboard(EXPECTED_TYPE_VALUE);
@@ -95,7 +95,7 @@ public class CallTest extends BaseTest {
 		Assert.assertTrue(isMicrofone);
 		//Assert.assertTrue(isSpeaker);
 	}
-*/
+
 	@Test(priority = 10, description = "Check call from favorite", enabled = true)
 	public void checkCallFromFavotite() {
 		cardContacts = call.clickContact();
