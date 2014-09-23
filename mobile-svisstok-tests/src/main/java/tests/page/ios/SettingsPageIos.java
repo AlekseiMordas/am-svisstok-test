@@ -1,14 +1,10 @@
 package tests.page.ios;
 
 import java.awt.Rectangle;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebElement;
 
 import runner.Devices;
 import tests.page.CallPage;
@@ -36,7 +32,7 @@ public class SettingsPageIos extends SettingsPage {
 	@FindBy(locator = "Контакты в Swisstok")
 	private UIView swisstokContacts;
 
-	@FindBy(locator = "Избранные")
+	@FindBy(locator = "//UIAStaticText[@name='Избранные']")
 	private UIView favourContacts;
 
 	@FindBy(locator = "Сохраненные номера")
@@ -148,7 +144,7 @@ public class SettingsPageIos extends SettingsPage {
 	@Override
 	@SuppressWarnings("unchecked")
 	public FavoritePageIos clickFavorite() {
-		Sleeper.SYSTEM_SLEEPER.sleep(1000);
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		Rectangle point = favourContacts.getLocation();
 		favourContacts.touchWithCoordinates(point.getX(), point.getY());
 		return PageFactory.initElements(driver, FavoritePageIos.class);
@@ -324,6 +320,7 @@ public class SettingsPageIos extends SettingsPage {
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 	
+	@Override
 	public boolean validateLogs(){
 		return checkVisibleText(firstLog.getAttribute("name"));
 	}

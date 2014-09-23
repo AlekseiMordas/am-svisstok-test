@@ -1,11 +1,14 @@
 package tests.page.ios;
 
 import java.awt.Rectangle;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
+import runner.Devices;
 import tests.page.CardContactsPage;
 
 import com.annotation.FindBy;
@@ -398,8 +401,24 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public void clickStar() {
-		Rectangle point = star.getLocation();
-		star.touchWithCoordinates(point.getX(), point.getY());
+		switch (Devices.valueOf(DEVICE)) {
+		case IPHONE:
+			List<WebElement> list = ((AppiumDriver) driver).getDriver().findElementsByXPath("//UIALink");
+			for(int i=0;i<list.size();i++) {
+				if(list.get(i).getAttribute("name").equals("Чат \n")) {	
+					list.get(i+1).click();
+					return;
+				}
+			}
+			break;
+		case IOS7:
+			Rectangle point = star.getLocation();
+			star.touchWithCoordinates(point.getX(), point.getY());
+			break;
+		default:
+			break;
+		}
+		
 	}
 	
 	@Override
