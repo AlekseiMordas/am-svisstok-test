@@ -19,20 +19,19 @@ public class LoginPageIos extends LoginPage {
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]")
 	private UIView webview;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[1]")
+	@FindBy(locator = "//UIATextField[1]")
 	public UIView loginTextfield;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIASecureTextField[1]")
+	@FindBy(locator = "//UIASecureTextField[1]")
 	public UIView passwordTextfield;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAImage[1]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAImage[1]")
 	private UIView savePasswordSlider;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAImage[4]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAImage[4]")
 	private UIView autoLoginSlider;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIALink[1]",
-			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIAStaticText[1]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]")
 	private UIView loginButton;
 
 	@FindBy(locator = "Done")
@@ -44,10 +43,10 @@ public class LoginPageIos extends LoginPage {
 	@FindBy(locator = "Cut")
 	private UIView cutButton;
 
-	@FindBy(locator = "//window[2]/UIAKeyboard[1]/UIAKey[28]")
+	@FindBy(locator = "//UIAKey[@name='Delete']")
 	private UIView deleteButton;
 	
-	@FindBy(locator = "//window[2]/UIAKeyboard[1]")
+	@FindBy(locator = "//UIAWindow[2]/UIAKeyboard[1]")
 	private UIView keyBoard;
 
 	@FindBy(locator = "Не удалось выполнить вход")

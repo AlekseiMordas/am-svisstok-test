@@ -53,7 +53,7 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[9]")
 	private UIView nine;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[10]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[10]")
 	private UIView star;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[11]")
@@ -62,17 +62,17 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[12]")
 	private UIView grill;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[1]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[1]")
 	private UIView digitDisplay;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[1]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[1]")
 	public UIView fieldNumber;
 
 	@FindBy(locator = "//window[2]/UIAKeyboard[1]/UIAKey[29]")
 	private UIView moreNumber;
 
 	@FindBy(locator = "Удалить" ,
-			ios7 = "//window[1]/scrollview[1]/webview[1]/link[15]")
+			ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[15]/UIAStaticText[1]")
 	private UIView deleteButton;
 	
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[15]")
@@ -90,61 +90,61 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "Подключение...")
 	private UIView nameConnection;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[3]", 
-			ios7 = "//window[1]/scrollview[1]/webview[1]/text[3]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[3]")
 	private UIView nameAbonent;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]")
 	private UIView webview;
 
-	@FindBy(locator = "Настройки", ios7 = "//window[1]/scrollview[1]/webview[1]/link[19]")
-	private UIView settingsTab;
-
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[14]/UIALink[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[14]/UIALink[1]",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[14]")
 	private UIView callButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]/link[1]", 
-			ios7 = "//window[1]/scrollview[1]/webview[1]/link[2]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]", 
+			ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]")
 	private UIView cancelCallButton;
 
 	@FindBy(locator = "Отклонить")
 	private UIView resetCallButton;
 
 	@FindBy(locator = "Контакты",
-			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[16]")
+			ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[16]")
 	private UIView contactsTab;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[4]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[4]")
 	private UIView timerCall;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[5]",
-			ios7 = "//window[1]/scrollview[1]/webview[1]/text[3]")
-	private UIView contactNumber;
+//	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[5]",
+//			ios7 = "//window[1]/scrollview[1]/webview[1]/text[3]")
+//	private UIView contactNumber;
 
 	@FindBy(locator = "Позвонить", 
-			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[18]")
+			ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[18]")
 	private UIView callTab;
 
-	@FindBy(locator = "История", ios7 = "//window[1]/scrollview[1]/webview[1]/link[7]")
+	@FindBy(locator = "История")
 	private UIView historyButton;
 
 	@FindBy(locator = "Ответить")
 	private UIView answerButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[3]")
 	private UIView endCallButton;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]")
 	private UIView settingTab;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]")
 	private UIView microphone;
 
 	@FindBy(locator = "OK")
 	private UIView okButton;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[4]/UIAAlert[1]/UIAScrollView[1]/UIAStaticText[1]")
+	@FindBy(locator = "//UIAAlert[1]/UIAScrollView[1]/UIAStaticText[1]")
 	private UIView alertAccessContacts;
+	
+	@FindBy(locator = "//UIALink[@name='Отмена']")
+	private UIView alertUpdateBuild;
 
 	@FindBy(locator = "Входящий вызов...")
 	// Входящий вызов...
@@ -155,6 +155,9 @@ public class CallPageIos extends CallPage {
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
 	private UIView speakerButton;
+	
+	@FindBy(locator = "Отмена")
+	private UIView cancelButton;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]")
 	private UIView nameText;
@@ -259,20 +262,23 @@ public class CallPageIos extends CallPage {
 	@SuppressWarnings("unchecked")
 	@Override
 	public SettingsPageIos navigateToSettingsTab() {
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		Dimension dim = webview.getSize();
-		callTab.touchWithCoordinates(dim.width / 4 * 3 + 10, dim.height - 10);
+		webview.touchWithCoordinates(dim.width / 4 * 3 + 10, dim.height - 10);
 		return PageFactory.initElements(driver, SettingsPageIos.class);
 	}
 
 	@Override
 	public void clickCallButton() {
+		Dimension dim = webview.getSize();
 		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:
-			Rectangle point = callButton.getLocation();
-			callButton.touchWithCoordinates(point.getX(), point.getY());
+			webview.touchWithCoordinates(dim.width / 2, dim.height / 9 * 8);
 			break;
 		case IOS7:
-			callButton.touch();
+			Rectangle point = callButton.getLocation();
+			webview.touchWithCoordinates(dim.width / 2, dim.height / 9 * 8);
+			break;
 		default:
 			break;
 		}
@@ -288,8 +294,8 @@ public class CallPageIos extends CallPage {
 	public CallPageIos cancelCall() {
 		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:
-			Rectangle point = cancelCallButton.getLocation();
-			cancelCallButton.touchWithCoordinates(point.getX(), point.getY());
+			Dimension dim = webview.getSize();
+			webview.touchWithCoordinates(dim.width / 2, dim.height - 30);
 			break;
 		case IOS7:
 			cancelCallButton.touch();
@@ -314,14 +320,6 @@ public class CallPageIos extends CallPage {
 
 	@Override
 	public boolean isMicrophoneWork() {
-		/*
-		 * Rectangle point = webview.getLocation(); double x = 100; double y =
-		 * 355; if ((point.getX() + x) == 100) {
-		 * webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
-		 * Sleeper.SYSTEM_SLEEPER.sleep(1000);
-		 * webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
-		 * return true; } else return false;
-		 */
 		Rectangle point = microphone.getLocation();
 		microphone.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
@@ -390,8 +388,8 @@ public class CallPageIos extends CallPage {
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		speakerButton.touchWithCoordinates(pointSpeaker.getX(),
 				pointSpeaker.getY());
-		Rectangle pointName = nameText.getLocation();
-		nameText.touchWithCoordinates(pointName.getX(), pointName.getY());
+//		Rectangle pointName = nameText.getLocation();
+//		nameText.touchWithCoordinates(pointName.getX(), pointName.getY());
 		return true;
 	}
 
@@ -408,5 +406,17 @@ public class CallPageIos extends CallPage {
 					"“Swisstok” Would Like to Access Your Contacts");
 		}
 		return false;
+	}
+	@Override
+	public boolean isAlertUpdate(){
+		if(alertUpdateBuild.isExists())
+			return true;
+		else
+			return false;
+	}
+	
+	@Override
+	public void clickCancel(){
+		cancelButton.touch();
 	}
 }

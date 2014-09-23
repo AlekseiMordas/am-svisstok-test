@@ -33,8 +33,7 @@ public class FavoritePageIos extends FavoritePage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]/link[1]")
 	private UIView searchResult;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[4]", 
-			ios7 = "//window[1]/scrollview[1]/webview[1]/text[4]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[4]")
 	private UIView timerCall;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[9]/link[1]")
@@ -43,7 +42,8 @@ public class FavoritePageIos extends FavoritePage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[14]/link[1]")
 	private UIView callButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]", 
+			ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]")
 	private UIView cancelCallButton;
 
 	@FindBy(locator = "Удалить")
@@ -53,7 +53,7 @@ public class FavoritePageIos extends FavoritePage {
 			ios7 = "//window[1]/scrollview[1]/webview[1]/text[2]")
 	private UIView settingTab;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[3]")
 	private UIView firstResult;
 
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[3]/UIALink[1]/UIAStaticText[1]")

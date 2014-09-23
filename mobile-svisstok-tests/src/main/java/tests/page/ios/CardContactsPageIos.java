@@ -1,10 +1,14 @@
 package tests.page.ios;
 
 import java.awt.Rectangle;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
+import runner.Devices;
 import tests.page.CardContactsPage;
 
 import com.annotation.FindBy;
@@ -50,6 +54,10 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[3]/UIALink[2]/UIAStaticText[1]",
 			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[3]")
 	private UIView firstContact;
+	
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[3]",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[3]")
+	private UIView firstContactGrouping;
 
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[4]",
 			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[5]")
@@ -57,7 +65,7 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[1]")
 	private UIView searchFiled;
-	
+
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[4]")
 	private UIView searchResult;
 
@@ -91,11 +99,12 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "Cut")
 	private UIView cutButton;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[8]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[12]",
+			ios7 = "   , &nbsp;")
 	private UIView star;
 
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIALink[1]",
-			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]")
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIAStaticText[1]")
 	private UIView backTab;
 
 	@FindBy(locator = "Готово")
@@ -123,6 +132,31 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@FindBy(locator = "Позвонить \n", ios7 = "Позвонить  , &nbsp;")
 	private UIView callButton;
+	
+	@FindBy(locator = "Все контакты")
+	private UIView buttonAllContacts;
+	
+	@FindBy(locator = "Контакты в сети")
+	private UIView buttonContactsOnline;
+	
+	@FindBy(locator = "Контакты в Swisstok")
+	private UIView buttonContactsSwisstok;
+	
+	@FindBy(locator = "Сохраненные номера")
+	private UIView buttonSavingNumber;
+	
+	@FindBy(locator = "Заблокированные")
+	private UIView buttonBlokingNumber;
+	
+	@FindBy(locator = "Избранные",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[9]")
+	private UIView buttonFavoriteNumber;
+	
+	@FindBy(locator = "Белые контакты")
+	private UIView buttonWhiteContact;
+	
+	@FindBy(locator = "Контактная книга телефона")
+	private UIView buttonBookContacts;
 
 	public CardContactsPageIos(NativeDriver driver) {
 		super(driver);
@@ -367,8 +401,92 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public void clickStar() {
-		Rectangle point = star.getLocation();
-		star.touchWithCoordinates(point.getX(), point.getY());
+		switch (Devices.valueOf(DEVICE)) {
+		case IPHONE:
+			List<WebElement> list = ((AppiumDriver) driver).getDriver().findElementsByXPath("//UIALink");
+			for(int i=0;i<list.size();i++) {
+				if(list.get(i).getAttribute("name").equals("Чат \n")) {	
+					list.get(i+1).click();
+					return;
+				}
+			}
+			break;
+		case IOS7:
+			Rectangle point = star.getLocation();
+			star.touchWithCoordinates(point.getX(), point.getY());
+			break;
+		default:
+			break;
+		}
+		
+	}
+	
+	@Override
+	public void checkGroupingContacts(){
+		Assert.assertTrue(clickAllContacts().checkScreenOpen());
+		clickBack();
+		Assert.assertTrue(clickContactsOnline().checkScreenOpen());
+		clickBack();
+		Assert.assertTrue(clickContactsSwisstok().checkScreenOpen());
+		clickBack();
+		Assert.assertTrue(clickSavingNumber().checkScreenOpen());
+		clickBack();
+		Assert.assertTrue(clickBlokingNumber().checkScreenOpen());
+		clickBack();
+		Assert.assertTrue(clickFavoriteContacts().checkScreenOpen());
+		clickBack();
+		Assert.assertTrue(clickWhiteContact().checkScreenOpen());
+		clickBack();
+		Assert.assertTrue(clickBookContacts().checkScreenOpen());
+	}
+	
+	public CardContactsPageIos clickAllContacts(){
+		buttonAllContacts.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(5000);
+		return PageFactory.initElements(driver, CardContactsPageIos.class);
+	}
+	
+	public CardContactsPageIos clickContactsOnline(){
+		buttonContactsOnline.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		return PageFactory.initElements(driver, CardContactsPageIos.class);
+	}
+	public CardContactsPageIos clickContactsSwisstok(){
+		Rectangle point = buttonContactsSwisstok.getLocation();
+		buttonContactsSwisstok.touchWithCoordinates(point.x, 200);
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		return PageFactory.initElements(driver, CardContactsPageIos.class);
+	}
+	public CardContactsPageIos clickSavingNumber(){
+		Rectangle point = buttonSavingNumber.getLocation();
+		buttonSavingNumber.touchWithCoordinates(point.x, point.y);
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		return PageFactory.initElements(driver, CardContactsPageIos.class);
+	}
+	public CardContactsPageIos clickBlokingNumber(){
+		buttonBlokingNumber.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		return PageFactory.initElements(driver, CardContactsPageIos.class);
+	}
+	public CardContactsPageIos clickFavoriteContacts(){
+		Rectangle point = buttonFavoriteNumber.getLocation();
+		buttonFavoriteNumber.touchWithCoordinates(point.x, point.y);
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		return PageFactory.initElements(driver, CardContactsPageIos.class);
+	}
+	public CardContactsPageIos clickWhiteContact(){
+		buttonWhiteContact.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		return PageFactory.initElements(driver, CardContactsPageIos.class);
+	}
+	public CardContactsPageIos clickBookContacts(){
+		buttonBookContacts.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		return PageFactory.initElements(driver, CardContactsPageIos.class);
+	}
+	
+	public boolean checkScreenOpen(){
+		return searchFiled.isExists();
 	}
 
 	@Override

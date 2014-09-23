@@ -77,4 +77,6 @@ public abstract class CardContactsPage extends  BasePage{
 	public abstract boolean isContactListDownloaded();
 
 	public abstract void callFromContactCard();
+	
+	public abstract void checkGroupingContacts();
 }

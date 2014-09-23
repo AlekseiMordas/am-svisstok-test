@@ -371,5 +371,16 @@ public class CallPageAndroid extends CallPage {
 		//TODO
 		return PageFactory.initElements(driver, CallPageAndroid.class);
 	}
+	
+	@Override
+	public boolean isAlertUpdate(){
+		//TODO, ios implemented
+		return false; 
+	}
+	
+	@Override
+	public void clickCancel(){
+		//TODO, ios impemented
+	}
 
 }

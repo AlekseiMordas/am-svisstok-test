@@ -41,22 +41,13 @@ public class CallTest extends BaseTest {
 	@Test(priority = 3, description = "Check call name", enabled = true)
 	public void checkConnectAnotherAbonent() {
 		call.inputFromNativeKeyboard(PHONE_NUMBER);
-		call.clickCallButton();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		call.clickCallButton();
 		String callNameConnection = call.getNameConnection();
 		call.cancelCall().checkPage();
 		Assert.assertEquals(EXPECTED_CALL_NAME, callNameConnection);
 	}
-
-	@Test(priority = 8, description = "Check timer call", enabled = true)
-	public void checkTimerCall() {
-		call.inputFromNativeKeyboard(PHONE_NUMBER);
-		call.clickCallButton();
-		boolean actualTimer = checkTimer(call.getTimer());
-		call.cancelCall();
-		Assert.assertTrue(actualTimer);
-	}
-
+	
 	@Test(priority = 5, description = "Check button cancel in currently call", enabled = true)
 	public void checkCancelCallButtonInCall() {
 		call.inputFromNativeKeyboard(PHONE_NUMBER);
@@ -84,16 +75,25 @@ public class CallTest extends BaseTest {
 				"Incorrect abonent name");
 	}
 
+	@Test(priority = 8, description = "Check timer call", enabled = true)
+	public void checkTimerCall() {
+		call.inputFromNativeKeyboard(PHONE_NUMBER);
+		call.clickCallButton();
+		boolean actualTimer = checkTimer(call.getTimer());
+		call.cancelCall();
+		Assert.assertTrue(actualTimer);
+	}
+	
 	@Test(priority = 9, description = "Check microfone, Check speaker", enabled = true)
 	public void checkMicrofone() {
 		call.inputFromNativeKeyboard(PHONE_NUMBER);
 		call.clickCallButton();
 		boolean isMicrofone = call.isMicrophoneWork();
-		boolean isSpeaker = call.isSpeakerWork();
+		//boolean isSpeaker = call.isSpeakerWork();
 		call.cancelCall();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		Assert.assertTrue(isMicrofone);
-		Assert.assertTrue(isSpeaker);
+		//Assert.assertTrue(isSpeaker);
 	}
 
 	@Test(priority = 10, description = "Check call from favorite", enabled = true)
@@ -102,12 +102,12 @@ public class CallTest extends BaseTest {
 		setting = cardContacts.clickSettings();
 		cardContacts = setting.clickSwisstokContacts();
 		cardContacts.clickAddContacts();
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		cardContacts.clickAddContactsFromList();
 		cardContacts.inputName(PHONE_NUMBER);
 		cardContacts.inputContact(PHONE_NUMBER);
 		cardContacts.clickSave();
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		cardContacts.swipe(0.5, 0.8, 0.5, 0.1, 0.5);
 		cardContacts.clickStar();
 		cardContacts.clickBack();
 		setting = cardContacts.clickSettings();
@@ -137,14 +137,11 @@ public class CallTest extends BaseTest {
 	 * callPage.checkPage(); }
 	 */
 	
-	
 	@IgnoreTest(device = "ios7")
 	@Test(priority = 16, enabled = true)
 	public void callWithZRTPConnection() {
 		SettingsPage settings = call.navigateToSettingsTab();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
-		settings.swipe(0.5, 0.8, 1.0, 0, 0.5);
-		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		settings.setZRTPconnection();
 		CallPage callPage = settings.clickCallTab();
 		callPage.inputFromNativeKeyboard(PHONE_NUMBER);

@@ -59,11 +59,6 @@ public class BlockPageAndroid extends BlockPage {
 	}
 
 	@Override
-	public String getContactName() {
-		return contactName.getText();
-	}
-
-	@Override
 	public void clickEditContacts() {
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		editFromList.touch();

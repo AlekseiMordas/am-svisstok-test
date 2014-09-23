@@ -25,20 +25,23 @@ public class HistoryPageIos extends HistoryPage {
 		super(driver);
 	}
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]")
 	private UIView webview;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[4]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[4]")
 	private UIView timerCall;
 
-	@FindBy(locator = "Позвонить", ios7 = "//window[1]/scrollview[1]/webview[1]/link[4]")
+	@FindBy(locator = "Позвонить")
 	private UIView callTab;
 
 	// @FindBy(locator = "")
 	// private UIView editButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
+	@FindBy(locator = "///UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]")
 	private UIView trashButton;
+	
+	@FindBy(locator = "Готово")
+	private UIView readyButton;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]",
 			ios7 = "//window[1]/scrollview[1]/webview[1]/link[3]")
@@ -103,7 +106,7 @@ public class HistoryPageIos extends HistoryPage {
 	@Override
 	public void clickCallTab() {
 		Dimension dim = webview.getSize();
-		callTab.touchWithCoordinates(dim.width / 4 * 2 + 10, dim.height - 10);
+		webview.touchWithCoordinates(dim.width / 4 * 2 + 10, dim.height - 10);
 	}
 
 	@Override
