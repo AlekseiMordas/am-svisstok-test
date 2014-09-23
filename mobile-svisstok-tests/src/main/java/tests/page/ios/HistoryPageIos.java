@@ -25,10 +25,10 @@ public class HistoryPageIos extends HistoryPage {
 		super(driver);
 	}
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]")
 	private UIView webview;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[4]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[4]")
 	private UIView timerCall;
 
 	@FindBy(locator = "Позвонить")
@@ -37,7 +37,7 @@ public class HistoryPageIos extends HistoryPage {
 	// @FindBy(locator = "")
 	// private UIView editButton;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]")
+	@FindBy(locator = "///UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]")
 	private UIView trashButton;
 	
 	@FindBy(locator = "Готово")

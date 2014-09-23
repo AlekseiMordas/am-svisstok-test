@@ -47,16 +47,7 @@ public class CallTest extends BaseTest {
 		call.cancelCall().checkPage();
 		Assert.assertEquals(EXPECTED_CALL_NAME, callNameConnection);
 	}
-
-	@Test(priority = 8, description = "Check timer call", enabled = true)
-	public void checkTimerCall() {
-		call.inputFromNativeKeyboard(PHONE_NUMBER);
-		call.clickCallButton();
-		boolean actualTimer = checkTimer(call.getTimer());
-		call.cancelCall();
-		Assert.assertTrue(actualTimer);
-	}
-
+	
 	@Test(priority = 5, description = "Check button cancel in currently call", enabled = true)
 	public void checkCancelCallButtonInCall() {
 		call.inputFromNativeKeyboard(PHONE_NUMBER);
@@ -84,6 +75,15 @@ public class CallTest extends BaseTest {
 				"Incorrect abonent name");
 	}
 
+	@Test(priority = 8, description = "Check timer call", enabled = true)
+	public void checkTimerCall() {
+		call.inputFromNativeKeyboard(PHONE_NUMBER);
+		call.clickCallButton();
+		boolean actualTimer = checkTimer(call.getTimer());
+		call.cancelCall();
+		Assert.assertTrue(actualTimer);
+	}
+	
 	@Test(priority = 9, description = "Check microfone, Check speaker", enabled = true)
 	public void checkMicrofone() {
 		call.inputFromNativeKeyboard(PHONE_NUMBER);

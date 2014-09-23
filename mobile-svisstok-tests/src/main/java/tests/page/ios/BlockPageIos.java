@@ -24,11 +24,8 @@ public class BlockPageIos extends BlockPage {
 	@FindBy(locator = "Done")
 	private UIView doneButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]")
 	private UIView webview;
-
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]")
-	private UIView contactName;
 
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[4]")
 	private UIView searchResult;
@@ -60,11 +57,6 @@ public class BlockPageIos extends BlockPage {
 	public void clickSearchResult(String name) {
 		Rectangle point = searchResult.getLocation();
 		searchResult.touchWithCoordinates(point.getX(), point.getY());
-	}
-
-	@Override
-	public String getContactName() {
-		return contactName.getAttribute("name");
 	}
 
 	@Override

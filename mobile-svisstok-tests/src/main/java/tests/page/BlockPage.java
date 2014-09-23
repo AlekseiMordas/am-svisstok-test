@@ -20,8 +20,6 @@ public abstract class BlockPage extends BasePage{
 	
 	public abstract void clickSearchResult(String name);
 	
-	public abstract String getContactName();
-	
 	public abstract void clickEditContacts();
 	
 	public abstract void clickDeletefromList();

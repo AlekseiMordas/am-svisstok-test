@@ -53,7 +53,7 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[9]")
 	private UIView nine;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[10]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[10]")
 	private UIView star;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[11]")
@@ -62,17 +62,17 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[12]")
 	private UIView grill;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[1]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[1]")
 	private UIView digitDisplay;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[1]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[1]")
 	public UIView fieldNumber;
 
 	@FindBy(locator = "//window[2]/UIAKeyboard[1]/UIAKey[29]")
 	private UIView moreNumber;
 
 	@FindBy(locator = "Удалить" ,
-			ios7 = "//window[1]/scrollview[1]/webview[1]/link[15]")
+			ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[15]/UIAStaticText[1]")
 	private UIView deleteButton;
 	
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[15]")
@@ -90,31 +90,28 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "Подключение...")
 	private UIView nameConnection;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[3]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[3]")
 	private UIView nameAbonent;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]")
 	private UIView webview;
 
-	@FindBy(locator = "Настройки", ios7 = "//window[1]/scrollview[1]/webview[1]/link[19]")
-	private UIView settingsTab;
-
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[14]/UIALink[1]",
-			ios7 = " //UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[14]")
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[14]")
 	private UIView callButton;
 
-	@FindBy(locator = "/UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]", 
-			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]", 
+			ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]")
 	private UIView cancelCallButton;
 
 	@FindBy(locator = "Отклонить")
 	private UIView resetCallButton;
 
 	@FindBy(locator = "Контакты",
-			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[16]")
+			ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[16]")
 	private UIView contactsTab;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[4]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[4]")
 	private UIView timerCall;
 
 //	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[5]",
@@ -122,28 +119,28 @@ public class CallPageIos extends CallPage {
 //	private UIView contactNumber;
 
 	@FindBy(locator = "Позвонить", 
-			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[18]")
+			ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[18]")
 	private UIView callTab;
 
-	@FindBy(locator = "История", ios7 = "//window[1]/scrollview[1]/webview[1]/link[7]")
+	@FindBy(locator = "История")
 	private UIView historyButton;
 
 	@FindBy(locator = "Ответить")
 	private UIView answerButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[3]")
 	private UIView endCallButton;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]")
 	private UIView settingTab;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]")
 	private UIView microphone;
 
 	@FindBy(locator = "OK")
 	private UIView okButton;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[4]/UIAAlert[1]/UIAScrollView[1]/UIAStaticText[1]")
+	@FindBy(locator = "//UIAAlert[1]/UIAScrollView[1]/UIAStaticText[1]")
 	private UIView alertAccessContacts;
 	
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[1]")
@@ -279,7 +276,8 @@ public class CallPageIos extends CallPage {
 			webview.touchWithCoordinates(dim.width / 2, dim.height / 9 * 8);
 			break;
 		case IOS7:
-			webview.touchWithCoordinates(dim.width / 2, dim.height / 9 * 7);
+			Rectangle point = callButton.getLocation();
+			webview.touchWithCoordinates(dim.width / 2, dim.height / 9 * 8);
 			break;
 		default:
 			break;
@@ -390,8 +388,8 @@ public class CallPageIos extends CallPage {
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		speakerButton.touchWithCoordinates(pointSpeaker.getX(),
 				pointSpeaker.getY());
-		Rectangle pointName = nameText.getLocation();
-		nameText.touchWithCoordinates(pointName.getX(), pointName.getY());
+//		Rectangle pointName = nameText.getLocation();
+//		nameText.touchWithCoordinates(pointName.getX(), pointName.getY());
 		return true;
 	}
 
