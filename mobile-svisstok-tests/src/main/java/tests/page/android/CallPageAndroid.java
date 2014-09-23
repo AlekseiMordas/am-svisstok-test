@@ -307,8 +307,8 @@ public class CallPageAndroid extends CallPage {
 	}
 
 	@Override
-	public String getContactNumber() {
-		return contactName.getText();
+	public String getContactNumber(String name) {
+		return ((AppiumDriver)driver).getDriver().findElementByName(name).getText();
 	}
 
 	@Override
@@ -370,6 +370,17 @@ public class CallPageAndroid extends CallPage {
 	public CallPageAndroid clickOk(){
 		//TODO
 		return PageFactory.initElements(driver, CallPageAndroid.class);
+	}
+	
+	@Override
+	public boolean isAlertUpdate(){
+		//TODO, ios implemented
+		return false; 
+	}
+	
+	@Override
+	public void clickCancel(){
+		//TODO, ios impemented
 	}
 
 }

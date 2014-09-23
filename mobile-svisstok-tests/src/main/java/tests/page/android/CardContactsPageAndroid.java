@@ -318,6 +318,10 @@ public class CardContactsPageAndroid extends CardContactsPage {
 		return sipnetContact.isExists();
 	}
 
+	@Override
+	public void checkGroupingContacts(){
+		//TODO, implemented ios 
+	}
 	
 
 	@Override

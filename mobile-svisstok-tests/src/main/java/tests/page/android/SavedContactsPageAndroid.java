@@ -1,7 +1,5 @@
 package tests.page.android;
 
-import java.awt.Rectangle;
-
 import org.openqa.selenium.By;
 
 import tests.page.SavedContactsPage;
@@ -59,12 +57,13 @@ public class SavedContactsPageAndroid extends SavedContactsPage {
 	}
 
 	@Override
-	public void clickSearchResult(String name) {
+	public CallPageAndroid clickSearchResult(String name) {
 		((AppiumDriver) driver)
 				.getDriver()
 				.findElement(
 						By.xpath(String.format(searchedContact.getFoundBy(),
 								name))).click();
+		return PageFactory.initElements(driver, CallPageAndroid.class);
 
 	}
 

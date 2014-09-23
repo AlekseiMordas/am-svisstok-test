@@ -51,6 +51,7 @@ public class CallAnswerTest
 			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
 			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+			checkUpdateAlert();
 			Sleeper.SYSTEM_SLEEPER.sleep(5000);
 			break;
 		case IOS7:
@@ -61,6 +62,7 @@ public class CallAnswerTest
 			Sleeper.SYSTEM_SLEEPER.sleep(5000);
 			if(call.isAccessContacts())
 			  call.clickOk();
+			checkUpdateAlert();
 			break;
 		case ANDROID:
 			driver = IosDriverWrapper.getAndroid(HOST, PORT);
@@ -96,5 +98,9 @@ public class CallAnswerTest
 	public void tearDown() throws Exception {
 		AppiumDriver.class.cast(driver).quit();
 		
+	}
+	private void checkUpdateAlert(){
+		if(call.isAlertUpdate())
+			call.clickCancel();
 	}
 }

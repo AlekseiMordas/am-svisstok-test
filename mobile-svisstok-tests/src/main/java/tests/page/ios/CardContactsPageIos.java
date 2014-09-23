@@ -4,8 +4,10 @@ import java.awt.Rectangle;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.testng.Assert;
 
 import tests.page.CardContactsPage;
+import tests.page.ios.HistoryFilterPageIos.Headers;
 
 import com.annotation.FindBy;
 import com.element.UIView;
@@ -16,25 +18,26 @@ import com.mobile.driver.wait.Sleeper;
 
 public class CardContactsPageIos extends CardContactsPage {
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]")
 	private UIView webview;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]")
 	private UIView addContacts;
 
 	@FindBy(locator = "Заблокировать")
 	private UIView blockFromList;
 
-	@FindBy(locator = "//window[2]/toolbar[1]/button[1]", ios7 = "//window[2]/toolbar[1]/button[3]")
+	@FindBy(locator = "Done")
 	private UIView doneButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
+	@FindBy(locator = "Добавить телефон")
 	private UIView addContactsFromList;
-
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/textfield[2]")
+	
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[2]")
 	private UIView nameField;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/textfield[3]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[3]")
 	private UIView contactField;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[10]")
@@ -46,18 +49,25 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[17]/link[1]")
 	private UIView delete;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]/link[2]/text[1]",
-			ios7 = "//window[1]/scrollview[1]/webview[1]/link[3]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[3]/UIALink[2]/UIAStaticText[1]",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[3]")
 	private UIView firstContact;
+	
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[3]",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[3]")
+	private UIView firstContactGrouping;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]/link[2]/text[1]",
-			ios7 = "//window[1]/scrollview[1]/webview[1]/link[4]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[4]",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[5]")
 	private UIView secondContact;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/textfield[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[1]")
 	private UIView searchFiled;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/textfield[4]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[4]")
+	private UIView searchResult;
+
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIATextField[4]")
 	private UIView contactSecondField;
 
 	@FindBy(locator = "Профиль")
@@ -66,8 +76,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "Изменить")
 	private UIView editFromList;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[11]",
-			ios7 = "//window[1]/scrollview[1]/webview[1]/text[11]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[11]")
 	private UIView secondNumber;
 
 	@FindBy(locator = "Удалить")
@@ -76,7 +85,7 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[6]")
 	private UIView messageDelete;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[15]/link[1]", ios7 = "Заблокировать")
+	@FindBy(locator = "Заблокировать")
 	private UIView blockButton;
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]")
@@ -88,29 +97,29 @@ public class CardContactsPageIos extends CardContactsPage {
 	@FindBy(locator = "Cut")
 	private UIView cutButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[8]", 
-			ios7 = "//window[1]/scrollview[1]/webview[1]/link[8]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[12]",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[8]")
 	private UIView star;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIALink[1]",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIAStaticText[1]")
 	private UIView backTab;
 
 	@FindBy(locator = "Готово")
 	private UIView saveButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIALink[1]",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]")
 	private UIView settingTab;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIAStaticText[1]")
 	private UIView settingTabRight;
-
-	@FindBy(locator = "Удалить")
-	private UIView deleteFromList;
 
 	@FindBy(locator = "Удалить")
 	private UIView deleteButton;
 
-	@FindBy(locator = "Позвонить", ios7 = "Позвонить")
+	@FindBy(locator = "Позвонить")
 	private UIView callTab;
 
 	@FindBy(locator = "OK")
@@ -121,6 +130,31 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@FindBy(locator = "Позвонить \n", ios7 = "Позвонить  , &nbsp;")
 	private UIView callButton;
+	
+	@FindBy(locator = "Все контакты")
+	private UIView buttonAllContacts;
+	
+	@FindBy(locator = "Контакты в сети")
+	private UIView buttonContactsOnline;
+	
+	@FindBy(locator = "Контакты в Swisstok")
+	private UIView buttonContactsSwisstok;
+	
+	@FindBy(locator = "Сохраненные номера")
+	private UIView buttonSavingNumber;
+	
+	@FindBy(locator = "Заблокированные")
+	private UIView buttonBlokingNumber;
+	
+	@FindBy(locator = "Избранные",
+			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[9]")
+	private UIView buttonFavoriteNumber;
+	
+	@FindBy(locator = "Белые контакты")
+	private UIView buttonWhiteContact;
+	
+	@FindBy(locator = "Контактная книга телефона")
+	private UIView buttonBookContacts;
 
 	public CardContactsPageIos(NativeDriver driver) {
 		super(driver);
@@ -128,9 +162,6 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public void clickAddContacts() {
-		// Rectangle point = webview.getLocation();
-		// double x = 270;
-		// webview.touchWithCoordinates(point.getX() + x, point.getY());
 		Rectangle point = addContacts.getLocation();
 		addContacts.touchWithCoordinates(point.getX(), point.getY());
 	}
@@ -142,7 +173,9 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public void inputName(String text) {
-		nameField.touch();
+		Rectangle point = nameField.getLocation();
+		nameField.touchWithCoordinates(point.x, point.y);;
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		clearField(nameField);
 		nameField.type(text);
 		doneButton.touch();
@@ -167,6 +200,7 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public void inputContact(String contact) {
+		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		contactField.touch();
 		clearField(contactField);
 		contactField.type(contact);
@@ -178,6 +212,9 @@ public class CardContactsPageIos extends CardContactsPage {
 	@Override
 	public void inputSecondContact(String contact) {
 		contactSecondField.touch();
+		clearField(contactSecondField);
+		contactSecondField.type(contact);
+		clearField(contactSecondField);
 		contactSecondField.type(contact);
 		doneButton.touch();
 	}
@@ -185,32 +222,24 @@ public class CardContactsPageIos extends CardContactsPage {
 	@Override
 	public void clickBack() {
 		Rectangle point = backTab.getLocation();
-		// double x = 10;
-		// double y = 5;
 		backTab.touchWithCoordinates(point.getX(), point.getY());
 	}
 
 	@Override
 	public void clickSave() {
 		saveButton.touch();
-		// Rectangle point = webview.getLocation();
-		// double x = 10;
-		// double y = 5;
-		// webview.touchWithCoordinates(point.getX() + x, point.getY() + y);
 	}
 
 	@Override
 	public boolean isContactNumberExist(String name) {
 		return ((AppiumDriver) driver).getDriver().findElements(By.name(name))
 				.size() > 0;
-		// return contactNumber.getAttribute("name");
 	}
 
 	@Override
 	public String getContactNumber(String name) {
 		return ((AppiumDriver) driver).getDriver().findElementByName(name)
 				.getAttribute("name");
-		// return contactNumber.getAttribute("name");
 	}
 
 	@Override
@@ -227,8 +256,8 @@ public class CardContactsPageIos extends CardContactsPage {
 
 	@Override
 	public void clickDeletefromList() {
-		Rectangle point = deleteFromList.getLocation();
-		deleteFromList.touchWithCoordinates(point.getX(), point.getY());
+		Rectangle point = deleteButton.getLocation();
+		deleteButton.touchWithCoordinates(point.getX(), point.getY());
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
 
@@ -309,11 +338,9 @@ public class CardContactsPageIos extends CardContactsPage {
 	@SuppressWarnings("unchecked")
 	@Override
 	public CallPageIos clickSearchResult(String result) {
-		Rectangle point = webview.getLocation();
-		double y = 105;
-		webview.touchWithCoordinates(point.getX(), point.getY() + y);
-		CallPageIos call = PageFactory.initElements(driver, CallPageIos.class);
-		return call;
+		Dimension dim = webview.getSize();
+		webview.touchWithCoordinates(dim.getWidth() / 2, dim.getHeight() / dim.getHeight() + 120);
+		return PageFactory.initElements(driver, CallPageIos.class);
 	}
 
 	@Override
@@ -374,6 +401,74 @@ public class CardContactsPageIos extends CardContactsPage {
 	public void clickStar() {
 		Rectangle point = star.getLocation();
 		star.touchWithCoordinates(point.getX(), point.getY());
+	}
+	
+	@Override
+	public void checkGroupingContacts(){
+		Assert.assertTrue(clickAllContacts().checkScreenOpen());
+		clickBack();
+		Assert.assertTrue(clickContactsOnline().checkScreenOpen());
+		clickBack();
+		Assert.assertTrue(clickContactsSwisstok().checkScreenOpen());
+		clickBack();
+		Assert.assertTrue(clickSavingNumber().checkScreenOpen());
+		clickBack();
+		Assert.assertTrue(clickBlokingNumber().checkScreenOpen());
+		clickBack();
+		Assert.assertTrue(clickFavoriteContacts().checkScreenOpen());
+		clickBack();
+		Assert.assertTrue(clickWhiteContact().checkScreenOpen());
+		clickBack();
+		Assert.assertTrue(clickBookContacts().checkScreenOpen());
+	}
+	
+	public CardContactsPageIos clickAllContacts(){
+		buttonAllContacts.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(5000);
+		return PageFactory.initElements(driver, CardContactsPageIos.class);
+	}
+	
+	public CardContactsPageIos clickContactsOnline(){
+		buttonContactsOnline.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		return PageFactory.initElements(driver, CardContactsPageIos.class);
+	}
+	public CardContactsPageIos clickContactsSwisstok(){
+		Rectangle point = buttonContactsSwisstok.getLocation();
+		buttonContactsSwisstok.touchWithCoordinates(point.x, 200);
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		return PageFactory.initElements(driver, CardContactsPageIos.class);
+	}
+	public CardContactsPageIos clickSavingNumber(){
+		Rectangle point = buttonSavingNumber.getLocation();
+		buttonSavingNumber.touchWithCoordinates(point.x, point.y);
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		return PageFactory.initElements(driver, CardContactsPageIos.class);
+	}
+	public CardContactsPageIos clickBlokingNumber(){
+		buttonBlokingNumber.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		return PageFactory.initElements(driver, CardContactsPageIos.class);
+	}
+	public CardContactsPageIos clickFavoriteContacts(){
+		Rectangle point = buttonFavoriteNumber.getLocation();
+		buttonFavoriteNumber.touchWithCoordinates(point.x, point.y);
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		return PageFactory.initElements(driver, CardContactsPageIos.class);
+	}
+	public CardContactsPageIos clickWhiteContact(){
+		buttonWhiteContact.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		return PageFactory.initElements(driver, CardContactsPageIos.class);
+	}
+	public CardContactsPageIos clickBookContacts(){
+		buttonBookContacts.touch();
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		return PageFactory.initElements(driver, CardContactsPageIos.class);
+	}
+	
+	public boolean checkScreenOpen(){
+		return searchFiled.isExists();
 	}
 
 	@Override
