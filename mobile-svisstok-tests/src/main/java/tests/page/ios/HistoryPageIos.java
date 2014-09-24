@@ -37,36 +37,36 @@ public class HistoryPageIos extends HistoryPage {
 	// @FindBy(locator = "")
 	// private UIView editButton;
 
-	@FindBy(locator = "///UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]")
 	private UIView trashButton;
 	
 	@FindBy(locator = "Готово")
 	private UIView readyButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]",
-			ios7 = "//window[1]/scrollview[1]/webview[1]/link[3]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[2]",
+			ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[3]")
 	private UIView arrowButton;
 
 	@FindBy(locator = FIRST_RESULT)
 	private UIView contact;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]/link[1]",
-			ios7 = "//window[1]/scrollview[1]/webview[1]/link[2]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]",
+			ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]")
 	private UIView cancelCallButton;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[3]")
 	private UIView messageEmptyList;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]")
 	private UIView allContacts;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[3]")
 	private UIView settingButton;
 	
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]")
 	private UIView filterButton;
 
-	private static final String FIRST_RESULT = "//window[1]/scrollview[1]/webview[1]/link";//link[3]
+	private static final String FIRST_RESULT = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink";//link[3]
 
 	@Override
 	public void checkPage() {
@@ -125,8 +125,8 @@ public class HistoryPageIos extends HistoryPage {
 	}
 
 	public void clickConfirmation() {
-		Rectangle point = trashButton.getLocation();
-		trashButton.touchWithCoordinates(point.getX(), point.getY() - 35);
+		Rectangle point = readyButton.getLocation();
+		readyButton.touchWithCoordinates(point.getX(), point.getY());
 	}
 
 	public void clickTrash() {
