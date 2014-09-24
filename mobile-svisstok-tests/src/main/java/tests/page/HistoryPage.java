@@ -12,7 +12,7 @@ public abstract class HistoryPage extends BasePage {
 
 	public abstract void clickFirstContact();
 
-	public abstract <T> T cancelCall();
+	public abstract HistoryPage cancelCall();
 
 	public abstract String getTimer();
 
@@ -30,6 +30,6 @@ public abstract class HistoryPage extends BasePage {
 	
 	public abstract String getMessageEmptyList();
 	
-	public abstract <T> T openFilter();
+	public abstract HistoryFilterPage openFilter();
 
 }
