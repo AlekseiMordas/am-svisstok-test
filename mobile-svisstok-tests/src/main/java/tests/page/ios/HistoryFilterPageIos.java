@@ -19,12 +19,10 @@ public class HistoryFilterPageIos extends HistoryFilterPage{
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[1]")
 	private UIView header;
 	
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIALink[1]/UIAStaticText[1]",
-			ios7 = "//window[1]/scrollview[1]/webview[1]/link[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]")
 	private UIView filterButton;
 	
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[3]/UIALink[1]",
-			ios7 = "//link[@name='Все звонки']")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[3]")
 	private UIView allCalls;
 	
 	@FindBy(locator = "Пропущенные звонки")

@@ -64,7 +64,7 @@ public class HistoryPageIos extends HistoryPage {
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
 	private UIView settingButton;
 	
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIALink[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]")
 	private UIView filterButton;
 
 	private static final String FIRST_RESULT = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink";
@@ -118,7 +118,7 @@ public class HistoryPageIos extends HistoryPage {
 		 editButton.touchWithCoordinates(point.getX() + 18, point.getY());
 		 break;
 		case IOS7:
-		 editButton.touchWithCoordinates(point.getX(), point.getY() - 35);
+		 editButton.touchWithCoordinates(point.getX() + 18, point.getY());
 		 break;
 		 default:
 			 break;
