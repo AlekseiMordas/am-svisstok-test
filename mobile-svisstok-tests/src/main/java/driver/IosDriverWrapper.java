@@ -1,7 +1,5 @@
 package driver;
 
-import java.net.MalformedURLException;
-
 import utils.HttpClient;
 
 import com.ios.AppiumDriver;
@@ -29,7 +27,7 @@ public class IosDriverWrapper {
 		isSeesionExist = isSessionExist(host, port);
 		if (!isSeesionExist) {
 			instance = new AppiumDriver(getUrl(host, port),
-			CapabilitiesFactory.createIosCapabilities());
+					CapabilitiesFactory.createIosCapabilities());
 		}
 		return instance;
 	}
@@ -43,15 +41,8 @@ public class IosDriverWrapper {
 		return instance;
 	}
 
-	private static java.net.URL getUrl(String host, String port) {
-		try {
-			return new java.net.URL(String.format(URL, host, port));
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		;
-		return null;
+	private static String getUrl(String host, String port) {
+		return String.format(URL, host, port);
 	}
 
 	public static NativeDriver getDriver() {

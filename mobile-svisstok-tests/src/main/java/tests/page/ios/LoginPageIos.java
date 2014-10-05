@@ -13,9 +13,9 @@ import com.mobile.driver.wait.Sleeper;
 public class LoginPageIos extends LoginPage {
 
 	private static final Logger LOGGER = Logger.getLogger(LoginPageIos.class);
-	
+
 	private static final String VALUE = "value";
-	
+
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]")
 	private UIView webview;
 
@@ -45,7 +45,7 @@ public class LoginPageIos extends LoginPage {
 
 	@FindBy(locator = "//UIAKey[@name='Delete']")
 	private UIView deleteButton;
-	
+
 	@FindBy(locator = "//UIAWindow[2]/UIAKeyboard[1]")
 	private UIView keyBoard;
 
@@ -62,8 +62,7 @@ public class LoginPageIos extends LoginPage {
 			if (savePasswordSlider.getAttribute(VALUE).equals("0.00")) {
 				savePasswordSlider.touch();
 			}
-		}
-		else {
+		} else {
 			if (savePasswordSlider.getAttribute(VALUE).equals("1")) {
 				savePasswordSlider.touch();
 			}
@@ -89,7 +88,8 @@ public class LoginPageIos extends LoginPage {
 	}
 
 	@Override
-	public CallPageIos simpleLogin(String login, String password, boolean isSavePassword, boolean isAutoLogin) {
+	public CallPageIos simpleLogin(String login, String password,
+			boolean isSavePassword, boolean isAutoLogin) {
 		inputLoginTextfield(login);
 		inputPasswordTextfield(password);
 		setSavePassword(isSavePassword);
@@ -114,7 +114,7 @@ public class LoginPageIos extends LoginPage {
 
 	@Override
 	public void clearField(UIView element) {
-		if (!(element.getText().isEmpty())) {
+		if (!(element.getAttribute("value").contains("Логин"))) {
 			element.touchLong();
 			selectAll.touch();
 			Sleeper.SYSTEM_SLEEPER.sleep(1000);
@@ -124,7 +124,7 @@ public class LoginPageIos extends LoginPage {
 	}
 
 	public void clearPasswordField(UIView element) {
-		if (!(element.getText().isEmpty())) {
+		if (!(element.getAttribute("value").contains("Пароль"))) {
 			element.touchLong();
 			selectAll.touch();
 			deleteButton.touch();
@@ -143,10 +143,11 @@ public class LoginPageIos extends LoginPage {
 
 	@Override
 	public void inputPasswordTextfield(String text) {
-		passwordTextfield.touch();;
+		passwordTextfield.touch();
+		;
 		clearPasswordField(passwordTextfield);
 		passwordTextfield.type(text);
-		doneButton.touch();	
+		doneButton.touch();
 	}
 
 	@Override

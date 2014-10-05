@@ -22,8 +22,7 @@ public class SettingsPageIos extends SettingsPage {
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]")
 	private UIView webview;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/slider[3]", 
-			ios7 = "//window[1]/scrollview[1]/webview[1]/slider[3]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/slider[3]", ios7 = "//window[1]/scrollview[1]/webview[1]/slider[3]")
 	public UIView autoLoginSlider;
 
 	@FindBy(locator = "Все контакты")
@@ -32,7 +31,7 @@ public class SettingsPageIos extends SettingsPage {
 	@FindBy(locator = "Контакты в Swisstok")
 	private UIView swisstokContacts;
 
-	@FindBy(locator = "//UIAStaticText[@name='Избранные']")
+	@FindBy(locator = "Избранные")
 	private UIView favourContacts;
 
 	@FindBy(locator = "Сохраненные номера")
@@ -43,7 +42,7 @@ public class SettingsPageIos extends SettingsPage {
 
 	@FindBy(locator = "Шифрование")
 	private UIView encryption;
-	
+
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAElement[2]")
 	private UIView encryptionButton;
 
@@ -52,36 +51,34 @@ public class SettingsPageIos extends SettingsPage {
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[13]/link[1]")
 	private UIView callTab;
-	
+
 	@FindBy(locator = "Контактная книга телефона")
 	private UIView phoneBook;
-	
+
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[4]")
 	private UIView valueBalance;
-	
+
 	@FindBy(locator = "О программе")
 	private UIView aboutApp;
-	
-	@FindBy(locator = "Помощь",
-			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[6]/UIALink[2]/UIAStaticText[1]")
+
+	@FindBy(locator = "Помощь", ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[6]/UIALink[2]/UIAStaticText[1]")
 	private UIView help;
-	
+
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAStaticText[1]")
 	private UIView urlPDFfile;
-	
+
 	@FindBy(locator = "Done")
 	private UIView done;
-	
+
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[14]")
 	private UIView language;
-	
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[11]/UIALink[1]/UIAStaticText[1]",
-			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[11]")
+
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[11]/UIALink[1]/UIAStaticText[1]", ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[11]")
 	private UIView logApp;
-	
+
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[2]")
 	private UIView firstLog;
-	
+
 	@FindBy(locator = "Белый список")
 	private UIView whiteList;
 
@@ -114,7 +111,6 @@ public class SettingsPageIos extends SettingsPage {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public CardContactsPageIos clickAllContacts() {
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		Rectangle point = allContacts.getLocation();
@@ -124,7 +120,6 @@ public class SettingsPageIos extends SettingsPage {
 
 	// use coordinats, because dynamic xPath
 	@Override
-	@SuppressWarnings("unchecked")
 	public CardContactsPageIos clickSwisstokContacts() {
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		Rectangle point = swisstokContacts.getLocation();
@@ -132,7 +127,6 @@ public class SettingsPageIos extends SettingsPage {
 		return PageFactory.initElements(driver, CardContactsPageIos.class);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public BlockPageIos clickBlock() {
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
@@ -142,7 +136,6 @@ public class SettingsPageIos extends SettingsPage {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public FavoritePageIos clickFavorite() {
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		Rectangle point = favourContacts.getLocation();
@@ -151,18 +144,17 @@ public class SettingsPageIos extends SettingsPage {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public SavedContactsPageIos clickSavedContacts() {
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
-//		Rectangle point = savedContacts.getLocation();
-//		savedContacts.touchWithCoordinates(point.getX(), point.getY());
+		// Rectangle point = savedContacts.getLocation();
+		// savedContacts.touchWithCoordinates(point.getX(), point.getY());
 		savedContacts.touch();
 		return PageFactory.initElements(driver, SavedContactsPageIos.class);
 	}
 
 	@Override
 	public void setZRTPconnection() {
-		//((AppiumDriver) driver).scrollToText("Номер голосовой почты");
+		// ((AppiumDriver) driver).scrollToText("Номер голосовой почты");
 		scrollDown(language.getLocator());
 		scrollDown(encryptionButton.getLocator());
 		Rectangle point = encryptionButton.getLocation();
@@ -203,15 +195,15 @@ public class SettingsPageIos extends SettingsPage {
 		webview.touchWithCoordinates(dim.getWidth() / 2, dim.getHeight() - 95);
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
-	
+
 	@Override
-	public CardContactsPageIos clickPhoneBook(){
+	public CardContactsPageIos clickPhoneBook() {
 		phoneBook.touch();
 		return PageFactory.initElements(driver, CardContactsPageIos.class);
 	}
-	
-	@Override 
-	public boolean isBalance(){
+
+	@Override
+	public boolean isBalance() {
 		String value = valueBalance.getAttribute("name");
 		Pattern p = Pattern.compile("^[0-9]{1,}.руб.$");
 		Matcher m = p.matcher(value);
@@ -228,7 +220,7 @@ public class SettingsPageIos extends SettingsPage {
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		return urlPDFfile.getAttribute("name");
 	}
-	
+
 	@Override
 	public void clickHelp() {
 		switch (Devices.valueOf(DEVICE)) {
@@ -243,31 +235,31 @@ public class SettingsPageIos extends SettingsPage {
 			break;
 		}
 	}
-	
+
 	@Override
-	public String getUrlHelp(){
+	public String getUrlHelp() {
 		Sleeper.SYSTEM_SLEEPER.sleep(5000);
 		return urlPDFfile.getAttribute("name");
 	}
-	
+
 	@Override
-	public void clickDone(){
+	public void clickDone() {
 		done.touch();
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 	}
-	
+
 	@Override
-	public void scrollToText(String text){
+	public void scrollToText(String text) {
 		((AppiumDriver) driver).scrollToText(text);
 	}
-	
+
 	@Override
-	public void changeLanguageToEnglish(){
+	public void changeLanguageToEnglish() {
 		scrollDown(language.getLocator());
 		clickLanguage();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		Dimension dim = webview.getSize();
-		
+
 		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:
 			webview.touchWithCoordinates(dim.width / 2, dim.height - 50);
@@ -279,15 +271,15 @@ public class SettingsPageIos extends SettingsPage {
 		default:
 			break;
 		}
-		
+
 	}
-	
+
 	@Override
-	public void changeLanguageToRussian(){
+	public void changeLanguageToRussian() {
 		clickLanguage();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		Dimension dim = webview.getSize();
-		
+
 		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:
 			webview.touchWithCoordinates(dim.width / 2, dim.height / 2 + 100);
@@ -300,28 +292,28 @@ public class SettingsPageIos extends SettingsPage {
 			break;
 		}
 	}
-	
+
 	@Override
-	public void clickLanguage(){
+	public void clickLanguage() {
 		Rectangle point = language.getLocation();
 		language.touchWithCoordinates(point.x, point.y);
 	}
-	
+
 	@Override
-	public String getLanguage(){
+	public String getLanguage() {
 		return language.getAttribute("name");
 	}
-	
+
 	@Override
-	public void openLogApp(){
+	public void openLogApp() {
 		scrollDown(logApp.getLocator());
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		logApp.touch();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 	}
-	
+
 	@Override
-	public boolean validateLogs(){
+	public boolean validateLogs() {
 		return checkVisibleText(firstLog.getAttribute("name"));
 	}
 

@@ -137,7 +137,7 @@ public class CardContactsTest {
 	public void generateNewUser() {
 		SAVED_NAME = "Auto" + String.valueOf(new Random().nextInt(9999));
 		CONTACT = String.valueOf(new Random().nextInt(99999));
-	    OTHER_NAME = "Other" + String.valueOf(new Random().nextInt(99999));
+		OTHER_NAME = "Other" + String.valueOf(new Random().nextInt(99999));
 		SECOND_NUMBER = String.valueOf(new Random().nextInt(99999));
 	}
 
@@ -148,7 +148,7 @@ public class CardContactsTest {
 		setting = cardContacts.clickSettings();
 		cardContacts = setting.clickAllContacts();
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		boolean visibleListContacts = cardContacts.checkVisibleListContacts(); 
+		boolean visibleListContacts = cardContacts.checkVisibleListContacts();
 		Assert.assertTrue(visibleListContacts, "Contact List not do");
 	}
 
@@ -166,7 +166,6 @@ public class CardContactsTest {
 
 	@Test(priority = 3, description = "Check number contact, Check name contact", enabled = true)
 	public void checkNumberContact() {
-		// main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
 		createUser(SAVED_NAME, CONTACT);
 		boolean visibleContact = cardContacts
@@ -179,25 +178,24 @@ public class CardContactsTest {
 		// cardContacts.clickDeletefromList();
 		// cardContacts.clickDelete();
 	}
-	/*
+
 	// TODO wait CI
-	@Test(priority = 5, description = "Check call contact", enabled = true)
+	@Test(priority = 5, description = "Check call contact", enabled = false)
 	public void checkCallContact() {
 		// main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
-		goToSwisstokList();
-		createUser(SAVED_NAME, PHONE_NUMBER);
-		cardContacts.callFromContactCard();
-		boolean actualTimer = checkTimer(call.getTimer());
-		call.cancelCall();
-		cardContacts.clickEditContacts();
-		cardContacts.clickDeletefromList();
-		cardContacts.clickDelete();
-		Assert.assertTrue(actualTimer, "Call timer not started");
-	}*/
+		// goToSwisstokList();
+		// createUser(SAVED_NAME, PHONE_NUMBER);
+		// cardContacts.callFromContactCard();
+		// boolean actualTimer = checkTimer(call.getTimer());
+		// call.cancelCall();
+		// cardContacts.clickEditContacts();
+		// cardContacts.clickDeletefromList();
+		// cardContacts.clickDelete();
+		// Assert.assertTrue(actualTimer, "Call timer not started");
+	}
 
 	@Test(priority = 6, description = "Check add number's contact", enabled = true)
 	public void checkAddNumberContact() {
-		// main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
 		createUser(SAVED_NAME, CONTACT);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
@@ -212,7 +210,7 @@ public class CardContactsTest {
 		cardContacts.clickDelete();
 		Assert.assertEquals(SECOND_NUMBER, secondNumber);
 	}
-	
+
 	@Test(priority = 7, description = "Check delete contact", enabled = true)
 	public void checkDeleteContact() {
 		goToSwisstokList();
@@ -251,7 +249,6 @@ public class CardContactsTest {
 	@IgnoreTest(device = "ios7")
 	@Test(priority = 9, description = "Check edit name contact", enabled = true)
 	public void checkEditContact() {
-		// main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
 		createUser(SAVED_NAME, CONTACT);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
@@ -274,7 +271,6 @@ public class CardContactsTest {
 
 	@Test(priority = 10, description = "Check edit number contact", enabled = true)
 	public void checkEditNumberContact() {
-		// main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 		goToSwisstokList();
 		createUser(SAVED_NAME, CONTACT);
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
@@ -331,8 +327,9 @@ public class CardContactsTest {
 		favorite.clickDelete();
 		Assert.assertTrue(result, "Contact not exist in Favourites");
 	}
-	
-	@Test(priority = 13, description = "Check add to favorite for saved contact", enabled = true)
+
+	// TODO need to create special user for this test
+	@Test(priority = 13, description = "Check add to favorite for saved contact", enabled = false)
 	public void checkSearchByNameBookPhone() {
 		cardContacts = call.clickContact();
 		setting = cardContacts.clickSettings();
@@ -342,7 +339,7 @@ public class CardContactsTest {
 		String contactNumber = call.getContactNumber("5555228243");
 		Assert.assertEquals(contactNumber, "5555228243");
 	}
-	
+
 	@Test(priority = 14, enabled = true)
 	public void checkGroupingContactsBookName() {
 		cardContacts = call.clickContact();
@@ -352,7 +349,7 @@ public class CardContactsTest {
 	}
 
 	private void createUser(String name, String contact) {
-		//cardContacts = call.clickContact();
+		// cardContacts = call.clickContact();
 		cardContacts.clickAddContacts();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		cardContacts.clickAddContactsFromList();
@@ -367,9 +364,9 @@ public class CardContactsTest {
 		setting = cardContacts.clickSettings();
 		cardContacts = setting.clickSwisstokContacts();
 	}
-	
-	private void checkUpdateAlert(){
-		if(call.isAlertUpdate())
+
+	private void checkUpdateAlert() {
+		if (call.isAlertUpdate())
 			call.clickCancel();
 	}
 
