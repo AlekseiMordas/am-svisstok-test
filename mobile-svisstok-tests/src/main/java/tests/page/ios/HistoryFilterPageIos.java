@@ -16,15 +16,13 @@ import com.mobile.driver.wait.Sleeper;
 
 public class HistoryFilterPageIos extends HistoryFilterPage{
 	
-	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[1]")
 	private UIView header;
 	
-	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIALink[1]",
-			ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]")
 	private UIView filterButton;
 	
-	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[3]",
-			ios7 = "//UIALink[@name='Все звонки']")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[3]")
 	private UIView allCalls;
 	
 	@FindBy(locator = "Пропущенные звонки")
@@ -39,15 +37,15 @@ public class HistoryFilterPageIos extends HistoryFilterPage{
 	@FindBy(locator = "Несостоявшиеся вызовы")
 	private UIView rejected;
 	
-	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[2]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]")
 	private UIView editButton;
 	
-	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[3]/UIAStaticText[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]/link[3]/text[1]")
 	private UIView nameContact;
 	
-	private static String NAME = "//UIALink[@name='%s']";
+	private static String NAME = "//link[@name='%s']";
 	
-	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]/UIALink[1]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[1]/link[1]")
 	private UIView backFromAllContacts;
 
 	public HistoryFilterPageIos(NativeDriver driver) {

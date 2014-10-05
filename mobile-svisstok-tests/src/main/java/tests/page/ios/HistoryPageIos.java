@@ -25,48 +25,49 @@ public class HistoryPageIos extends HistoryPage {
 		super(driver);
 	}
 
-	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]")
 	private UIView webview;
 
-	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[4]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[4]",
+			ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[4]")
 	private UIView timerCall;
 
 	@FindBy(locator = "Позвонить")
 	private UIView callTab;
 
-	// @FindBy(locator = "")
-	// private UIView editButton;
+	 @FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[2]")
+	 private UIView editButton;
 
-	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]")
 	private UIView trashButton;
 	
 	@FindBy(locator = "Готово")
 	private UIView readyButton;
 
-	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[2]",
-			ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[3]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[2]",
+			ios7 = "//window[1]/scrollview[1]/webview[1]/link[3]")
 	private UIView arrowButton;
 
 	@FindBy(locator = FIRST_RESULT)
 	private UIView contact;
 
-	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]",
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]", 
 			ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]")
 	private UIView cancelCallButton;
 
-	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[3]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[3]")
 	private UIView messageEmptyList;
 
-	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[2]")
 	private UIView allContacts;
 
-	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[3]")
+	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[3]")
 	private UIView settingButton;
 	
-	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]")
 	private UIView filterButton;
 
-	private static final String FIRST_RESULT = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink";//link[3]
+	private static final String FIRST_RESULT = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink";
 
 	@Override
 	public void checkPage() {
@@ -111,13 +112,13 @@ public class HistoryPageIos extends HistoryPage {
 
 	@Override
 	public void clickEdit() {
-		Rectangle point = arrowButton.getLocation();
+		Rectangle point = editButton.getLocation();
 		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:
-		 arrowButton.touchWithCoordinates(point.getX(), point.getY());
+		 editButton.touchWithCoordinates(point.getX() + 18, point.getY());
 		 break;
 		case IOS7:
-		 arrowButton.touchWithCoordinates(point.getX(), point.getY() - 35);
+		 editButton.touchWithCoordinates(point.getX() + 18, point.getY());
 		 break;
 		 default:
 			 break;
@@ -151,8 +152,8 @@ public class HistoryPageIos extends HistoryPage {
 
 	@Override
 	public void deleteAllCalls() {
-		Rectangle point = allContacts.getLocation();
-		allContacts.touchWithCoordinates(point.getX(), point.getY());
+		Rectangle point = trashButton.getLocation();
+		trashButton.touchWithCoordinates(point.getX(), point.getY());
 		clickConfirmation();
 	}
 

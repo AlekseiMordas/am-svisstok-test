@@ -277,7 +277,7 @@ public class CallPageIos extends CallPage {
 			break;
 		case IOS7:
 			Rectangle point = callButton.getLocation();
-			webview.touchWithCoordinates(dim.width / 2, dim.height / 9 * 8);
+			webview.touchWithCoordinates(dim.width / 2, dim.height / 9 * 7);
 			break;
 		default:
 			break;
