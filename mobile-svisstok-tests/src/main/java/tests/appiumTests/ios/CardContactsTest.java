@@ -86,14 +86,21 @@ public class CardContactsTest {
 
 	protected HistoryPage history;
 
-	@BeforeMethod(description = "Init and check page")
+	@BeforeMethod(description = "Init and check page",alwaysRun=true)
 	public void initPages() throws Exception {
 		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:
 			driver = IosDriverWrapper.getIos(HOST, PORT);
 			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
-			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
+			if (!main.isPageOpenned()) {
+				driver.quit();
+				driver = IosDriverWrapper.getIos(HOST, PORT);
+				driver.setDriverType(DEVICE);
+				main = PageFactory.initElements(driver, LoginPageIos.class);
+			}
+			call = main.simpleLogin(USER_NAME, USER_PASSWORD, true, false);
+			call.checkPage();
 			checkUpdateAlert();
 			cardContacts = PageFactory.initElements(driver,
 					CardContactsPageIos.class);
@@ -103,6 +110,12 @@ public class CardContactsTest {
 			driver = IosDriverWrapper.getIos(HOST, PORT);
 			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
+			if (!main.isPageOpenned()) {
+				driver.quit();
+				driver = IosDriverWrapper.getIos(HOST, PORT);
+				driver.setDriverType(DEVICE);
+				main = PageFactory.initElements(driver, LoginPageIos.class);
+			}
 			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 			cardContacts = PageFactory.initElements(driver,
 					CardContactsPageIos.class);
@@ -116,6 +129,12 @@ public class CardContactsTest {
 			Sleeper.SYSTEM_SLEEPER.sleep(10000);
 			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageAndroid.class);
+			if (!main.isPageOpenned()) {
+				driver.quit();
+				driver = IosDriverWrapper.getIos(HOST, PORT);
+				driver.setDriverType(DEVICE);
+				main = PageFactory.initElements(driver, LoginPageIos.class);
+			}
 			call = main.simpleLogin(USER_NAME, USER_PASSWORD, false, false);
 			cardContacts = PageFactory.initElements(driver,
 					CardContactsPageAndroid.class);
@@ -141,7 +160,19 @@ public class CardContactsTest {
 		SECOND_NUMBER = String.valueOf(new Random().nextInt(99999));
 	}
 
-	@Test(priority = 1, description = "Check name contact")
+	@Test(priority = 1, description = "Check add contact.", enabled = true)
+	public void checkAddContact() {
+		goToSwisstokList();
+		createUser(SAVED_NAME, CONTACT);
+		Sleeper.SYSTEM_SLEEPER.sleep(3000);
+		boolean result = cardContacts.isContactNumberExist(CONTACT);
+		// cardContacts.clickEditContacts();
+		// cardContacts.clickDeletefromList();
+		// cardContacts.clickDelete();
+		Assert.assertTrue(result, "Contact number isn't exist");
+	}
+
+	@Test(priority = 2, description = "Check name contact")
 	public void checkListContacts() {
 		cardContacts = call.clickContact();
 		cardContacts.isContactListDownloaded();
@@ -149,19 +180,7 @@ public class CardContactsTest {
 		cardContacts = setting.clickAllContacts();
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		boolean visibleListContacts = cardContacts.checkVisibleListContacts();
-		Assert.assertTrue(visibleListContacts, "Contact List not do");
-	}
-
-	@Test(priority = 2, description = "Check add contact.", enabled = true)
-	public void checkAddContact() {
-		goToSwisstokList();
-		createUser(SAVED_NAME, CONTACT);
-		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		boolean result = cardContacts.isContactNumberExist(CONTACT);
-		cardContacts.clickEditContacts();
-		cardContacts.clickDeletefromList();
-		cardContacts.clickDelete();
-		Assert.assertTrue(result, "Contact number isn't exist");
+		Assert.assertTrue(visibleListContacts, "Contact List is empty");
 	}
 
 	@Test(priority = 3, description = "Check number contact, Check name contact", enabled = true)
@@ -368,6 +387,11 @@ public class CardContactsTest {
 	private void checkUpdateAlert() {
 		if (call.isAlertUpdate())
 			call.clickCancel();
+	}
+
+	@AfterMethod(alwaysRun = true)
+	public void quitDriver() {
+		driver.quit();
 	}
 
 }

@@ -130,7 +130,15 @@ public class SuiteListener implements ISuiteListener, ITestListener,
 
 	@Override
 	public void onConfigurationFailure(ITestResult itr) {
-
+		try {
+			IosDriverWrapper.getDriver().takeScreenshot("");
+		}
+		catch(WebDriverException e) {
+			LOGGER.info("Can't take screenshot: " + e.getMessage());
+		}
+		LOGGER.info("================================== TEST "
+				+ itr.getName()
+				+ " FAILED ==================================");
 	}
 
 	@Override

@@ -1,13 +1,6 @@
 package tests.page.android;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.touch.TouchActions;
-import org.openqa.selenium.remote.Augmenter;
-import org.openqa.selenium.support.ui.Select;
+import tests.page.LoginPage;
 
 import com.annotation.FindBy;
 import com.element.UIView;
@@ -15,9 +8,6 @@ import com.ios.AppiumDriver;
 import com.mobile.driver.nativedriver.NativeDriver;
 import com.mobile.driver.page.PageFactory;
 import com.mobile.driver.wait.Sleeper;
-
-import tests.page.CallPage;
-import tests.page.LoginPage;
 
 public class LoginPageAndroid extends LoginPage {
 
@@ -79,7 +69,7 @@ public class LoginPageAndroid extends LoginPage {
 	public void clickLogin() {
 		loginButton.touch();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
-		if(loginButton.isExists()) {
+		if (loginButton.isExists()) {
 			loginButton.touch();
 		}
 	}
@@ -87,7 +77,7 @@ public class LoginPageAndroid extends LoginPage {
 	@Override
 	public CallPageAndroid simpleLogin(String login, String password,
 			boolean isSavePassword, boolean isAutoLogin) {
-//	Sleeper.SYSTEM_SLEEPER.sleep(15000);
+		// Sleeper.SYSTEM_SLEEPER.sleep(15000);
 		inputLoginTextfield(login);
 		inputPasswordTextfield(password);
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
@@ -98,10 +88,12 @@ public class LoginPageAndroid extends LoginPage {
 		return PageFactory.initElements(driver, CallPageAndroid.class);
 	}
 
+	@Override
 	public String getLoginFieldText() {
 		return loginTextfield.getAttribute("value");
 	}
 
+	@Override
 	public String getPasswordFieldText() {
 		return passwordTextfield.getAttribute("value");
 	}
@@ -142,6 +134,12 @@ public class LoginPageAndroid extends LoginPage {
 	public boolean isSavePasswordCorrect() {
 		return getLoginFieldText().length() > 0
 				&& getPasswordFieldText().length() > 0;
+	}
+
+	@Override
+	public boolean isPageOpenned() {
+		// TODO Auto-generated method stub
+		throw new RuntimeException("Method not implemented");
 	}
 
 }

@@ -90,13 +90,22 @@ public class LoginPageIos extends LoginPage {
 	@Override
 	public CallPageIos simpleLogin(String login, String password,
 			boolean isSavePassword, boolean isAutoLogin) {
+		doLogin(login, password, isSavePassword, isAutoLogin);
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		if (savePasswordSlider.isExists()) {
+			doLogin(login, password, isSavePassword, isAutoLogin);
+		}
+		return PageFactory.initElements(driver, CallPageIos.class);
+	}
+
+	public void doLogin(String login, String password, boolean isSavePassword,
+			boolean isAutoLogin) {
 		inputLoginTextfield(login);
 		inputPasswordTextfield(password);
 		setSavePassword(isSavePassword);
 		setAutoLogin(isAutoLogin);
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		loginButton.touch();
-		return PageFactory.initElements(driver, CallPageIos.class);
 	}
 
 	@Override
@@ -144,7 +153,6 @@ public class LoginPageIos extends LoginPage {
 	@Override
 	public void inputPasswordTextfield(String text) {
 		passwordTextfield.touch();
-		;
 		clearPasswordField(passwordTextfield);
 		passwordTextfield.type(text);
 		doneButton.touch();
@@ -153,6 +161,11 @@ public class LoginPageIos extends LoginPage {
 	@Override
 	public void checkPage() {
 		loginTextfield.waitForElement(WAIT_FOR_ELEMENT_TIMEOUT);
+	}
+
+	@Override
+	public boolean isPageOpenned() {
+		return loginTextfield.isExists();
 	}
 
 	@Override
