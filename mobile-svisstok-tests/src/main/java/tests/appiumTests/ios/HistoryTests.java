@@ -1,8 +1,12 @@
 package tests.appiumTests.ios;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import runner.Devices;
+import runner.annotation.IgnoreTest;
 import tests.page.HistoryFilterPage;
+import tests.page.exceptions.XmlParametersException;
 
 import com.mobile.driver.wait.Sleeper;
 
@@ -10,7 +14,7 @@ public class HistoryTests extends BaseTest {
 
 	private static final int DEFAULT_COUNT_LINKS_IN_EMPTY_HISTORY = 5;
 	private static final String MESSAGE_EMPTY_LIST = "Список пустой.";
-/*
+
 	@Test(priority = 1, enabled = true)
 	public void checkCallFromHistory() {
 		callOneself();
@@ -79,7 +83,7 @@ public class HistoryTests extends BaseTest {
 		}
 		history.clickCallTab();
 	}
-*/
+
 	@Test(priority = 4, enabled = true)
 	public void checkGroupingCallsInHistory() {
 		history = call.clickHistoryTab();
@@ -89,7 +93,7 @@ public class HistoryTests extends BaseTest {
 		history.clickCallTab();
 	}
 
-	//@IgnoreTest(device="ios7")
+	@IgnoreTest(device="ios7")
 	@Test(priority = 5, enabled = true)
 	public void checkShortNumber() {
 		clearField();
