@@ -94,7 +94,7 @@ public class CardContactsTest {
 			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
 			if (!main.isPageOpenned()) {
-				driver.quit();
+				((AppiumDriver) driver).quit();
 				driver = IosDriverWrapper.getIos(HOST, PORT);
 				driver.setDriverType(DEVICE);
 				main = PageFactory.initElements(driver, LoginPageIos.class);
@@ -111,7 +111,7 @@ public class CardContactsTest {
 			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageIos.class);
 			if (!main.isPageOpenned()) {
-				driver.quit();
+				((AppiumDriver) driver).quit();
 				driver = IosDriverWrapper.getIos(HOST, PORT);
 				driver.setDriverType(DEVICE);
 				main = PageFactory.initElements(driver, LoginPageIos.class);
@@ -130,7 +130,7 @@ public class CardContactsTest {
 			driver.setDriverType(DEVICE);
 			main = PageFactory.initElements(driver, LoginPageAndroid.class);
 			if (!main.isPageOpenned()) {
-				driver.quit();
+				((AppiumDriver) driver).quit();
 				driver = IosDriverWrapper.getIos(HOST, PORT);
 				driver.setDriverType(DEVICE);
 				main = PageFactory.initElements(driver, LoginPageIos.class);
@@ -391,7 +391,7 @@ public class CardContactsTest {
 
 	@AfterMethod(alwaysRun = true)
 	public void quitDriver() {
-		driver.quit();
+		((AppiumDriver) driver).quit();
 	}
 
 }

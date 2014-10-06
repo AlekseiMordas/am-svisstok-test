@@ -21,7 +21,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-	<name>AD SDK ios tests</name>
+	<name>Swisstok mobile tests</name>
 	<url>http://maven.apache.org</url>
 	<build>
 		<plugins>
