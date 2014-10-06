@@ -86,7 +86,7 @@ public class CardContactsTest {
 
 	protected HistoryPage history;
 
-	@BeforeMethod(description = "Init and check page",alwaysRun=true)
+	@BeforeMethod(description = "Init and check page", alwaysRun = true)
 	public void initPages() throws Exception {
 		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:

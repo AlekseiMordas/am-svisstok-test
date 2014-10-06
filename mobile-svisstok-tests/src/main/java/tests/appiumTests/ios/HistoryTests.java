@@ -94,7 +94,7 @@ public class HistoryTests extends BaseTest {
 	}
 
 	@IgnoreTest(device="ios7")
-	@Test(priority = 5, enabled = true)
+	@Test(priority = 5, enabled = false)
 	public void checkShortNumber() {
 		clearField();
 		callOneself();
