@@ -24,5 +24,11 @@
 			<class name="tests.appiumTests.ios.HistoryTests" />
 		</classes>
 	</test> 
+	<test verbose="1" name="Svisstok test - Settings Tests" annotations="JDK">
+		<classes>
+			<class name="tests.appiumTests.ios.SettingTests" />
+		</classes>
+	</test> 
+	
 	
 </suite>

@@ -3,6 +3,7 @@ package tests.appiumTests.ios;
 import helpers.GenerateRandomString;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 import runner.Devices;
@@ -105,5 +106,10 @@ public class AuthorizationTest extends NonAutorizationBaseTest {
 	private void checkUpdateAlert(){
 		if(call.isAlertUpdate())
 			call.clickCancel();
+	}
+	
+	@AfterClass(alwaysRun=true)
+	public void quit() {
+		((AppiumDriver) driver).quit();
 	}
 }

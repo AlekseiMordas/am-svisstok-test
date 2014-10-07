@@ -1,6 +1,7 @@
 package tests.appiumTests.ios;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
@@ -8,6 +9,7 @@ import runner.annotation.IgnoreTest;
 import tests.page.CallPage;
 import tests.page.SettingsPage;
 
+import com.ios.AppiumDriver;
 import com.mobile.driver.wait.Sleeper;
 
 public class CallTest extends BaseTest {
@@ -47,7 +49,7 @@ public class CallTest extends BaseTest {
 		call.cancelCall().checkPage();
 		Assert.assertEquals(EXPECTED_CALL_NAME, callNameConnection);
 	}
-	
+
 	@Test(priority = 5, description = "Check button cancel in currently call", enabled = true)
 	public void checkCancelCallButtonInCall() {
 		call.inputFromNativeKeyboard(PHONE_NUMBER);
@@ -83,17 +85,17 @@ public class CallTest extends BaseTest {
 		call.cancelCall();
 		Assert.assertTrue(actualTimer);
 	}
-	
+
 	@Test(priority = 9, description = "Check microfone, Check speaker", enabled = true)
 	public void checkMicrofone() {
 		call.inputFromNativeKeyboard(PHONE_NUMBER);
 		call.clickCallButton();
 		boolean isMicrofone = call.isMicrophoneWork();
-		//boolean isSpeaker = call.isSpeakerWork();
+		// boolean isSpeaker = call.isSpeakerWork();
 		call.cancelCall();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		Assert.assertTrue(isMicrofone);
-		//Assert.assertTrue(isSpeaker);
+		// Assert.assertTrue(isSpeaker);
 	}
 
 	@Test(priority = 10, description = "Check call from favorite", enabled = true)
@@ -136,7 +138,7 @@ public class CallTest extends BaseTest {
 	 * Server to run job CallPage callPage = call.isIncommingCallReset();
 	 * callPage.checkPage(); }
 	 */
-	
+
 	@IgnoreTest(device = "ios7")
 	@Test(priority = 16, enabled = true)
 	public void callWithZRTPConnection() {
@@ -169,6 +171,11 @@ public class CallTest extends BaseTest {
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
 		settings.setConnectionByDefault();
 		Assert.assertTrue(actualTimer);
+	}
+
+	@AfterClass(alwaysRun=true)
+	public void quit() {
+		((AppiumDriver) driver).quit();
 	}
 
 	@AfterMethod

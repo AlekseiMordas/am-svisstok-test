@@ -1,8 +1,10 @@
 package tests.appiumTests.ios;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
+import com.ios.AppiumDriver;
 import com.mobile.driver.wait.Sleeper;
 
 public class SettingTests extends BaseTest {
@@ -49,6 +51,9 @@ public class SettingTests extends BaseTest {
 		setting.clickCallTab();
 	}
 	
-	
+	@AfterClass(alwaysRun=true)
+	public void quit() {
+		((AppiumDriver) driver).quit();
+	}
 
 }
