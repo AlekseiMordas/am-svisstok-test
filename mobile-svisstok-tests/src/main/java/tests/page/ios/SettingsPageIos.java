@@ -5,6 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.NoSuchElementException;
 
 import runner.Devices;
 import tests.page.CallPage;
@@ -22,7 +23,7 @@ public class SettingsPageIos extends SettingsPage {
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]")
 	private UIView webview;
 
-	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/slider[3]", ios7 = "//window[1]/scrollview[1]/webview[1]/slider[3]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIASlider[3]", ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIASlider[3]")
 	public UIView autoLoginSlider;
 
 	@FindBy(locator = "Все контакты")
@@ -113,8 +114,12 @@ public class SettingsPageIos extends SettingsPage {
 	@Override
 	public CardContactsPageIos clickAllContacts() {
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
-		Rectangle point = allContacts.getLocation();
-		allContacts.touchWithCoordinates(point.getX(), point.getY());
+		try {
+			Rectangle point = allContacts.getLocation();
+			allContacts.touchWithCoordinates(point.getX(), point.getY()); }
+		catch (NoSuchElementException e) {
+			allContacts.touch();
+		}
 		return PageFactory.initElements(driver, CardContactsPageIos.class);
 	}
 
@@ -122,24 +127,38 @@ public class SettingsPageIos extends SettingsPage {
 	@Override
 	public CardContactsPageIos clickSwisstokContacts() {
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
+		try {
 		Rectangle point = swisstokContacts.getLocation();
 		swisstokContacts.touchWithCoordinates(point.getX(), 200);
+		}
+		catch (NoSuchElementException e) {
+			swisstokContacts.touch();
+		}
 		return PageFactory.initElements(driver, CardContactsPageIos.class);
 	}
 
 	@Override
 	public BlockPageIos clickBlock() {
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
-		Rectangle point = block.getLocation();
-		block.touchWithCoordinates(point.getX(), point.getY());
+		try {
+			Rectangle point = block.getLocation();
+			block.touchWithCoordinates(point.getX(), point.getY());
+		} catch (NoSuchElementException e) {
+			block.touch();
+		}
 		return PageFactory.initElements(driver, BlockPageIos.class);
 	}
 
 	@Override
 	public FavoritePageIos clickFavorite() {
 		Sleeper.SYSTEM_SLEEPER.sleep(3000);
-		Rectangle point = favourContacts.getLocation();
-		favourContacts.touchWithCoordinates(point.getX(), point.getY());
+		try {
+			Rectangle point = favourContacts.getLocation();
+			favourContacts.touchWithCoordinates(point.getX(), point.getY());
+		} catch (NoSuchElementException e) {
+			favourContacts.touch();
+		}
+
 		return PageFactory.initElements(driver, FavoritePageIos.class);
 	}
 

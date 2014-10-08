@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 
 import runner.Devices;
@@ -71,10 +72,9 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//window[2]/UIAKeyboard[1]/UIAKey[29]")
 	private UIView moreNumber;
 
-	@FindBy(locator = "Удалить" ,
-			ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[15]/UIAStaticText[1]")
+	@FindBy(locator = "Удалить", ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[15]/UIAStaticText[1]")
 	private UIView deleteButton;
-	
+
 	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[15]")
 	private UIView deleteButtonFromKeyboard;
 
@@ -96,30 +96,26 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]")
 	private UIView webview;
 
-	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[14]/UIALink[1]",
-			ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[14]")
+	@FindBy(locator = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[14]/UIALink[1]", ios7 = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[14]")
 	private UIView callButton;
 
-	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]", 
-			ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]/UIALink[1]", ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[2]")
 	private UIView cancelCallButton;
 
 	@FindBy(locator = "Отклонить")
 	private UIView resetCallButton;
 
-	@FindBy(locator = "Контакты",
-			ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[16]")
+	@FindBy(locator = "Контакты", ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[16]")
 	private UIView contactsTab;
 
 	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAStaticText[4]")
 	private UIView timerCall;
 
-//	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[5]",
-//			ios7 = "//window[1]/scrollview[1]/webview[1]/text[3]")
-//	private UIView contactNumber;
+	// @FindBy(locator = "//window[1]/scrollview[1]/webview[1]/text[5]",
+	// ios7 = "//window[1]/scrollview[1]/webview[1]/text[3]")
+	// private UIView contactNumber;
 
-	@FindBy(locator = "Позвонить", 
-			ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[18]")
+	@FindBy(locator = "Позвонить", ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[18]")
 	private UIView callTab;
 
 	@FindBy(locator = "История")
@@ -142,7 +138,7 @@ public class CallPageIos extends CallPage {
 
 	@FindBy(locator = "//UIAAlert[1]/UIAScrollView[1]/UIAStaticText[1]")
 	private UIView alertAccessContacts;
-	
+
 	@FindBy(locator = "//UIALink[@name='Отмена']")
 	private UIView alertUpdateBuild;
 
@@ -155,7 +151,7 @@ public class CallPageIos extends CallPage {
 
 	@FindBy(locator = "//window[1]/scrollview[1]/webview[1]/link[4]")
 	private UIView speakerButton;
-	
+
 	@FindBy(locator = "Отмена")
 	private UIView cancelButton;
 
@@ -241,25 +237,29 @@ public class CallPageIos extends CallPage {
 
 	@Override
 	public void clearField() {
-		while (!fieldNumber.getAttribute("value").isEmpty()) {
-			deleteLastSymbol();
+		try {
+			while (!fieldNumber.getAttribute("value").isEmpty()) {
+				deleteLastSymbol();
+			}
+		} catch (NoSuchElementException e) {
+
 		}
 	}
 
 	@Override
 	public void deleteLastSymbol() {
 		Rectangle point = deleteButtonFromKeyboard.getLocation();
-		deleteButtonFromKeyboard.touchWithCoordinates(point.getX(), point.getY());
+		deleteButtonFromKeyboard.touchWithCoordinates(point.getX(),
+				point.getY());
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public CardContactsPageIos clickContact() {
 		contactsTab.touch();
 		return PageFactory.initElements(driver, CardContactsPageIos.class);
 	}
 
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public SettingsPageIos navigateToSettingsTab() {
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
@@ -276,7 +276,7 @@ public class CallPageIos extends CallPage {
 			webview.touchWithCoordinates(dim.width / 2, dim.height / 9 * 8);
 			break;
 		case IOS7:
-			Rectangle point = callButton.getLocation();
+			//Rectangle point = callButton.getLocation();
 			webview.touchWithCoordinates(dim.width / 2, dim.height / 9 * 7);
 			break;
 		default:
@@ -366,7 +366,7 @@ public class CallPageIos extends CallPage {
 
 	@Override
 	public String getContactNumber(String name) {
-		return ((AppiumDriver)driver).getDriver().findElementByName(name)
+		return ((AppiumDriver) driver).getDriver().findElementByName(name)
 				.getAttribute("name");
 	}
 
@@ -388,8 +388,8 @@ public class CallPageIos extends CallPage {
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		speakerButton.touchWithCoordinates(pointSpeaker.getX(),
 				pointSpeaker.getY());
-//		Rectangle pointName = nameText.getLocation();
-//		nameText.touchWithCoordinates(pointName.getX(), pointName.getY());
+		// Rectangle pointName = nameText.getLocation();
+		// nameText.touchWithCoordinates(pointName.getX(), pointName.getY());
 		return true;
 	}
 
@@ -407,16 +407,17 @@ public class CallPageIos extends CallPage {
 		}
 		return false;
 	}
+
 	@Override
-	public boolean isAlertUpdate(){
-		if(alertUpdateBuild.isExists())
+	public boolean isAlertUpdate() {
+		if (alertUpdateBuild.isExists())
 			return true;
 		else
 			return false;
 	}
-	
+
 	@Override
-	public void clickCancel(){
+	public void clickCancel() {
 		cancelButton.touch();
 	}
 }

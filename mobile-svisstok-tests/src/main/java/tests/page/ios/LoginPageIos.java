@@ -25,10 +25,10 @@ public class LoginPageIos extends LoginPage {
 	@FindBy(locator = "//UIASecureTextField[1]")
 	public UIView passwordTextfield;
 
-	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAImage[1]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIASlider[1]")
 	private UIView savePasswordSlider;
 
-	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIAImage[4]")
+	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIASlider[2]")
 	private UIView autoLoginSlider;
 
 	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[1]")

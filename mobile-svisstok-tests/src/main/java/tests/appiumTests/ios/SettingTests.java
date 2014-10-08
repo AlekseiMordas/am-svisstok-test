@@ -47,7 +47,7 @@ public class SettingTests extends BaseTest {
 		setting = call.navigateToSettingsTab();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		setting.openLogApp();
-		Assert.assertTrue(setting.validateLogs());
+		Assert.assertTrue(setting.validateLogs(), "Log is EMPTY");
 		setting.clickCallTab();
 	}
 	
