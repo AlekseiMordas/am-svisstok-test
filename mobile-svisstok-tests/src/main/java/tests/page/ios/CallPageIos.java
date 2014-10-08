@@ -118,7 +118,7 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "Позвонить", ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[18]")
 	private UIView callTab;
 
-	@FindBy(locator = "//UILink[contains(@name,',')]")
+	@FindBy(locator = " ,  ")
 	private UIView callLinkButton;
 
 	@FindBy(locator = "История")
@@ -275,7 +275,7 @@ public class CallPageIos extends CallPage {
 		Dimension dim = webview.getSize();
 		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:
-			callLinkButton.touch();
+			webview.touchWithCoordinates(dim.width / 2, dim.height / 6 * 5);
 			break;
 		case IOS7:
 			// Rectangle point = callButton.getLocation();
