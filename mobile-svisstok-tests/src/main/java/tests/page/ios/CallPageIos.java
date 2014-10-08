@@ -118,6 +118,9 @@ public class CallPageIos extends CallPage {
 	@FindBy(locator = "Позвонить", ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIALink[18]")
 	private UIView callTab;
 
+	@FindBy(locator = "//UILink[contains(@name,',')]")
+	private UIView callLinkButton;
+
 	@FindBy(locator = "История")
 	private UIView historyButton;
 
@@ -259,7 +262,6 @@ public class CallPageIos extends CallPage {
 		return PageFactory.initElements(driver, CardContactsPageIos.class);
 	}
 
-
 	@Override
 	public SettingsPageIos navigateToSettingsTab() {
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
@@ -273,10 +275,10 @@ public class CallPageIos extends CallPage {
 		Dimension dim = webview.getSize();
 		switch (Devices.valueOf(DEVICE)) {
 		case IPHONE:
-			webview.touchWithCoordinates(dim.width / 2, dim.height / 9 * 8);
+			callLinkButton.touch();
 			break;
 		case IOS7:
-			//Rectangle point = callButton.getLocation();
+			// Rectangle point = callButton.getLocation();
 			webview.touchWithCoordinates(dim.width / 2, dim.height / 9 * 7);
 			break;
 		default:

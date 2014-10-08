@@ -22,7 +22,7 @@ public class CallTest extends BaseTest {
 	// ApplicationStorage.getCallerName();
 	protected static final String NAME = "Qwerty";
 	protected static final String NUMBER = "1234";
-
+/*
 	@Test(priority = 1)
 	public void checkNumberFieldDigits() {
 		call.inputFromNativeKeyboard(EXPECTED_TYPE_VALUE);
@@ -39,7 +39,7 @@ public class CallTest extends BaseTest {
 				call.getTextFieldDigitDisplay(),
 				"Last symbol not clear successfull");
 	}
-
+*/
 	@Test(priority = 3, description = "Check call name", enabled = true)
 	public void checkConnectAnotherAbonent() {
 		call.inputFromNativeKeyboard(PHONE_NUMBER);

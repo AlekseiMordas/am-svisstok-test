@@ -1,6 +1,7 @@
 package tests.page.ios;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.WebDriverException;
 
 import tests.page.LoginPage;
 
@@ -125,9 +126,13 @@ public class LoginPageIos extends LoginPage {
 	public void clearField(UIView element) {
 		if (!(element.getAttribute("value").contains("Логин"))) {
 			element.touchLong();
-			selectAll.touch();
-			Sleeper.SYSTEM_SLEEPER.sleep(1000);
-			cutButton.touch();
+			try {
+				selectAll.touch();
+				Sleeper.SYSTEM_SLEEPER.sleep(1000);
+				cutButton.touch();
+			} catch (WebDriverException e) {
+
+			}
 			Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		}
 	}

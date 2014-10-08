@@ -26,19 +26,19 @@ public class SettingsPageIos extends SettingsPage {
 	@FindBy(locator = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIASlider[3]", ios7 = "//UIAWindow[1]/UIAScrollView[1]/UIAWebView[1]/UIASlider[3]")
 	public UIView autoLoginSlider;
 
-	@FindBy(locator = "Все контакты")
+	@FindBy(locator = "//UIALink[@name='Все контакты']", ios7 = "Все контакты")
 	private UIView allContacts;
 
-	@FindBy(locator = "Контакты в Swisstok")
+	@FindBy(locator = "//UIALink[@name='Контакты в Swisstok']", ios7 = "Контакты в Swisstok")
 	private UIView swisstokContacts;
 
-	@FindBy(locator = "Избранные")
+	@FindBy(locator = "//UIALink[@name='Избранные']", ios7 = "Избранные")
 	private UIView favourContacts;
 
-	@FindBy(locator = "Сохраненные номера")
+	@FindBy(locator = "//UIALink[@name='Сохраненные номера']", ios7 = "Сохраненные номера")
 	private UIView savedContacts;
 
-	@FindBy(locator = "Заблокированные")
+	@FindBy(locator = "//UIALink[@name='Заблокированные']", ios7 = "Заблокированные")
 	private UIView block;
 
 	@FindBy(locator = "Шифрование")
@@ -116,8 +116,8 @@ public class SettingsPageIos extends SettingsPage {
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		try {
 			Rectangle point = allContacts.getLocation();
-			allContacts.touchWithCoordinates(point.getX(), point.getY()); }
-		catch (NoSuchElementException e) {
+			allContacts.touchWithCoordinates(point.getX(), point.getY());
+		} catch (NoSuchElementException e) {
 			allContacts.touch();
 		}
 		return PageFactory.initElements(driver, CardContactsPageIos.class);
@@ -128,10 +128,9 @@ public class SettingsPageIos extends SettingsPage {
 	public CardContactsPageIos clickSwisstokContacts() {
 		Sleeper.SYSTEM_SLEEPER.sleep(1000);
 		try {
-		Rectangle point = swisstokContacts.getLocation();
-		swisstokContacts.touchWithCoordinates(point.getX(), 200);
-		}
-		catch (NoSuchElementException e) {
+			Rectangle point = swisstokContacts.getLocation();
+			swisstokContacts.touchWithCoordinates(point.getX(), 200);
+		} catch (NoSuchElementException e) {
 			swisstokContacts.touch();
 		}
 		return PageFactory.initElements(driver, CardContactsPageIos.class);

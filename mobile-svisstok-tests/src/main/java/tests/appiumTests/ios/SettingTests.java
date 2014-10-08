@@ -44,6 +44,10 @@ public class SettingTests extends BaseTest {
 	
 	@Test(priority = 5, enabled = true)
 	public void checkLog(){
+		call.inputFromNativeKeyboard(PHONE_NUMBER);
+		Sleeper.SYSTEM_SLEEPER.sleep(2000);
+		call.clickCallButton();
+		call.cancelCall().checkPage();
 		setting = call.navigateToSettingsTab();
 		Sleeper.SYSTEM_SLEEPER.sleep(2000);
 		setting.openLogApp();
